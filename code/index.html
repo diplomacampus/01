@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiplomaCampus — Engineering Notes Platform</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader"><div class="loader"></div></div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="notes.html">Notes</a>
+      <a href="buy-notes.html">Plans</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="buy-notes.html" class="btn btn-primary btn-sm">Get Access</a>
+    </div>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+  <a href="index.html"><i class='bx bx-home'></i> Home</a>
+  <a href="notes.html"><i class='bx bx-book-open'></i> Notes</a>
+  <a href="buy-notes.html"><i class='bx bx-tag'></i> Plans</a>
+  <a href="about.html"><i class='bx bx-info-circle'></i> About</a>
+  <a href="login.html" class="btn btn-ghost">Sign In</a>
+  <a href="buy-notes.html" class="btn btn-primary">Get Access</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-badge"><i class='bx bxs-star'></i> India's #1 Engineering Notes Hub</div>
+        <h1 class="hero-title">
+          Ace Your Exams<br>with <span class="hl">Expert</span><br><span class="hl-t">Study Notes</span>
+        </h1>
+        <p class="hero-desc">Curated, structured, and exam-ready notes for every engineering branch. Download PDFs, access semester-wise content, and study smarter — not harder.</p>
+        <div class="hero-actions">
+          <a href="notes.html" class="btn btn-primary btn-lg"><i class='bx bx-download'></i> Browse Notes</a>
+          <a href="buy-notes.html" class="btn btn-outline btn-lg"><i class='bx bx-crown'></i> View Plans</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num counter" data-target="50000" data-suffix="+" >0+</div>
+            <div class="stat-label">Students</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num counter" data-target="2500" data-suffix="+">0+</div>
+            <div class="stat-label">PDF Files</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num counter" data-target="12">0</div>
+            <div class="stat-label">Branches</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num counter" data-target="98" data-suffix="%">0%</div>
+            <div class="stat-label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://static.vecteezy.com/system/resources/previews/020/610/950/non_2x/one-line-drawing-of-young-happy-male-college-student-studying-and-reading-stack-of-books-in-library-while-gives-thumbs-up-gesture-education-continuous-line-draw-graphic-design-illustration-vector.jpg" alt="Student studying engineering notes" class="hero-img">
+        <div class="float-card fc1"><i class='bx bxs-file-pdf'></i> <span>2,500+ PDFs Ready</span></div>
+        <div class="float-card fc2"><i class='bx bxs-download'></i> <span>Free Downloads</span></div>
+        <div class="float-card fc3"><i class='bx bxs-graduation'></i> <span>12 Branches Covered</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="container">
+    <p class="label">Trusted by students from top engineering colleges</p>
+    <div class="trust-logos">
+      <span>IIT Delhi</span>
+      <span>NIT Trichy</span>
+      <span>VIT Vellore</span>
+      <span>BITS Pilani</span>
+      <span>DTU</span>
+      <span>RVCE</span>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="bg-mid">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><i class='bx bx-star'></i> Why DiplomaCampus</div>
+      <h2 class="section-title">Everything You Need to <span class="hl">Excel</span></h2>
+      <p class="section-sub">Designed for engineering students who want quality resources without the noise.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal d1">
+        <div class="feat-icon fi-g"><i class='bx bxs-book-bookmark'></i></div>
+        <h3>Structured Content</h3>
+        <p>Notes organized semester-wise, subject-wise, and topic-wise so you find exactly what you need in seconds.</p>
+      </div>
+      <div class="feat-card reveal d2">
+        <div class="feat-icon fi-t"><i class='bx bx-download'></i></div>
+        <h3>Instant Downloads</h3>
+        <p>Download PDFs with one click — no sign-up walls, no broken links. Just clean, high-quality files.</p>
+      </div>
+      <div class="feat-card reveal d3">
+        <div class="feat-icon fi-s"><i class='bx bxs-devices'></i></div>
+        <h3>Cross-Device Access</h3>
+        <p>Study on laptop, phone, or tablet. Your notes are accessible anywhere, anytime.</p>
+      </div>
+      <div class="feat-card reveal d4">
+        <div class="feat-icon fi-m"><i class='bx bxs-pen'></i></div>
+        <h3>Exam-Ready Notes</h3>
+        <p>Every note is reviewed by senior students and verified against university exam patterns.</p>
+      </div>
+      <div class="feat-card reveal d1">
+        <div class="feat-icon fi-sa"><i class='bx bxs-brain'></i></div>
+        <h3>AI-Powered Search</h3>
+        <p>Find any topic across thousands of PDFs with our intelligent search that understands engineering terms.</p>
+      </div>
+      <div class="feat-card reveal d2">
+        <div class="feat-icon fi-st"><i class='bx bxs-group'></i></div>
+        <h3>Community Q&A</h3>
+        <p>Ask doubts, share insights, and learn from a community of 50,000+ engineering students.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="bg-base">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><i class='bx bx-list-check'></i> Simple Process</div>
+      <h2 class="section-title">Get Your Notes in <span class="hl">3 Steps</span></h2>
+      <p class="section-sub">No complicated setup. Start downloading quality notes in under a minute.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step reveal d1">
+        <div class="step-num">1</div>
+        <h3>Choose Your Branch</h3>
+        <p>Select from 12 engineering branches — CSE, ECE, Mechanical, Civil, and more.</p>
+      </div>
+      <div class="how-step reveal d2">
+        <div class="step-num">2</div>
+        <h3>Pick Semester & Subject</h3>
+        <p>Browse semester-wise content and find the exact subject notes you need.</p>
+      </div>
+      <div class="how-step reveal d3">
+        <div class="step-num">3</div>
+        <h3>Download & Study</h3>
+        <p>Download instantly as PDF. Study offline, share with friends, and ace your exams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notes Preview -->
+<section class="bg-mid">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label"><i class='bx bx-file'></i> Popular Notes</div>
+      <h2 class="section-title">Top Downloads This Week</h2>
+    </div>
+    <div class="branch-tabs reveal">
+      <button class="tab-btn active" data-branch="all"><i class='bx bx-grid-alt'></i> All</button>
+      <button class="tab-btn" data-branch="cse"><i class='bx bx-code-alt'></i> CSE</button>
+      <button class="tab-btn" data-branch="ece"><i class='bx bx-chip'></i> ECE</button>
+      <button class="tab-btn" data-branch="mech"><i class='bx bx-cog'></i> Mechanical</button>
+      <button class="tab-btn" data-branch="civil"><i class='bx bx-building-house'></i> Civil</button>
+    </div>
+    <div class="notes-grid reveal">
+      <div class="note-card">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&q=70" alt="Data Structures notes">
+        <div class="note-body">
+          <span class="note-tag">CSE</span>
+          <h4>Data Structures & Algorithms</h4>
+          <p>Semester 3 — Complete notes with diagrams</p>
+        </div>
+        <div class="note-footer">
+          <span><i class='bx bx-download'></i> 4.2k downloads</span>
+          <button class="dl-btn"><i class='bx bx-download'></i> Download</button>
+        </div>
+      </div>
+      <div class="note-card">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=70" alt="Digital Electronics">
+        <div class="note-body">
+          <span class="note-tag">ECE</span>
+          <h4>Digital Electronics</h4>
+          <p>Semester 2 — Logic gates, K-maps & more</p>
+        </div>
+        <div class="note-footer">
+          <span><i class='bx bx-download'></i> 3.8k downloads</span>
+          <button class="dl-btn"><i class='bx bx-download'></i> Download</button>
+        </div>
+      </div>
+      <div class="note-card">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&q=70" alt="Operating Systems">
+        <div class="note-body">
+          <span class="note-tag">CSE</span>
+          <h4>Operating Systems</h4>
+          <p>Semester 5 — Processes, memory, I/O</p>
+        </div>
+        <div class="note-footer">
+          <span><i class='bx bx-download'></i> 5.1k downloads</span>
+          <button class="dl-btn"><i class='bx bx-download'></i> Download</button>
+        </div>
+      </div>
+      <div class="note-card">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=70" alt="Thermodynamics">
+        <div class="note-body">
+          <span class="note-tag">MECH</span>
+          <h4>Thermodynamics</h4>
+          <p>Semester 3 — Laws, cycles & applications</p>
+        </div>
+        <div class="note-footer">
+          <span><i class='bx bx-download'></i> 2.9k downloads</span>
+          <button class="dl-btn"><i class='bx bx-download'></i> Download</button>
+        </div>
+      </div>
+      <div class="note-card">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=70" alt="Computer Networks">
+        <div class="note-body">
+          <span class="note-tag">CSE</span>
+          <h4>Computer Networks</h4>
+          <p>Semester 6 — OSI, TCP/IP, routing</p>
+        </div>
+        <div class="note-footer">
+          <span><i class='bx bx-download'></i> 4.6k downloads</span>
+          <button class="dl-btn"><i class='bx bx-download'></i> Download</button>
+        </div>
+      </div>
+      <div class="note-card">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=70" alt="Structural Engineering">
+        <div class="note-body">
+          <span class="note-tag">CIVIL</span>
+          <h4>Structural Analysis</h4>
+          <p>Semester 4 — Beams, trusses & frames</p>
+        </div>
+        <div class="note-footer">
+          <span><i class='bx bx-download'></i> 2.2k downloads</span>
+          <button class="dl-btn"><i class='bx bx-download'></i> Download</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <a href="notes.html" class="btn btn-primary btn-lg"><i class='bx bx-book-open'></i> View All Notes</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="bg-base">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><i class='bx bx-chat'></i> Student Reviews</div>
+      <h2 class="section-title">What Students <span class="hl">Say</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal d1">
+        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+        <p class="testi-text">"DiplomaCampus saved my semester. The DSA notes are incredibly detailed with illustrations. Scored 91 in my end-semester because of these."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=70" alt="Arjun Sharma">
+          <div><div class="testi-name">Arjun Sharma</div><div class="testi-role">CSE, 3rd Year · NIT Trichy</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+        <p class="testi-text">"Finally found a platform with proper ECE notes. The Digital Electronics PDF is the best I've seen — even better than my college notes."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=70" alt="Priya Nair">
+          <div><div class="testi-name">Priya Nair</div><div class="testi-role">ECE, 2nd Year · VIT Vellore</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal d3">
+        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star-half'></i></div>
+        <p class="testi-text">"The Standard plan is absolutely worth it. Unlimited downloads, previous year papers — everything in one place. No more hunting across Telegram."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=70" alt="Karthik Menon">
+          <div><div class="testi-name">Karthik Menon</div><div class="testi-role">ME, 4th Year · BITS Pilani</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal d1">
+        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+        <p class="testi-text">"Sharing this with my entire hostel wing. The Civil notes are properly organized by subject and semester. Huge time-saver before exams."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=70" alt="Sneha Iyer">
+          <div><div class="testi-name">Sneha Iyer</div><div class="testi-role">Civil, 3rd Year · DTU Delhi</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+        <p class="testi-text">"Downloaded the DBMS notes at 11 PM before my 9 AM exam. Cleared with 85. This site is a life-saver and the search works really well too."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=70" alt="Ravi Gupta">
+          <div><div class="testi-name">Ravi Gupta</div><div class="testi-role">CSE, 5th Sem · RVCE Bangalore</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal d3">
+        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star-half'></i></div>
+        <p class="testi-text">"The premium plan includes video summaries now which is fantastic. Really recommend DiplomaCampus to every junior in my department."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=70" alt="Aishwarya Rao">
+          <div><div class="testi-name">Aishwarya Rao</div><div class="testi-role">ECE, Final Year · IIT Delhi</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section bg-mid">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Ready to Study <span style="color:var(--clr-gold)">Smarter?</span></h2>
+      <p>Join 50,000+ engineering students already using DiplomaCampus to ace their semesters.</p>
+      <div class="cta-actions">
+        <a href="notes.html" class="btn btn-primary btn-lg"><i class='bx bx-book-open'></i> Start Downloading Free</a>
+        <a href="buy-notes.html" class="btn btn-outline btn-lg"><i class='bx bx-crown'></i> Upgrade to Premium</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
+        <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+          <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Browse Notes</a></li>
+          <li><a href="buy-notes.html"><i class='bx bx-chevron-right'></i> Pricing Plans</a></li>
+          <li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li>
+          <li><a href="login.html"><i class='bx bx-chevron-right'></i> Sign In</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Branches</h4>
+        <ul>
+          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Computer Science</a></li>
+          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Electronics</a></li>
+          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Mechanical</a></li>
+          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Civil</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li>
+          <li><a href="#"><i class='bx bx-chevron-right'></i> Terms of Service</a></li>
+          <li><a href="#"><i class='bx bx-chevron-right'></i> Contact Us</a></li>
+          <li><a href="#"><i class='bx bx-chevron-right'></i> Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 DiplomaCampus. All rights reserved.</p>
+      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> for engineering students across India.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
+<script src="script.js"></script>
+</body>
+</html>

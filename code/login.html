@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — DiplomaCampus</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="preloader"><div class="loader"></div></div>
+
+<div class="auth-layout">
+  <!-- Left Panel -->
+  <div class="auth-panel">
+    <div class="auth-panel-content">
+      <a href="index.html" class="nav-logo" style="margin-bottom:2rem;display:inline-flex"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
+      <h2>Your Engineering<br>Notes, Sorted.</h2>
+      <p>Join 50,000+ students who use DiplomaCampus to prepare smarter and score higher.</p>
+      <div class="auth-features">
+        <div class="auth-feat"><i class='bx bx-download'></i><span>Unlimited PDF downloads across all branches</span></div>
+        <div class="auth-feat"><i class='bx bxs-graduation'></i><span>Semester-wise organized content verified by toppers</span></div>
+        <div class="auth-feat"><i class='bx bx-file'></i><span>Previous year question papers and solved examples</span></div>
+        <div class="auth-feat"><i class='bx bxs-devices'></i><span>Access anywhere — mobile, tablet, or laptop</span></div>
+      </div>
+      <div style="margin-top:2.5rem">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=75" alt="Students studying together" style="border-radius:var(--r-lg);width:100%;height:200px;object-fit:cover;opacity:.7">
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Form -->
+  <div class="auth-form-side">
+    <a href="index.html" class="nav-logo" style="margin-bottom:2rem;display:inline-flex"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
+    <h1>Welcome Back</h1>
+    <p class="sub">Sign in to access your notes and downloads.</p>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="email"><i class='bx bx-envelope'></i> Email Address</label>
+        <div class="inp-wrap">
+          <i class='bx bx-envelope'></i>
+          <input type="email" id="email" placeholder="you@college.edu" autocomplete="email">
+        </div>
+        <div class="err-msg" id="emailErr"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="password"><i class='bx bx-lock'></i> Password</label>
+        <div class="inp-wrap">
+          <i class='bx bx-lock'></i>
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+          <i class='bx bx-show' id="togglePass" style="cursor:pointer;color:var(--clr-sage)"></i>
+        </div>
+        <div class="err-msg" id="passErr"></div>
+      </div>
+
+      <div class="form-row">
+        <label class="check-label">
+          <input type="checkbox"> Remember me for 30 days
+        </label>
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full btn-lg"><i class='bx bx-log-in'></i> Sign In</button>
+    </form>
+
+    <div class="divider">or continue with</div>
+    <div class="social-login">
+      <button class="soc-btn"><i class='bx bxl-google' style="font-size:1.1rem;color:#ea4335"></i> Google</button>
+      <button class="soc-btn"><i class='bx bxl-github' style="font-size:1.1rem"></i> GitHub</button>
+    </div>
+
+    <p class="auth-switch">Don't have an account? <a href="#">Create one free</a></p>
+
+    <p style="font-size:.75rem;color:var(--text-lo);margin-top:2rem;line-height:1.6">
+      By signing in, you agree to our <a href="#" style="color:var(--clr-teal)">Terms of Service</a> and <a href="privacy.html" style="color:var(--clr-teal)">Privacy Policy</a>.
+    </p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

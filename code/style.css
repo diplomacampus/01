@@ -5,35 +5,35 @@
 
 :root {
   /* Core Neutrals */
-  --clr-dark:     #0f172a;   /* deep slate */
+  --clr-dark:     #0f172a;   /* text primary */
   --clr-navy:     #1e293b;
   --clr-blue:     #334155;
-  --clr-plum:     #3f3f46;
+  --clr-plum:     #475569;
 
-  /* Accents (controlled & professional) */
-  --clr-primary:  #2563eb;   /* modern blue */
-  --clr-secondary:#14b8a6;   /* subtle teal */
-  --clr-accent:   #f59e0b;   /* muted amber */
+  /* Accents */
+  --clr-primary:  #2563eb;   /* professional blue */
+  --clr-secondary:#0ea5a4;   /* subtle teal */
+  --clr-accent:   #f59e0b;   /* soft amber */
 
   /* Supporting tones */
   --clr-sky:      #38bdf8;
   --clr-sage:     #64748b;
   --clr-steel:    #94a3b8;
-  --clr-gray:     #cbd5f5;
-  --clr-beige:    #e2e8f0;
+  --clr-gray:     #e2e8f0;
+  --clr-beige:    #f1f5f9;
 
   /* Backgrounds */
-  --bg-base:      #020617;
-  --bg-mid:       #020617;
-  --bg-card:      #0f172a;
-  --bg-card-alt:  #111827;
+  --bg-base:      #ffffff;
+  --bg-mid:       #f8fafc;
+  --bg-card:      #ffffff;
+  --bg-card-alt:  #f1f5f9;
 
   /* Text */
-  --text-hi:      #f8fafc;
-  --text-lo:      #94a3b8;
+  --text-hi:      #0f172a;
+  --text-lo:      #64748b;
 
   /* UI Elements */
-  --border:       rgba(148,163,184,0.15);
+  --border:       rgba(15,23,42,0.08);
 
   /* Typography */
   --ff-display:   'Playfair Display', Georgia, serif;
@@ -50,9 +50,9 @@
   --r-xl: 32px;
 
   /* Effects */
-  --shadow:       0 10px 30px rgba(0,0,0,0.5);
-  --glow-primary: 0 0 30px rgba(37,99,235,0.25);
-  --glow-accent:  0 0 30px rgba(245,158,11,0.2);
+  --shadow:       0 6px 20px rgba(15,23,42,0.08);
+  --glow-primary: 0 0 20px rgba(37,99,235,0.15);
+  --glow-accent:  0 0 20px rgba(245,158,11,0.15);
 
   -webkit-tap-highlight-color: transparent;
 }

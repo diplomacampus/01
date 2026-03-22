@@ -11,15 +11,13 @@
 
 <body>
 
-<!-- Preloader -->
 <div id="preloader"><div class="loader"></div></div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-
     <a href="index.html" class="nav-logo">
-      <img src="https://i.ibb.co/whMZLcJW/logo.png" style="width:50px;border-radius:50%;">
+      <img src="https://i.ibb.co/whMZLcJW/logo.png" style="max-width:50px;border-radius:50%;">
       <img src="https://i.ibb.co/XRcPYHM/name.png" style="max-width:250px;">
     </a>
 
@@ -28,222 +26,181 @@
       <a href="notes.html">Notes</a>
       <a href="buy-notes.html">Buy Notes</a>
       <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
     </div>
 
     <div class="nav-cta">
       <a href="login.html" class="btn btn-ghost btn-sm">Sign In</a>
     </div>
-
   </div>
 </nav>
 
 <!-- HERO -->
-<div class="page-hero" style="text-align:center">
+<div class="page-hero">
   <div class="container">
+    <div class="section-label"><i class='bx bx-book'></i> Buy Notes</div>
+    <h1>Engineering <span style="color:var(--clr-gold)">Notes Store</span></h1>
+    <p>Browse subjects, preview notes, and purchase instantly.</p>
 
-    <div class="section-label" style="margin:auto">
-      <i class='bx bx-book'></i> Buy Notes
+    <div class="search-bar">
+      <i class='bx bx-search'></i>
+      <input type="text" placeholder="Search subjects...">
     </div>
-
-    <h1>
-      Get Your <span style="color:var(--clr-gold)">Micro & Premium Notes</span>
-    </h1>
-
-    <p style="margin:auto">
-      Download high-quality diploma notes instantly. Pay once, access forever.
-    </p>
-
   </div>
 </div>
 
-<!-- NOTES CARDS -->
+<!-- NOTES -->
 <section class="bg-base">
-  <div class="container">
+<div class="container">
 
-    <div class="pricing-grid">
+<h2>Computer Science Engineering</h2>
 
-      <!-- MICRO NOTES -->
-      <div class="price-card reveal">
+<div class="subject-grid">
 
-        <div class="plan-name">
-          <i class='bx bx-book'></i> Micro Notes
-        </div>
+<!-- CARD -->
+<div class="subj-card">
+  <h4>Engineering Mathematics</h4>
+  <p>Calculus, Linear Algebra</p>
 
-        <div class="plan-price">
-          <sup>₹</sup>49
-        </div>
+  <div class="subj-actions">
+    <a href="checkout.html?sub=math&type=micro" class="btn btn-primary btn-sm">
+      <i class='bx bx-cart'></i> Buy ₹49
+    </a>
 
-        <div class="plan-period">
-          Per Subject / Chapter
-        </div>
+    <a href="checkout.html?sub=math&type=premium" class="btn btn-teal btn-sm">
+      <i class='bx bxs-crown'></i> Premium ₹149
+    </a>
 
-        <div class="plan-feats">
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Quick revision notes</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Important questions</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Exam-focused content</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Lightweight PDF</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Instant download</div>
-        </div>
-
-        <a href="checkout.html?type=micro" class="btn btn-primary btn-full">
-          <i class='bx bx-cart'></i> Buy Now
-        </a>
-
-      </div>
-
-      <!-- PREMIUM NOTES -->
-      <div class="price-card popular reveal">
-
-        <div class="popular-tag">
-          <i class='bx bxs-star'></i> Best Value
-        </div>
-
-        <div class="plan-name">
-          <i class='bx bxs-book'></i> Premium Notes
-        </div>
-
-        <div class="plan-price">
-          <sup>₹</sup>149
-        </div>
-
-        <div class="plan-period">
-          Full Subject Notes
-        </div>
-
-        <div class="plan-feats">
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Detailed explanations</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Diagrams & concepts</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> PYQs included</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Practice problems</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> High-quality PDFs</div>
-        </div>
-
-        <a href="checkout.html?type=premium" class="btn btn-teal btn-full">
-          <i class='bx bx-cart'></i> Buy Now
-        </a>
-
-      </div>
-
-      <!-- COMBO PACK -->
-      <div class="price-card reveal">
-
-        <div class="plan-name">
-          <i class='bx bxs-crown'></i> Full Semester Pack
-        </div>
-
-        <div class="plan-price">
-          <sup>₹</sup>499
-        </div>
-
-        <div class="plan-period">
-          All Subjects Access
-        </div>
-
-        <div class="plan-feats">
-          <div class="plan-feat"><i class='bx bx-check yes'></i> All Micro + Premium notes</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Complete semester content</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Mock tests included</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Free updates</div>
-          <div class="plan-feat"><i class='bx bx-check yes'></i> Best savings</div>
-        </div>
-
-        <a href="checkout.html?type=combo" class="btn btn-primary btn-full">
-          <i class='bx bx-cart'></i> Buy Now
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- DISCOUNT -->
-    <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-lo)">
-      <i class='bx bx-tag'></i> Use code 
-      <strong style="color:var(--clr-gold)">STUDENT30</strong> 
-      for 30% OFF
-    </p>
-
+    <a href="#" class="btn btn-ghost btn-sm">
+      <i class='bx bx-show'></i> Preview
+    </a>
   </div>
+</div>
+
+<!-- CARD -->
+<div class="subj-card">
+  <h4>C Programming</h4>
+  <p>Basics, Loops, Pointers</p>
+
+  <div class="subj-actions">
+    <a href="checkout.html?sub=c&type=micro" class="btn btn-primary btn-sm">
+      <i class='bx bx-cart'></i> Buy ₹49
+    </a>
+
+    <a href="checkout.html?sub=c&type=premium" class="btn btn-teal btn-sm">
+      <i class='bx bxs-crown'></i> Premium ₹149
+    </a>
+
+    <a href="#" class="btn btn-ghost btn-sm">
+      <i class='bx bx-show'></i> Preview
+    </a>
+  </div>
+</div>
+
+<!-- CARD -->
+<div class="subj-card">
+  <h4>Data Structures</h4>
+  <p>Stacks, Queues, Trees</p>
+
+  <div class="subj-actions">
+    <a href="checkout.html?sub=ds&type=micro" class="btn btn-primary btn-sm">
+      <i class='bx bx-cart'></i> Buy ₹49
+    </a>
+
+    <a href="checkout.html?sub=ds&type=premium" class="btn btn-teal btn-sm">
+      <i class='bx bxs-crown'></i> Premium ₹149
+    </a>
+
+    <a href="#" class="btn btn-ghost btn-sm">
+      <i class='bx bx-show'></i> Preview
+    </a>
+  </div>
+</div>
+
+</div>
+</div>
 </section>
 
-<!-- CTA -->
-<div class="cta-section bg-mid">
-  <div class="container">
+<!-- FAQ -->
+<section class="bg-mid">
+<div class="container">
 
-    <div class="cta-banner">
+<h2 style="text-align:center;margin-bottom:2rem;">
+Frequently Asked Questions
+</h2>
 
-      <h2>
-        Ready to Boost Your Preparation? 
-        <span style="color:var(--clr-gold)">Start Now.</span>
-      </h2>
+<div class="faq-wrap">
 
-      <p>
-        Get instant access to premium diploma notes and ace your exams.
-      </p>
-
-      <div class="cta-actions">
-        <a href="notes.html" class="btn btn-outline btn-lg">
-          <i class='bx bx-book-open'></i> Preview Notes
-        </a>
-
-        <a href="login.html" class="btn btn-primary btn-lg">
-          <i class='bx bx-cart'></i> Buy Notes
-        </a>
-      </div>
-
-    </div>
-
+<div class="faq-item">
+  <div class="faq-hdr">
+    <span>How do I access notes after purchase?</span>
+    <i class='bx bx-plus'></i>
+  </div>
+  <div class="faq-body">
+    <p>After successful payment, your notes will be instantly available for download.</p>
   </div>
 </div>
+
+<div class="faq-item">
+  <div class="faq-hdr">
+    <span>Is this a one-time payment?</span>
+    <i class='bx bx-plus'></i>
+  </div>
+  <div class="faq-body">
+    <p>Yes. You only pay once and get lifetime access to that note.</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-hdr">
+    <span>What is the difference between Micro and Premium notes?</span>
+    <i class='bx bx-plus'></i>
+  </div>
+  <div class="faq-body">
+    <p>Micro notes are short revision notes, while Premium notes are detailed full-subject materials.</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-hdr">
+    <span>What payment methods are supported?</span>
+    <i class='bx bx-plus'></i>
+  </div>
+  <div class="faq-body">
+    <p>We support UPI, cards, wallets via Razorpay.</p>
+  </div>
+</div>
+
+</div>
+
+</div>
+</section>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
-
     <div class="footer-grid">
-
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo">
-          <i class='bx bxs-book-bookmark'></i> Diploma<span>Campus</span>
-        </a>
-
-        <p>India's most trusted platform for diploma study materials.</p>
+        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
+        <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
+        </div>
       </div>
-
-      <div class="footer-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="notes.html">Notes Library</a></li>
-          <li><a href="buy-notes.html">Buy Notes</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="privacy.html">Privacy</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li>support@DiplomaCampus.in</li>
-        </ul>
-      </div>
-
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html"><i class='bx bx-chevron-right'></i> Home</a></li><li><a href="buy-notes.html"><i class='bx bx-chevron-right'></i> Plans</a></li><li><a href="about.html"><i class='bx bx-chevron-right'></i> About</a></li><li><a href="login.html"><i class='bx bx-chevron-right'></i> Sign In</a></li></ul></div>
+      <div class="footer-col"><h4>Branches</h4><ul><li><a href="#"><i class='bx bx-chevron-right'></i> CSE</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> ECE</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Mechanical</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Civil</a></li></ul></div>
+      <div class="footer-col"><h4>Help</h4><ul><li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Terms</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Contact</a></li></ul></div>
     </div>
-
     <div class="footer-bottom">
-      <p>&copy; 2025 DiplomaCampus</p>
+      <p>&copy; 2025 DiplomaCampus. All rights reserved.</p>
+      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> for engineering students. </p>
     </div>
-
   </div>
 </footer>
 
-<!-- SCRIPT -->
+<button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
 <script src="script.js"></script>
-
 </body>
 </html>

@@ -1,231 +1,196 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buy Notes — DiplomaCampus</title>
-
+<title>Premium Notes — DiplomaCampus</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
-
 <body>
 
 <div id="preloader"><div class="loader"></div></div>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="https://i.ibb.co/whMZLcJW/logo.png" style="max-width:50px;border-radius:50%;">
-      <img src="https://i.ibb.co/XRcPYHM/name.png" style="max-width:250px;">
-    </a>
-
+    <a href="index.html" class="nav-logo"><img src="https://i.ibb.co/whMZLcJW/logo.png" alt="logo" border="0" style="
+  width: 10vw;     /* scales with screen width */
+  max-width: 50px;
+  min-width: 50px;
+  margin-right:-10px;
+  border-radius:50%;
+  height: auto;
+  "><img src="https://i.ibb.co/XRcPYHM/name.png" alt="logo" border="0" style="
+  width: 10vw;     /* scales with screen width */
+  max-width: 250px;
+  min-width: 250px;
+  height: auto; "></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="notes.html">Notes</a>
-      <a href="buy-notes.html">Buy Notes</a>
-      <a href="about.html">About</a>
+      <a href="index.html">Home</a><a href="notes.html">Notes</a><a href="buy-notes.html">Plans</a><a href="about.html">About</a><a href="privacy.html">Privacy</a>
     </div>
-
-    <div class="nav-cta">
-      <a href="login.html" class="btn btn-ghost btn-sm">Sign In</a>
-    </div>
+    <div class="nav-cta"><a href="login.html" class="btn btn-ghost btn-sm">Sign In</a><a href="#plans" class="btn btn-primary btn-sm">View Plans</a></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu">
+  <a href="index.html"><i class='bx bx-home'></i> Home</a><a href="notes.html"><i class='bx bx-book-open'></i> Notes</a><a href="buy-notes.html"><i class='bx bx-tag'></i> Plans</a><a href="about.html"><i class='bx bx-info-circle'></i> About</a>
+  <a href="login.html" class="btn btn-ghost">Sign In</a><a href="#plans" class="btn btn-primary">Get Access</a>
+</div>
 
-<!-- HERO -->
-<div class="page-hero">
+<!-- Hero -->
+<div class="page-hero" style="text-align:center">
   <div class="container">
-    <div class="section-label"><i class='bx bx-book'></i> Buy Notes</div>
-    <h1>Engineering <span style="color:var(--clr-gold)">Notes Store</span></h1>
-    <p>Browse subjects, preview notes, and purchase instantly.</p>
-
-  
+    <div class="section-label" style="margin-inline:auto"><i class='bx bx-crown'></i> Pricing</div>
+    <h1>Simple, <span style="color:var(--clr-gold)">Honest</span> Pricing</h1>
+    <p style="margin-inline:auto">Start for free. Upgrade when you need more. Cancel anytime.</p>
+    <div class="price-toggle">
+      <span>Monthly</span>
+      <div class="tog" id="priceTog"></div>
+      <span>Yearly <span class="save-tag">Save 30%</span></span>
+    </div>
   </div>
 </div>
 
-<!-- NOTES -->
-
-<section class="bg-mid">
+<!-- Plans -->
+<section id="plans" class="bg-base">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label"><i class='bx bx-file'></i> Premium Notes</div>
-      <h2 class="section-title">For Better Preparation in Exam Week</h2>
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="price-card reveal d1">
+        <div class="plan-name"><i class='bx bx-leaf'></i> Free</div>
+        <div class="plan-price"><sup>₹</sup><span data-monthly="0" data-yearly="0">0</span></div>
+        <div class="plan-period">Forever free, no credit card needed</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Browse all notes library</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> 5 PDF downloads per month</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Access to Semester 1 content</div>
+          <div class="plan-feat"><i class='bx bx-x no'></i> <span style="color:rgba(255,255,255,.3)">Previous year papers</span></div>
+          <div class="plan-feat"><i class='bx bx-x no'></i> <span style="color:rgba(255,255,255,.3)">Video summaries</span></div>
+          <div class="plan-feat"><i class='bx bx-x no'></i> <span style="color:rgba(255,255,255,.3)">Priority support</span></div>
+        </div>
+        <a href="login.html" class="btn btn-outline btn-full plan-cta"><i class='bx bx-user'></i> Get Started Free</a>
+      </div>
+
+      <!-- Standard -->
+      <div class="price-card popular reveal d2">
+        <div class="popular-tag"><i class='bx bxs-star'></i> Most Popular</div>
+        <div class="plan-name"><i class='bx bx-medal'></i> Standard</div>
+        <div class="plan-price"><sup>₹</sup><span data-monthly="199" data-yearly="139">199</span></div>
+        <div class="plan-period">per month &mdash; billed as selected</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Unlimited PDF downloads</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> All branches, all semesters</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Previous year question papers</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Basic video summaries</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Ad-free experience</div>
+          <div class="plan-feat"><i class='bx bx-x no'></i> <span style="color:rgba(255,255,255,.3)">Priority 24/7 support</span></div>
+        </div>
+        <a href="login.html" class="btn btn-primary btn-full plan-cta"><i class='bx bx-crown'></i> Get Standard</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="price-card reveal d3">
+        <div class="plan-name"><i class='bx bxs-crown'></i> Premium</div>
+        <div class="plan-price"><sup>₹</sup><span data-monthly="399" data-yearly="279">399</span></div>
+        <div class="plan-period">per month &mdash; billed as selected</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Everything in Standard</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Full video lecture library</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Mock tests &amp; quizzes</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Personalized study planner</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> Priority 24/7 support</div>
+          <div class="plan-feat"><i class='bx bx-check yes'></i> 1-on-1 doubt sessions (2/mo)</div>
+        </div>
+        <a href="login.html" class="btn btn-teal btn-full plan-cta"><i class='bx bxs-crown'></i> Get Premium</a>
+      </div>
     </div>
 
-      <!-- Card 1 -->
-      <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&q=70">
-        <div class="note-body">
-          <span class="note-tag">CSE</span>
-          <h4>Data Structures & Algorithms</h4>
-          <p>Semester 3 — Complete notes with diagrams</p>
-        </div>
-        <div class="note-footer">
-          <span><i class='bx bx-download'></i> 4.2k downloads</span>
-          <a href="https://www.dropbox.com/scl/fi/9pa9sukap42i64p9t0h69/CN-MICRO.pdf?rlkey=ggspnvpilt3b91sst6by5lka4&st=5u91nen1&dl=1" class="dl-btn"><i class='bx bx-download'></i> Download</a>
-        </div>
-      </div>
+    <p style="text-align:center;margin-top:1.5rem;font-size:.83rem;color:var(--text-lo)"><i class='bx bx-tag'></i> Use code <strong style="color:var(--clr-gold)">STUDENT30</strong> for 30% off your first month.</p>
 
-      <!-- Card 2 -->
-      <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=70">
-        <div class="note-body">
-          <span class="note-tag">ECE</span>
-          <h4>Digital Electronics</h4>
-          <p>Semester 2 — Logic gates, K-maps & more</p>
-        </div>
-        <div class="note-footer">
-          <span><i class='bx bx-download'></i> 3.8k downloads</span>
-          <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
-        </div>
-      </div>
+    <!-- Comparison Table -->
+    <h2 class="section-title text-center" style="margin-top:4rem">Full Feature <span class="hl">Comparison</span></h2>
+    <div style="overflow-x:auto">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">Feature</th>
+          <th><i class='bx bx-leaf'></i> Free</th>
+          <th><i class='bx bx-medal'></i> Standard</th>
+          <th><i class='bx bxs-crown'></i> Premium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Monthly Downloads</td><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+        <tr><td>All Branches Access</td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-check yes'></i></td><td><i class='bx bx-check yes'></i></td></tr>
+        <tr><td>Previous Year Papers</td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-check yes'></i></td><td><i class='bx bx-check yes'></i></td></tr>
+        <tr><td>Video Summaries</td><td><i class='bx bx-x no'></i></td><td>Basic</td><td>Full Library</td></tr>
+        <tr><td>Mock Tests</td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-check yes'></i></td></tr>
+        <tr><td>Study Planner</td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-check yes'></i></td></tr>
+        <tr><td>Priority Support</td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-check yes'></i></td></tr>
+        <tr><td>Doubt Sessions</td><td><i class='bx bx-x no'></i></td><td><i class='bx bx-x no'></i></td><td>2/month</td></tr>
+      </tbody>
+    </table>
+    </div>
 
-      <!-- Card 3 -->
-      <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&q=70">
-        <div class="note-body">
-          <span class="note-tag">CSE</span>
-          <h4>Operating Systems</h4>
-          <p>Semester 5 — Processes, memory, I/O</p>
-        </div>
-        <div class="note-footer">
-          <span><i class='bx bx-download'></i> 5.1k downloads</span>
-          <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
-        </div>
+    <!-- FAQ -->
+    <h2 class="section-title text-center" style="margin-top:4rem">Frequently Asked <span class="hl">Questions</span></h2>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-hdr"><span>Can I cancel my subscription anytime?</span><i class='bx bx-plus'></i></div>
+        <div class="faq-body"><p>Yes, absolutely. You can cancel anytime from your account dashboard. You'll continue to have access until the end of your current billing period. No questions asked.</p></div>
       </div>
-
-      <!-- Card 4 -->
-      <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=70">
-        <div class="note-body">
-          <span class="note-tag">MECH</span>
-          <h4>Thermodynamics</h4>
-          <p>Semester 3 — Laws, cycles & applications</p>
-        </div>
-        <div class="note-footer">
-          <span><i class='bx bx-download'></i> 2.9k downloads</span>
-          <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
-        </div>
+      <div class="faq-item">
+        <div class="faq-hdr"><span>What payment methods are accepted?</span><i class='bx bx-plus'></i></div>
+        <div class="faq-body"><p>We accept UPI, Net Banking, all major debit and credit cards, and wallets including Paytm and PhonePe. All payments are secured by Razorpay.</p></div>
       </div>
-
-      <!-- Card 5 -->
-      <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=70">
-        <div class="note-body">
-          <span class="note-tag">CSE</span>
-          <h4>Computer Networks</h4>
-          <p>Semester 6 — OSI, TCP/IP, routing</p>
-        </div>
-        <div class="note-footer">
-          <span><i class='bx bx-download'></i> 4.6k downloads</span>
-          <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
-        </div>
+      <div class="faq-item">
+        <div class="faq-hdr"><span>Are the notes useful for all universities?</span><i class='bx bx-plus'></i></div>
+        <div class="faq-body"><p>Our notes follow the standard AICTE syllabus and are aligned with the curricula of major Indian universities including VTU, Mumbai University, Anna University, JNTU, and more.</p></div>
       </div>
-
-      <!-- Card 6 -->
-      <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=70">
-        <div class="note-body">
-          <span class="note-tag">CIVIL</span>
-          <h4>Structural Analysis</h4>
-          <p>Semester 4 — Beams, trusses & frames</p>
-        </div>
-        <div class="note-footer">
-          <span><i class='bx bx-download'></i> 2.2k downloads</span>
-          <a href="#" class="dl-btn"><i class='bx bx-cart'></i> Buy</a>
-        </div>
+      <div class="faq-item">
+        <div class="faq-hdr"><span>Is there a student discount?</span><i class='bx bx-plus'></i></div>
+        <div class="faq-body"><p>Yes! Use code <strong style="color:var(--clr-gold)">STUDENT30</strong> at checkout for 30% off your first month. We also run special offers during exam seasons — follow us on Instagram to stay updated.</p></div>
       </div>
-
-    <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <a href="notes.html" class="btn btn-primary btn-lg">
-        <i class='bx bx-book-open'></i> View Free Notes
-      </a>
+      <div class="faq-item">
+        <div class="faq-hdr"><span>How often is the content updated?</span><i class='bx bx-plus'></i></div>
+        <div class="faq-body"><p>Our content team updates notes every semester based on the latest syllabus changes. Premium members get early access to newly added materials before they go public.</p></div>
+      </div>
     </div>
   </div>
 </section>
-<!-- FAQ -->
-<section class="bg-mid">
-<div class="container">
 
-<h2 style="text-align:center;margin-bottom:2rem;">
-Frequently Asked Questions
-</h2>
-
-<div class="faq-wrap">
-
-<div class="faq-item">
-  <div class="faq-hdr">
-    <span>How do I access notes after purchase?</span>
-    <i class='bx bx-plus'></i>
-  </div>
-  <div class="faq-body">
-    <p>After successful payment, your notes will be instantly available for download.</p>
+<!-- CTA -->
+<div class="cta-section bg-mid">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Still on the Fence? <span style="color:var(--clr-gold)">Start Free.</span></h2>
+      <p>No credit card required. Browse the full library and download 5 PDFs for free every month.</p>
+      <div class="cta-actions">
+        <a href="login.html" class="btn btn-primary btn-lg"><i class='bx bx-user-plus'></i> Create Free Account</a>
+        <a href="Diplomas.html" class="btn btn-outline btn-lg"><i class='bx bx-book-open'></i> Browse Notes First</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="faq-item">
-  <div class="faq-hdr">
-    <span>Is this a one-time payment?</span>
-    <i class='bx bx-plus'></i>
-  </div>
-  <div class="faq-body">
-    <p>Yes. You only pay once and get lifetime access to that note.</p>
-  </div>
-</div>
-
-<div class="faq-item">
-  <div class="faq-hdr">
-    <span>What is the difference between Micro and Premium notes?</span>
-    <i class='bx bx-plus'></i>
-  </div>
-  <div class="faq-body">
-    <p>Micro notes are short revision notes, while Premium notes are detailed full-subject materials.</p>
-  </div>
-</div>
-
-<div class="faq-item">
-  <div class="faq-hdr">
-    <span>What payment methods are supported?</span>
-    <i class='bx bx-plus'></i>
-  </div>
-  <div class="faq-body">
-    <p>We support UPI, cards, wallets via Razorpay.</p>
-  </div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
-        <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
-        </div>
-      </div>
-      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html"><i class='bx bx-chevron-right'></i> Home</a></li><li><a href="buy-notes.html"><i class='bx bx-chevron-right'></i> Plans</a></li><li><a href="about.html"><i class='bx bx-chevron-right'></i> About</a></li><li><a href="login.html"><i class='bx bx-chevron-right'></i> Sign In</a></li></ul></div>
-      <div class="footer-col"><h4>Branches</h4><ul><li><a href="#"><i class='bx bx-chevron-right'></i> CSE</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> ECE</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Mechanical</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Civil</a></li></ul></div>
-      <div class="footer-col"><h4>Help</h4><ul><li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Terms</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Contact</a></li></ul></div>
+      <div class="footer-brand"><a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Note<span>Campus</span></a><p>India's most trusted platform for engineering study materials.</p><div class="social-links"><a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a><a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a><a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a><a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a></div></div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="notes.html"><i class='bx bx-chevron-right'></i> Notes Library</a></li><li><a href="buy-notes.html"><i class='bx bx-chevron-right'></i> Pricing</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li><li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="#"><i class='bx bx-chevron-right'></i> support@DiplomaCampus.in</a></li><li><a href="#"><i class='bx bx-chevron-right'></i> Help Center</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 DiplomaCampus. All rights reserved.</p>
-      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> for engineering students. </p>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2025 DiplomaCampus. All rights reserved.</p><p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> for engineering students.</p></div>
   </div>
 </footer>
 
 <button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
 <script src="script.js"></script>
+<script>
+  const tog = document.getElementById('priceTog');
+  if(tog){tog.addEventListener('click',()=>{tog.classList.toggle('on');const y=tog.classList.contains('on');document.querySelectorAll('[data-monthly]').forEach(el=>{el.textContent=y?el.dataset.yearly:el.dataset.monthly;});});}
+</script>
 </body>
 </html>

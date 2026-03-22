@@ -4,38 +4,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --clr-dark:     #003b49;
-  --clr-navy:     #1b365d;
-  --clr-blue:     #1d4289;
-  --clr-plum:     #5d3754;
-  --clr-teal:     #00bfb2;
-  --clr-sky:      #41b6e6;
-  --clr-gold:     #fff200;
-  --clr-amber:    #f2c75c;
-  --clr-sage:     #94a596;
-  --clr-mauve:    #be84a3;
-  --clr-steel:    #7da1c4;
-  --clr-beige:    #d6d2c4;
-  --clr-gray:     #d0d3d4;
-  --clr-pink:     #e56db1;
-  --bg-base:      #001f28;
-  --bg-mid:       #002b36;
-  --bg-card:      #003040;
-  --bg-card-alt:  #00263a;
-  --text-hi:      #ffffff;
-  --text-lo:      #d6d2c4;
-  --border:       rgba(255,255,255,.09);
+  /* Core Neutrals */
+  --clr-dark:     #0f172a;   /* deep slate */
+  --clr-navy:     #1e293b;
+  --clr-blue:     #334155;
+  --clr-plum:     #3f3f46;
+
+  /* Accents (controlled & professional) */
+  --clr-primary:  #2563eb;   /* modern blue */
+  --clr-secondary:#14b8a6;   /* subtle teal */
+  --clr-accent:   #f59e0b;   /* muted amber */
+
+  /* Supporting tones */
+  --clr-sky:      #38bdf8;
+  --clr-sage:     #64748b;
+  --clr-steel:    #94a3b8;
+  --clr-gray:     #cbd5f5;
+  --clr-beige:    #e2e8f0;
+
+  /* Backgrounds */
+  --bg-base:      #020617;
+  --bg-mid:       #020617;
+  --bg-card:      #0f172a;
+  --bg-card-alt:  #111827;
+
+  /* Text */
+  --text-hi:      #f8fafc;
+  --text-lo:      #94a3b8;
+
+  /* UI Elements */
+  --border:       rgba(148,163,184,0.15);
+
+  /* Typography */
   --ff-display:   'Playfair Display', Georgia, serif;
-  --ff-body:      'DM Sans', sans-serif;
+  --ff-body:      'Inter', 'DM Sans', sans-serif;
+
+  /* Layout */
   --section-py:   6rem;
   --max-w:        1240px;
+
+  /* Radius */
   --r-sm: 6px;
   --r-md: 12px;
   --r-lg: 20px;
   --r-xl: 32px;
-  --shadow:       0 8px 32px rgba(0,0,0,.4);
-  --glow-gold:    0 0 40px rgba(255,200,69,.18);
-  --glow-teal:    0 0 40px rgba(0,191,178,.15);
+
+  /* Effects */
+  --shadow:       0 10px 30px rgba(0,0,0,0.5);
+  --glow-primary: 0 0 30px rgba(37,99,235,0.25);
+  --glow-accent:  0 0 30px rgba(245,158,11,0.2);
+
   -webkit-tap-highlight-color: transparent;
 }
 

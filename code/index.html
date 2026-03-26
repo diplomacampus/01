@@ -267,7 +267,7 @@
 
 
 <!-- How It Works -->
-<section class="bg-base">
+<section class="bg-mid">
   <div class="container">
     <div class="text-center reveal">
       <div class="section-label"><i class='bx bx-list-check'></i> Simple Process</div>
@@ -302,24 +302,6 @@
   background: none;
   position: relative;
   overflow: hidden;
-}
-
-.glass-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(234,179,8,0.15) 0%, transparent 70%);
-  animation: float 30s infinite linear;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 .glass-grid {

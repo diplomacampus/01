@@ -84,56 +84,67 @@
 
     <div class="contact-grid reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:3rem;margin-top:2rem">
       
-      <!-- Form -->
-      <div style="background:var(--bg-card);padding:2.5rem;border-radius:16px">
-        <form action="#" method="POST">
-          <div style="margin-bottom:1.5rem">
-            <label style="display:block;margin-bottom:0.5rem;color:var(--text-lo);font-weight:600">Full Name</label>
-            <input type="text" placeholder="Your name" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid #ddd;background:var(--bg-base);font-size:1rem">
-          </div>
-          
-          <div style="margin-bottom:1.5rem">
-            <label style="display:block;margin-bottom:0.5rem;color:var(--text-lo);font-weight:600">College Email</label>
-            <input type="email" placeholder="yourname@college.edu.in" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid #ddd;background:var(--bg-base);font-size:1rem">
-          </div>
-          
-          <div style="margin-bottom:1.5rem">
-            <label style="display:block;margin-bottom:0.5rem;color:var(--text-lo);font-weight:600">Phone (optional)</label>
-            <input type="tel" placeholder="+91 98765 43210" style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid #ddd;background:var(--bg-base);font-size:1rem">
-          </div>
-          
-          <div style="margin-bottom:1.5rem">
-            <label style="display:block;margin-bottom:0.5rem;color:var(--text-lo);font-weight:600">Subject</label>
-            <select required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid #ddd;background:var(--bg-base);font-size:1rem">
-              <option value="">Choose one...</option>
-              <option value="notes">Notes / Content Request</option>
-              <option value="billing">Billing or Subscription</option>
-              <option value="technical">Technical Issue</option>
-              <option value="suggestion">Suggestion or Feedback</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div style="margin-bottom:2rem">
-            <label style="display:block;margin-bottom:0.5rem;color:var(--text-lo);font-weight:600">Your Message</label>
-            <textarea rows="6" placeholder="Tell us how we can help you today..." required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid #ddd;background:var(--bg-base);font-size:1rem;resize:vertical"></textarea>
-          </div>
-          
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;padding:16px;font-size:1.1rem">
-            <i class='bx bx-send'></i> Send Message
-          </button>
-          <p style="text-align:center;margin-top:1rem;font-size:0.9rem;color:var(--text-lo)">We’ll reply to your email within 24 hours</p>
-        </form>
-      </div>
+   <div style="background:var(--bg-card);padding:2.5rem;border-radius:16px">
+  <form action="https://formsubmit.co/diplomacampus@gmail.com" method="POST">
+    
+    <!-- Disable captcha -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Contact Form Submission">
+
+    <!-- Name -->
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" name="name" placeholder="Enter your full name" required>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label>College Email</label>
+      <input type="email" name="email" placeholder="example@college.edu" required>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+      <label>Phone (optional)</label>
+      <input type="tel" name="phone" placeholder="+91 98765 43210">
+    </div>
+
+    <!-- Subject -->
+    <div class="form-group">
+      <label>Subject</label>
+      <select name="subject" required>
+        <option value="">Select a topic</option>
+        <option value="Notes Request">Notes / Content Request</option>
+        <option value="Billing">Billing or Subscription</option>
+        <option value="Technical Issue">Technical Issue</option>
+        <option value="Feedback">Suggestion or Feedback</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Message -->
+    <div class="form-group">
+      <label>Your Message</label>
+      <textarea name="message" rows="6" placeholder="Write your message clearly..." required></textarea>
+    </div>
+
+    <!-- Button -->
+    <button type="submit" class="btn-submit">
+      <i class='bx bx-send'></i> Send Message
+    </button>
+
+    <p class="form-note">We’ll reply within 24 hours</p>
+  </form>
+</div>
       
       <!-- Contact Info -->
       <div>
         <div style="background:var(--bg-card);padding:2rem;border-radius:16px;margin-bottom:2rem">
           <h3 style="margin-bottom:1.5rem"><i class='bx bx-mail-send' style="color:var(--clr-gold)"></i> Email Us</h3>
-          <a href="mailto:hello@diplomacampus.in" style="display:flex;align-items:center;gap:1rem;color:inherit;text-decoration:none;font-size:1.1rem">
+          <a href="mailto:diplomacampus@gmail.com" style="display:flex;align-items:center;gap:1rem;color:inherit;text-decoration:none;font-size:1.1rem">
             <i class='bx bx-envelope' style="font-size:2rem"></i>
             <div>
-              <strong>hello@diplomacampus.in</strong><br>
+              <strong>diplomacampus@gmail.com</strong><br>
               <span style="color:var(--text-lo);font-size:0.95rem">General inquiries &amp; support</span>
             </div>
           </a>
@@ -141,10 +152,10 @@
         
         <div style="background:var(--bg-card);padding:2rem;border-radius:16px;margin-bottom:2rem">
           <h3 style="margin-bottom:1.5rem"><i class='bx bxl-whatsapp' style="color:#25D366"></i> WhatsApp Support</h3>
-          <a href="https://wa.me/919876543210" target="_blank" style="display:flex;align-items:center;gap:1rem;color:inherit;text-decoration:none;font-size:1.1rem">
+          <a href="https://wa.me/918578009001" target="_blank" style="display:flex;align-items:center;gap:1rem;color:inherit;text-decoration:none;font-size:1.1rem">
             <i class='bx bxl-whatsapp' style="font-size:2.5rem"></i>
             <div>
-              <strong>+91 98765 43210</strong><br>
+              <strong>+91 8578009001</strong><br>
               <span style="color:var(--text-lo);font-size:0.95rem">Fastest way to reach us (Mon–Sat, 9 AM – 9 PM)</span>
             </div>
           </a>
@@ -170,33 +181,9 @@
       </div>
     </div>
 
-    <!-- Quick Links -->
-    <div class="text-center reveal" style="margin-top:5rem">
-      <p style="color:var(--text-lo);margin-bottom:1rem">You can also find us on</p>
-      <div class="social-links" style="justify-content:center;gap:2rem;font-size:2rem">
-        <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-        <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
-        <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-        <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-section bg-mid">
-  <div class="container">
-    <div class="cta-banner reveal">
-      <h2>Ready to study smarter?</h2>
-      <p>Join 50,000+ students who already have the best notes in their pocket.</p>
-      <div class="cta-actions">
-        <a href="notes.html" class="btn btn-primary btn-lg"><i class='bx bx-book-open'></i> Browse Notes</a>
-        <a href="buy-notes.html" class="btn btn-outline btn-lg"><i class='bx bx-crown'></i> View Plans</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <footer>
   <div class="container">

@@ -292,6 +292,188 @@
     </div>
   </div>
 </section>
+
+<!-- WhatsApp + Telegram Groups Section (Glassmorphism) -->
+<!-- Paste this entire section anywhere in your index.html or notes.html -->
+<style>
+/* Glassmorphism + Built-in CSS */
+.glass-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(234,179,8,0.15) 0%, transparent 70%);
+  animation: float 25s infinite linear;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.glass-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 30px 50px -15px rgba(234, 179, 8, 0.3);
+  border-color: var(--clr-gold);
+}
+
+.glass-card .icon-wrapper {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1.5rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover .icon-wrapper {
+  transform: scale(1.15) rotate(8deg);
+  background: var(--clr-gold);
+  color: #0f172a;
+}
+
+.glass-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.glass-card p {
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.glass-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: #22c55e;
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .glass-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<section class="glass-section bg-base">
+  <div class="container" style="position:relative;z-index:2">
+    
+    <!-- Header -->
+    <div class="text-center reveal" style="margin-bottom:3rem">
+      <div class="section-label" style="background:rgba(234,179,8,0.15);color:var(--clr-gold);display:inline-flex;gap:8px;align-items:center">
+        <i class='bx bxl-whatsapp'></i>
+        <i class='bx bxl-telegram'></i>
+        LIVE COMMUNITIES
+      </div>
+      <h2 class="section-title" style="color:white;margin-top:1rem">
+        Join Our <span style="color:var(--clr-gold)">WhatsApp &amp; Telegram</span> Groups
+      </h2>
+      <p style="color:rgba(255,255,255,0.8);max-width:620px;margin:0 auto;font-size:1.2rem">
+        50,000+ students already inside • Instant notes • Doubt clearing • PYQ updates • Branch-wise groups
+      </p>
+    </div>
+
+    <!-- Glass Cards Grid -->
+    <div class="glass-grid reveal">
+
+      <!-- Telegram Card -->
+      <div class="glass-card">
+        <div class="icon-wrapper" style="color:#229ed9">
+          <i class='bx bxl-telegram'></i>
+        </div>
+        <span class="glass-badge">50K+ MEMBERS</span>
+        <h3>Official Telegram Community</h3>
+        <p>Get daily notes, previous year papers, syllabus updates &amp; live doubt sessions from toppers.</p>
+        <a href="https://t.me/diplomacampus" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#229ed9;border:none">
+          <i class='bx bxl-telegram'></i> JOIN TELEGRAM
+        </a>
+        <div style="margin-top:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">
+          Instant access • No spam • Pinned important files
+        </div>
+      </div>
+
+      <!-- WhatsApp Card -->
+      <div class="glass-card">
+        <div class="icon-wrapper" style="color:#25d366">
+          <i class='bx bxl-whatsapp'></i>
+        </div>
+        <span class="glass-badge">24×7 ACTIVE</span>
+        <h3>Official WhatsApp Community</h3>
+        <p>Fastest doubt clearing, branch-wise study groups, live exam alerts &amp; direct interaction with content team.</p>
+        <a href="https://wa.me/919876543210?text=Hi%20DiplomaCampus%20Team%2C%20I%20want%20to%20join%20the%20community%20group" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#25d366;border:none">
+          <i class='bx bxl-whatsapp'></i> JOIN WHATSAPP
+        </a>
+        <div style="margin-top:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">
+          Mon–Sat 9 AM – 9 PM • Voice notes allowed
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Branch-wise note -->
+    <div class="text-center reveal" style="margin-top:3.5rem">
+      <p style="color:rgba(255,255,255,0.7);margin-bottom:1rem">Already joined? Looking for your branch?</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-code-alt'></i> CSE Group</a>
+        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-chip'></i> ECE Group</a>
+        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-bolt-circle'></i> EE Group</a>
+        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-cog'></i> Mechanical</a>
+        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-building-house'></i> Civil</a>
+        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-laptop'></i> IT Group</a>
+        <a href="#" class="btn btn-primary btn-sm">See all 12 branch groups →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Optional: Add this script if you want the floating animation to feel more alive -->
+<script>
+  // Simple hover pulse for glass cards (already handled by CSS)
+  console.log('%c✅ Glassmorphism WhatsApp & Telegram section loaded successfully!', 'color:#eab308;font-weight:bold');
+</script>
+
 <!-- Testimonials -->
 <section class="bg-base">
   <div class="container">

@@ -293,10 +293,10 @@
   </div>
 </section>
 
-<!-- WhatsApp + Telegram Groups Section (Glassmorphism) -->
-<!-- Paste this entire section anywhere in your index.html or notes.html -->
+<!-- Expanded WhatsApp + Telegram Groups Section with "See all 12 branches" Modal -->
+
 <style>
-/* Glassmorphism + Built-in CSS */
+/* Glassmorphism Base */
 .glass-section {
   padding: 5rem 0;
   background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
@@ -312,9 +312,14 @@
   width: 200%;
   height: 200%;
   background: radial-gradient(circle, rgba(234,179,8,0.15) 0%, transparent 70%);
-  animation: float 25s infinite linear;
+  animation: float 30s infinite linear;
   z-index: 0;
   pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .glass-grid {
@@ -335,13 +340,12 @@
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
-  position: relative;
 }
 
 .glass-card:hover {
   transform: translateY(-12px) scale(1.03);
   box-shadow: 0 30px 50px -15px rgba(234, 179, 8, 0.3);
-  border-color: var(--clr-gold);
+  border-color: #eab308;
 }
 
 .glass-card .icon-wrapper {
@@ -359,62 +363,141 @@
 
 .glass-card:hover .icon-wrapper {
   transform: scale(1.15) rotate(8deg);
-  background: var(--clr-gold);
+  background: #eab308;
   color: #0f172a;
-}
-
-.glass-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 0.75rem;
-  color: white;
-}
-
-.glass-card p {
-  color: rgba(255,255,255,0.75);
-  line-height: 1.6;
-  margin-bottom: 2rem;
 }
 
 .glass-badge {
   position: absolute;
-  top: -10px;
-  right: 20px;
+  top: -12px;
+  right: 24px;
   background: #22c55e;
   color: #0f172a;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 4px 14px;
+  padding: 5px 16px;
   border-radius: 50px;
   box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
 }
 
+/* Modal Styles */
+.branch-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.branch-modal-content {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-radius: 24px;
+  max-width: 1100px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+}
+
+.branch-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 1.5rem;
+}
+
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.branch-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.branch-item:hover {
+  background: rgba(234,179,8,0.15);
+  border-color: #eab308;
+  transform: translateX(8px);
+}
+
+.branch-item i {
+  font-size: 2.2rem;
+  width: 50px;
+  color: #eab308;
+}
+
+.branch-item .branch-info h4 {
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.branch-item .branch-info p {
+  margin: 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #eab308;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-modal:hover {
+  background: rgba(234,179,8,0.2);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .glass-grid {
-    grid-template-columns: 1fr;
-  }
+  .glass-grid, .branch-grid { grid-template-columns: 1fr; }
+  .branch-modal-content { padding: 1.5rem; }
 }
 </style>
 
-<section class="glass-section bg-base">
+<section class="glass-section">
   <div class="container" style="position:relative;z-index:2">
     
     <!-- Header -->
     <div class="text-center reveal" style="margin-bottom:3rem">
-      <div class="section-label" style="background:rgba(234,179,8,0.15);color:var(--clr-gold);display:inline-flex;gap:8px;align-items:center">
+      <div class="section-label" style="background:rgba(234,179,8,0.15);color:#eab308;display:inline-flex;gap:8px;align-items:center">
         <i class='bx bxl-whatsapp'></i>
         <i class='bx bxl-telegram'></i>
         LIVE COMMUNITIES
       </div>
       <h2 class="section-title" style="color:white;margin-top:1rem">
-        Join Our <span style="color:var(--clr-gold)">WhatsApp &amp; Telegram</span> Groups
+        Join Our <span style="color:#eab308">WhatsApp &amp; Telegram</span> Groups
       </h2>
       <p style="color:rgba(255,255,255,0.8);max-width:620px;margin:0 auto;font-size:1.2rem">
         50,000+ students already inside • Instant notes • Doubt clearing • PYQ updates • Branch-wise groups
       </p>
     </div>
 
-    <!-- Glass Cards Grid -->
+    <!-- Main Glass Cards -->
     <div class="glass-grid reveal">
 
       <!-- Telegram Card -->
@@ -424,13 +507,10 @@
         </div>
         <span class="glass-badge">50K+ MEMBERS</span>
         <h3>Official Telegram Community</h3>
-        <p>Get daily notes, previous year papers, syllabus updates &amp; live doubt sessions from toppers.</p>
+        <p>Get daily notes, previous year papers, syllabus updates &amp; live doubt sessions from toppers across all branches.</p>
         <a href="https://t.me/diplomacampus" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#229ed9;border:none">
           <i class='bx bxl-telegram'></i> JOIN TELEGRAM
         </a>
-        <div style="margin-top:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">
-          Instant access • No spam • Pinned important files
-        </div>
       </div>
 
       <!-- WhatsApp Card -->
@@ -444,35 +524,169 @@
         <a href="https://wa.me/919876543210?text=Hi%20DiplomaCampus%20Team%2C%20I%20want%20to%20join%20the%20community%20group" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#25d366;border:none">
           <i class='bx bxl-whatsapp'></i> JOIN WHATSAPP
         </a>
-        <div style="margin-top:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">
-          Mon–Sat 9 AM – 9 PM • Voice notes allowed
-        </div>
       </div>
 
     </div>
 
-    <!-- Branch-wise note -->
+    <!-- See All Branches Button -->
     <div class="text-center reveal" style="margin-top:3.5rem">
-      <p style="color:rgba(255,255,255,0.7);margin-bottom:1rem">Already joined? Looking for your branch?</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-code-alt'></i> CSE Group</a>
-        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-chip'></i> ECE Group</a>
-        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-bolt-circle'></i> EE Group</a>
-        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-cog'></i> Mechanical</a>
-        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-building-house'></i> Civil</a>
-        <a href="#" class="btn btn-ghost" style="color:white;border-color:rgba(255,255,255,0.3)"><i class='bx bx-laptop'></i> IT Group</a>
-        <a href="#" class="btn btn-primary btn-sm">See all 12 branch groups →</a>
-      </div>
+      <button onclick="showBranchModal()" class="btn btn-primary btn-lg" style="padding:16px 40px;font-size:1.1rem">
+        See All 12 Branch Groups <i class='bx bx-chevron-down'></i>
+      </button>
     </div>
 
   </div>
 </section>
 
-<!-- Optional: Add this script if you want the floating animation to feel more alive -->
+<!-- Branch Modal -->
+<div id="branchModal" class="branch-modal">
+  <div class="branch-modal-content">
+    <div class="branch-modal-header">
+      <div>
+        <h2 style="color:white;margin:0">All Branch Groups</h2>
+        <p style="color:rgba(255,255,255,0.7);margin:0.25rem 0 0 0">Choose your branch and join instantly</p>
+      </div>
+      <button onclick="closeBranchModal()" class="close-modal">&times;</button>
+    </div>
+
+    <div class="branch-grid">
+
+      <!-- Branch 1: CSE -->
+      <div class="branch-item">
+        <i class='bx bx-code-alt'></i>
+        <div class="branch-info">
+          <h4>Computer Science Engineering</h4>
+          <p>C Programming • DSA • OS • Networks</p>
+        </div>
+        <a href="https://t.me/diplomacampus_cse" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 2: ECE -->
+      <div class="branch-item">
+        <i class='bx bx-chip'></i>
+        <div class="branch-info">
+          <h4>Electronics & Communication</h4>
+          <p>Analog • Digital • Microcontrollers</p>
+        </div>
+        <a href="https://t.me/diplomacampus_ece" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 3: EE -->
+      <div class="branch-item">
+        <i class='bx bx-bolt-circle'></i>
+        <div class="branch-info">
+          <h4>Electrical Engineering</h4>
+          <p>Machines • Power Systems • Protection</p>
+        </div>
+        <a href="https://t.me/diplomacampus_ee" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 4: Mechanical -->
+      <div class="branch-item">
+        <i class='bx bx-cog'></i>
+        <div class="branch-info">
+          <h4>Mechanical Engineering</h4>
+          <p>Thermodynamics • Fluid Mechanics • SOM</p>
+        </div>
+        <a href="https://t.me/diplomacampus_mech" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 5: Civil -->
+      <div class="branch-item">
+        <i class='bx bx-building-house'></i>
+        <div class="branch-info">
+          <h4>Civil Engineering</h4>
+          <p>Structural • Geotech • Transportation</p>
+        </div>
+        <a href="https://t.me/diplomacampus_civil" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 6: IT -->
+      <div class="branch-item">
+        <i class='bx bx-laptop'></i>
+        <div class="branch-info">
+          <h4>Information Technology</h4>
+          <p>Web Tech • Cloud • Cybersecurity</p>
+        </div>
+        <a href="https://t.me/diplomacampus_it" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 7: Automobile -->
+      <div class="branch-item">
+        <i class='bx bx-car'></i>
+        <div class="branch-info">
+          <h4>Automobile Engineering</h4>
+          <p>IC Engines • Chassis • EV Basics</p>
+        </div>
+        <a href="https://t.me/diplomacampus_auto" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 8: Chemical -->
+      <div class="branch-item">
+        <i class='bx bx-flask'></i>
+        <div class="branch-info">
+          <h4>Chemical Engineering</h4>
+          <p>Process Calc • Heat & Mass Transfer</p>
+        </div>
+        <a href="https://t.me/diplomacampus_chemical" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 9: Mining -->
+      <div class="branch-item">
+        <i class='bx bx-hard-hat'></i>
+        <div class="branch-info">
+          <h4>Mining Engineering</h4>
+          <p>Mine Ventilation • Blasting • Safety</p>
+        </div>
+        <a href="https://t.me/diplomacampus_mining" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- Branch 10: Metallurgical -->
+      <div class="branch-item">
+        <i class='bx bx-atom'></i>
+        <div class="branch-info">
+          <h4>Metallurgical Engineering</h4>
+          <p>Physical Metallurgy • Heat Treatment</p>
+        </div>
+        <a href="https://t.me/diplomacampus_metallurgy" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
+      </div>
+
+      <!-- You can add more branches if needed (e.g., Production, Instrumentation, etc.) -->
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem">
+      <button onclick="closeBranchModal()" class="btn btn-ghost">Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Simple hover pulse for glass cards (already handled by CSS)
-  console.log('%c✅ Glassmorphism WhatsApp & Telegram section loaded successfully!', 'color:#eab308;font-weight:bold');
+// Modal Functions
+function showBranchModal() {
+  document.getElementById('branchModal').style.display = 'flex';
+}
+
+function closeBranchModal() {
+  document.getElementById('branchModal').style.display = 'none';
+}
+
+// Close modal when clicking outside the content
+document.getElementById('branchModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeBranchModal();
+  }
+});
+
+// Keyboard escape support
+document.addEventListener('keydown', function(e) {
+  if (e.key === "Escape") {
+    const modal = document.getElementById('branchModal');
+    if (modal.style.display === 'flex') closeBranchModal();
+  }
+});
 </script>
+
 
 <!-- Testimonials -->
 <section class="bg-base">

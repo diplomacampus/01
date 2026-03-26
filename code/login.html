@@ -174,6 +174,32 @@
       animation: fadeUp .6s .1s ease both;
     }
 
+    /* ── AUTH LOADING STATE ── */
+    #authLoading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 60px 0;
+    }
+
+    .auth-spinner {
+      width: 36px; height: 36px;
+      border: 2.5px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    #authLoading p {
+      font-size: .84rem;
+      color: var(--muted);
+    }
+
+    /* ── LOGIN SECTION ── */
+    #loginSection { display: none; }
+
     .form-header {
       margin-bottom: 36px;
     }
@@ -189,6 +215,204 @@
     .form-header p {
       font-size: .84rem;
       color: var(--muted);
+    }
+
+    /* ── USER PROFILE SECTION ── */
+    #userSection { display: none; }
+
+    .user-card {
+      animation: fadeUp .5s ease both;
+    }
+
+    .user-header {
+      margin-bottom: 28px;
+    }
+
+    .user-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .user-header p {
+      font-size: .84rem;
+      color: var(--muted);
+    }
+
+    .user-avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+
+    .user-avatar {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .user-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .user-info { flex: 1; min-width: 0; }
+
+    .user-name {
+      font-weight: 500;
+      font-size: .97rem;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-email {
+      font-size: .8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .user-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: rgba(184,144,58,.1);
+      border: 1px solid rgba(184,144,58,.25);
+      border-radius: 20px;
+      font-size: .72rem;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+
+    .user-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .user-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .detail-card {
+      padding: 14px 16px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .detail-card-label {
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .detail-card-value {
+      font-size: .87rem;
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .detail-card-value.mono {
+      font-size: .76rem;
+      font-family: monospace;
+      color: var(--muted);
+    }
+
+    .user-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 10px;
+      background: var(--ink);
+      color: #fff;
+      font-size: .92rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: .04em;
+      transition: background .2s, transform .1s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(184,144,58,.15), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .btn-primary:hover { background: #1a1e28; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:active { transform: scale(.985); }
+    .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+    .btn-primary.loading .btn-text { display: none; }
+    .btn-primary.loading .spinner { display: block; }
+
+    .btn-outline {
+      width: 100%;
+      padding: 12px 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-size: .88rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: .04em;
+      transition: border-color .2s, color .2s, background .2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--red);
+      color: var(--red);
+      background: rgba(192,57,43,.04);
     }
 
     /* ── divider ── */
@@ -248,9 +472,7 @@
       margin-bottom: 7px;
     }
 
-    .field-wrap {
-      position: relative;
-    }
+    .field-wrap { position: relative; }
 
     .field-wrap svg {
       position: absolute;
@@ -336,40 +558,7 @@
     }
     .link:hover { color: var(--gold-lt); text-decoration: underline; }
 
-    /* ── submit btn ── */
-    .btn-primary {
-      width: 100%;
-      padding: 13px 20px;
-      border: none;
-      border-radius: 10px;
-      background: var(--ink);
-      color: #fff;
-      font-size: .92rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      cursor: pointer;
-      letter-spacing: .04em;
-      transition: background .2s, transform .1s, box-shadow .2s;
-      position: relative;
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(184,144,58,.15), transparent);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-
-    .btn-primary:hover { background: #1a1e28; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:active { transform: scale(.985); }
-    .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; }
-
-    /* spinner */
+    /* spinner (inline button) */
     .spinner {
       width: 16px; height: 16px;
       border: 2px solid rgba(255,255,255,.3);
@@ -378,9 +567,6 @@
       animation: spin .7s linear infinite;
       display: none;
     }
-
-    .btn-primary.loading .btn-text { display: none; }
-    .btn-primary.loading .spinner { display: block; }
 
     /* ── alert ── */
     .alert {
@@ -475,63 +661,132 @@
   <div class="panel-right">
     <div class="form-card">
 
-      <div class="form-header">
-        <h2>Welcome back</h2>
-        <p>Sign in to your account to continue learning.</p>
+      <!-- ── AUTH LOADING ── -->
+      <div id="authLoading">
+        <div class="auth-spinner"></div>
+        <p>Checking your session…</p>
       </div>
 
-      <!-- Google sign-in -->
-      <button class="btn-social" id="btnGoogle" type="button">
-        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58Z"/></svg>
-        Continue with Google
-      </button>
-
-      <div class="divider">or sign in with email</div>
-
-      <!-- Alert box -->
-      <div class="alert error" id="alertBox">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="alertMsg"></span>
-      </div>
-
-      <form id="loginForm" novalidate>
-        <!-- Email -->
-        <div class="field">
-          <label for="email">Email address</label>
-          <div class="field-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-            <input type="email" id="email" placeholder="sample@gmail.com" autocomplete="email" required/>
-          </div>
+      <!-- ── LOGIN SECTION ── -->
+      <div id="loginSection">
+        <div class="form-header">
+          <h2>Welcome back</h2>
+          <p>Sign in to your account to continue learning.</p>
         </div>
 
-        <!-- Password -->
-        <div class="field">
-          <label for="password">Password</label>
-          <div class="field-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required/>
-            <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">
-              <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <!-- Google sign-in -->
+        <button class="btn-social" id="btnGoogle" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58Z"/></svg>
+          Continue with Google
+        </button>
+
+        <div class="divider">or sign in with email</div>
+
+        <!-- Alert box -->
+        <div class="alert error" id="alertBox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="alertMsg"></span>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <!-- Email -->
+          <div class="field">
+            <label for="email">Email address</label>
+            <div class="field-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+              <input type="email" id="email" placeholder="sample@gmail.com" autocomplete="email" required/>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="field-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required/>
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">
+                <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember / Forgot -->
+          <div class="row-forgot">
+            <label class="remember">
+              <input type="checkbox" id="remember"/> Keep me signed in
+            </label>
+            <a href="#" class="link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary" id="btnSignIn">
+            <span class="btn-text">Sign in to Dashboard</span>
+            <div class="spinner"></div>
+          </button>
+        </form>
+
+        <div class="form-footer">
+          Don't have an account? Create one free by enter your *Email* and *Password*.
+        </div>
+      </div>
+
+      <!-- ── USER PROFILE SECTION ── -->
+      <div id="userSection">
+        <div class="user-card">
+          <div class="user-header">
+            <h2>My Account</h2>
+            <p>You're signed in and ready to learn.</p>
+          </div>
+
+          <!-- Avatar + name row -->
+          <div class="user-avatar-row">
+            <div class="user-avatar" id="userAvatar">
+              <!-- initials or photo -->
+            </div>
+            <div class="user-info">
+              <div class="user-name" id="userName">—</div>
+              <div class="user-email" id="userEmail">—</div>
+            </div>
+            <div class="user-badge">Active</div>
+          </div>
+
+          <!-- Detail cards -->
+          <div class="user-details-grid">
+            <div class="detail-card">
+              <div class="detail-card-label">Sign-in method</div>
+              <div class="detail-card-value" id="userProvider">—</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-card-label">Email verified</div>
+              <div class="detail-card-value" id="userVerified">—</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-card-label">Member since</div>
+              <div class="detail-card-value" id="userCreated">—</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-card-label">Last sign-in</div>
+              <div class="detail-card-value" id="userLastLogin">—</div>
+            </div>
+          </div>
+
+          <!-- UID row (full width) -->
+          <div class="detail-card" style="margin-bottom:20px;">
+            <div class="detail-card-label">User ID</div>
+            <div class="detail-card-value mono" id="userUID">—</div>
+          </div>
+
+          <!-- Actions -->
+          <div class="user-actions">
+            <a href="https://diplomacampus.vercel.app/premium.html" class="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Go to Dashboard
+            </a>
+            <button class="btn-outline" id="btnSignOut" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Sign out
             </button>
           </div>
         </div>
-
-        <!-- Remember / Forgot -->
-        <div class="row-forgot">
-          <label class="remember">
-            <input type="checkbox" id="remember"/> Keep me signed in
-          </label>
-          <a href="#" class="link">Forgot password?</a>
-        </div>
-
-        <button type="submit" class="btn-primary" id="btnSignIn">
-          <span class="btn-text">Sign in to Dashboard</span>
-          <div class="spinner"></div>
-        </button>
-      </form>
-
-      <div class="form-footer">
-        Don't have an account? <a href="#">Create one free</a>
       </div>
 
     </div>
@@ -543,8 +798,10 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
   import {
     getAuth,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
+    signOut,
     GoogleAuthProvider,
     setPersistence,
     browserLocalPersistence,
@@ -561,12 +818,17 @@
     appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
   };
 
-  const app = initializeApp(firebaseConfig);
+  const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  const alertBox = document.getElementById('alertBox');
-  const alertMsg = document.getElementById('alertMsg');
+  /* ── DOM refs ── */
+  const authLoading   = document.getElementById('authLoading');
+  const loginSection  = document.getElementById('loginSection');
+  const userSection   = document.getElementById('userSection');
+  const alertBox      = document.getElementById('alertBox');
+  const alertMsg      = document.getElementById('alertMsg');
 
+  /* ── Helpers ── */
   function showAlert(msg, type = 'error') {
     alertBox.className = `alert ${type} visible`;
     alertMsg.textContent = msg;
@@ -594,12 +856,82 @@
     return map[code] || 'Something went wrong.';
   }
 
+  function fmtDate(dateStr) {
+    if (!dateStr) return '—';
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function providerLabel(providerId) {
+    if (!providerId) return 'Email';
+    if (providerId.includes('google')) return 'Google';
+    if (providerId.includes('password')) return 'Email & Password';
+    return providerId;
+  }
+
+  function getInitials(name, email) {
+    if (name && name.trim()) {
+      return name.trim().split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+    }
+    return (email || '?')[0].toUpperCase();
+  }
+
+  /* ── Auth state listener — the core of the feature ── */
+  onAuthStateChanged(auth, user => {
+    authLoading.style.display = 'none';
+
+    if (user) {
+      /* ── Populate user profile ── */
+      const name     = user.displayName || '';
+      const email    = user.email || '';
+      const photoURL = user.photoURL || '';
+      const uid      = user.uid || '';
+      const provider = user.providerData?.[0]?.providerId || '';
+      const verified = user.emailVerified;
+      const created  = user.metadata?.creationTime;
+      const lastLogin= user.metadata?.lastSignInTime;
+
+      document.getElementById('userName').textContent     = name || email.split('@')[0] || 'Student';
+      document.getElementById('userEmail').textContent    = email;
+      document.getElementById('userProvider').textContent = providerLabel(provider);
+      document.getElementById('userVerified').textContent = verified ? '✓ Verified' : '✗ Not verified';
+      document.getElementById('userCreated').textContent  = fmtDate(created);
+      document.getElementById('userLastLogin').textContent= fmtDate(lastLogin);
+      document.getElementById('userUID').textContent      = uid;
+
+      const avatarEl = document.getElementById('userAvatar');
+      if (photoURL) {
+        avatarEl.innerHTML = `<img src="${photoURL}" alt="Profile photo" referrerpolicy="no-referrer"/>`;
+      } else {
+        avatarEl.textContent = getInitials(name, email);
+      }
+
+      loginSection.style.display = 'none';
+      userSection.style.display  = 'block';
+
+    } else {
+      /* ── Show login form ── */
+      userSection.style.display  = 'none';
+      loginSection.style.display = 'block';
+    }
+  });
+
+  /* ── Sign out ── */
+  document.getElementById('btnSignOut').addEventListener('click', async () => {
+    try {
+      await signOut(auth);
+      // onAuthStateChanged will handle the UI switch automatically
+    } catch (err) {
+      console.error('Sign out error:', err);
+    }
+  });
+
   /* ── Email login ── */
   document.getElementById('loginForm').addEventListener('submit', async e => {
     e.preventDefault();
     hideAlert();
 
-    const email = document.getElementById('email').value.trim();
+    const email    = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const remember = document.getElementById('remember').checked;
 
@@ -611,19 +943,11 @@
     setLoading(true);
 
     try {
-      const persistence = remember
-        ? browserLocalPersistence
-        : browserSessionPersistence;
-
+      const persistence = remember ? browserLocalPersistence : browserSessionPersistence;
       await setPersistence(auth, persistence);
       await signInWithEmailAndPassword(auth, email, password);
-
-      showAlert('Login successful! Redirecting...', 'success');
-
-      setTimeout(() => {
-        window.location.href = "https://diplomacampus.vercel.app/premium.html";
-      }, 1200);
-
+      // onAuthStateChanged handles showing user section
+      showAlert('Login successful!', 'success');
     } catch (err) {
       showAlert(friendlyError(err.code));
     } finally {
@@ -635,16 +959,9 @@
   document.getElementById('btnGoogle').addEventListener('click', async () => {
     hideAlert();
     const provider = new GoogleAuthProvider();
-
     try {
       await signInWithPopup(auth, provider);
-
-      showAlert('Google login successful! Redirecting...', 'success');
-
-      setTimeout(() => {
-        window.location.href = "https://diplomacampus.vercel.app/premium.html";
-      }, 1200);
-
+      // onAuthStateChanged handles showing user section
     } catch (err) {
       if (err.code !== 'auth/popup-closed-by-user') {
         showAlert(friendlyError(err.code));
@@ -659,12 +976,10 @@
   document.getElementById('togglePw').addEventListener('click', () => {
     const show = pwInput.type === 'password';
     pwInput.type = show ? 'text' : 'password';
-
     eyeIcon.innerHTML = show
       ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/>`
       : `<path d="M1 12s4-8 11-8 11 8 11 8"/><circle cx="12" cy="12" r="3"/>`;
   });
-
 </script>
 </body>
 </html>

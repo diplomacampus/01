@@ -1,5 +1,7 @@
+```css
 /* ============================================================
-   NoteVault — Redesigned with AAA Accessible Color Palette
+   DiplomaCampus — Redesigned with AAA Accessible Color Palette
+   Fully harmonized with root variables and consistent theme
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
@@ -969,6 +971,198 @@ section{padding:var(--section-py) 0}
 .dl-btn{display:flex;align-items:center;gap:.28rem;font-size:.75rem;font-weight:700;color:var(--clr-gold);background:none;border:none;cursor:pointer}
 .dl-btn:hover{color:var(--clr-amber)}
 
+/* ── Glass Section (Communities) – Fully Themed ── */
+.glass-section {
+  padding: 5rem 0;
+  background: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.glass-card {
+  background: rgba(0, 48, 64, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 200, 69, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 30px 50px -15px rgba(255, 200, 69, 0.3);
+  border-color: var(--clr-gold);
+}
+
+.glass-card .icon-wrapper {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1.5rem;
+  background: rgba(255, 200, 69, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  transition: all 0.3s ease;
+  color: var(--clr-gold);
+}
+
+.glass-card:hover .icon-wrapper {
+  transform: scale(1.15) rotate(8deg);
+  background: var(--clr-gold);
+  color: var(--clr-dark);
+}
+
+.glass-badge {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: var(--clr-teal);
+  color: var(--clr-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 191, 178, 0.4);
+}
+
+/* Telegram & WhatsApp buttons – using theme palette with subtle brand hint */
+.glass-card .btn-telegram {
+  background: var(--clr-sky);
+  color: var(--clr-dark);
+  border: none;
+}
+.glass-card .btn-telegram:hover {
+  background: #228bc5;
+  transform: translateY(-2px);
+}
+.glass-card .btn-whatsapp {
+  background: var(--clr-teal);
+  color: var(--clr-dark);
+  border: none;
+}
+.glass-card .btn-whatsapp:hover {
+  background: #00d4c7;
+  transform: translateY(-2px);
+}
+.glass-card .btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Modal – fully respecting theme */
+.branch-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 31, 40, 0.96);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.branch-modal-content {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 200, 69, 0.3);
+  border-radius: 24px;
+  max-width: 1100px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+}
+
+.branch-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.branch-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.branch-item:hover {
+  background: rgba(255, 200, 69, 0.1);
+  border-color: var(--clr-gold);
+  transform: translateX(8px);
+}
+
+.branch-item i {
+  font-size: 2.2rem;
+  width: 50px;
+  color: var(--clr-gold);
+}
+
+.branch-item .branch-info h4 {
+  margin: 0 0 4px 0;
+  color: var(--text-hi);
+  font-size: 1rem;
+}
+
+.branch-item .branch-info p {
+  margin: 0;
+  color: var(--text-lo);
+  font-size: 0.85rem;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--clr-gold);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-modal:hover {
+  background: rgba(255, 200, 69, 0.2);
+}
+
+/* Responsive adjustments for glass & modal */
+@media (max-width: 768px) {
+  .glass-grid, .branch-grid { grid-template-columns: 1fr; }
+  .branch-modal-content { padding: 1.5rem; }
+  .glass-card { padding: 2rem 1.5rem; }
+  .glass-card .icon-wrapper { width: 70px; height: 70px; font-size: 2.8rem; }
+}
+
 /* ── Testimonials ── */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.4rem;margin-top:3rem}
 .testi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem;transition:transform .25s}
@@ -1203,3 +1397,4 @@ footer{background:#001018;padding:4rem 0 1.5rem;border-top:1px solid var(--borde
   .comp-table{display:none}
   .trust-logos{gap:1.5rem}
 }
+```

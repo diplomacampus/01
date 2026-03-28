@@ -81,9 +81,9 @@
 
 
 
-<!-- Common Subjects Section – Semester 1 & 2 (same structure as branch sections) -->
-<div class="semester-section" data-branch="common">
-  <h2><i class='bx bx-book-open'></i> Common Subjects – Semester 1 & 2</h2>
+<!-- ================= COMMON SUBJECTS SECTION (always visible) ================= -->
+<div class="common-subjects reveal" style="margin-bottom: 2.5rem;">
+  <h2><i class='bx bx-book-open'></i> Common Subjects – Semester 1 & 2 <span style="font-size: 0.9rem; font-weight: normal; background: #eef2ff; padding: 0.2rem 0.8rem; border-radius: 20px; margin-left: 0.75rem;">All Branches</span></h2>
 
   <!-- Engineering Mathematics -->
   <div class="accordion-item">
@@ -139,15 +139,15 @@
       <div class="subject-grid">
         <div class="subj-card">
           <h4>Elasticity</h4>
-<p>Stress, Strain, Hooke’s Law, Young’s Modulus, Bulk Modulus, Shear Modulus</p>
+          <p>Stress, Strain, Hooke’s Law, Young’s Modulus, Bulk Modulus, Shear Modulus</p>
           <div class="subj-actions">
             <a href="https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=uqh34nxu&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
             <a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a>
           </div>
         </div>
         <div class="subj-card">
-        <h4>Gas Laws & Specific Heat of Gases</h4>
-<p>Boyle’s Law, Charles’s Law, Gay-Lussac’s Law, Ideal Gas Equation, Specific Heat (Cp, Cv), Relation Cp - Cv = R</p>
+          <h4>Gas Laws & Specific Heat of Gases</h4>
+          <p>Boyle’s Law, Charles’s Law, Gay-Lussac’s Law, Ideal Gas Equation, Specific Heat (Cp, Cv), Relation Cp - Cv = R</p>
           <div class="subj-actions">
             <a href="https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/GAS-LAWS-AND-SPECIFIC-HEAT-OF-GASES.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=fyey50kj&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
             <a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a>
@@ -217,25 +217,6 @@
     </div>
   </div>
 </div>
-
-<!-- Ensure accordion functionality (if not already present globally) -->
-<script>
-  // Simple accordion toggle for the common section (uses same logic as branch sections)
-  document.querySelectorAll('.semester-section[data-branch="common"] .accordion-hdr').forEach(header => {
-    header.addEventListener('click', () => {
-      const body = header.nextElementSibling;
-      const isOpen = body.classList.contains('open');
-      // Optional: close all others in this section for consistency
-      document.querySelectorAll('.semester-section[data-branch="common"] .accordion-body').forEach(b => b.classList.remove('open'));
-      document.querySelectorAll('.semester-section[data-branch="common"] .accordion-hdr').forEach(h => h.classList.remove('open'));
-      if (!isOpen) {
-        body.classList.add('open');
-        header.classList.add('open');
-      }
-    });
-  });
-</script>
-
 
 
 

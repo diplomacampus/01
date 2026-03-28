@@ -1,43 +1,54 @@
 
 /* ============================================================
-   DiplomaCampus — Redesigned with AAA Accessible Color Palette
-   Fully harmonized with root variables and consistent theme
+   NoteVault — Enhanced Color Palette (AAA Accessible)
+   Modern, vibrant, and optimized for engineering notes platform
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --clr-dark:     #003b49;
-  --clr-navy:     #1b365d;
-  --clr-blue:     #1d4289;
-  --clr-plum:     #5d3754;
-  --clr-teal:     #00bfb2;
-  --clr-sky:      #41b6e6;
-  --clr-gold:     #fff200;
-  --clr-amber:    #f2c75c;
-  --clr-sage:     #94a596;
-  --clr-mauve:    #be84a3;
-  --clr-steel:    #7da1c4;
-  --clr-beige:    #d6d2c4;
-  --clr-gray:     #d0d3d4;
-  --clr-pink:     #e56db1;
-  --bg-base:      #001f28;
-  --bg-mid:       #002b36;
-  --bg-card:      #003040;
-  --bg-card-alt:  #00263a;
+  /* Primary brand colors */
+  --clr-dark:     #0a2b2f;
+  --clr-navy:     #0f2c4b;
+  --clr-blue:     #1f509e;
+  --clr-plum:     #6a3e5c;
+  --clr-teal:     #2dd4bf;
+  --clr-sky:      #7bc9ff;
+  --clr-gold:     #fbbf24;
+  --clr-amber:    #fcd34d;
+  --clr-sage:     #9bbf9b;
+  --clr-mauve:    #cd9bc3;
+  --clr-steel:    #91b9e6;
+  --clr-beige:    #e6e2d9;
+  --clr-gray:     #cad2c5;
+  --clr-pink:     #f8a5c2;
+
+  /* Backgrounds – deep, rich dark tones */
+  --bg-base:      #0a1a1f;
+  --bg-mid:       #0f252c;
+  --bg-card:      #15363f;
+  --bg-card-alt:  #0e2c33;
+
+  /* Text colors – high contrast */
   --text-hi:      #ffffff;
-  --text-lo:      #d6d2c4;
-  --border:       rgba(255,255,255,.09);
+  --text-lo:      #e2e8f0;
+
+  /* Borders – subtle but visible */
+  --border:       rgba(255,255,255,0.12);
+
+  /* Fonts */
   --ff-display:   'Playfair Display', Georgia, serif;
   --ff-body:      'DM Sans', sans-serif;
+
+  /* Spacing & effects */
   --section-py:   6rem;
   --max-w:        1240px;
   --r-sm: 6px;
   --r-md: 12px;
   --r-lg: 20px;
   --r-xl: 32px;
-  --shadow:       0 8px 32px rgba(0,0,0,.4);
-  --glow-gold:    0 0 40px rgba(255,200,69,.18);
-  --glow-teal:    0 0 40px rgba(0,191,178,.15);
+  --shadow:       0 10px 30px rgba(0,0,0,0.5);
+  --glow-gold:    0 0 40px rgba(251,191,36,0.2);
+  --glow-teal:    0 0 40px rgba(45,212,191,0.15);
   -webkit-tap-highlight-color: transparent;
 }
 

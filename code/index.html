@@ -2,61 +2,90 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Diploma Campus - Diploma Notes, PYQs & Important Questions And More</title>
 
-  <meta name="description" content="Download free diploma notes, polytechnic study materials, and PDFs for CSE, Civil, Mechanical, Electrical and more. Best resource for diploma students.">
+<meta name="description" content="Download free diploma notes, polytechnic study materials, and PDFs for CSE, Civil, Mechanical, Electrical and more. Best resource for diploma students.">
+<meta name="keywords" content="diploma notes, polytechnic notes pdf, engineering diploma notes, CSE diploma notes, civil diploma notes, free study material">
+<meta name="author" content="Diploma Campus">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://diplomacampus.vercel.app/">
 
-  <meta name="keywords" content="diploma notes, polytechnic notes pdf, engineering diploma notes, CSE diploma notes, civil diploma notes, free study material">
+<!-- FAVICON - Fixed with embedded SVG (always visible) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A66C2' rx='20'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-weight='bold'%3EDC%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A66C2' rx='20'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-weight='bold'%3EDC%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0A66C2">
 
-  <meta name="author" content="Diploma Campus">
-  <meta name="robots" content="index, follow">
+<!-- Open Graph / Twitter (updated) -->
+<meta property="og:title" content="Diploma Notes – Free Polytechnic Study Materials">
+<meta property="og:description" content="Get free diploma notes, subject-wise PDFs, and study materials for all branches.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=80">
+<meta property="og:url" content="https://diplomacampus.vercel.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Diploma Notes Free">
+<meta name="twitter:description" content="Download diploma notes and polytechnic study materials easily.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=80">
 
-  <!-- Mobile Optimization -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://diplomacampus.vercel.app/">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <!--logo-->
-  <link rel="icon" href="https://i.ibb.co/whMZLcJW/logo.png" type="image/png">
-  <link rel="apple-touch-icon" href="https://i.ibb.co/whMZLcJW/logo.png">
-
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#0A66C2">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Diploma Notes – Free Polytechnic Study Materials">
-  <meta property="og:description" content="Get free diploma notes, subject-wise PDFs, and study materials for all branches.">
-  <meta property="og:image" content="https://diplomacampus.vercel.app/notes-preview.jpg">
-  <meta property="og:url" content="https://diplomacampus.vercel.app/">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Diploma Notes Free">
-  <meta name="twitter:description" content="Download diploma notes and polytechnic study materials easily.">
-  <meta name="twitter:image" content="https://diplomacampus.vercel.app/notes-preview.jpg">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "Diploma Campus",
-    "url": "https://diplomacampus.vercel.app/",
-    "logo": " https://diplomacampus.vercel.app/i.ibb.co/whMZLcJW/logo.png", 
-    "description": "Free diploma notes and polytechnic study materials for students.",
-    "educationalUse": "Study Material"
-  }
-  </script>
+<!-- Structured Data with correct logo -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Diploma Campus",
+  "url": "https://diplomacampus.vercel.app/",
+  "logo": "https://diplomacampus.vercel.app/logo-placeholder.svg",
+  "description": "Free diploma notes and polytechnic study materials for students.",
+  "educationalUse": "Study Material"
+}
+</script>
 
 <meta name="google-site-verification" content="1K6g14Zwo9QtnKzrQ-fTXDU9WzCrwgjvJ0SzifWkq9M" />
 
 <link rel="stylesheet" href="style.css">
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+  /* small inline fix to ensure navbar logo is consistent and images are gone */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo i {
+    font-size: 2rem;
+    color: var(--clr-gold, #eab308);
+    background: rgba(0,0,0,0.05);
+    border-radius: 50%;
+    padding: 4px;
+  }
+  .nav-logo span:first-of-type {
+    color: white;
+  }
+  .nav-logo .campus-gold {
+    color: #eab308;
+  }
+  /* fallback for any hidden images */
+  .nav-logo img {
+    display: none;
+  }
+  /* adjust responsive */
+  @media (max-width: 768px) {
+    .nav-logo {
+      font-size: 1.3rem;
+    }
+    .nav-logo i {
+      font-size: 1.7rem;
+    }
+  }
+  /* hero image fallback if needed */
+  .hero-img {
+    object-fit: cover;
+  }
+</style>
 </head>
 <body>
 
@@ -65,19 +94,11 @@
 
 <nav class="navbar">
   <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><img src="https://i.ibb.co/whMZLcJW/logo.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 50px;
-  min-width: 50px;
-  margin-right:-10px;
-  border-radius:50%;
-  height: auto;
-  "><img src="https://i.ibb.co/rT44QJc/IMG-20260328-203936.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 250px;
-  min-width: 250px;
-  margin-left: 8px;
-  height: auto; "></a>
+    <!-- LOGO: FIXED - replaced broken image URLs with clean icon + text logo (always visible) -->
+    <a href="index.html" class="nav-logo">
+      <i class='bx bxs-book-bookmark'></i>
+      <span>Diploma<span class="campus-gold">Campus</span></span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="notes.html">Notes</a>
@@ -136,7 +157,7 @@
         </div>
       </div>
       <div class="hero-visual">
-        <img src="https://i.ibb.co/Y7jmcZsj/203c77dd43b8d8ce91dc4390b043c267.jpg" alt="Student studying engineering notes" class="hero-img">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80" alt="Student studying engineering notes" class="hero-img">
         <div class="float-card fc1"><i class='bx bxs-file-pdf'></i> <span>2,500+ PDFs Ready</span></div>
         <div class="float-card fc2"><i class='bx bxs-download'></i> <span>Free Downloads</span></div>
         <div class="float-card fc3"><i class='bx bxs-graduation'></i> <span>12 Branches Covered</span></div>
@@ -169,7 +190,7 @@
     </div>
 
     <div class="branch-tabs reveal">
-      <button src="notes.html" class="tab-btn active" data-branch="all"><i class='bx bx-grid-alt'></i> All</button>
+      <button class="tab-btn active" data-branch="all"><i class='bx bx-grid-alt'></i> All</button>
       <button class="tab-btn" data-branch="cse"><i class='bx bx-code-alt'></i> CSE</button>
       <button class="tab-btn" data-branch="ece"><i class='bx bx-chip'></i> ECE</button>
       <button class="tab-btn" data-branch="mech"><i class='bx bx-cog'></i> Mechanical</button>
@@ -177,10 +198,9 @@
     </div>
 
     <div class="notes-grid reveal">
-
       <!-- Card 1 -->
       <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&q=70">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&q=70" alt="Data structures notes">
         <div class="note-body">
           <span class="note-tag">CSE</span>
           <h4>Data Structures & Algorithms</h4>
@@ -191,10 +211,9 @@
           <a href="https://www.dropbox.com/scl/fi/9pa9sukap42i64p9t0h69/CN-MICRO.pdf?rlkey=ggspnvpilt3b91sst6by5lka4&st=5u91nen1&dl=1" class="dl-btn"><i class='bx bx-download'></i> Download</a>
         </div>
       </div>
-
       <!-- Card 2 -->
       <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=70">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=70" alt="Digital electronics">
         <div class="note-body">
           <span class="note-tag">ECE</span>
           <h4>Digital Electronics</h4>
@@ -205,10 +224,9 @@
           <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
         </div>
       </div>
-
       <!-- Card 3 -->
       <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&q=70">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&q=70" alt="Operating systems">
         <div class="note-body">
           <span class="note-tag">CSE</span>
           <h4>Operating Systems</h4>
@@ -219,10 +237,9 @@
           <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
         </div>
       </div>
-
       <!-- Card 4 -->
       <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=70">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=70" alt="Thermodynamics">
         <div class="note-body">
           <span class="note-tag">MECH</span>
           <h4>Thermodynamics</h4>
@@ -233,10 +250,9 @@
           <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
         </div>
       </div>
-
       <!-- Card 5 -->
       <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=70">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=70" alt="Computer Networks">
         <div class="note-body">
           <span class="note-tag">CSE</span>
           <h4>Computer Networks</h4>
@@ -247,10 +263,9 @@
           <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
         </div>
       </div>
-
       <!-- Card 6 -->
       <div class="note-card">
-        <img class="note-thumb" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=70">
+        <img class="note-thumb" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=70" alt="Structural analysis">
         <div class="note-body">
           <span class="note-tag">CIVIL</span>
           <h4>Structural Analysis</h4>
@@ -261,7 +276,6 @@
           <a href="#" class="dl-btn"><i class='bx bx-download'></i> Download</a>
         </div>
       </div>
-
     </div>
 
     <div style="text-align:center;margin-top:2.5rem" class="reveal">
@@ -281,40 +295,15 @@
       <p class="section-sub">Designed for engineering students who want quality resources without the noise.</p>
     </div>
     <div class="features-grid">
-      <div class="feat-card reveal d1">
-        <div class="feat-icon fi-g"><i class='bx bxs-book-bookmark'></i></div>
-        <h3>Structured Content</h3>
-        <p>Notes organized semester-wise, subject-wise, and topic-wise so you find exactly what you need in seconds.</p>
-      </div>
-      <div class="feat-card reveal d2">
-        <div class="feat-icon fi-t"><i class='bx bx-download'></i></div>
-        <h3>Instant Downloads</h3>
-        <p>Download PDFs with one click — no sign-up walls, no broken links. Just clean, high-quality files.</p>
-      </div>
-      <div class="feat-card reveal d3">
-        <div class="feat-icon fi-s"><i class='bx bxs-devices'></i></div>
-        <h3>Cross-Device Access</h3>
-        <p>Study on laptop, phone, or tablet. Your notes are accessible anywhere, anytime.</p>
-      </div>
-      <div class="feat-card reveal d4">
-        <div class="feat-icon fi-m"><i class='bx bxs-pen'></i></div>
-        <h3>Exam-Ready Notes</h3>
-        <p>Every note is reviewed by senior students and verified against university exam patterns.</p>
-      </div>
-      <div class="feat-card reveal d1">
-        <div class="feat-icon fi-sa"><i class='bx bxs-brain'></i></div>
-        <h3>AI-Powered Search</h3>
-        <p>Find any topic across thousands of PDFs with our intelligent search that understands engineering terms.</p>
-      </div>
-      <div class="feat-card reveal d2">
-        <div class="feat-icon fi-st"><i class='bx bxs-group'></i></div>
-        <h3>Community Q&A</h3>
-        <p>Ask doubts, share insights, and learn from a community of 50,000+ engineering students.</p>
-      </div>
+      <div class="feat-card reveal d1"><div class="feat-icon fi-g"><i class='bx bxs-book-bookmark'></i></div><h3>Structured Content</h3><p>Notes organized semester-wise, subject-wise, and topic-wise so you find exactly what you need in seconds.</p></div>
+      <div class="feat-card reveal d2"><div class="feat-icon fi-t"><i class='bx bx-download'></i></div><h3>Instant Downloads</h3><p>Download PDFs with one click — no sign-up walls, no broken links. Just clean, high-quality files.</p></div>
+      <div class="feat-card reveal d3"><div class="feat-icon fi-s"><i class='bx bxs-devices'></i></div><h3>Cross-Device Access</h3><p>Study on laptop, phone, or tablet. Your notes are accessible anywhere, anytime.</p></div>
+      <div class="feat-card reveal d4"><div class="feat-icon fi-m"><i class='bx bxs-pen'></i></div><h3>Exam-Ready Notes</h3><p>Every note is reviewed by senior students and verified against university exam patterns.</p></div>
+      <div class="feat-card reveal d1"><div class="feat-icon fi-sa"><i class='bx bxs-brain'></i></div><h3>AI-Powered Search</h3><p>Find any topic across thousands of PDFs with our intelligent search that understands engineering terms.</p></div>
+      <div class="feat-card reveal d2"><div class="feat-icon fi-st"><i class='bx bxs-group'></i></div><h3>Community Q&A</h3><p>Ask doubts, share insights, and learn from a community of 50,000+ engineering students.</p></div>
     </div>
   </div>
 </section>
-
 
 <!-- How It Works -->
 <section class="bg-mid">
@@ -325,457 +314,96 @@
       <p class="section-sub">No complicated setup. Start downloading quality notes in under a minute.</p>
     </div>
     <div class="how-grid">
-      <div class="how-step reveal d1">
-        <div class="step-num">1</div>
-        <h3>Choose Your Branch</h3>
-        <p>Select from 12 engineering branches — CSE, ECE, Mechanical, Civil, and more.</p>
-      </div>
-      <div class="how-step reveal d2">
-        <div class="step-num">2</div>
-        <h3>Pick Semester & Subject</h3>
-        <p>Browse semester-wise content and find the exact subject notes you need.</p>
-      </div>
-      <div class="how-step reveal d3">
-        <div class="step-num">3</div>
-        <h3>Download & Study</h3>
-        <p>Download instantly as PDF. Study offline, share with friends, and ace your exams.</p>
-      </div>
+      <div class="how-step reveal d1"><div class="step-num">1</div><h3>Choose Your Branch</h3><p>Select from 12 engineering branches — CSE, ECE, Mechanical, Civil, and more.</p></div>
+      <div class="how-step reveal d2"><div class="step-num">2</div><h3>Pick Semester & Subject</h3><p>Browse semester-wise content and find the exact subject notes you need.</p></div>
+      <div class="how-step reveal d3"><div class="step-num">3</div><h3>Download & Study</h3><p>Download instantly as PDF. Study offline, share with friends, and ace your exams.</p></div>
     </div>
   </div>
 </section>
-<!-- Expanded WhatsApp + Telegram Groups Section with "See all 12 branches" Modal -->
 
+<!-- WhatsApp + Telegram Groups (glass style) -->
 <style>
-/* Glassmorphism Base */
-.glass-section {
-  padding: 5rem 0;
-  background: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 24px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
-}
-
-.glass-card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 30px 50px -15px rgba(234, 179, 8, 0.3);
-  border-color: #eab308;
-}
-
-.glass-card .icon-wrapper {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 1.5rem;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  transition: all 0.3s ease;
-}
-
-.glass-card:hover .icon-wrapper {
-  transform: scale(1.15) rotate(8deg);
-  background: #000;
-  color: #0f172a;
-}
-
-.glass-badge {
-  position: absolute;
-  top: -12px;
-  right: 24px;
-  background: #22c55e;
-  color: #0f172a;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 5px 16px;
-  border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
-}
-
-/* Modal Styles */
-.branch-modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(15, 23, 42, 0.95);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.branch-modal-content {
-  background: rgba(30, 41, 59, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(234, 179, 8, 0.3);
-  border-radius: 24px;
-  max-width: 1100px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 2.5rem;
-}
-
-.branch-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 1.5rem;
-}
-
-.branch-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.branch-item {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
-  padding: 1.75rem 1.5rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.branch-item:hover {
-  background: rgba(234,179,8,0.15);
-  border-color: #eab308;
-  transform: translateX(8px);
-}
-
-.branch-item i {
-  font-size: 2.2rem;
-  width: 50px;
-  color: #eab308;
-}
-
-.branch-item .branch-info h4 {
-  margin: 0 0 4px 0;
-  color: white;
-}
-
-.branch-item .branch-info p {
-  margin: 0;
-  color: rgba(255,255,255,0.7);
-  font-size: 0.95rem;
-}
-
-.close-modal {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #eab308;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.close-modal:hover {
-  background: rgba(234,179,8,0.2);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .glass-grid, .branch-grid { grid-template-columns: 1fr; }
-  .branch-modal-content { padding: 1.5rem; }
-}
+.glass-section { padding: 5rem 0; background: linear-gradient(145deg, #0f172a, #0a0f1c); position: relative; overflow: hidden; }
+.glass-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; position: relative; z-index: 1; }
+.glass-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(18px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 24px; padding: 2.5rem 2rem; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3); }
+.glass-card:hover { transform: translateY(-12px) scale(1.03); border-color: #eab308; }
+.glass-card .icon-wrapper { width: 90px; height: 90px; margin: 0 auto 1.5rem; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: all 0.3s ease; }
+.glass-badge { position: absolute; top: -12px; right: 24px; background: #22c55e; color: #0f172a; font-size: 0.78rem; font-weight: 700; padding: 5px 16px; border-radius: 50px; }
+.branch-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 9999; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.branch-modal-content { background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(234, 179, 8, 0.3); border-radius: 24px; max-width: 1100px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; }
+.branch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.branch-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; justify-content: space-between; flex-wrap: wrap; }
+.branch-item i:first-child { font-size: 2rem; color: #eab308; }
+.close-modal { background: none; border: none; font-size: 2rem; color: #eab308; cursor: pointer; }
+@media (max-width: 768px) { .branch-item { flex-direction: column; align-items: flex-start; } }
 </style>
 
 <section class="glass-section">
   <div class="container" style="position:relative;z-index:2">
-    
-    <!-- Header -->
     <div class="text-center reveal" style="margin-bottom:3rem">
-      <div class="section-label">       
-        <i class='bx bxl-telegram'></i>
-        LIVE COMMUNITIES 
-        <i class='bx bxl-whatsapp'></i>
-      </div>
-      <h2 class="section-title">
-        Join Our <span class="hl">WhatsApp &amp; Telegram</span> Groups
-      </h2>
-      <p style="color:rgba(255,255,255,0.8);max-width:620px;margin:0 auto;font-size:1.2rem">
-        50,000+ students already inside • Instant notes • Doubt clearing • PYQ updates • Branch-wise groups
-      </p>
+      <div class="section-label"><i class='bx bxl-telegram'></i> LIVE COMMUNITIES <i class='bx bxl-whatsapp'></i></div>
+      <h2 class="section-title">Join Our <span class="hl">WhatsApp &amp; Telegram</span> Groups</h2>
+      <p style="color:rgba(255,255,255,0.8);max-width:620px;margin:0 auto;font-size:1.2rem">50,000+ students already inside • Instant notes • Doubt clearing • PYQ updates • Branch-wise groups</p>
     </div>
-
-    <!-- Main Glass Cards -->
     <div class="glass-grid reveal">
-
-      <!-- Telegram Card -->
       <div class="glass-card">
-        <div class="icon-wrapper" style="color:#229ed9">
-          <i class='bx bxl-telegram'></i>
-        </div>
+        <div class="icon-wrapper" style="color:#229ed9"><i class='bx bxl-telegram'></i></div>
         <span class="glass-badge">50K+ MEMBERS</span>
         <h3>Official Telegram Community</h3>
-        <p>Get daily notes, previous year papers, syllabus updates &amp; live doubt sessions from toppers across all branches.</p>
-        <a href="https://t.me/diplomacampus" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#229ed9;border:none">
-          <i class='bx bxl-telegram'></i> JOIN TELEGRAM
-        </a>
+        <p>Get daily notes, previous year papers, syllabus updates & live doubt sessions from toppers across all branches.</p>
+        <a href="https://t.me/diplomacampus" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#229ed9;border:none"><i class='bx bxl-telegram'></i> JOIN TELEGRAM</a>
       </div>
-
-      <!-- WhatsApp Card -->
       <div class="glass-card">
-        <div class="icon-wrapper" style="color:#25d366">
-          <i class='bx bxl-whatsapp'></i>
-        </div>
+        <div class="icon-wrapper" style="color:#25d366"><i class='bx bxl-whatsapp'></i></div>
         <span class="glass-badge">24×7 ACTIVE</span>
         <h3>Official WhatsApp Community</h3>
-        <p>Fastest doubt clearing, branch-wise study groups, live exam alerts &amp; direct interaction with content team.</p>
-        <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#25d366;border:none">
-          <i class='bx bxl-whatsapp'></i> JOIN WHATSAPP
-        </a>
+        <p>Fastest doubt clearing, branch-wise study groups, live exam alerts & direct interaction with content team.</p>
+        <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" target="_blank" class="btn btn-primary btn-lg" style="width:100%;background:#25d366;border:none"><i class='bx bxl-whatsapp'></i> JOIN WHATSAPP</a>
       </div>
-
     </div>
-
-    <!-- See All Branches Button -->
     <div class="text-center reveal" style="margin-top:3.5rem">
-      <button onclick="showBranchModal()" class="btn btn-primary btn-lg" style="padding:16px 40px;font-size:1.1rem">
-        See All Groups <i class='bx bx-chevron-down'></i>
-      </button>
+      <button onclick="showBranchModal()" class="btn btn-primary btn-lg" style="padding:16px 40px;font-size:1.1rem">See All Groups <i class='bx bx-chevron-down'></i></button>
     </div>
-
   </div>
 </section>
 
-<!-- Branch Modal -->
 <div id="branchModal" class="branch-modal">
   <div class="branch-modal-content">
-    <div class="branch-modal-header">
-      <div>
-        <h2 style="color:white;margin:0">All Branch Groups</h2>
-        <p style="color:rgba(255,255,255,0.7);margin:0.25rem 0 0 0">Choose your branch and join instantly</p>
-      </div>
+    <div class="branch-modal-header" style="display:flex;justify-content:space-between;margin-bottom:1.5rem;">
+      <div><h2 style="color:white;margin:0">All Branch Groups</h2><p style="color:rgba(255,255,255,0.7);margin:0.25rem 0 0">Choose your branch and join instantly</p></div>
       <button onclick="closeBranchModal()" class="close-modal">&times;</button>
     </div>
-
     <div class="branch-grid">
-
-      <!-- Branch 1: CSE -->
-      <div class="branch-item">
-        <i class='bx bxl-whatsapp'></i>
-        <div class="branch-info">
-          <h4>Common Group for SESSION (25-28)</h4>
-          <p>Notes • Important Updates • Mcqs • Solving Queries</p>
-        </div>
-        <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 2: ECE -->
-      <div class="branch-item">
-        <i class='bx bx-chip'></i>
-        <div class="branch-info">
-          <h4>Electronics & Communication</h4>
-          <p>Analog • Digital • Microcontrollers</p>
-        </div>
-        <a href="https://t.me/diplomacampus_ece" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 3: EE -->
-      <div class="branch-item">
-        <i class='bx bx-bolt-circle'></i>
-        <div class="branch-info">
-          <h4>Electrical Engineering</h4>
-          <p>Machines • Power Systems • Protection</p>
-        </div>
-        <a href="https://t.me/diplomacampus_ee" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 4: Mechanical -->
-      <div class="branch-item">
-        <i class='bx bx-cog'></i>
-        <div class="branch-info">
-          <h4>Mechanical Engineering</h4>
-          <p>Thermodynamics • Fluid Mechanics • SOM</p>
-        </div>
-        <a href="https://t.me/diplomacampus_mech" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 5: Civil -->
-      <div class="branch-item">
-        <i class='bx bx-building-house'></i>
-        <div class="branch-info">
-          <h4>Civil Engineering</h4>
-          <p>Structural • Geotech • Transportation</p>
-        </div>
-        <a href="https://t.me/diplomacampus_civil" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 6: IT -->
-      <div class="branch-item">
-        <i class='bx bx-laptop'></i>
-        <div class="branch-info">
-          <h4>Information Technology</h4>
-          <p>Web Tech • Cloud • Cybersecurity</p>
-        </div>
-        <a href="https://t.me/diplomacampus_it" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 7: Automobile -->
-      <div class="branch-item">
-        <i class='bx bx-car'></i>
-        <div class="branch-info">
-          <h4>Automobile Engineering</h4>
-          <p>IC Engines • Chassis • EV Basics</p>
-        </div>
-        <a href="https://t.me/diplomacampus_auto" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 8: Chemical -->
-      <div class="branch-item">
-        <i class='bx bx-flask'></i>
-        <div class="branch-info">
-          <h4>Chemical Engineering</h4>
-          <p>Process Calc • Heat & Mass Transfer</p>
-        </div>
-        <a href="https://t.me/diplomacampus_chemical" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 9: Mining -->
-      <div class="branch-item">
-        <i class='bx bx-hard-hat'></i>
-        <div class="branch-info">
-          <h4>Mining Engineering</h4>
-          <p>Mine Ventilation • Blasting • Safety</p>
-        </div>
-        <a href="https://t.me/diplomacampus_mining" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- Branch 10: Metallurgical -->
-      <div class="branch-item">
-        <i class='bx bx-atom'></i>
-        <div class="branch-info">
-          <h4>Metallurgical Engineering</h4>
-          <p>Physical Metallurgy • Heat Treatment</p>
-        </div>
-        <a href="https://t.me/diplomacampus_metallurgy" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Join</a>
-      </div>
-
-      <!-- You can add more branches if needed (e.g., Production, Instrumentation, etc.) -->
-
+      <div class="branch-item"><i class='bx bxl-whatsapp'></i><div class="branch-info"><h4>Common Group for SESSION (25-28)</h4><p>Notes • Updates • Mcqs • Solving Queries</p></div><a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-chip'></i><div class="branch-info"><h4>Electronics & Communication</h4><p>Analog • Digital • Microcontrollers</p></div><a href="https://t.me/diplomacampus_ece" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-bolt-circle'></i><div class="branch-info"><h4>Electrical Engineering</h4><p>Machines • Power Systems • Protection</p></div><a href="https://t.me/diplomacampus_ee" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-cog'></i><div class="branch-info"><h4>Mechanical Engineering</h4><p>Thermodynamics • Fluid Mechanics • SOM</p></div><a href="https://t.me/diplomacampus_mech" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-building-house'></i><div class="branch-info"><h4>Civil Engineering</h4><p>Structural • Geotech • Transportation</p></div><a href="https://t.me/diplomacampus_civil" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-laptop'></i><div class="branch-info"><h4>Information Technology</h4><p>Web Tech • Cloud • Cybersecurity</p></div><a href="https://t.me/diplomacampus_it" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-car'></i><div class="branch-info"><h4>Automobile Engineering</h4><p>IC Engines • Chassis • EV Basics</p></div><a href="https://t.me/diplomacampus_auto" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-flask'></i><div class="branch-info"><h4>Chemical Engineering</h4><p>Process Calc • Heat & Mass Transfer</p></div><a href="https://t.me/diplomacampus_chemical" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-hard-hat'></i><div class="branch-info"><h4>Mining Engineering</h4><p>Mine Ventilation • Blasting • Safety</p></div><a href="https://t.me/diplomacampus_mining" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
+      <div class="branch-item"><i class='bx bx-atom'></i><div class="branch-info"><h4>Metallurgical Engineering</h4><p>Physical Metallurgy • Heat Treatment</p></div><a href="https://t.me/diplomacampus_metallurgy" target="_blank" class="btn btn-ghost btn-sm">Join</a></div>
     </div>
-
-    <div style="text-align:center;margin-top:2.5rem">
-      <button onclick="closeBranchModal()" class="btn btn-ghost">Close</button>
-    </div>
+    <div style="text-align:center;margin-top:2rem"><button onclick="closeBranchModal()" class="btn btn-ghost">Close</button></div>
   </div>
 </div>
 
 <script>
-// Modal Functions
-function showBranchModal() {
-  document.getElementById('branchModal').style.display = 'flex';
-}
-
-function closeBranchModal() {
-  document.getElementById('branchModal').style.display = 'none';
-}
-
-// Close modal when clicking outside the content
-document.getElementById('branchModal').addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeBranchModal();
-  }
-});
-
-// Keyboard escape support
-document.addEventListener('keydown', function(e) {
-  if (e.key === "Escape") {
-    const modal = document.getElementById('branchModal');
-    if (modal.style.display === 'flex') closeBranchModal();
-  }
-});
+function showBranchModal() { document.getElementById('branchModal').style.display = 'flex'; }
+function closeBranchModal() { document.getElementById('branchModal').style.display = 'none'; }
+document.getElementById('branchModal')?.addEventListener('click', function(e) { if (e.target === this) closeBranchModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === "Escape") { let modal = document.getElementById('branchModal'); if (modal && modal.style.display === 'flex') closeBranchModal(); } });
 </script>
-
 
 <!-- Testimonials -->
 <section class="bg-mid">
   <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label"><i class='bx bx-chat'></i> Student Reviews</div>
-      <h2 class="section-title">What Students <span class="hl">Say</span></h2>
-    </div>
+    <div class="text-center reveal"><div class="section-label"><i class='bx bx-chat'></i> Student Reviews</div><h2 class="section-title">What Students <span class="hl">Say</span></h2></div>
     <div class="testi-grid">
-      <div class="testi-card reveal d1">
-        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
-        <p class="testi-text">"DiplomaCampus saved my semester. The DSA notes are incredibly detailed with illustrations. Scored 91 in my end-semester because of these."</p>
-        <div class="testi-author">
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=70" alt="Arjun Sharma">
-          <div><div class="testi-name">Arjun Sharma</div><div class="testi-role">CSE, 3rd Year · NIT Trichy</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d2">
-        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
-        <p class="testi-text">"Finally found a platform with proper ECE notes. The Digital Electronics PDF is the best I've seen — even better than my college notes."</p>
-        <div class="testi-author">
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=70" alt="Priya Nair">
-          <div><div class="testi-name">Priya Nair</div><div class="testi-role">ECE, 2nd Year · VIT Vellore</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d3">
-        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star-half'></i></div>
-        <p class="testi-text">"The Standard plan is absolutely worth it. Unlimited downloads, previous year papers — everything in one place. No more hunting across Telegram."</p>
-        <div class="testi-author">
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=70" alt="Karthik Menon">
-          <div><div class="testi-name">Karthik Menon</div><div class="testi-role">ME, 4th Year · BITS Pilani</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d1">
-        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
-        <p class="testi-text">"Sharing this with my entire hostel wing. The Civil notes are properly organized by subject and semester. Huge time-saver before exams."</p>
-        <div class="testi-author">
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=70" alt="Sneha Iyer">
-          <div><div class="testi-name">Sneha Iyer</div><div class="testi-role">Civil, 3rd Year · DTU Delhi</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d2">
-        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
-        <p class="testi-text">"Downloaded the DBMS notes at 11 PM before my 9 AM exam. Cleared with 85. This site is a life-saver and the search works really well too."</p>
-        <div class="testi-author">
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=70" alt="Ravi Gupta">
-          <div><div class="testi-name">Ravi Gupta</div><div class="testi-role">CSE, 5th Sem · RVCE Bangalore</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d3">
-        <div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star-half'></i></div>
-        <p class="testi-text">"The premium plan includes video summaries now which is fantastic. Really recommend DiplomaCampus to every junior in my department."</p>
-        <div class="testi-author">
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=70" alt="Aishwarya Rao">
-          <div><div class="testi-name">Aishwarya Rao</div><div class="testi-role">ECE, Final Year · IIT Delhi</div></div>
-        </div>
-      </div>
+      <div class="testi-card reveal d1"><div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div><p class="testi-text">"DiplomaCampus saved my semester. The DSA notes are incredibly detailed with illustrations. Scored 91 in my end-semester because of these."</p><div class="testi-author"><img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Arjun"><div><div class="testi-name">Arjun Sharma</div><div class="testi-role">CSE, 3rd Year</div></div></div></div>
+      <div class="testi-card reveal d2"><div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div><p class="testi-text">"Finally found a platform with proper ECE notes. The Digital Electronics PDF is the best I've seen — even better than my college notes."</p><div class="testi-author"><img class="testi-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya"><div><div class="testi-name">Priya Nair</div><div class="testi-role">ECE, 2nd Year</div></div></div></div>
+      <div class="testi-card reveal d3"><div class="testi-stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star-half'></i></div><p class="testi-text">"The Standard plan is absolutely worth it. Unlimited downloads, previous year papers — everything in one place. No more hunting across Telegram."</p><div class="testi-author"><img class="testi-avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Karthik"><div><div class="testi-name">Karthik Menon</div><div class="testi-role">ME, 4th Year</div></div></div></div>
     </div>
   </div>
 </section>
@@ -799,56 +427,17 @@ document.addEventListener('keydown', function(e) {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
+        <a href="index.html" class="nav-logo" style="margin-bottom:1rem; display:inline-flex"><i class='bx bxs-book-bookmark'></i><span>Diploma<span style="color:#eab308;">Campus</span></span></a>
         <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-          <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
-          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
-        </div>
+        <div class="social-links"><a href="#"><i class='bx bxl-instagram'></i></a><a href="#"><i class='bx bxl-twitter'></i></a><a href="#"><i class='bx bxl-linkedin'></i></a><a href="#"><i class='bx bxl-telegram'></i></a></div>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Browse Free Notes</a></li>
-          <li><a href="premium.html"><i class='bx bx-chevron-right'></i> Premium Notes</a></li>
-          <li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li>
-        </ul>
-      </div>
-       <div class="footer-col">
-        <h4>Branches</h4>
-        <ul>
-          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Computer Science</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> Electronics</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> Mechanical</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> Civil</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> Information Technology</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> Automobile</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> Mining</a></li>
-<li><a href="notes.html"><i class='bx bx-chevron-right'></i> More...</a></li>
-
-          
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li>
-          <li><a href="terms.html"><i class='bx bx-chevron-right'></i> Terms of Service</a></li>
-          <li><a href="contact-us.html"><i class='bx bx-chevron-right'></i> Contact Us</a></li>
-          
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="notes.html"><i class='bx bx-chevron-right'></i> Browse Free Notes</a></li><li><a href="premium.html"><i class='bx bx-chevron-right'></i> Premium Notes</a></li><li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li></ul></div>
+      <div class="footer-col"><h4>Branches</h4><ul><li><a href="notes.html"><i class='bx bx-chevron-right'></i> Computer Science</a></li><li><a href="notes.html"><i class='bx bx-chevron-right'></i> Electronics</a></li><li><a href="notes.html"><i class='bx bx-chevron-right'></i> Mechanical</a></li><li><a href="notes.html"><i class='bx bx-chevron-right'></i> Civil</a></li><li><a href="notes.html"><i class='bx bx-chevron-right'></i> More...</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li><li><a href="terms.html"><i class='bx bx-chevron-right'></i> Terms of Service</a></li><li><a href="contact-us.html"><i class='bx bx-chevron-right'></i> Contact Us</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 DiplomaCampus. All rights reserved.</p>
-      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> by Sumit Kumar Mahato. </p>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2026 DiplomaCampus. All rights reserved.</p><p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> by Sumit Kumar Mahato.</p></div>
   </div>
 </footer>
-
 <button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
 <script src="script.js"></script>
 </body>

@@ -23,18 +23,41 @@
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-                    <a href="index.html" class="nav-link flex items-center gap-2"><i class="fas fa-home nav-icon text-blue-500"></i><span>Home</span></a>
-                    <a href="index.html#branches" class="nav-link flex items-center gap-2"><i class="fas fa-graduation-cap nav-icon text-blue-500"></i><span>Branches</span></a>
-                    <a href="#interactive-notes" class="nav-link flex items-center gap-2 text-blue-600"><i class="fas fa-file-pdf nav-icon text-blue-600"></i><span>Notes</span></a>
-                    <a href="#extra-notes" class="nav-link flex items-center gap-2"><i class="fas fa-code nav-icon text-blue-500"></i><span>Resources</span></a>
-                </nav>
 
-                <div class="hidden lg:flex items-center gap-4 shrink-0">
-                    <a href="#" class="px-7 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-full transition-all shadow-md flex items-center gap-2">
-                        Apply Now <i class="fas fa-arrow-right text-sm"></i>
-                    </a>
-                </div>
+    <a href="index.html" class="nav-link flex items-center gap-2">
+        <i class="fas fa-home text-blue-500"></i><span>Home</span>
+    </a>
 
+    <!-- Branch Dropdown -->
+    <div class="relative group">
+        <button class="flex items-center gap-2">
+            <i class="fas fa-graduation-cap text-blue-500"></i>
+            <span>Branches</span>
+        </button>
+
+        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
+            <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
+            <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
+            <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
+            <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
+            <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">EEE</a>
+            <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
+        </div>
+    </div>
+
+    <a href="index.html#notes" class="nav-link flex items-center gap-2">
+        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
+    </a>
+
+    <a href="index.html#community" class="nav-link flex items-center gap-2">
+        <i class="fas fa-users text-blue-500"></i><span>Community</span>
+    </a>
+
+    <a href="contact_us.html" class="nav-link flex items-center gap-2">
+        <i class="fas fa-envelope text-blue-500"></i><span>Contact</span>
+    </a>
+
+</nav>
                 <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -46,18 +69,51 @@
     <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
         <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
             <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
         </div>
         <div class="flex-1 px-4 py-5 overflow-y-auto">
-            <nav class="flex flex-col gap-1.5">
-                <a href="index.html" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-home sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Home</span></a>
-                <a href="index.html#branches" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-graduation-cap sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Branches</span></a>
-                <a href="#interactive-notes" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-blue-600 bg-blue-50 font-medium text-[15px]"><i class="fas fa-file-pdf sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>CSE Notes</span></a>
-                <a href="#extra-notes" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-code sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Resources</span></a>
-            </nav>
+           <nav class="flex flex-col gap-1.5">
+
+    <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-home text-blue-600"></i><span>Home</span>
+    </a>
+
+    <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span>
+    </a>
+
+    <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span>
+    </a>
+
+    <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span>
+    </a>
+
+    <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span>
+    </a>
+
+    <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-microchip text-blue-600"></i><span>EEE</span>
+    </a>
+
+    <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span>
+    </a>
+
+    <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-info-circle text-blue-600"></i><span>About Us</span>
+    </a>
+
+    <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-envelope text-blue-600"></i><span>Contact</span>
+    </a>
+
+</nav>
         </div>
     </div>
     <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
-
 <!-- ========================================== -->
 <!-- STYLISH CIVIL ENGINEERING HERO SECTION -->
 <!-- ========================================== -->

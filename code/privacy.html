@@ -1,234 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — DiplomaCampus</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Privacy Policy | Diploma Campus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+       
+<script src="preloader.js"></script>
 
-<div id="preloader"><div class="loader"></div></div>
+    <!-- MAIN HEADER -->
+    <header class="header sticky top-0 z-[110]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                  <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
+                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
+                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block"style="height:100px;">                </a>
 
-<nav class="navbar">
-  <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><img src="https://i.ibb.co/whMZLcJW/logo.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 50px;
-  min-width: 50px;
-  margin-right:-10px;
-  border-radius:50%;
-  height: auto;
-  "><img src="https://i.ibb.co/rT44QJc/IMG-20260328-203936.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 250px;
-  min-width: 250px;
-  margin-left: 8px;
-  height: auto; "></a>
-    <div class="nav-links">
-<a href="index.html">Home</a><a href="notes.html">Notes</a>
-<a href="buy-notes.html">Plans</a>
-<a href="about.html">About</a><a href="privacy.html">Privacy</a>
-</div>
-        <div class="nav-cta">
-<a href="premium.html" class="btn btn-primary btn-sm"><i class='bx bx-crown'></i> Premium Notes</a>
-</div>
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mobile-menu">
-  <a href="index.html"><i class='bx bx-home'></i> Home</a>
-<a href="notes.html"><i class='bx bx-book-open'></i> Notes</a>
-<a href="about.html"><i class='bx bx-tag'></i> About us</a>
- <a href="premium.html" class="btn btn-primary"><i class='bx bx-crown'></i> Premium Notes</a>
-</div>
+                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
+                    <a href="index.html" class="nav-link flex items-center gap-2"><i class="fas fa-home nav-icon text-blue-500"></i><span>Home</span></a>
+                    <a href="index.html#branches" class="nav-link flex items-center gap-2"><i class="fas fa-graduation-cap nav-icon text-blue-500"></i><span>Branches</span></a>
+                    <a href="index.html#notes" class="nav-link flex items-center gap-2"><i class="fas fa-file-pdf nav-icon text-blue-500"></i><span>Notes</span></a>
+                    <a href="index.html#community" class="nav-link flex items-center gap-2"><i class="fas fa-users nav-icon text-blue-500"></i><span>Community</span></a>
+                </nav>
 
-<!-- Page Hero -->
-<div class="page-hero">
-  <div class="container">
-    <div class="section-label"><i class='bx bx-shield-check'></i> Legal</div>
-    <h1>Privacy <span style="color:var(--clr-gold)">Policy</span></h1>
-    <p>Last updated: 1 January 2025. We take your privacy seriously — this policy explains exactly what we collect and why.</p>
-  </div>
-</div>
+                <div class="hidden lg:flex items-center gap-4 shrink-0">
+                    <a href="#" class="px-7 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/25 rounded-full transition-all duration-300 shadow-md flex items-center gap-2">
+                        Apply Now <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
 
-<section class="bg-base">
-  <div class="container">
-    <div class="privacy-wrap">
-
-      <!-- Sidebar -->
-      <aside class="priv-sidebar">
-        <h3><i class='bx bx-list-ul'></i> Contents</h3>
-        <nav>
-          <a href="#intro" class="active"><i class='bx bx-info-circle'></i> Introduction</a>
-          <a href="#collect"><i class='bx bx-data'></i> Data We Collect</a>
-          <a href="#use"><i class='bx bx-cog'></i> How We Use It</a>
-          <a href="#share"><i class='bx bx-share-alt'></i> Data Sharing</a>
-          <a href="#cookies"><i class='bx bx-cookie'></i> Cookies</a>
-          <a href="#security"><i class='bx bx-lock-alt'></i> Security</a>
-          <a href="#rights"><i class='bx bx-user-check'></i> Your Rights</a>
-          <a href="#retention"><i class='bx bx-time'></i> Retention</a>
-          <a href="#children"><i class='bx bx-child'></i> Children</a>
-          <a href="#contact"><i class='bx bx-envelope'></i> Contact Us</a>
-        </nav>
-      </aside>
-
-      <!-- Content -->
-      <main>
-        <div class="priv-section" id="intro">
-          <h2><i class='bx bx-info-circle'></i> Introduction</h2>
-          <p>DiplomaCampus ("we", "our", or "us") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website DiplomaCampus.in or use our services.</p>
-          <p>By using DiplomaCampus, you consent to the practices described in this policy. If you do not agree with the terms, please discontinue use of our platform.</p>
+                <button id="hamburger" class="lg:hidden hamburger focus:outline-none active:scale-95 ml-auto" aria-label="Toggle Menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
+    </header>
 
-        <div class="priv-section" id="collect">
-          <h2><i class='bx bx-data'></i> Data We Collect</h2>
-          <p>We collect information you provide directly to us:</p>
-          <ul>
-            <li>Account information: name, email address, and password when you register.</li>
-            <li>Payment information: processed securely through Razorpay (we never store card numbers).</li>
-            <li>Usage data: pages visited, notes downloaded, search queries, and session duration.</li>
-            <li>Device data: browser type, operating system, IP address, and device identifiers.</li>
-            <li>Communication data: messages you send us via support forms or email.</li>
-          </ul>
+    <!-- RIGHT SIDEBAR -->
+    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
+            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
         </div>
-
-        <div class="priv-section" id="use">
-          <h2><i class='bx bx-cog'></i> How We Use Your Information</h2>
-          <p>We use the data we collect for the following purposes:</p>
-          <ul>
-            <li>To provide, maintain, and improve our platform and services.</li>
-            <li>To process transactions and send you purchase confirmations.</li>
-            <li>To send you technical notices, updates, and security alerts.</li>
-            <li>To respond to your comments, questions, and support requests.</li>
-            <li>To send promotional communications (only if you opt in).</li>
-            <li>To analyse usage trends and improve content recommendations.</li>
-          </ul>
+        <div class="flex-1 px-4 py-5 overflow-y-auto">
+            <nav class="flex flex-col gap-1.5">
+                <a href="index.html" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-home sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Home</span></a>
+                <a href="#branches" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-graduation-cap sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Branches</span></a>
+                <a href="#notes" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-file-pdf sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Free Notes</span></a>
+                <a href="#reviews" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-star sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Reviews</span></a>
+                <a href="#community" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fab fa-whatsapp sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Community</span></a>
+            </nav>
         </div>
-
-        <div class="priv-section" id="share">
-          <h2><i class='bx bx-share-alt'></i> Data Sharing</h2>
-          <p>We do not sell your personal information. We may share data with:</p>
-          <ul>
-            <li><strong>Service providers:</strong> Third-party vendors who assist us with hosting, analytics (Google Analytics), email delivery (SendGrid), and payment processing (Razorpay).</li>
-            <li><strong>Legal compliance:</strong> When required by law or in response to legal process.</li>
-            <li><strong>Business transfers:</strong> In connection with a merger, acquisition, or sale of assets, with adequate privacy protections in place.</li>
-          </ul>
-          <p>All third-party processors are bound by data processing agreements and are GDPR-compliant where applicable.</p>
+        <div class="p-6 border-t mt-auto bg-gray-50/50">
+            <a href="#" class="block w-full text-center py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:scale-[1.02] text-white font-semibold rounded-3xl transition-all shadow-md flex items-center justify-center gap-2">
+                <i class="fas fa-user-plus text-sm"></i><span>Get Notes</span>
+            </a>
         </div>
-
-        <div class="priv-section" id="cookies">
-          <h2><i class='bx bx-cookie'></i> Cookies & Tracking</h2>
-          <p>We use cookies and similar tracking technologies to enhance your experience. Types of cookies we use:</p>
-          <ul>
-            <li><strong>Essential cookies:</strong> Required for the site to function (login sessions, preferences).</li>
-            <li><strong>Analytics cookies:</strong> Help us understand how visitors interact with our site.</li>
-            <li><strong>Marketing cookies:</strong> Used only if you opt in to personalised recommendations.</li>
-          </ul>
-          <p>You can control cookies through your browser settings. Disabling essential cookies may affect site functionality.</p>
-        </div>
-
-        <div class="priv-section" id="security">
-          <h2><i class='bx bx-lock-alt'></i> Security</h2>
-          <p>We implement industry-standard security measures to protect your data, including:</p>
-          <ul>
-            <li>SSL/TLS encryption for all data in transit.</li>
-            <li>AES-256 encryption for sensitive data at rest.</li>
-            <li>Regular security audits and penetration testing.</li>
-            <li>Strict access controls — only authorised team members can access user data.</li>
-          </ul>
-          <p>Despite these measures, no internet transmission is 100% secure. We encourage you to use a strong, unique password and enable two-factor authentication where available.</p>
-        </div>
-
-        <div class="priv-section" id="rights">
-          <h2><i class='bx bx-user-check'></i> Your Rights</h2>
-          <p>Under Indian data protection laws and GDPR (where applicable), you have the right to:</p>
-          <ul>
-            <li>Access the personal data we hold about you.</li>
-            <li>Request correction of inaccurate or incomplete data.</li>
-            <li>Request deletion of your personal data ("right to be forgotten").</li>
-            <li>Object to or restrict certain types of processing.</li>
-            <li>Data portability — receive your data in a machine-readable format.</li>
-            <li>Withdraw consent at any time where processing is based on consent.</li>
-          </ul>
-          <p>To exercise any of these rights, contact us at <a href="mailto:diplomacampus@gmail.com" style="color:var(--clr-teal)">diplomacampus@gmail.com</a>. We will respond within 30 days.</p>
-        </div>
-
-        <div class="priv-section" id="retention">
-          <h2><i class='bx bx-time'></i> Data Retention</h2>
-          <p>We retain your personal data for as long as your account is active or as needed to provide services. Specifically:</p>
-          <ul>
-            <li>Account data: retained for the life of your account plus 12 months after deletion.</li>
-            <li>Transaction records: retained for 7 years for legal and tax compliance.</li>
-            <li>Analytics data: aggregated and anonymised after 24 months.</li>
-          </ul>
-          <p>You can request immediate deletion of your account and associated personal data at any time by contacting our support team.</p>
-        </div>
-
-        <div class="priv-section" id="children">
-          <h2><i class='bx bx-child'></i> Children's Privacy</h2>
-          <p>DiplomaCampus is not directed at children under the age of 13. We do not knowingly collect personal information from anyone under 13. If you believe a child has provided us with personal data, please contact us immediately and we will delete it.</p>
-          <p>Users between 13 and 18 should use DiplomaCampus only with parental or guardian consent.</p>
-        </div>
-
-        <div class="priv-section" id="contact">
-          <h2><i class='bx bx-envelope'></i> Contact Us</h2>
-          <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact our Data Protection Officer:</p>
-          <ul>
-            <li><strong>Email:</strong> <a href="mailto:diplomacampus@gmail.com" style="color:var(--clr-teal)">diplomacampus@gmail.com</a></li>
-            <li><strong>Address:</strong> DiplomaCampus Technologies, 4th Floor, Prestige Tech Park, Bengaluru, Karnataka 560103</li>
-            <li><strong>Response time:</strong> We aim to respond within 5 business days.</li>
-          </ul>
-          <p>We may update this Privacy Policy periodically. We will notify registered users via email of any significant changes. Continued use of the platform constitutes acceptance of the updated policy.</p>
-        </div>
-      </main>
-
     </div>
-  </div>
-</section>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
-        <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-          <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
-          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
+    <!-- Overlay backdrop -->
+    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-md z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-12 lg:py-20 relative z-10">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-blue-400/10 blur-[100px] rounded-full -z-10"></div>
+        
+        <div class="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-2xl shadow-blue-500/5 border border-white">
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase mb-4">Security & Trust</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Privacy <span class="text-blue-600">Policy</span></h1>
+                <p class="mt-4 text-slate-500">Effective Date: October 2023</p>
+            </div>
+
+            <div class="prose prose-slate max-w-none space-y-8 text-slate-600 leading-relaxed">
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm"><i class="fas fa-info-circle"></i></div>
+                        1. Introduction
+                    </h2>
+                    <p>Welcome to <strong>Diploma Campus</strong>. We are committed to protecting the privacy of our students and users. This policy outlines how we handle information when you visit our website or join our community groups (WhatsApp/Telegram).</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm"><i class="fas fa-database"></i></div>
+                        2. Information Collection
+                    </h2>
+                    <p>We do not collect personal identification unless you voluntarily provide it. We may collect non-personal data such as:</p>
+                    <ul class="list-disc ml-6 space-y-2 mt-3 text-slate-500">
+                        <li>Device Information (Mobile/Desktop)</li>
+                        <li>Browser type and IP address for analytics</li>
+                        <li>Click patterns on notes and download links</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm"><i class="fas fa-users"></i></div>
+                        3. Community Interaction
+                    </h2>
+                    <p>When you join our <strong>WhatsApp or Telegram</strong> channels, your phone number or username becomes visible to other members. Diploma Campus is not responsible for any private messages or interactions between students outside our official announcements.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm"><i class="fas fa-lock"></i></div>
+                        4. Data Security
+                    </h2>
+                    <p>We implement a variety of security measures to maintain the safety of your browsing session. We do not sell, trade, or otherwise transfer your information to outside parties.</p>
+                </section>
+            </div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Browse Free Notes</a></li>
-          <li><a href="premium.html"><i class='bx bx-chevron-right'></i> Premium Notes</a></li>
-          <li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li>
-        </ul>
-      </div>
-     
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li>
-          <li><a href="terms.html"><i class='bx bx-chevron-right'></i> Terms of Service</a></li>
-          <li><a href="contact-us.html"><i class='bx bx-chevron-right'></i> Contact Us</a></li>
-          
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 DiplomaCampus. All rights reserved.</p>
-      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> by Sumit Kumar Mahato</p>
-    </div>
-  </div>
-</footer>
+    </main>
+<!-- ========================================== -->
+    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
+    <!-- ========================================== -->
+    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
+                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+            </div>
 
-<button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
-<script src="script.js"></script>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                
+                <!-- WhatsApp 1st sem group Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+                
+                
+                <!-- Telegram Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
+                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
+                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+                
+ <!-- WhatsApp Channel Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for daily campus updates, important alerts, and quick notices.</p>
+                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Exact Copy from index.html) -->
+    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-6">
+                        <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
+                        <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Empowering the next generation of engineers with world-class education and resources.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="terms.html" class="text-slate-400 hover:text-white transition text-sm">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="text-slate-400 hover:text-white transition text-sm">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition text-sm">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <!-- ... other footer columns ... -->
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm">
+                &copy; 2026 Diploma Campus. Made by Sumit Kumar Mahato.
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

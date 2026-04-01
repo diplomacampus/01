@@ -1,225 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us — DiplomaCampus</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | Diploma Campus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+       
+<script src="preloader.js"></script>
 
-<div id="preloader"><div class="loader"></div></div>
+    <!-- MAIN HEADER -->
+    <header class="header sticky top-0 z-[110]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                  <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
+                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
+                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block"style="height:100px;">                </a>
 
-<nav class="navbar">
-  <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><img src="https://i.ibb.co/whMZLcJW/logo.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 50px;
-  min-width: 50px;
-  margin-right:-10px;
-  border-radius:50%;
-  height: auto;
-  "><img src="https://i.ibb.co/rT44QJc/IMG-20260328-203936.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 250px;
-  min-width: 250px;
-  margin-left: 8px;
-  height: auto; "></a>
-    <div class="nav-links">
-<a href="index.html">Home</a>
-<a href="notes.html"> Free Notes</a>
-<a href="about.html">About</a>
-<a href="privacy.html">Privacy</a>
-</div>
-    <div class="nav-cta">
-<a href="premium.html" class="btn btn-primary btn-sm"><i class='bx bx-crown'></i> Premium Notes</a>
-</div>
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mobile-menu">
-  <a href="index.html"><i class='bx bx-home'></i> Home</a>
-  <a href="notes.html"><i class='bx bx-book-open'></i> Free Notes</a>
-  <a href="privacy.html"><i class='bx bx-tag'></i> Privacy</a>
-  <a href="premium.html" class="btn btn-primary"><i class='bx bx-crown'></i> Premium Notes</a>
-</div>
+                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
+                    <a href="index.html" class="nav-link flex items-center gap-2"><i class="fas fa-home nav-icon text-blue-500"></i><span>Home</span></a>
+                    <a href="index.html#branches" class="nav-link flex items-center gap-2"><i class="fas fa-graduation-cap nav-icon text-blue-500"></i><span>Branches</span></a>
+                    <a href="index.html#notes" class="nav-link flex items-center gap-2"><i class="fas fa-file-pdf nav-icon text-blue-500"></i><span>Notes</span></a>
+                    <a href="index.html#community" class="nav-link flex items-center gap-2"><i class="fas fa-users nav-icon text-blue-500"></i><span>Community</span></a>
+                </nav>
 
-<!-- Page Hero -->
-<div class="page-hero">
-  <div class="container">
-    <div class="section-label"><i class='bx bx-info-circle'></i> Our Story</div>
-    <h1>Built by <span style="color:var(--clr-gold)">Students,</span><br>for Students</h1>
-    <p>DiplomaCampus was born in a hostel room in 2022 when four engineering friends couldn't find quality notes online. Today we serve 50,000+ students across India.</p>
-  </div>
-</div>
+                <div class="hidden lg:flex items-center gap-4 shrink-0">
+                    <a href="#" class="px-7 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/25 rounded-full transition-all duration-300 shadow-md flex items-center gap-2">
+                        Apply Now <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
 
-<section class="bg-base">
-  <div class="container">
-
-    <!-- About Intro Split -->
-    <div class="about-intro reveal">
-      <img src="https://t4.ftcdn.net/jpg/05/39/10/47/360_F_539104776_BchIZKRhIUXDY0ZaVHxaoIDvRa2eAG3d.jpg" alt="Engineering college campus">
-      <div>
-        <div class="section-label"><i class='bx bx-bulb'></i> The Problem We Solved</div>
-        <h2 class="section-title">No More Searching <span class="hl">Telegram Groups</span> at Midnight</h2>
-        <p style="color:var(--text-lo);line-height:1.8;margin-bottom:1.25rem">Before DiplomaCampus, engineering students relied on inconsistent Telegram groups, incomplete Google Drive folders, and handwritten notes photographed in poor lighting. Exam prep was a scavenger hunt.</p>
-        <p style="color:var(--text-lo);line-height:1.8;margin-bottom:1.75rem">We set out to build the definitive platform — every note, every branch, every semester, organized and searchable. And we've never looked back.</p>
-        <div style="display:flex;gap:2rem;flex-wrap:wrap">
-          <div><div class="stat-num counter" data-target="50000" data-suffix="+">0+</div><div class="stat-label">Active Students</div></div>
-          <div><div class="stat-num counter" data-target="2500" data-suffix="+">0+</div><div class="stat-label">PDF Files</div></div>
-          <div><div class="stat-num counter" data-target="12">0</div><div class="stat-label">Branches</div></div>
+                <button id="hamburger" class="lg:hidden hamburger focus:outline-none active:scale-95 ml-auto" aria-label="Toggle Menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
+    </header>
 
-    <!-- Mission & Vision -->
-    <div class="text-center reveal">
-      <div class="section-label"><i class='bx bx-target-lock'></i> Our Purpose</div>
-      <h2 class="section-title">Mission & <span class="hl">Vision</span></h2>
-    </div>
-    <div class="mv-grid reveal">
-      <div class="mv-card m">
-        <i class='bx bxs-rocket'></i>
-        <h3>Our Mission</h3>
-        <p>To democratize access to quality engineering education materials so every student — regardless of college tier or financial background — has the resources to excel.</p>
-      </div>
-      <div class="mv-card v">
-        <i class='bx bx-globe'></i>
-        <h3>Our Vision</h3>
-        <p>To become the go-to learning companion for every engineering student in India, expanding into regional languages and adaptive study tools powered by AI.</p>
-      </div>
-    </div>
-
-    <!-- Features Grid -->
-    <div class="text-center reveal" style="margin-top:4rem">
-      <div class="section-label"><i class='bx bx-award'></i> Why Choose Us</div>
-      <h2 class="section-title">What Makes DiplomaCampus <span class="hl">Different</span></h2>
-    </div>
-    <div class="features-grid reveal">
-      <div class="feat-card"><div class="feat-icon fi-g"><i class='bx bxs-badge-check'></i></div><h3>Verified Content</h3><p>Every note is reviewed by subject toppers and aligned with university exam patterns.</p></div>
-      <div class="feat-card d1"><div class="feat-icon fi-t"><i class='bx bx-folder-open'></i></div><h3>Structured Library</h3><p>Organized by branch, semester, and subject — no random Google Drive chaos.</p></div>
-      <div class="feat-card d2"><div class="feat-icon fi-s"><i class='bx bx-refresh'></i></div><h3>Always Updated</h3><p>Our content team monitors syllabus revisions and updates notes every semester.</p></div>
-      <div class="feat-card d3"><div class="feat-icon fi-m"><i class='bx bx-mobile-alt'></i></div><h3>Mobile First</h3><p>Designed to read beautifully on your phone even when Wi-Fi is slow in the hostel.</p></div>
-      <div class="feat-card d4"><div class="feat-icon fi-sa"><i class='bx bx-rupee'></i></div><h3>Affordable Plans</h3><p>Starting at ₹0, with premium plans priced at less than your monthly chai bill.</p></div>
-      <div class="feat-card d1"><div class="feat-icon fi-st"><i class='bx bxs-group'></i></div><h3>Student Community</h3><p>A growing community of 50,000+ where students help, share, and grow together.</p></div>
-    </div>
-
-    <!-- Timeline -->
-    <div class="text-center reveal" style="margin-top:4rem">
-      <div class="section-label"><i class='bx bx-history'></i> Our Journey</div>
-      <h2 class="section-title">How We Got <span class="hl">Here</span></h2>
-    </div>
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-dot">2022</div>
-        <div class="tl-content">
-          <h3>The Hostel Room Beginning</h3>
-          <p>Four CSE students at NIT Trichy build the first version of DiplomaCampus over a weekend, hosting notes for their own branch as a shared Google Drive alternative.</p>
+    <!-- RIGHT SIDEBAR -->
+    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
+            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">2023</div>
-        <div class="tl-content">
-          <h3>Going Multi-Branch</h3>
-          <p>Added ECE, Mechanical, and Civil branches. Hit 5,000 registered users. Launched the first mobile-friendly redesign and introduced search functionality.</p>
+        <div class="flex-1 px-4 py-5 overflow-y-auto">
+            <nav class="flex flex-col gap-1.5">
+                <a href="index.html" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-home sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Home</span></a>
+                <a href="#branches" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-graduation-cap sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Branches</span></a>
+                <a href="#notes" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-file-pdf sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Free Notes</span></a>
+                <a href="#reviews" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fas fa-star sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Reviews</span></a>
+                <a href="#community" class="sidebar-link group flex items-center gap-4 px-4 py-3.5 sm:py-4 rounded-2xl text-gray-800 font-medium text-[15px]"><i class="fab fa-whatsapp sidebar-icon text-blue-600 group-hover:scale-110 transition"></i><span>Community</span></a>
+            </nav>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">2024</div>
-        <div class="tl-content">
-          <h3>Subscription Launch & Growth</h3>
-          <p>Introduced Standard and Premium plans. Crossed 25,000 active students. Added previous year papers and launched the community Q&amp;A feature.</p>
+        <div class="p-6 border-t mt-auto bg-gray-50/50">
+            <a href="#" class="block w-full text-center py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:scale-[1.02] text-white font-semibold rounded-3xl transition-all shadow-md flex items-center justify-center gap-2">
+                <i class="fas fa-user-plus text-sm"></i><span>Get Notes</span>
+            </a>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">2025</div>
-        <div class="tl-content">
-          <h3>50K+ & Expanding</h3>
-          <p>Surpassed 50,000 students, added video summaries, and launched AI-powered search. Expanding to regional language notes and adaptive study planners.</p>
+    </div>
+
+    <!-- Overlay backdrop -->
+    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-md z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+
+
+    <!-- ABOUT HERO -->
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 block">Our Story</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">Empowering Jharkhand's <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Future Engineers</span></h1>
+            <p class="max-w-3xl mx-auto text-slate-600 text-lg leading-relaxed">
+                Diploma Campus was founded with a single mission: to provide high-quality, syllabus-aligned study resources to polytechnic students for free. We bridge the gap between classroom learning and exam success.
+            </p>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Team -->
-    <div class="text-center reveal" style="margin-top:4rem">
-      <div class="section-label"><i class='bx bx-group'></i> The Team</div>
-      <h2 class="section-title">The People Behind <span class="hl">DiplomaCampus</span></h2>
-    </div>
-    <div class="team-grid reveal">
-      <div class="team-card">
-        <img src="https://i.ibb.co/3mM8wtYW/IMG-20260327-145804.jpg" alt="Abhishek Kumar">
-        <div class="team-info"><h3>ABHISHEK KUMAR</h3><p>Founder & CEO</p>( from Gp Dumka Mechanical Engg. [23-26] )</div>
-      </div>
-      <div class="team-card">
-        <img src="https://i.ibb.co/sdXfL5Wz/IMG-20260327-150800.jpg" alt="Madhav Kumar">
-        <div class="team-info"><h3>MADHAV KUMAR</h3><p>Content Manager</p>( from Gp Dhanbad Mechanical Engg. [23-26] )</div>
-      </div>
-      <div class="team-card">
-        <img src="https://i.ibb.co/jPdvTdX5/file-00000000e0e072088915451c151d0c64.png" alt="Sumit Kumar Mahato">
-        <div class="team-info"><h3>SUMIT KUMAR MAHATO</h3><p>Lead WebDesigner</p>( from Gp Bhaga Computer Engg. [24-27] )</div>
-      </div>
-      </div>
-    </div>
+    <!-- TEAM SECTION -->
+    <section class="py-20 bg-[#f1f5f9]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Meet the Visionaries</h2>
+                <p class="text-slate-500 mt-2">The dedicated team behind your academic success.</p>
+            </div>
 
-  </div>
-</section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Founder -->
+                <div class="group bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="relative w-40 h-40 mx-auto mb-6">
+                        <div class="absolute inset-0 bg-blue-600 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform"></div>
+                        <img src="https://i.ibb.co/3mM8wtYW/IMG-20260327-145804.jpg" alt="Founder" class="relative w-full h-full object-cover rounded-2xl border-2 border-white">
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Abhishek Kumar</h3>
+                    <p class="text-blue-600 font-medium mb-4">Founder & Lead Educator</p>
+                    <p class="text-slate-500 text-sm italic">"Education should be accessible to every student, regardless of their background."</p>
+                </div>
 
-<!-- CTA -->
-<div class="cta-section bg-mid">
-  <div class="container">
-    <div class="cta-banner reveal">
-      <h2>Join the <span style="color:var(--clr-gold)">DiplomaCampus</span> Community</h2>
-      <p>50,000+ students can't be wrong. Start studying smarter today — for free.</p>
-      <div class="cta-actions">
-        <a href="notes.html" class="btn btn-primary btn-lg"><i class='bx bx-book-open'></i> Browse Notes</a>
-        <a href="buy-notes.html" class="btn btn-outline btn-lg"><i class='bx bx-crown'></i> View Plans</a>
-      </div>
-    </div>
-  </div>
-</div>
+               
+                <!-- Content Manager -->
+                <div class="group bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="relative w-40 h-40 mx-auto mb-6">
+                        <div class="absolute inset-0 bg-purple-600 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform"></div>
+                        <img src="https://i.ibb.co/sdXfL5Wz/IMG-20260327-150800.jpg" alt="Content Manager" class="relative w-full h-full object-cover rounded-2xl border-2 border-white">
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Madhav Kumar</h3>
+                    <p class="text-purple-600 font-medium mb-4">Content Manager</p>
+                    <p class="text-slate-500 text-sm italic">"Ensuring every PDF and note is accurate and aligned with the JUT syllabus."</p>
+                </div>
+                
+                 <!-- Lead Designer -->
+                <div class="group bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="relative w-40 h-40 mx-auto mb-6">
+                        <div class="absolute inset-0 bg-indigo-600 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform"></div>
+                        <img src="https://i.ibb.co/jPdvTdX5/file-00000000e0e072088915451c151d0c64.png" alt="Lead Designer" class="relative w-full h-full object-cover rounded-2xl border-2 border-white">
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Sumit Kumar Mahato</h3>
+                    <p class="text-indigo-600 font-medium mb-4">Lead UI/UX Designer</p>
+                    <p class="text-slate-500 text-sm italic">"Designing experiences that make learning intuitive, modern, and engaging."</p>
+                </div>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
-        <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-          <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
-          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
+            </div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Browse Free Notes</a></li>
-          <li><a href="premium.html"><i class='bx bx-chevron-right'></i> Premium Notes</a></li>
-          <li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li>
-        </ul>
-      </div>
-     
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li>
-          <li><a href="terms.html"><i class='bx bx-chevron-right'></i> Terms of Service</a></li>
-          <li><a href="contact-us.html"><i class='bx bx-chevron-right'></i> Contact Us</a></li>
-          
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 DiplomaCampus. All rights reserved.</p>
-      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> by Sumit Kumar Mahato</p>
-    </div>
-  </div>
-</footer>
+    </section>
+  <!-- ========================================== -->
+    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
+    <!-- ========================================== -->
+    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
+                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+            </div>
 
-<button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
-<script src="script.js"></script>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                
+                <!-- WhatsApp 1st sem group Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+                
+                
+                <!-- Telegram Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
+                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
+                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+                
+ <!-- WhatsApp Channel Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for daily campus updates, important alerts, and quick notices.</p>
+                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PREMIUM FOOTER -->
+    <!-- ========================================== -->
+    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Top Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <a href="index.html" class="flex items-center gap-3 mb-6">
+                        <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
+                        <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.
+                    </p>
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all duration-300"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home</a></li>
+                        <li><a href="#branches" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches</a></li>
+                        <li><a href="#notes" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes</a></li>
+                        <li><a href="#community" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Join Community</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">legal </h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="privacy.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy & Policy</a></li>
+                        <li><a href="terms.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer</a></li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
+                    <ul class="flex flex-col gap-4">
+                        
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-blue-500"></i>
+                            <span class="text-slate-400 text-sm">+91 8578009001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-blue-500"></i>
+                            <span class="text-slate-400 text-sm">diplomacampus@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar: Copyright & Credit -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm text-center md:text-left">
+                    &copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.
+                </p>
+                <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">
+                    Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong>
+                </p>
+            </div>
+            
+        </div>
+    </footer>
+ <script src="script.js"></script>
 </body>
 </html>

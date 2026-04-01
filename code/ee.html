@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Electrical Engg. Notes | Diploma Campus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="notes.css">
+</head>
+
+<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+<script src="preloader.js"></script>
+    <!-- MAIN HEADER -->
+    <header class="header sticky top-0 z-[110]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
+                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
+                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
+
+    <a href="index.html" class="nav-link flex items-center gap-2">
+        <i class="fas fa-home text-blue-500"></i><span>Home</span>
+    </a>
+
+    <!-- Branch Dropdown -->
+    <div class="relative group">
+        <button class="flex items-center gap-2">
+            <i class="fas fa-graduation-cap text-blue-500"></i>
+            <span>Branches</span>
+        </button>
+
+        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
+            <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
+            <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
+            <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
+            <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
+            <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">EEE</a>
+            <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
+        </div>
+    </div>
+
+    <a href="index.html#notes" class="nav-link flex items-center gap-2">
+        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
+    </a>
+
+    <a href="index.html#community" class="nav-link flex items-center gap-2">
+        <i class="fas fa-users text-blue-500"></i><span>Community</span>
+    </a>
+
+    <a href="contact_us.html" class="nav-link flex items-center gap-2">
+        <i class="fas fa-envelope text-blue-500"></i><span>Contact</span>
+    </a>
+
+</nav>
+                <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- RIGHT SIDEBAR -->
+    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
+            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
+        </div>
+        <div class="flex-1 px-4 py-5 overflow-y-auto">
+           <nav class="flex flex-col gap-1.5">
+
+    <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-home text-blue-600"></i><span>Home</span>
+    </a>
+
+    <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span>
+    </a>
+
+    <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span>
+    </a>
+
+    <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span>
+    </a>
+
+    <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span>
+    </a>
+
+    <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-microchip text-blue-600"></i><span>EEE</span>
+    </a>
+
+    <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span>
+    </a>
+
+    <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-info-circle text-blue-600"></i><span>About Us</span>
+    </a>
+
+    <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-envelope text-blue-600"></i><span>Contact</span>
+    </a>
+
+</nav>
+        </div>
+    </div>
+    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+   <!-- ========================================== -->
+<!-- STYLISH ENGINEERING HERO SECTION -->
+<!-- ========================================== -->
+<section class="relative min-h-[70vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden group">
+
+    <!-- Background Image with Parallax Effect -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1600" 
+
+             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+        <!-- Dark Gradient Overlay for Readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/90 backdrop-blur-[2px]"></div>
+    </div>
+
+    <!-- Animated Shapes (Optional Decor) -->
+    <div class="absolute top-20 left-10 w-64 h-64 bg-blue-500/20 blur-[100px] rounded-full animate-pulse"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center">
+
+        <!-- Premium Glass Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-300 text-xs sm:text-sm font-bold tracking-widest uppercase mb-8 shadow-2xl animate-fade-in-down">
+            <span class="flex h-2 w-2 rounded-full bg-blue-400 animate-ping"></span>
+            Department of Engineering
+        </div>
+
+        <!-- Main Title with Gradient Text -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 drop-shadow-2xl">
+            Electrical <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Engineering</span>
+        </h1>
+
+        <!-- Subtitle with Glass Box -->
+        <div class="max-w-3xl mx-auto p-1 rounded-3xl bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/10 mb-10">
+            <p class="text-lg sm:text-xl text-slate-200 leading-relaxed py-4 px-6 italic">
+                "Building the foundation of the future." Access premium JUT-aligned notes, structural designs, and previous year papers tailored for Jharkhand Polytechnic students.
+            </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <a href="#interactive-notes" class="group relative w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold transition-all duration-300 shadow-xl shadow-blue-500/40 hover:shadow-blue-500/60 hover:-translate-y-1 flex items-center justify-center gap-3">
+                <span>Access Notes</span>
+                <i class="fas fa-download group-hover:animate-bounce"></i>
+            </a>
+
+            <a href="https://www.dropbox.com/scl/fi/djpnndm9hdoxh7i5kem5i/EE-And-Eee-syllabus-1.pdf?rlkey=6ptq8ri5ixt1xezgfmp5xtuv4&st=qp3ijdae&dl=1" class="w-full sm:w-auto px-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-bold transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-3">
+                <i class="fas fa-scroll text-blue-400"></i> View Syllabus
+            </a>
+        </div>
+
+        <!-- Quick Stats Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-white/10">
+            <div class="text-center">
+                <p class="text-2xl sm:text-3xl font-bold text-white">500+</p>
+                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">PDF Notes</p>
+            </div>
+            <div class="text-center border-l border-white/10">
+                <p class="text-2xl sm:text-3xl font-bold text-white">10+</p>
+                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">PYQ Sets</p>
+            </div>
+            <div class="text-center border-l border-white/10 hidden md:block">
+                <p class="text-2xl sm:text-3xl font-bold text-white">NEP</p>
+                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">2026 Ready</p>
+            </div>
+            <div class="text-center border-l border-white/10 hidden md:block">
+                <p class="text-2xl sm:text-3xl font-bold text-white">Free</p>
+                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">Life Access</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative Corner Element -->
+    <div class="absolute -bottom-1 -left-1 w-32 h-32 bg-gradient-to-tr from-blue-600 to-transparent opacity-20 rounded-tr-full"></div>
+</section>
+
+<style>
+    @keyframes fade-in-down {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-down {
+        animation: fade-in-down 0.8s ease-out;
+    }
+</style>
+    <!-- ========================================== -->
+    <!-- INTERACTIVE SEMESTER & SUBJECT SECTION -->
+    <!-- ========================================== -->
+    <section id="interactive-notes" class="w-full py-16 sm:py-20 bg-[#f8fafc]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Select Your Semester</h2>
+                <p class="text-slate-500 mt-2">Choose your current semester to view subject materials.</p>
+            </div>
+
+            <!-- SEMESTER TABS -->
+            <div class="flex overflow-x-auto gap-3 pb-6 hide-scrollbar justify-start lg:justify-center border-b border-gray-200 mb-10 px-2">
+                <button class="sem-tab active px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="1">Semester 1</button>
+                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="2">Semester 2</button>
+                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="3">Semester 3</button>
+                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="4">Semester 4</button>
+                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="5">Semester 5</button>
+                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="6">Semester 6</button>
+            </div>
+
+            <!-- SUBJECT CARDS CONTAINER -->
+            <div id="subjects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[400px]">
+                <!-- Cards will be dynamically injected here via JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXTRA USEFUL NOTES (INTERVIEW/PRACTICAL) -->
+    <!-- ========================================== -->
+    <section id="extra-notes" class="w-full py-20 bg-slate-900 overflow-hidden relative border-t-4 border-blue-500">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-sm font-bold text-blue-400 tracking-widest uppercase mb-3">Beyond Syllabus</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Essential Extra Resources</h3>
+                <p class="text-slate-400 text-lg">Specially curated materials to help you crack technical interviews and build better projects.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Resource 1 -->
+                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-2xl p-6 hover:border-blue-500 transition-colors flex items-center gap-5 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fab fa-python"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-1">Python Masterclass</h4>
+                        <p class="text-slate-400 text-sm mb-2">Zero to Hero notes.</p>
+                        <span class="text-blue-400 font-semibold text-xs flex items-center gap-1.5">Download PDF <i class="fas fa-download"></i></span>
+                    </div>
+                </div>
+                <!-- Resource 2 -->
+                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-2xl p-6 hover:border-emerald-500 transition-colors flex items-center gap-5 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fab fa-react"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-1">Web Dev Roadmap</h4>
+                        <p class="text-slate-400 text-sm mb-2">HTML, CSS, JS & React.</p>
+                        <span class="text-emerald-400 font-semibold text-xs flex items-center gap-1.5">Download PDF <i class="fas fa-download"></i></span>
+                    </div>
+                </div>
+                <!-- Resource 3 -->
+                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-2xl p-6 hover:border-purple-500 transition-colors flex items-center gap-5 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fas fa-briefcase"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-1">Top 50 Tech Qs</h4>
+                        <p class="text-slate-400 text-sm mb-2">TCS, Wipro, Infosys prep.</p>
+                        <span class="text-purple-400 font-semibold text-xs flex items-center gap-1.5">Download PDF <i class="fas fa-download"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- ========================================== -->
+    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
+    <!-- ========================================== -->
+    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
+                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+                <!-- WhatsApp 1st sem group Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+
+
+                <!-- Telegram Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
+                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
+                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+
+ <!-- WhatsApp Channel Card -->
+                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
+                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp Channel for daily campus updates, important alerts, and quick notices.</p>
+                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- PREMIUM FOOTER -->
+    <!-- ========================================== -->
+    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Top Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <a href="index.html" class="flex items-center gap-3 mb-6">
+                        <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
+                        <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.
+                    </p>
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all duration-300"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
+                <ul class="flex flex-col gap-3">
+
+                    <li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home
+                    </a></li>
+
+                    <li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches
+                    </a></li>
+
+                    <li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes
+                    </a></li>
+
+                    <li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community
+                    </a></li>
+
+                    <li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us
+                    </a></li>
+
+                    <li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us
+                    </a></li>
+
+                </ul>
+            </div>
+
+
+            <!-- Branches -->
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6">Branches</h4>
+                <ul class="flex flex-col gap-3">
+
+                    <li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.
+                    </a></li>
+
+                    <li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.
+                    </a></li>
+
+                    <li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.
+                    </a></li>
+
+                    <li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.
+                    </a></li>
+
+                    <li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE
+                    </a></li>
+
+                    <li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.
+                    </a></li>
+
+                </ul>
+            </div>
+
+
+            <!-- Legal -->
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
+                <ul class="flex flex-col gap-3">
+
+                    <li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy
+                    </a></li>
+
+                    <li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions
+                    </a></li>
+
+                    <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer
+                    </a></li>
+
+                </ul>
+            </div>
+
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
+                <ul class="flex flex-col gap-4">
+
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone-alt text-blue-500"></i>
+                        <span class="text-slate-400 text-sm">+91 8578009001</span>
+                    </li>
+
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-blue-500"></i>
+                        <span class="text-slate-400 text-sm">diplomacampus@gmail.com</span>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
+
+            <p class="text-slate-500 text-sm text-center md:text-left">
+                &copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.
+            </p>
+
+            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">
+                Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by
+                <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong>
+            </p>
+
+        </div>
+
+    </div>
+</footer>
+    <script>
+        // --- Sidebar Logic ---
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.contains('open');
+            if(isOpen) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('opacity-100', 'pointer-events-auto');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                hamburger.classList.remove('active');
+            } else {
+                sidebar.classList.add('open');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100', 'pointer-events-auto');
+                hamburger.classList.add('active');
+            }
+        }
+
+        hamburger.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
+        overlay.addEventListener('click', toggleSidebar);
+
+        // --- Helper: Get topic-specific icon based on name ---
+        function getTopicIcon(topicName) {
+            const lowerName = topicName.toLowerCase();
+            if (lowerName.includes('program') || lowerName.includes('code') || lowerName.includes('c++') || lowerName.includes('java') || lowerName.includes('python')) return 'fa-code';
+            if (lowerName.includes('math') || lowerName.includes('algebra') || lowerName.includes('calculus') || lowerName.includes('integration')) return 'fa-calculator';
+            if (lowerName.includes('physics') || lowerName.includes('electric') || lowerName.includes('magnetism')) return 'fa-flask';
+            if (lowerName.includes('chem') || lowerName.includes('bonding')) return 'fa-atom';
+            if (lowerName.includes('data') || lowerName.includes('database') || lowerName.includes('sql')) return 'fa-database';
+            if (lowerName.includes('network') || lowerName.includes('protocol')) return 'fa-network-wired';
+            if (lowerName.includes('os') || lowerName.includes('operating') || lowerName.includes('scheduling')) return 'fa-desktop';
+            if (lowerName.includes('software') || lowerName.includes('testing')) return 'fa-bug';
+            if (lowerName.includes('web') || lowerName.includes('html') || lowerName.includes('css')) return 'fa-globe';
+            if (lowerName.includes('mobile') || lowerName.includes('android')) return 'fa-mobile-alt';
+            if (lowerName.includes('ai') || lowerName.includes('iot') || lowerName.includes('cloud')) return 'fa-robot';
+            if (lowerName.includes('english') || lowerName.includes('grammar') || lowerName.includes('vocab')) return 'fa-language';
+            if (lowerName.includes('electronics') || lowerName.includes('diode') || lowerName.includes('transistor')) return 'fa-microchip';
+            return 'fa-file-alt';
+        }
+
+        // Database of Subjects (topics array now contains objects with name and pdfUrl)
+        const subjectsData = {
+         1: [
+    {
+        code: "SEM11",
+        title: "Engg. Physics",
+        desc: "Core physics concepts for engineering: elasticity, heat, optics, etc.",
+        icon: "fa-flask",
+        color: "emerald",
+        topics: [
+            { name: "Units & Measurement", pdfUrl: "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1", icon: "fa-ruler" },
+            { name: "Elasticity", pdfUrl: "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1", icon: "fa-hand-peace" },
+            { name: "Heat", pdfUrl: "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1", icon: "fa-temperature-high" },
+            { name: "Gas Laws & Specific Heat of Gases", pdfUrl: "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1", icon: "fa-chart-line" },
+            { name: "Light, Laser & Sound", pdfUrl: "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1", icon: "fa-lightbulb" },
+            { name: "Photoelectricity", pdfUrl: "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1", icon: "fa-sun" },
+            { name: "Sound", pdfUrl: "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1", icon: "fa-music" },
+            { name: "Viscosity", pdfUrl: "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1", icon: "fa-tint" },
+            { name: "Surface Tension", pdfUrl: "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1", icon: "fa-water" }
+        ]
+    },
+    {
+        code: "SEM12",
+        title: "Engg. Chemistry",
+        desc: "Fundamentals of chemistry for engineering applications.",
+        icon: "fa-atom",
+        color: "blue",
+        topics: [
+            { name: "Atomic Structure", pdfUrl: "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1", icon: "fa-atom" },
+            {name: "Atomic Structure MI questions", prfUrl:"https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1", icon: "fa-atom"}, 
+            { name: "Electrochemistry", pdfUrl: "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1", icon: "fa-battery-full" },
+             { name: "Electrochemistry MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0", icon: "fa-battery-full" },
+            { name: "Metals & Alloys - Part 1", pdfUrl: "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l4j76&dl=1", icon: "fa-cogs" },
+            { name: "Metals & Alloys MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1", icon: "fa-cogs" },
+
+            { name: "Metals & Alloys - Part 2", pdfUrl: "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1", icon: "fa-industry" },
+            { name: "Non-Metallic Materials", pdfUrl: "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1", icon: "fa-gem" },
+            { name: "Non-Metallic Materials MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1", icon: "fa-gem" },
+            { name: "Environment Effects", pdfUrl: "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1", icon: "fa-leaf" }, 
+            { name: "Environment Effects MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1", icon: "fa-leaf" }
+        ]
+    },
+    {
+        code: "SEM13",
+        title: "Engg. Mathematics",
+        desc: "Algebra, Trigonometry, and Geometry.",
+        icon: "fa-square-root-variable",
+        color: "purple",
+        topics: [
+            { name: "Algebra & Determinants", pdfUrl: "assets/notes/sem1/maths_algebra.pdf", icon: "fa-calculator" },
+            { name: "Trigonometry Basics", pdfUrl: "assets/notes/sem1/maths_trig.pdf", icon: "fa-chart-pie" },
+            { name: "Coordinate Geometry", pdfUrl: "assets/notes/sem1/maths_coord.pdf", icon: "fa-chart-line" },
+            { name: "Mensuration", pdfUrl: "assets/notes/sem1/maths_mensuration.pdf", icon: "fa-draw-polygon" }
+        ]
+    }
+], 
+   2: [
+                { code: "SEM21", title: "Applied Mathematics", desc: "Calculus, Integration, and Differentials.", icon: "fa-calculator", color: "blue", topics: [
+                    { name: "Integration", pdfUrl: "assets/notes/sem2/applied_maths_integration.pdf" },
+                    { name: "Differential Equations", pdfUrl: "assets/notes/sem2/applied_maths_diffeq.pdf" },
+                    { name: "Probability", pdfUrl: "assets/notes/sem2/applied_maths_prob.pdf" },
+                    { name: "Complex Numbers", pdfUrl: "assets/notes/sem2/applied_maths_complex.pdf" }
+                ] },
+                { code: "SEM22", title: "Programming in C", desc: "Foundations of C programming language.", icon: "fa-code", color: "orange", topics: [
+                    { name: "Variables & Data Types", pdfUrl: "assets/notes/sem2/c_variables.pdf" },
+                    { name: "Control Structures", pdfUrl: "assets/notes/sem2/c_control.pdf" },
+                    { name: "Arrays & Strings", pdfUrl: "assets/notes/sem2/c_arrays.pdf" },
+                    { name: "Functions & Pointers", pdfUrl: "assets/notes/sem2/c_functions.pdf" }
+                ] },
+                { code: "SEM23", title: "Basic Electronics", desc: "Diodes, Transistors, and logic gates.", icon: "fa-microchip", color: "rose", topics: [
+                    { name: "Semiconductor Diodes", pdfUrl: "assets/notes/sem2/electronics_diodes.pdf" },
+                    { name: "BJT Transistors", pdfUrl: "assets/notes/sem2/electronics_bjt.pdf" },
+                    { name: "Digital Logic Gates", pdfUrl: "assets/notes/sem2/electronics_gates.pdf" },
+                    { name: "Sensors Basics", pdfUrl: "assets/notes/sem2/electronics_sensors.pdf" }
+                ] }
+            ],
+            3: [
+                { code: "SEM31", title: "Data Structures Using C", desc: "Master algorithms and memory management.", icon: "fa-project-diagram", color: "blue", topics: [
+                    { name: "Arrays & Searching", pdfUrl: "assets/notes/sem3/ds_arrays.pdf" },
+                    { name: "Sorting Algorithms", pdfUrl: "assets/notes/sem3/ds_sorting.pdf" },
+                    { name: "Stacks & Queues", pdfUrl: "assets/notes/sem3/ds_stack_queue.pdf" },
+                    { name: "Linked Lists", pdfUrl: "assets/notes/sem3/ds_linkedlist.pdf" },
+                    { name: "Trees & Graphs", pdfUrl: "assets/notes/sem3/ds_trees_graphs.pdf" }
+                ] },
+                { code: "SEM32", title: "Object Oriented Prog. (C++)", desc: "Core concepts of classes and objects.", icon: "fa-cubes", color: "purple", topics: [
+                    { name: "Classes & Objects", pdfUrl: "assets/notes/sem3/oop_classes.pdf" },
+                    { name: "Constructors", pdfUrl: "assets/notes/sem3/oop_constructors.pdf" },
+                    { name: "Inheritance", pdfUrl: "assets/notes/sem3/oop_inheritance.pdf" },
+                    { name: "Polymorphism", pdfUrl: "assets/notes/sem3/oop_polymorphism.pdf" },
+                    { name: "File Handling", pdfUrl: "assets/notes/sem3/oop_filehandling.pdf" }
+                ] },
+                { code: "SEM33", title: "Database Management Sys.", desc: "SQL, Relational models, and queries.", icon: "fa-database", color: "emerald", topics: [
+                    { name: "Database Concepts", pdfUrl: "assets/notes/sem3/dbms_concepts.pdf" },
+                    { name: "ER Diagrams", pdfUrl: "assets/notes/sem3/dbms_er.pdf" },
+                    { name: "Interactive SQL", pdfUrl: "assets/notes/sem3/dbms_sql.pdf" },
+                    { name: "PL/SQL Basics", pdfUrl: "assets/notes/sem3/dbms_plsql.pdf" }
+                ] }
+            ],
+            4: [
+                { code: "SEM41", title: "Java Programming", desc: "Core Java, Applets, and GUI design.", icon: "fab fa-java", color: "orange", topics: [
+                    { name: "Java Syntaxes & OOP", pdfUrl: "assets/notes/sem4/java_syntax.pdf" },
+                    { name: "Inheritance & Interfaces", pdfUrl: "assets/notes/sem4/java_inheritance.pdf" },
+                    { name: "Exception Handling", pdfUrl: "assets/notes/sem4/java_exceptions.pdf" },
+                    { name: "Applets & Graphics", pdfUrl: "assets/notes/sem4/java_applets.pdf" }
+                ] },
+                { code: "SEM42", title: "Software Engineering", desc: "SDLC, Agile, and project management.", icon: "fa-laptop-medical", color: "rose", topics: [
+                    { name: "Development Models", pdfUrl: "assets/notes/sem4/se_models.pdf" },
+                    { name: "Requirement Engg (SRS)", pdfUrl: "assets/notes/sem4/se_srs.pdf" },
+                    { name: "Software Design", pdfUrl: "assets/notes/sem4/se_design.pdf" },
+                    { name: "Testing Strategies", pdfUrl: "assets/notes/sem4/se_testing.pdf" }
+                ] },
+                { code: "SEM43", title: "Mechanical Networks", desc: "OSI Model, IP addressing, and routing.", icon: "fa-network-wired", color: "cyan", topics: [
+                    { name: "Transmission Media", pdfUrl: "assets/notes/sem4/cn_media.pdf" },
+                    { name: "OSI & TCP/IP Models", pdfUrl: "assets/notes/sem4/cn_models.pdf" },
+                    { name: "Network Layer & IP", pdfUrl: "assets/notes/sem4/cn_ip.pdf" },
+                    { name: "Application Protocols", pdfUrl: "assets/notes/sem4/cn_protocols.pdf" }
+                ] }
+            ],
+            5: [
+                { code: "SEM51", title: "Advanced Java", desc: "J2EE, Servlets, and JSP fundamentals.", icon: "fa-server", color: "blue", topics: [
+                    { name: "AWT & Swing GUI", pdfUrl: "assets/notes/sem5/advjava_awt.pdf" },
+                    { name: "Event Handling", pdfUrl: "assets/notes/sem5/advjava_events.pdf" },
+                    { name: "JDBC Database", pdfUrl: "assets/notes/sem5/advjava_jdbc.pdf" },
+                    { name: "Servlets Basics", pdfUrl: "assets/notes/sem5/advjava_servlets.pdf" },
+                    { name: "JSP Architecture", pdfUrl: "assets/notes/sem5/advjava_jsp.pdf" }
+                ] },
+                { code: "SEM52", title: "Operating Systems", desc: "Processes, scheduling, and memory.", icon: "fa-desktop", color: "purple", topics: [
+                    { name: "OS Structures", pdfUrl: "assets/notes/sem5/os_structures.pdf" },
+                    { name: "Process Management", pdfUrl: "assets/notes/sem5/os_processes.pdf" },
+                    { name: "CPU Scheduling", pdfUrl: "assets/notes/sem5/os_scheduling.pdf" },
+                    { name: "Memory Management", pdfUrl: "assets/notes/sem5/os_memory.pdf" }
+                ] },
+                { code: "SEM53", title: "Software Testing", desc: "Manual and Automation testing concepts.", icon: "fa-bug", color: "rose", topics: [
+                    { name: "Testing Fundamentals", pdfUrl: "assets/notes/sem5/st_fundamentals.pdf" },
+                    { name: "Black & White Box", pdfUrl: "assets/notes/sem5/st_box.pdf" },
+                    { name: "Defect Management", pdfUrl: "assets/notes/sem5/st_defect.pdf" },
+                    { name: "Selenium Basics", pdfUrl: "assets/notes/sem5/st_selenium.pdf" }
+                ] }
+            ],
+            6: [
+                { code: "SEM61", title: "Programming with Python", desc: "Syntax, libraries, and script writing.", icon: "fab fa-python", color: "emerald", topics: [
+                    { name: "Python Basics", pdfUrl: "assets/notes/sem6/python_basics.pdf" },
+                    { name: "Data Structures (Lists, Dicts)", pdfUrl: "assets/notes/sem6/python_ds.pdf" },
+                    { name: "Functions & Modules", pdfUrl: "assets/notes/sem6/python_functions.pdf" },
+                    { name: "File Handling", pdfUrl: "assets/notes/sem6/python_files.pdf" }
+                ] },
+                { code: "SEM62", title: "Mobile App Development", desc: "Android Studio and App creation.", icon: "fab fa-android", color: "cyan", topics: [
+                    { name: "Android Architecture", pdfUrl: "assets/notes/sem6/mobile_arch.pdf" },
+                    { name: "UI Components", pdfUrl: "assets/notes/sem6/mobile_ui.pdf" },
+                    { name: "Intents & Activities", pdfUrl: "assets/notes/sem6/mobile_intents.pdf" },
+                    { name: "SQLite Database", pdfUrl: "assets/notes/sem6/mobile_sqlite.pdf" }
+                ] },
+                { code: "SEM63", title: "Emerging Trends in IT", desc: "AI, IoT, and Cloud Computing basics.", icon: "fa-robot", color: "orange", topics: [
+                    { name: "Artificial Intelligence", pdfUrl: "assets/notes/sem6/emerging_ai.pdf" },
+                    { name: "Internet of Things", pdfUrl: "assets/notes/sem6/emerging_iot.pdf" },
+                    { name: "Cloud Computing", pdfUrl: "assets/notes/sem6/emerging_cloud.pdf" },
+                    { name: "Digital Forensics", pdfUrl: "assets/notes/sem6/emerging_forensics.pdf" }
+                ] }
+            ]
+        };
+
+        // UI Elements
+        const tabs = document.querySelectorAll('.sem-tab');
+        const container = document.getElementById('subjects-container');
+
+        // Color maps
+        const themeColors = {
+            blue: { border: 'border-blue-500', iconBg: 'bg-blue-50', iconText: 'text-blue-600', hoverBg: 'group-hover:bg-blue-600', shadow: 'hover:shadow-blue-500/10', btnBg: 'bg-blue-600', btnHover: 'hover:bg-blue-700', btnShadow: 'shadow-blue-600/20' },
+            purple: { border: 'border-purple-500', iconBg: 'bg-purple-50', iconText: 'text-purple-600', hoverBg: 'group-hover:bg-purple-600', shadow: 'hover:shadow-purple-500/10', btnBg: 'bg-purple-600', btnHover: 'hover:bg-purple-700', btnShadow: 'shadow-purple-600/20' },
+            emerald: { border: 'border-emerald-500', iconBg: 'bg-emerald-50', iconText: 'text-emerald-600', hoverBg: 'group-hover:bg-emerald-600', shadow: 'hover:shadow-emerald-500/10', btnBg: 'bg-emerald-600', btnHover: 'hover:bg-emerald-700', btnShadow: 'shadow-emerald-600/20' },
+            orange: { border: 'border-orange-500', iconBg: 'bg-orange-50', iconText: 'text-orange-600', hoverBg: 'group-hover:bg-orange-600', shadow: 'hover:shadow-orange-500/10', btnBg: 'bg-orange-500', btnHover: 'hover:bg-orange-600', btnShadow: 'shadow-orange-500/20' },
+            rose: { border: 'border-rose-500', iconBg: 'bg-rose-50', iconText: 'text-rose-600', hoverBg: 'group-hover:bg-rose-600', shadow: 'hover:shadow-rose-500/10', btnBg: 'bg-rose-600', btnHover: 'hover:bg-rose-700', btnShadow: 'shadow-rose-600/20' },
+            cyan: { border: 'border-cyan-500', iconBg: 'bg-cyan-50', iconText: 'text-cyan-600', hoverBg: 'group-hover:bg-cyan-600', shadow: 'hover:shadow-cyan-500/10', btnBg: 'bg-cyan-600', btnHover: 'hover:bg-cyan-700', btnShadow: 'shadow-cyan-600/20' }
+        };
+
+        // Render function with LARGE, clickable topic blocks
+        function renderSubjects(sem) {
+            container.innerHTML = '';
+            const subjects = subjectsData[sem];
+
+            if(!subjects) return;
+
+            subjects.forEach(sub => {
+                const theme = themeColors[sub.color];
+
+                // Generate topics list HTML: each topic is a large, clickable block
+                let topicsHTML = '';
+                sub.topics.forEach(topic => {
+                    const topicIcon = topic.icon || getTopicIcon(topic.name);
+                    // Click handler will be added via JavaScript to the whole block
+                    topicsHTML += `
+                        <div class="topic-item group bg-gray-50 hover:bg-white rounded-xl border border-gray-200 hover:border-${sub.color}-400 transition-all duration-200 cursor-pointer mb-3 p-4 flex items-center justify-between" data-pdf-url="${topic.pdfUrl}">
+                            <div class="flex items-center gap-4">
+                                <i class="fas ${topicIcon} text-2xl text-${sub.color}-500 w-8"></i>
+                                <span class="text-lg font-semibold text-slate-800">${topic.name}</span>
+                            </div>
+                            <i class="fas fa-download text-gray-400 group-hover:text-${sub.color}-500 transition-colors text-xl"></i>
+                        </div>
+                    `;
+                });
+
+                // Card HTML
+                const cardHTML = `
+                    <div class="bg-white border-t-[4px] ${theme.border} rounded-[1.5rem] shadow-sm hover:shadow-xl ${theme.shadow} transition-all duration-300 flex flex-col overflow-hidden group">
+                        <div class="p-6 pb-4 border-b border-gray-100">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 ${theme.iconBg} ${theme.iconText} rounded-xl flex items-center justify-center text-xl ${theme.hoverBg} group-hover:text-white transition-colors">
+                                    <i class="${sub.icon}"></i>
+                                </div>
+                                <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">Code: ${sub.code}</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-1">${sub.title}</h4>
+                            <p class="text-sm text-slate-500">${sub.desc}</p>
+                        </div>
+                        <div class="p-6 bg-slate-50/50 flex-1 flex flex-col">
+                            <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-3">📚 Topics Covered</h5>
+                            <div class="space-y-2">
+                                ${topicsHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+
+            // Attach click event listeners to each topic block for download
+            document.querySelectorAll('.topic-item').forEach(item => {
+                const pdfUrl = item.getAttribute('data-pdf-url');
+                item.addEventListener('click', (e) => {
+                    // Prevent if the click is on the download icon? No, we want both to download.
+                    e.stopPropagation(); // optional, but safe
+                    window.location.href = pdfUrl;
+                });
+            });
+        }
+
+        // Tab click events
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                    t.classList.add('bg-white', 'text-slate-600', 'border-gray-300');
+                });
+
+                tab.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                tab.classList.remove('bg-white', 'text-slate-600', 'border-gray-300');
+
+                renderSubjects(tab.getAttribute('data-sem'));
+            });
+        });
+
+        // Load Semester 1 by default
+        const defaultTab = document.querySelector('.sem-tab[data-sem="1"]');
+        defaultTab.click(); 
+    </script>
+
+</body>
+</html>

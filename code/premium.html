@@ -128,16 +128,55 @@
         </div>
     </header>
 
-    <!-- RIGHT SIDEBAR (Mobile) -->
-    <div id="sidebar" class="glass-effect fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden transform translate-x-full transition-transform duration-300 shadow-2xl">
-        <div class="px-6 py-5 border-b border-gray-100 bg-white/50"><h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Menu</h2></div>
-        <div class="flex-1 px-4 py-5 overflow-y-auto"><nav class="flex flex-col gap-2">
-            <a href="#" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl hover:bg-blue-50 transition"><i class="fas fa-home text-blue-600 text-lg"></i><span class="font-bold text-slate-700">Home</span></a>
-            <a href="#notesSection" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl hover:bg-blue-50 transition"><i class="fas fa-file-pdf text-blue-600 text-lg"></i><span class="font-bold text-slate-700">Premium Notes</span></a>
-        </nav></div>
-    </div>
-    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/40 backdrop-blur-sm z-[99] hidden lg:hidden transition-opacity"></div>
+        <!-- RIGHT SIDEBAR -->
+    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
+            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
+        </div>
+        <div class="flex-1 px-4 py-5 overflow-y-auto">
+           <nav class="flex flex-col gap-1.5">
 
+    <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-home text-blue-600"></i><span>Home</span>
+    </a>
+
+    <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span>
+    </a>
+
+    <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span>
+    </a>
+
+    <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span>
+    </a>
+
+    <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span>
+    </a>
+
+    <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-microchip text-blue-600"></i><span>EEE</span>
+    </a>
+
+    <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span>
+    </a>
+
+    <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-info-circle text-blue-600"></i><span>About Us</span>
+    </a>
+
+    <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
+        <i class="fas fa-envelope text-blue-600"></i><span>Contact</span>
+    </a>
+
+</nav>
+        </div>
+    </div>
+    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
     <!-- ================= VIEW: HOME ================= -->
     <div id="homeView">
         <section class="py-20 bg-white relative overflow-hidden">

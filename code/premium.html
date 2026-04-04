@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Diploma Campus - Premium Notes with Auto-Download</title>
+    <title>Diploma Campus - Premium Notes</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,150 +12,345 @@
     <!-- Razorpay SDK -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+    <!-- Custom CSS -->
     <style>
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* View Management */
         .hidden-view { display: none !important; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .modal-animate { animation: fadeIn 0.3s ease forwards; }
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .toast-enter { animation: slideInUp 0.4s ease forwards; }
-        .premium-card { transition: all 0.3s ease; }
-        .premium-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15); }
-        .btn-loader { display: inline-block; width: 1rem; height: 1rem; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.6s linear infinite; margin-right: 6px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Modal & Toast Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-animate { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .toast-enter { animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* Card Hover Enhancements */
+        .premium-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .premium-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15); }
+        
+        /* Smooth transition for inputs */
+        input:disabled, button:disabled { opacity: 0.7; cursor: not-allowed; }
     </style>
 </head>
-<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col">
+<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden text-slate-800">
 
-    <!-- TOAST CONTAINER -->
+    <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 pointer-events-none"></div>
 
-    <!-- HEADER WITH FULL NAV LINKS -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-[110] border-b border-gray-100">
+    <!-- MAIN HEADER -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-[50]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
-                <a href="#" id="logoBtn" class="flex items-center gap-2 shrink-0">
-                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="logo" class="h-10 w-auto">
-                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="wordmark" class="h-9 w-auto hidden sm:block">
+                <!-- Logo -->
+                <a href="javascript:void(0)" id="logoBtn" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0 cursor-pointer">
+                   <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm">
+                   <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-10 w-auto object-contain drop-shadow-sm hidden min-[360px]:block"> 
                 </a>
 
-                <!-- DESKTOP NAVIGATION - ALL LINKS -->
-                <nav class="hidden lg:flex items-center gap-6 text-[0.95rem] font-semibold text-gray-700">
-                    <a href="#" id="navHomeDesktop" class="hover:text-blue-600 flex items-center gap-2"><i class="fas fa-home text-blue-500"></i> Home</a>
-                    
-                    <!-- Branches Dropdown (All 6 branches) -->
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
+                    <a href="javascript:void(0)" id="navHome" class="nav-link flex items-center gap-2 hover:text-blue-600 transition">
+                        <i class="fas fa-home text-blue-500"></i><span>Home</span>
+                    </a>
+
+                    <!-- Branch Dropdown -->
                     <div class="relative group">
-                        <button class="flex items-center gap-2 hover:text-blue-600"><i class="fas fa-graduation-cap text-blue-500"></i> Branches <i class="fas fa-chevron-down text-xs ml-1"></i></button>
-                        <div class="absolute hidden group-hover:block bg-white shadow-xl rounded-xl mt-3 w-56 py-2 z-50 border border-gray-100">
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Computer Engineering</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Mechanical Engineering</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Civil Engineering</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Electrical Engineering</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Electrical & Electronics (EEE)</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Automobile Engineering</a>
+                        <button class="flex items-center gap-2 hover:text-blue-600 transition">
+                            <i class="fas fa-graduation-cap text-blue-500"></i>
+                            <span>Branches</span>
+                            <i class="fas fa-chevron-down text-xs ml-1"></i>
+                        </button>
+                        <div class="absolute hidden group-hover:block bg-white shadow-xl rounded-xl mt-3 w-56 py-2 z-[60] border border-gray-100">
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Computer Engg.</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Mechanical Engg.</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Civil Engg.</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Electrical Engg.</a>
                         </div>
                     </div>
-                    
-                    <a href="#" id="notesLinkDesktop" class="hover:text-blue-600 flex items-center gap-2"><i class="fas fa-file-pdf text-blue-500"></i> Notes</a>
-                    <a href="#" id="communityLinkDesktop" class="hover:text-blue-600 flex items-center gap-2"><i class="fas fa-users text-blue-500"></i> Community</a>
-                    <a href="#" id="contactLinkDesktop" class="hover:text-blue-600 flex items-center gap-2"><i class="fas fa-envelope text-blue-500"></i> Contact</a>
-                    <a href="#" id="aboutLinkDesktop" class="hover:text-blue-600 flex items-center gap-2"><i class="fas fa-info-circle text-blue-500"></i> About</a>
+
+                    <a href="#notesSection" class="nav-link flex items-center gap-2 hover:text-blue-600 transition">
+                        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
+                    </a>
+                    <a href="#community" class="nav-link flex items-center gap-2 hover:text-blue-600 transition">
+                        <i class="fas fa-users text-blue-500"></i><span>Community</span>
+                    </a>
                 </nav>
 
-                <div class="flex items-center gap-4">
-                    <button id="authBtn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white px-5 py-2 rounded-full font-bold shadow-md text-sm hidden">Login / Sign Up</button>
-                    <div id="userProfileSection" class="hidden relative">
-                        <div class="flex items-center gap-2 bg-slate-50 py-1.5 px-3 rounded-full border cursor-pointer" id="headerProfileImg">
-                            <span id="headerName" class="text-sm font-bold text-slate-700 hidden md:block"></span>
-                            <img id="navProfilePic" class="h-8 w-8 rounded-full object-cover" src="https://via.placeholder.com/40">
+                <!-- Auth / Profile -->
+                <div class="flex items-center gap-4 ml-auto lg:ml-0">
+                    <!-- Loading skeleton before auth state is known -->
+                    <div id="authLoader" class="w-24 h-10 bg-gray-200 animate-pulse rounded-full hidden lg:block"></div>
+
+                    <!-- Login Button -->
+                    <button id="authBtn" class="hidden-view bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2.5 rounded-full font-bold transition duration-300 shadow-lg shadow-blue-500/30 text-sm sm:text-base hidden sm:block">
+                        Login / Sign Up
+                    </button>
+
+                    <!-- Profile Dropdown -->
+                    <div id="userProfileSection" class="hidden relative inline-block text-left">
+                        <div class="flex items-center gap-3 bg-slate-50 py-1.5 px-2 rounded-full border border-slate-200 cursor-pointer hover:bg-slate-100 transition" id="headerProfileImg">
+                            <span id="headerName" class="text-sm font-bold text-slate-700 hidden md:block pl-2"></span>
+                            <img id="navProfilePic" class="h-9 w-9 rounded-full object-cover shadow-sm" src="https://via.placeholder.com/150" alt="Profile">
                         </div>
-                        <div id="profileMenu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-xl shadow-xl border z-50">
-                            <button id="navDashboardBtn" class="w-full text-left px-4 py-2.5 hover:bg-blue-50 flex items-center gap-2"><i class="fas fa-user-graduate"></i> Dashboard</button>
-                            <button id="navLogoutBtn" class="w-full text-left px-4 py-2.5 hover:bg-red-50 text-red-600 flex items-center gap-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        
+                        <div id="profileMenu" class="hidden origin-top-right absolute right-0 mt-3 w-56 rounded-2xl shadow-xl bg-white border border-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden z-[60]">
+                            <div class="py-2">
+                                <button id="navDashboardBtn" class="w-full text-left px-5 py-3 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-bold transition flex items-center gap-3"><i class="fas fa-user-graduate text-lg"></i> Dashboard</button>
+                                <button id="navLogoutBtn" class="w-full text-left px-5 py-3 text-sm text-red-600 hover:bg-red-50 font-bold transition flex items-center gap-3"><i class="fas fa-sign-out-alt text-lg"></i> Logout</button>
+                            </div>
                         </div>
                     </div>
-                    <button id="hamburger" class="lg:hidden text-2xl text-slate-600"><i class="fas fa-bars"></i></button>
+
+                    <button id="hamburger" class="lg:hidden text-slate-600 hover:text-blue-600 text-2xl ml-2"><i class="fas fa-bars"></i></button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- MOBILE SIDEBAR (full nav) -->
-    <div id="sidebar" class="fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white z-[100] lg:hidden flex flex-col border-l transform translate-x-full transition-transform duration-300 shadow-xl">
-        <div class="p-5 border-b font-bold text-lg">Menu</div>
-        <div class="flex-1 overflow-y-auto p-4 space-y-2">
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-home w-5"></i> Home</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-laptop-code w-5"></i> Computer Engg.</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-cogs w-5"></i> Mechanical Engg.</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-building w-5"></i> Civil Engg.</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-bolt w-5"></i> Electrical Engg.</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-microchip w-5"></i> EEE</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-car w-5"></i> Automobile Engg.</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-file-pdf w-5"></i> Notes</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-users w-5"></i> Community</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-envelope w-5"></i> Contact</a>
-            <a href="#" class="mobile-nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-info-circle w-5"></i> About</a>
+    <!-- MOBILE SIDEBAR & OVERLAY -->
+    <div id="overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 lg:hidden"></div>
+    
+    <div id="sidebar" class="fixed top-0 right-0 h-full w-[85%] max-w-[320px] bg-white shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col border-l border-gray-200 overflow-hidden">
+        <div class="px-6 py-6 border-b border-gray-100 bg-slate-50 flex justify-between items-center">
+            <div>
+                <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+                <p class="text-xs text-gray-500 mt-1">Navigate the campus</p>
+            </div>
+            <button id="closeSidebar" class="text-gray-500 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="flex-1 px-4 py-5 overflow-y-auto">
+            <nav class="flex flex-col gap-2">
+                <button id="mobileLoginBtn" class="hidden-view w-full mb-4 bg-blue-600 text-white font-bold py-3 rounded-xl shadow-md">Login / Sign Up</button>
+                <a href="javascript:void(0)" class="sidebar-link mobile-home-btn flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition font-semibold">
+                    <i class="fas fa-home text-blue-600"></i><span>Home</span>
+                </a>
+                <a href="#notesSection" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition font-semibold">
+                    <i class="fas fa-file-pdf text-blue-600"></i><span>Notes Library</span>
+                </a>
+                <a href="#community" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition font-semibold">
+                    <i class="fas fa-users text-blue-600"></i><span>Community</span>
+                </a>
+            </nav>
         </div>
     </div>
-    <div id="overlay" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-[99] hidden lg:hidden"></div>
 
-    <!-- HOME VIEW -->
-    <div id="homeView">
-        <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100 text-center">
-            <div class="max-w-4xl mx-auto px-4"><span class="bg-blue-600 text-white text-xs px-4 py-1 rounded-full">📚 100% Syllabus Aligned</span>
-                <h1 class="text-4xl md:text-6xl font-extrabold mt-6">Premium Notes for <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Polytechnic Success</span></h1>
-                <p class="text-slate-600 text-lg mt-4">Instant download after payment • Trusted by 5000+ students</p>
+    <!-- ================= VIEW: HOME ================= -->
+    <div id="homeView" class="flex-1">
+        <!-- Hero Section -->
+        <section class="py-20 bg-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 -skew-y-3 origin-top-left z-0 transform scale-110"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="inline-block bg-blue-100 text-blue-700 font-black tracking-widest uppercase text-xs mb-6 px-4 py-1.5 rounded-full shadow-sm">100% Syllabus Aligned</span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">Master Your Exams with <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Micro Notes</span></h1>
+                <p class="max-w-2xl mx-auto text-slate-600 text-lg md:text-xl leading-relaxed">High-quality, affordable study materials engineered for polytechnic success.</p>
             </div>
         </section>
-        <section id="notesSection" class="py-16 px-4 max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-10">📖 Premium Library</h2>
-            <div id="notesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+        <!-- Premium Notes Grid -->
+        <section id="notesSection" class="py-24 bg-[#f1f5f9]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Premium Library</h2>
+                    <div class="w-24 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+                </div>
+                <div id="notesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Notes Injected via JS -->
+                </div>
+            </div>
         </section>
 
-        <!-- Community Section (WhatsApp/Telegram) -->
-        <section class="py-16 bg-white border-t">
-            <div class="max-w-6xl mx-auto px-4 text-center"><h2 class="text-3xl font-bold">Join Student Community</h2><p class="text-slate-500 mt-2">Get updates, free resources & PYQs</p>
-                <div class="grid md:grid-cols-3 gap-6 mt-10">
-                    <div class="bg-green-50 p-6 rounded-2xl"><i class="fab fa-whatsapp text-4xl text-green-600"></i><h3 class="font-bold mt-2">WhatsApp Group</h3><a href="#" class="text-green-600 mt-2 inline-block">Join →</a></div>
-                    <div class="bg-blue-50 p-6 rounded-2xl"><i class="fab fa-telegram text-4xl text-blue-500"></i><h3 class="font-bold mt-2">Telegram Channel</h3><a href="#" class="text-blue-500 mt-2 inline-block">Join →</a></div>
-                    <div class="bg-green-50 p-6 rounded-2xl"><i class="fab fa-whatsapp text-4xl text-green-600"></i><h3 class="font-bold mt-2">WhatsApp Channel</h3><a href="#" class="text-green-600 mt-2 inline-block">Follow →</a></div>
+        <!-- Community Section -->
+        <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
+                    <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- WhatsApp Group -->
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all shadow-md">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">WhatsApp Group</h4>
+                        <p class="text-slate-600 text-sm mb-6 flex-1">Important alerts, quick access notes, PYQs, and e-books for Sem 1.</p>
+                        <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" target="_blank" class="w-full py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-colors">Join Group</a>
+                    </div>
+
+                    <!-- Telegram -->
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-16 h-16 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all shadow-md">
+                            <i class="fab fa-telegram-plane"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Telegram Channel</h4>
+                        <p class="text-slate-600 text-sm mb-6 flex-1">Massive library of free PDF notes and previous year papers.</p>
+                        <a href="https://t.me/diplomacampus" target="_blank" class="w-full py-3 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-xl font-bold transition-colors">Join Telegram</a>
+                    </div>
+
+                    <!-- WhatsApp Channel -->
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all shadow-md">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">WhatsApp Channel</h4>
+                        <p class="text-slate-600 text-sm mb-6 flex-1">Daily campus updates, important alerts, and quick notices.</p>
+                        <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" target="_blank" class="w-full py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-colors">Join Channel</a>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- DASHBOARD VIEW -->
-    <div id="dashboardView" class="hidden-view py-10 px-4 max-w-7xl mx-auto w-full">
-        <div class="flex items-center gap-4 mb-6"><button id="backToHomeBtn" class="text-blue-600 text-xl"><i class="fas fa-arrow-left"></i></button><h2 class="text-3xl font-bold">My Dashboard</h2></div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-2xl p-6 shadow text-center"><img id="dashProfileImg" class="w-28 h-28 rounded-full mx-auto border-4 border-blue-500 object-cover"><h3 id="dashDisplayName" class="text-xl font-bold mt-3">Student</h3><p id="dashDisplayEmail" class="text-sm text-slate-500">email</p>
-                <label class="mt-3 inline-block bg-slate-100 px-4 py-1 rounded-full text-sm cursor-pointer">📸 Update Photo<input type="file" id="imgUpload" class="hidden"></label>
+    <!-- ================= VIEW: DASHBOARD ================= -->
+    <div id="dashboardView" class="hidden-view flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div class="flex items-center gap-4 mb-8 border-b border-gray-200 pb-4">
+            <button id="backToHomeBtn" class="text-slate-400 hover:text-blue-600 transition text-2xl"><i class="fas fa-arrow-left"></i></button>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Student Dashboard</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-4">
+                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100 text-center relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-36 bg-gradient-to-r from-blue-600 to-indigo-600 z-0"></div>
+                    
+                    <div class="relative w-36 h-36 mx-auto mt-14 mb-5 z-10">
+                        <img id="dashProfileImg" src="https://via.placeholder.com/150" class="w-full h-full object-cover rounded-full border-[6px] border-white shadow-xl bg-white transition duration-300 group-hover:scale-105">
+                        <label for="imgUpload" class="absolute inset-0 bg-slate-900/60 rounded-full flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 cursor-pointer transition-all duration-300 border-[6px] border-transparent backdrop-blur-sm">
+                            <i class="fas fa-camera text-2xl mb-1"></i><span class="text-xs font-bold uppercase tracking-wider">Change</span>
+                        </label>
+                        <input type="file" id="imgUpload" accept="image/*" class="hidden">
+                        
+                        <div id="imgLoader" class="hidden absolute inset-0 bg-white/90 rounded-full flex items-center justify-center z-20 backdrop-blur-sm border-[6px] border-white">
+                            <i class="fas fa-circle-notch fa-spin text-blue-600 text-4xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 id="dashDisplayName" class="text-2xl font-black text-slate-900 relative z-10">Loading...</h3>
+                    <p id="dashDisplayEmail" class="text-slate-500 font-medium text-sm mt-1 mb-6 relative z-10">...</p>
+                    <div class="border-t border-gray-100 pt-6 mt-2 relative z-10 bg-slate-50 rounded-2xl p-4">
+                        <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Status</p>
+                        <span class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold"><i class="fas fa-shield-alt"></i> Verified Student</span>
+                    </div>
+                </div>
             </div>
-            <div class="md:col-span-2 bg-white rounded-2xl p-6 shadow">
-                <h3 class="text-xl font-bold mb-4">Profile Settings</h3>
-                <form id="dashboardForm"><input type="text" id="dashName" placeholder="Full Name" class="w-full border p-3 rounded-xl mb-3"><input type="text" id="dashCollege" placeholder="College" class="w-full border p-3 rounded-xl mb-3"><select id="dashBranch" class="w-full border p-3 rounded-xl mb-3"><option>Select Branch</option><option>Computer</option><option>Mechanical</option><option>Civil</option><option>Electrical</option><option>EEE</option><option>Automobile</option></select><select id="dashSemester" class="w-full border p-3 rounded-xl mb-3"><option>Semester</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select><button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-xl">Save Changes</button></form>
+
+            <div class="lg:col-span-8">
+                <div class="bg-white rounded-[2rem] p-8 sm:p-10 shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-extrabold text-slate-900 mb-8 flex items-center gap-3"><i class="fas fa-user-edit text-blue-600"></i> Profile Settings</h3>
+                    <form id="dashboardForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
+                            <input type="text" id="dashName" required class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">College Name</label>
+                            <input type="text" id="dashCollege" placeholder="e.g. Government Polytechnic" class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Branch</label>
+                                <select id="dashBranch" class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
+                                    <option value="">Select Branch</option>
+                                    <option value="Computer">Computer Engineering</option>
+                                    <option value="Mechanical">Mechanical Engineering</option>
+                                    <option value="Civil">Civil Engineering</option>
+                                    <option value="Electrical">Electrical Engineering</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Semester</label>
+                                <select id="dashSemester" class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
+                                    <option value="">Select Semester</option>
+                                    <option value="1">1st Semester</option>
+                                    <option value="2">2nd Semester</option>
+                                    <option value="3">3rd Semester</option>
+                                    <option value="4">4th Semester</option>
+                                    <option value="5">5th Semester</option>
+                                    <option value="6">6th Semester</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pt-6 border-t border-gray-100 mt-8">
+                            <button type="submit" id="dashSaveBtn" class="w-full md:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-xl shadow-blue-500/30 transition-all flex items-center justify-center gap-3">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="mt-10 bg-white rounded-2xl p-6 shadow"><h3 class="text-xl font-bold mb-4"><i class="fas fa-download text-blue-600"></i> My Purchased Notes</h3><div id="purchasedNotesList" class="grid sm:grid-cols-2 gap-4"></div></div>
     </div>
 
-    <!-- AUTH MODAL -->
-    <div id="authModal" class="hidden-view fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[200] p-4"><div class="bg-white rounded-2xl max-w-md w-full p-6 relative"><button id="closeModal" class="absolute right-4 top-4 text-gray-400"><i class="fas fa-times"></i></button><h2 id="modalTitle" class="text-2xl font-bold text-center">Welcome Back</h2><button id="googleSignInBtn" class="flex items-center justify-center gap-2 w-full border py-2 rounded-lg mt-4"><img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5"> Continue with Google</button><div class="my-4 text-center text-sm text-gray-400">OR</div><form id="authForm"><input type="email" id="email" placeholder="Email" class="w-full border p-3 rounded-lg mb-3" required><input type="password" id="password" placeholder="Password" class="w-full border p-3 rounded-lg mb-3" required><button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-bold">Continue</button></form><p class="text-center mt-4"><span id="toggleAuthText">Don't have an account?</span> <button id="toggleAuthBtn" class="text-blue-600">Sign Up</button></p><button id="forgotPwdLink" class="text-sm text-blue-500 block mx-auto mt-2">Forgot password?</button></div></div>
+    <!-- ================= MODALS ================= -->
+    <!-- Auth Modal -->
+    <div id="authModal" class="hidden-view fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-[100] px-4">
+        <div class="bg-white p-8 sm:p-10 rounded-[2rem] shadow-2xl w-full max-w-md relative modal-animate">
+            <button id="closeModal" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition"><i class="fas fa-times"></i></button>
+            <h2 id="modalTitle" class="text-3xl font-black mb-8 text-center text-slate-900 tracking-tight">Welcome Back</h2>
+            
+            <button id="googleSignInBtn" class="flex items-center justify-center w-full border-2 border-slate-200 rounded-xl py-3.5 font-bold text-slate-700 hover:bg-slate-50 transition mb-6">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-3" alt="Google"> Continue with Google
+            </button>
+            <div class="relative flex py-3 items-center mb-4">
+                <div class="flex-grow border-t border-slate-200"></div><span class="mx-4 text-slate-400 text-xs font-black uppercase tracking-widest">Or Email</span><div class="flex-grow border-t border-slate-200"></div>
+            </div>
+            <form id="authForm" class="space-y-4">
+                <input type="email" id="email" placeholder="Email Address" required class="w-full border border-slate-200 rounded-xl px-5 py-4 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition bg-slate-50 font-semibold">
+                <input type="password" id="password" placeholder="Password" required class="w-full border border-slate-200 rounded-xl px-5 py-4 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition bg-slate-50 font-semibold">
+                <div class="flex justify-end"><button type="button" id="forgotPwdLink" class="text-sm font-bold text-blue-600 hover:text-blue-800">Forgot password?</button></div>
+                <button type="submit" id="authSubmitBtn" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition text-lg mt-2">Continue</button>
+            </form>
+            <p class="mt-6 text-center text-slate-600 font-medium"><span id="toggleAuthText">Don't have an account?</span> <button id="toggleAuthBtn" class="text-blue-600 font-bold hover:underline ml-1">Sign Up</button></p>
+        </div>
+    </div>
 
-    <!-- RESET MODAL -->
-    <div id="resetModal" class="hidden-view fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[200] p-4"><div class="bg-white rounded-2xl max-w-md w-full p-6"><h3 class="text-xl font-bold">Reset Password</h3><form id="resetForm"><input type="email" id="resetEmail" placeholder="Your email" class="w-full border p-3 rounded-lg my-3"><button type="submit" class="bg-blue-600 text-white py-2 rounded-lg w-full">Send Reset Link</button></form><button id="closeResetModal" class="mt-3 text-gray-500 w-full">Cancel</button></div></div>
+    <!-- Password Reset Modal -->
+    <div id="resetModal" class="hidden-view fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-[100] px-4">
+        <div class="bg-white p-8 sm:p-10 rounded-[2rem] shadow-2xl w-full max-w-md relative modal-animate">
+            <button id="closeResetModal" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition"><i class="fas fa-times"></i></button>
+            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mx-auto mb-5"><i class="fas fa-unlock-alt"></i></div>
+            <h2 class="text-2xl font-black mb-2 text-center text-slate-900">Reset Password</h2>
+            <p class="text-sm text-slate-500 mb-6 text-center font-medium">Enter your email and we'll send you a link to reset your password.</p>
+            <form id="resetForm" class="space-y-4">
+                <input type="email" id="resetEmail" placeholder="Email Address" required class="w-full border border-slate-200 rounded-xl px-5 py-4 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition bg-slate-50 font-semibold">
+                <button type="submit" id="resetSubmitBtn" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
 
-    <!-- FIREBASE MODULES (CDN) -->
-    <script type="importmap">
-        { "imports": { "firebase/app": "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js", "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js", "firebase/database": "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js", "firebase/storage": "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js" } }
-    </script>
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-8 w-auto brightness-200">
+                    <span class="text-xl font-bold text-white">Diploma Campus</span>
+                </a>
+                <p class="text-slate-500 text-sm">&copy; 2024 Diploma Campus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
     <script type="module">
-        import { initializeApp } from "firebase/app";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updateProfile } from "firebase/auth";
-        import { getDatabase, ref, set, get, child } from "firebase/database";
-        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getDatabase, ref as dbRef, set, get, child } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
@@ -163,8 +358,10 @@
             databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
             projectId: "diplomacampus",
             storageBucket: "diplomacampus.firebasestorage.app",
+            messagingSenderId: "330061663460",
             appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
         };
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getDatabase(app);
@@ -172,184 +369,346 @@
         const googleProvider = new GoogleAuthProvider();
 
         let currentUser = null;
-        // Purchased notes storage (localStorage + Firebase sync)
-        let purchasedNotes = JSON.parse(localStorage.getItem("purchasedNotes") || "[]");
 
-        function savePurchasedToLocal() { localStorage.setItem("purchasedNotes", JSON.stringify(purchasedNotes)); }
-        
-        // Sample notes with downloadable PDF URLs (simulated - actual PDF links)
-        const notesData = [
-            { id: "n1", title: "C++ Data Structures", desc: "Arrays, Linked Lists, Trees, Graphs.", price: 49, pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500" },
-            { id: "n2", title: "Applied Mathematics-II", desc: "Derivatives, Integrals & Differential Eqs.", price: 29, pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500" },
-            { id: "n3", title: "Computer Networks", desc: "OSI, TCP/IP, Routing, Subnetting.", price: 39, pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500" }
-        ];
-
-        // Helper: Show toast
-        function showToast(msg, type="success") {
+        // --- 1. TOAST NOTIFICATION ---
+        window.showToast = function(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            toast.className = `${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'} text-white px-5 py-3 rounded-xl shadow-lg flex items-center gap-2 toast-enter`;
-            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${msg}`;
+            
+            const colors = { success: 'bg-green-500', error: 'bg-red-500', info: 'bg-blue-500' };
+            const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+
+            toast.className = `${colors[type]} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 font-bold toast-enter`;
+            toast.innerHTML = `<i class="fas ${icons[type]} text-xl"></i> <span>${message}</span>`;
+            
             container.appendChild(toast);
-            setTimeout(() => { toast.remove(); }, 3000);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
 
-        // Render Notes
-        function renderNotes() {
-            const container = document.getElementById('notesContainer');
-            if(!container) return;
-            container.innerHTML = notesData.map(note => `
-                <div class="premium-card bg-white rounded-2xl shadow-md overflow-hidden border">
-                    <img src="${note.img}" class="h-48 w-full object-cover">
-                    <div class="p-5"><div class="flex justify-between items-start"><h3 class="text-xl font-bold">${note.title}</h3><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-sm font-bold">₹${note.price}</span></div>
-                    <p class="text-gray-500 text-sm mt-2">${note.desc}</p>
-                    <button data-id="${note.id}" data-title="${note.title}" data-price="${note.price}" data-pdf="${note.pdfUrl}" class="buy-now-btn mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl font-bold transition">📥 Purchase & Download</button></div>
+        // --- 2. RENDER NOTES ---
+        const notesData =[
+            { id: "n1", title: "C++ Data Structures", desc: "Complete guide to Arrays, Linked Lists, Trees, and Graphs.", price: 49, img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=80" },
+            { id: "n2", title: "Applied Mathematics-II", desc: "Derivatives, Integrals, and Differential equations simplified.", price: 29, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=500&q=80" },
+            { id: "n3", title: "Computer Networks", desc: "OSI Model, TCP/IP, IP Subnetting, and Routing protocols.", price: 39, img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        const notesContainer = document.getElementById('notesContainer');
+        notesData.forEach(note => {
+            const card = document.createElement('div');
+            card.className = "premium-card bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden flex flex-col";
+            card.innerHTML = `
+                <div class="relative h-56 overflow-hidden group">
+                    <img src="${note.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-white/95 backdrop-blur text-blue-600 text-sm font-black px-4 py-1.5 rounded-full shadow-lg">₹${note.price}</div>
+                    <h4 class="absolute bottom-4 left-5 text-2xl font-extrabold text-white drop-shadow-md">${note.title}</h4>
                 </div>
-            `).join('');
-            document.querySelectorAll('.buy-now-btn').forEach(btn => btn.addEventListener('click', (e) => {
-                const id = btn.dataset.id, title = btn.dataset.title, price = parseInt(btn.dataset.price), pdfUrl = btn.dataset.pdf;
-                initiatePayment(id, title, price, pdfUrl);
-            }));
-        }
-        
-        // Payment + Auto-download on success
-        function initiatePayment(noteId, title, amount, pdfUrl) {
-            if (!currentUser) { showToast("Please login first", "error"); document.getElementById('authModal')?.classList.remove('hidden-view'); return; }
-            // Check if already purchased
-            if (purchasedNotes.includes(noteId)) { showToast("You already own this note! Download from Dashboard.", "info"); return; }
-            
-            const options = {
-                key: "rzp_test_YNdwqU7W2bH3nE", // TEST KEY (replace with live key for production)
-                amount: amount * 100,
-                currency: "INR",
-                name: "Diploma Campus",
-                description: `Purchase: ${title}`,
-                image: "https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png",
-                handler: async (response) => {
-                    // Payment success -> grant access & download
-                    if (!purchasedNotes.includes(noteId)) purchasedNotes.push(noteId);
-                    savePurchasedToLocal();
-                    // Also store in Firebase for persistence across devices
-                    if (currentUser) await set(ref(db, `userPurchases/${currentUser.uid}/${noteId}`), { title, timestamp: Date.now(), pdfUrl });
-                    showToast(`✅ Payment Successful! Downloading ${title}...`, "success");
-                    // Auto-download PDF
-                    triggerDownload(pdfUrl, `${title.replace(/[^a-z0-9]/gi, '_')}.pdf`);
-                    renderPurchasedList();
-                },
-                prefill: { name: currentUser.displayName || "", email: currentUser.email },
-                theme: { color: "#2563EB" }
-            };
-            const rzp = new Razorpay(options);
-            rzp.on('payment.failed', (resp) => showToast("Payment failed: " + resp.error.description, "error"));
-            rzp.open();
-        }
-        
-        function triggerDownload(url, filename) {
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-        
-        async function renderPurchasedList() {
-            const container = document.getElementById('purchasedNotesList');
-            if(!container) return;
-            // Merge from Firebase if logged in
-            if(currentUser) {
-                try {
-                    const snapshot = await get(child(ref(db), `userPurchases/${currentUser.uid}`));
-                    if(snapshot.exists()) {
-                        const fbPurchases = Object.keys(snapshot.val());
-                        for(let pid of fbPurchases) if(!purchasedNotes.includes(pid)) purchasedNotes.push(pid);
-                        savePurchasedToLocal();
-                    }
-                } catch(e) {}
-            }
-            const purchasedItems = notesData.filter(n => purchasedNotes.includes(n.id));
-            if(purchasedItems.length === 0) { container.innerHTML = '<p class="text-gray-400 col-span-2">No notes purchased yet. Buy a note to download instantly.</p>'; return; }
-            container.innerHTML = purchasedItems.map(n => `
-                <div class="border rounded-xl p-4 flex justify-between items-center"><div><h4 class="font-bold">${n.title}</h4><p class="text-sm text-gray-500">₹${n.price}</p></div><button data-pdf="${n.pdfUrl}" data-name="${n.title}" class="download-purchased-btn bg-green-600 text-white px-4 py-2 rounded-lg text-sm">📥 Download</button></div>
-            `).join('');
-            document.querySelectorAll('.download-purchased-btn').forEach(btn => btn.addEventListener('click', () => {
-                triggerDownload(btn.dataset.pdf, `${btn.dataset.name}.pdf`);
-                showToast("Download started!", "success");
-            }));
-        }
-        
-        // Dashboard load user data
-        async function loadDashboardData() {
-            if(!currentUser) return;
-            document.getElementById('dashDisplayName').innerText = currentUser.displayName || "Student";
-            document.getElementById('dashDisplayEmail').innerText = currentUser.email;
-            document.getElementById('dashName').value = currentUser.displayName || '';
-            if(currentUser.photoURL) document.getElementById('dashProfileImg').src = currentUser.photoURL;
-            const snap = await get(child(ref(db), `users/${currentUser.uid}`));
-            if(snap.exists()) {
-                let data = snap.val();
-                document.getElementById('dashCollege').value = data.college || '';
-                document.getElementById('dashBranch').value = data.branch || '';
-                document.getElementById('dashSemester').value = data.semester || '';
-            }
-            renderPurchasedList();
-        }
-        
-        // UI helpers
-        function showHome() { document.getElementById('homeView').classList.remove('hidden-view'); document.getElementById('dashboardView').classList.add('hidden-view'); }
-        function showDashboard() { document.getElementById('homeView').classList.add('hidden-view'); document.getElementById('dashboardView').classList.remove('hidden-view'); loadDashboardData(); }
-        
-        // Auth state
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            if(user) {
-                document.getElementById('authBtn').classList.add('hidden');
-                document.getElementById('userProfileSection').classList.remove('hidden');
-                document.getElementById('headerName').innerText = user.displayName?.split(' ')[0] || "User";
-                document.getElementById('navProfilePic').src = user.photoURL || `https://ui-avatars.com/api/?name=${user.email}&background=2563EB&color=fff`;
-                document.getElementById('dashProfileImg').src = user.photoURL || `https://ui-avatars.com/api/?name=${user.email}`;
-                renderPurchasedList();
+                <div class="p-6 flex-1 flex flex-col bg-white z-10 relative">
+                    <p class="text-slate-500 text-sm mb-6 font-medium flex-1">${note.desc}</p>
+                    <button class="buy-btn w-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-3.5 px-4 rounded-xl transition duration-300 flex justify-center items-center gap-2">
+                        <i class="fas fa-shopping-cart"></i> Purchase Note
+                    </button>
+                </div>`;
+            card.querySelector('.buy-btn').addEventListener('click', () => initiateRazorpay(note));
+            notesContainer.appendChild(card);
+        });
+
+        // --- 3. UI VIEW & SIDEBAR TOGGLES ---
+        const homeView = document.getElementById('homeView');
+        const dashboardView = document.getElementById('dashboardView');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const profileMenu = document.getElementById('profileMenu');
+
+        function toggleSidebar() {
+            const isClosed = sidebar.classList.contains('translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
             } else {
-                document.getElementById('authBtn').classList.remove('hidden');
-                document.getElementById('userProfileSection').classList.add('hidden');
-                purchasedNotes = []; savePurchasedToLocal(); renderPurchasedList();
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        document.getElementById('hamburger').addEventListener('click', toggleSidebar);
+        document.getElementById('closeSidebar').addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        document.querySelectorAll('.sidebar-link').forEach(link => link.addEventListener('click', toggleSidebar));
+
+        function goHome() {
+            homeView.classList.remove('hidden-view');
+            dashboardView.classList.add('hidden-view');
+            profileMenu.classList.add('hidden');
+            window.scrollTo(0,0);
+        }
+        
+        document.getElementById('logoBtn').addEventListener('click', goHome);
+        document.getElementById('navHome').addEventListener('click', goHome);
+        document.querySelectorAll('.mobile-home-btn').forEach(btn => btn.addEventListener('click', goHome));
+        document.getElementById('backToHomeBtn').addEventListener('click', goHome);
+
+        document.getElementById('navDashboardBtn').addEventListener('click', () => {
+            homeView.classList.add('hidden-view');
+            dashboardView.classList.remove('hidden-view');
+            profileMenu.classList.add('hidden');
+            window.scrollTo(0,0);
+            loadDashboardData();
+        });
+
+        document.getElementById('headerProfileImg').addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileMenu.classList.toggle('hidden');
+        });
+
+        // --- 4. AUTHENTICATION LOGIC ---
+        let isLoginMode = true;
+        const authModal = document.getElementById('authModal');
+        const resetModal = document.getElementById('resetModal');
+
+        const openAuthModal = () => {
+            authModal.classList.remove('hidden-view');
+            if(!sidebar.classList.contains('translate-x-full')) toggleSidebar();
+        };
+
+        document.getElementById('authBtn').addEventListener('click', openAuthModal);
+        document.getElementById('mobileLoginBtn').addEventListener('click', openAuthModal);
+        
+        document.getElementById('closeModal').addEventListener('click', () => authModal.classList.add('hidden-view'));
+        document.getElementById('closeResetModal').addEventListener('click', () => resetModal.classList.add('hidden-view'));
+        
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) authModal.classList.add('hidden-view');
+            if (e.target === resetModal) resetModal.classList.add('hidden-view');
+            if (!document.getElementById('headerProfileImg').contains(e.target) && !profileMenu.contains(e.target)) {
+                profileMenu.classList.add('hidden');
             }
         });
-        
-        // Event listeners
-        document.getElementById('logoBtn')?.addEventListener('click', showHome);
-        document.getElementById('backToHomeBtn')?.addEventListener('click', showHome);
-        document.getElementById('navHomeDesktop')?.addEventListener('click', showHome);
-        document.getElementById('notesLinkDesktop')?.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('notesSection')?.scrollIntoView({behavior:'smooth'}); });
-        document.getElementById('communityLinkDesktop')?.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('#homeView section:last-child')?.scrollIntoView({behavior:'smooth'}); });
-        document.getElementById('navDashboardBtn')?.addEventListener('click', showDashboard);
-        document.getElementById('navLogoutBtn')?.addEventListener('click', () => signOut(auth).then(() => showHome()));
-        
-        // Sidebar toggle
-        const sidebar = document.getElementById('sidebar'), overlayDiv = document.getElementById('overlay');
-        document.getElementById('hamburger')?.addEventListener('click', () => { sidebar.classList.toggle('translate-x-full'); overlayDiv.classList.toggle('hidden'); });
-        overlayDiv?.addEventListener('click', () => { sidebar.classList.add('translate-x-full'); overlayDiv.classList.add('hidden'); });
-        document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { sidebar.classList.add('translate-x-full'); overlayDiv.classList.add('hidden'); showHome(); }));
-        
-        // Auth modal
-        let isLogin = true;
-        const authModal = document.getElementById('authModal'), resetModal = document.getElementById('resetModal');
-        document.getElementById('authBtn')?.addEventListener('click', () => authModal.classList.remove('hidden-view'));
-        document.getElementById('closeModal')?.addEventListener('click', () => authModal.classList.add('hidden-view'));
-        document.getElementById('toggleAuthBtn')?.addEventListener('click', () => { isLogin = !isLogin; document.getElementById('modalTitle').innerText = isLogin ? "Welcome Back" : "Create Account"; document.getElementById('toggleAuthText').innerText = isLogin ? "Don't have an account?" : "Already have an account?"; });
-        document.getElementById('authForm')?.addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('email').value, pwd = document.getElementById('password').value; try { if(isLogin) await signInWithEmailAndPassword(auth, email, pwd); else await createUserWithEmailAndPassword(auth, email, pwd); authModal.classList.add('hidden-view'); showToast(isLogin ? "Logged in!" : "Account created!"); } catch(err) { showToast(err.message, "error"); } });
-        document.getElementById('googleSignInBtn')?.addEventListener('click', async () => { try { await signInWithPopup(auth, googleProvider); authModal.classList.add('hidden-view'); } catch(e){ showToast(e.message, "error"); } });
-        document.getElementById('forgotPwdLink')?.addEventListener('click', () => { authModal.classList.add('hidden-view'); resetModal.classList.remove('hidden-view'); });
-        document.getElementById('closeResetModal')?.addEventListener('click', () => resetModal.classList.add('hidden-view'));
-        document.getElementById('resetForm')?.addEventListener('submit', async (e) => { e.preventDefault(); await sendPasswordResetEmail(auth, document.getElementById('resetEmail').value); showToast("Reset link sent!"); resetModal.classList.add('hidden-view'); });
-        
-        // Dashboard save
-        document.getElementById('dashboardForm')?.addEventListener('submit', async (e) => { e.preventDefault(); if(currentUser){ const newName = document.getElementById('dashName').value; await updateProfile(currentUser, { displayName: newName }); await set(ref(db, `users/${currentUser.uid}`), { college: document.getElementById('dashCollege').value, branch: document.getElementById('dashBranch').value, semester: document.getElementById('dashSemester').value }); showToast("Profile updated!"); loadDashboardData(); } });
-        
-        // Profile image upload
-        document.getElementById('imgUpload')?.addEventListener('change', async (e) => { const file = e.target.files[0]; if(file && currentUser) { const loader = document.getElementById('imgLoader'); if(loader) loader.classList.remove('hidden'); const sRef = storageRef(storage, `profiles/${currentUser.uid}`); await uploadBytes(sRef, file); const url = await getDownloadURL(sRef); await updateProfile(currentUser, { photoURL: url }); document.getElementById('dashProfileImg').src = url; document.getElementById('navProfilePic').src = url; if(loader) loader.classList.add('hidden'); showToast("Photo updated!"); } });
-        
-        renderNotes();
+
+        document.getElementById('forgotPwdLink').addEventListener('click', () => {
+            authModal.classList.add('hidden-view');
+            resetModal.classList.remove('hidden-view');
+        });
+
+        document.getElementById('toggleAuthBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+            document.getElementById('modalTitle').innerText = isLoginMode ? "Welcome Back" : "Create Account";
+            document.getElementById('toggleAuthText').innerText = isLoginMode ? "Don't have an account?" : "Already have an account?";
+            e.target.innerText = isLoginMode ? "Sign Up" : "Sign In";
+        });
+
+        document.getElementById('authForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('authSubmitBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Processing...`;
+            btn.disabled = true;
+            
+            try {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                if (isLoginMode) {
+                    await signInWithEmailAndPassword(auth, email, password);
+                    showToast('Logged in successfully!', 'success');
+                } else {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    showToast('Account created successfully!', 'success');
+                }
+                authModal.classList.add('hidden-view');
+                e.target.reset();
+            } catch (err) { 
+                showToast(err.message.replace('Firebase: ', ''), 'error'); 
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('googleSignInBtn').addEventListener('click', async () => {
+            try { 
+                await signInWithPopup(auth, googleProvider); 
+                authModal.classList.add('hidden-view');
+                showToast('Signed in with Google', 'success');
+            } catch (err) { showToast(err.message, 'error'); }
+        });
+
+        document.getElementById('resetForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('resetSubmitBtn');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Sending...`;
+            try {
+                await sendPasswordResetEmail(auth, document.getElementById('resetEmail').value);
+                showToast("Reset email sent! Please check your inbox.", 'info');
+                resetModal.classList.add('hidden-view');
+                e.target.reset();
+            } catch (err) { 
+                showToast(err.message, 'error'); 
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `Send Reset Link`;
+            }
+        });
+
+        document.getElementById('navLogoutBtn').addEventListener('click', async () => {
+            await signOut(auth);
+            goHome();
+            showToast('Logged out successfully', 'info');
+        });
+
+        // Global Auth State Listener
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            const authLoader = document.getElementById('authLoader');
+            const authBtn = document.getElementById('authBtn');
+            const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+            const userProfileSection = document.getElementById('userProfileSection');
+
+            authLoader.classList.add('hidden');
+
+            if (user) {
+                authBtn.classList.add('hidden-view');
+                mobileLoginBtn.classList.add('hidden-view');
+                userProfileSection.classList.remove('hidden');
+                
+                const name = user.displayName || "Student";
+                const photo = user.photoURL || `https://ui-avatars.com/api/?name=${user.email}&background=2563EB&color=fff&rounded=true&bold=true`;
+                
+                document.getElementById('headerName').innerText = name;
+                document.getElementById('navProfilePic').src = photo;
+                
+                document.getElementById('dashProfileImg').src = photo;
+                document.getElementById('dashDisplayName').innerText = name;
+                document.getElementById('dashDisplayEmail').innerText = user.email;
+                document.getElementById('dashName').value = user.displayName || '';
+            } else {
+                authBtn.classList.remove('hidden-view');
+                mobileLoginBtn.classList.remove('hidden-view');
+                userProfileSection.classList.add('hidden');
+            }
+        });
+
+        // --- 5. DASHBOARD DB & STORAGE ---
+        document.getElementById('imgUpload').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if(!file || !currentUser) return;
+            
+            const loader = document.getElementById('imgLoader');
+            loader.classList.remove('hidden');
+
+            try {
+                const sRef = storageRef(storage, `profiles/${currentUser.uid}`);
+                await uploadBytes(sRef, file);
+                const downloadURL = await getDownloadURL(sRef);
+                await updateProfile(currentUser, { photoURL: downloadURL });
+                
+                document.getElementById('dashProfileImg').src = downloadURL;
+                document.getElementById('navProfilePic').src = downloadURL;
+                showToast('Profile picture updated!', 'success');
+            } catch(error) {
+                showToast("Upload Failed! Check connection or file size.", 'error');
+            } finally {
+                loader.classList.add('hidden');
+            }
+        });
+
+        async function loadDashboardData() {
+            if(!currentUser) return;
+            try {
+                const snap = await get(child(dbRef(db), `users/${currentUser.uid}`));
+                if (snap.exists()) {
+                    const data = snap.val();
+                    document.getElementById('dashCollege').value = data.college || '';
+                    document.getElementById('dashBranch').value = data.branch || '';
+                    document.getElementById('dashSemester').value = data.semester || '';
+                }
+            } catch (e) { console.error("Error loading data:", e); }
+        }
+
+        document.getElementById('dashboardForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('dashSaveBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Saving...`;
+            btn.disabled = true;
+            
+            try {
+                const newName = document.getElementById('dashName').value;
+                
+                await updateProfile(currentUser, { displayName: newName });
+                document.getElementById('headerName').innerText = newName;
+                document.getElementById('dashDisplayName').innerText = newName;
+
+                await set(dbRef(db, 'users/' + currentUser.uid), {
+                    college: document.getElementById('dashCollege').value,
+                    branch: document.getElementById('dashBranch').value,
+                    semester: document.getElementById('dashSemester').value
+                });
+
+                btn.classList.replace('bg-blue-600', 'bg-green-500');
+                btn.innerHTML = `<i class="fas fa-check"></i> Saved Successfully`;
+                showToast('Profile settings saved!', 'success');
+                
+                setTimeout(() => {
+                    btn.classList.replace('bg-green-500', 'bg-blue-600');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
+
+            } catch (err) { 
+                showToast(err.message, 'error'); 
+                btn.innerHTML = originalText; 
+                btn.disabled = false;
+            }
+        });
+
+        // --- 6. RAZORPAY GATEWAY ---
+        function initiateRazorpay(note) {
+            if (!currentUser) {
+                openAuthModal();
+                showToast('Please login to purchase notes.', 'info');
+                return;
+            }
+
+            if (typeof Razorpay === 'undefined') {
+                showToast('Payment gateway currently unavailable. Try again later.', 'error');
+                return;
+            }
+
+            const options = {
+                "key": "rzp_test_YOUR_KEY_HERE", // Add your actual Test/Live key here
+                "amount": note.price * 100, 
+                "currency": "INR",
+                "name": "Diploma Campus",
+                "description": "Premium Note: " + note.title,
+                "image": "https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png",
+                "handler": function (response){ 
+                    showToast(`Payment Successful! Note added to dashboard.`, 'success');
+                    console.log("Payment ID:", response.razorpay_payment_id);
+                },
+                "prefill": { 
+                    "name": currentUser.displayName || "", 
+                    "email": currentUser.email 
+                },
+                "theme": { "color": "#2563EB" }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', function (resp){ 
+                showToast("Payment Cancelled or Failed.", 'error'); 
+            });
+            rzp.open();
+        }
     </script>
 </body>
 </html>

@@ -1,302 +1,286 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Diploma Campus - Premium Notes</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Diploma Campus - Micro Notes</title>
+    <!-- Tailwind & Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Razorpay SDK -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-    <!-- Custom CSS -->
     <style>
-        /* Custom Scrollbar */
+        .hidden-view { display: none !important; }
+        /* Custom scrollbar for better look */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* View Management */
-        .hidden-view { display: none !important; }
-
-        /* Modal & Toast Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        /* ===== ANIMATED HAMBURGER (BARS ↔ X) ===== */
+        #hamburger {
+            position: relative;
+            width: 2.25rem;
+            height: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
         }
-        .modal-animate { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hamburger-icon, .close-icon {
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: absolute;
+            font-size: 1.65rem;
+            backface-visibility: hidden;
         }
-        .toast-enter { animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-        /* Card Hover Enhancements */
-        .premium-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .premium-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15); }
-        
-        /* Smooth transition for inputs */
-        input:disabled, button:disabled { opacity: 0.7; cursor: not-allowed; }
+        .close-icon {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.6);
+        }
+        #hamburger.active .hamburger-icon {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.5);
+        }
+        #hamburger.active .close-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+        /* Smooth hover feedback */
+        #hamburger:hover i {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        /* Sidebar smoothness */
+        #sidebar {
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
     </style>
 </head>
-<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden text-slate-800">
-
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 pointer-events-none"></div>
+<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
 
     <!-- MAIN HEADER -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-[50]">
+    <header class="header bg-white shadow-sm sticky top-0 z-[110]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <!-- Logo -->
-                <a href="javascript:void(0)" id="logoBtn" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0 cursor-pointer">
-                   <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm">
-                   <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-10 w-auto object-contain drop-shadow-sm hidden min-[360px]:block"> 
+                <a href="#" id="logoBtn" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
+                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
+                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block"style="height:100px;">  
                 </a>
 
                 <!-- Desktop Nav -->
                 <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-                    <a href="javascript:void(0)" id="navHome" class="nav-link flex items-center gap-2 hover:text-blue-600 transition">
-                        <i class="fas fa-home text-blue-500"></i><span>Home</span>
-                    </a>
-
-                    <!-- Branch Dropdown -->
-                    <div class="relative group">
-                        <button class="flex items-center gap-2 hover:text-blue-600 transition">
-                            <i class="fas fa-graduation-cap text-blue-500"></i>
-                            <span>Branches</span>
-                            <i class="fas fa-chevron-down text-xs ml-1"></i>
-                        </button>
-                        <div class="absolute hidden group-hover:block bg-white shadow-xl rounded-xl mt-3 w-56 py-2 z-[60] border border-gray-100">
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Computer Engg.</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Mechanical Engg.</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Civil Engg.</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition">Electrical Engg.</a>
-                        </div>
-                    </div>
-
-                    <a href="#notesSection" class="nav-link flex items-center gap-2 hover:text-blue-600 transition">
-                        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
-                    </a>
-                    <a href="#community" class="nav-link flex items-center gap-2 hover:text-blue-600 transition">
-                        <i class="fas fa-users text-blue-500"></i><span>Community</span>
-                    </a>
+                    <a href="#" id="navHome" class="nav-link flex items-center gap-2 hover:text-blue-600 transition"><i class="fas fa-home text-blue-500"></i><span>Home</span></a>
+                    <a href="#notesSection" class="nav-link flex items-center gap-2 hover:text-blue-600 transition"><i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span></a>
+                    <a href="#community" class="nav-link flex items-center gap-2 hover:text-blue-600 transition"><i class="fas fa-users text-blue-500"></i><span>Community</span></a>
                 </nav>
 
-                <!-- Auth / Profile -->
+                <!-- Auth / Profile Section -->
                 <div class="flex items-center gap-4 ml-auto lg:ml-0">
-                    <!-- Loading skeleton before auth state is known -->
-                    <div id="authLoader" class="w-24 h-10 bg-gray-200 animate-pulse rounded-full hidden lg:block"></div>
-
                     <!-- Login Button -->
-                    <button id="authBtn" class="hidden-view bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2.5 rounded-full font-bold transition duration-300 shadow-lg shadow-blue-500/30 text-sm sm:text-base hidden sm:block">
+                    <button id="authBtn" class="hidden bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium transition duration-300 shadow-md shadow-blue-500/30 text-sm sm:text-base">
                         Login / Sign Up
                     </button>
 
-                    <!-- Profile Dropdown -->
+                    <!-- Logged In Profile Dropdown -->
                     <div id="userProfileSection" class="hidden relative inline-block text-left">
-                        <div class="flex items-center gap-3 bg-slate-50 py-1.5 px-2 rounded-full border border-slate-200 cursor-pointer hover:bg-slate-100 transition" id="headerProfileImg">
-                            <span id="headerName" class="text-sm font-bold text-slate-700 hidden md:block pl-2"></span>
-                            <img id="navProfilePic" class="h-9 w-9 rounded-full object-cover shadow-sm" src="https://via.placeholder.com/150" alt="Profile">
+                        <div class="flex items-center gap-3">
+                            <span id="headerName" class="text-sm font-bold text-slate-800 hidden md:block"></span>
+                            <img id="headerProfileImg" class="h-10 w-10 rounded-full cursor-pointer border-2 border-blue-100 hover:border-blue-500 object-cover transition" src="https://via.placeholder.com/150" alt="Profile">
                         </div>
                         
-                        <div id="profileMenu" class="hidden origin-top-right absolute right-0 mt-3 w-56 rounded-2xl shadow-xl bg-white border border-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden z-[60]">
-                            <div class="py-2">
-                                <button id="navDashboardBtn" class="w-full text-left px-5 py-3 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-bold transition flex items-center gap-3"><i class="fas fa-user-graduate text-lg"></i> Dashboard</button>
-                                <button id="navLogoutBtn" class="w-full text-left px-5 py-3 text-sm text-red-600 hover:bg-red-50 font-bold transition flex items-center gap-3"><i class="fas fa-sign-out-alt text-lg"></i> Logout</button>
+                        <div id="profileMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-2xl shadow-xl bg-white border border-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden z-50">
+                            <div class="py-1">
+                                <button id="navDashboardBtn" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-semibold transition flex items-center gap-2"><i class="fas fa-user-circle"></i> Dashboard</button>
+                                <button id="navLogoutBtn" class="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 font-semibold transition flex items-center gap-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
                             </div>
                         </div>
                     </div>
 
-                    <button id="hamburger" class="lg:hidden text-slate-600 hover:text-blue-600 text-2xl ml-2"><i class="fas fa-bars"></i></button>
+                    <!-- ANIMATED HAMBURGER (Bars ↔ X) -->
+                    <button id="hamburger" class="lg:hidden text-gray-700 focus:outline-none ml-2 relative w-9 h-9 flex items-center justify-center">
+                        <i class="fas fa-bars hamburger-icon"></i>
+                        <i class="fas fa-times close-icon"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- MOBILE SIDEBAR & OVERLAY -->
-    <div id="overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 lg:hidden"></div>
-    
-    <div id="sidebar" class="fixed top-0 right-0 h-full w-[85%] max-w-[320px] bg-white shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col border-l border-gray-200 overflow-hidden">
-        <div class="px-6 py-6 border-b border-gray-100 bg-slate-50 flex justify-between items-center">
-            <div>
-                <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
-                <p class="text-xs text-gray-500 mt-1">Navigate the campus</p>
-            </div>
-            <button id="closeSidebar" class="text-gray-500 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
+    <!-- RIGHT SIDEBAR (Mobile) -->
+    <div id="sidebar" class="fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden transform translate-x-full transition-transform duration-300">
+        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
+            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
         </div>
         <div class="flex-1 px-4 py-5 overflow-y-auto">
-            <nav class="flex flex-col gap-2">
-                <button id="mobileLoginBtn" class="hidden-view w-full mb-4 bg-blue-600 text-white font-bold py-3 rounded-xl shadow-md">Login / Sign Up</button>
-                <a href="javascript:void(0)" class="sidebar-link mobile-home-btn flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition font-semibold">
-                    <i class="fas fa-home text-blue-600"></i><span>Home</span>
-                </a>
-                <a href="#notesSection" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition font-semibold">
-                    <i class="fas fa-file-pdf text-blue-600"></i><span>Notes Library</span>
-                </a>
-                <a href="#community" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition font-semibold">
-                    <i class="fas fa-users text-blue-600"></i><span>Community</span>
-                </a>
+            <nav class="flex flex-col gap-1.5">
+                <a href="#" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl hover:bg-blue-50 transition"><i class="fas fa-home text-blue-600"></i><span class="font-semibold text-gray-700">Home</span></a>
+                <a href="#notesSection" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl hover:bg-blue-50 transition"><i class="fas fa-file-pdf text-blue-600"></i><span class="font-semibold text-gray-700">Notes Store</span></a>
+                <a href="#community" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl hover:bg-blue-50 transition"><i class="fas fa-users text-blue-600"></i><span class="font-semibold text-gray-700">Community</span></a>
             </nav>
         </div>
     </div>
+    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/40 backdrop-blur-sm z-[99] hidden lg:hidden"></div>
 
-    <!-- ================= VIEW: HOME ================= -->
-    <div id="homeView" class="flex-1">
+    <!-- ================= VIEW: HOME (Hero + Notes + Community) ================= -->
+    <div id="homeView">
         <!-- Hero Section -->
         <section class="py-20 bg-white relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 -skew-y-3 origin-top-left z-0 transform scale-110"></div>
+            <div class="absolute inset-0 bg-blue-600/5 -skew-y-3 origin-top-left z-0"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <span class="inline-block bg-blue-100 text-blue-700 font-black tracking-widest uppercase text-xs mb-6 px-4 py-1.5 rounded-full shadow-sm">100% Syllabus Aligned</span>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">Master Your Exams with <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Micro Notes</span></h1>
-                <p class="max-w-2xl mx-auto text-slate-600 text-lg md:text-xl leading-relaxed">High-quality, affordable study materials engineered for polytechnic success.</p>
+                <span class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 block">Premium Resources</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">Master Your Exams with <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Micro Notes</span></h1>
+                <p class="max-w-3xl mx-auto text-slate-600 text-lg leading-relaxed">
+                    Concise, high-quality, and affordable study materials designed specifically for polytechnic students to bridge the gap between classroom learning and exam success.
+                </p>
             </div>
         </section>
 
-        <!-- Premium Notes Grid -->
-        <section id="notesSection" class="py-24 bg-[#f1f5f9]">
+        <!-- Notes Grid Section -->
+        <section id="notesSection" class="py-20 bg-[#f1f5f9]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Premium Library</h2>
-                    <div class="w-24 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+                    <h2 class="text-3xl font-bold text-slate-900">Available Notes</h2>
+                    <p class="text-slate-500 mt-2">Unlock your potential with our top-tier materials.</p>
                 </div>
                 <div id="notesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Notes Injected via JS -->
+                    <!-- Injected by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
-    <!-- ========================================== -->
-    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
-                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+        <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
+        <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
+                    <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- WhatsApp 1st sem group Card -->
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
+                        <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                        <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Telegram Card -->
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
+                            <i class="fab fa-telegram-plane ml-[-2px]"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
+                        <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
+                        <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- WhatsApp Channel Card -->
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
+                        <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp Channel for daily campus updates, important alerts, and quick notices.</p>
+                        <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-
-                <!-- WhatsApp 1st sem group Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-
-
-                <!-- Telegram Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
-                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
-                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-
- <!-- WhatsApp Channel Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp Channel for daily campus updates, important alerts, and quick notices.</p>
-                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
+        </section>
     </div>
 
-    <!-- ================= VIEW: DASHBOARD ================= -->
-    <div id="dashboardView" class="hidden-view flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div class="flex items-center gap-4 mb-8 border-b border-gray-200 pb-4">
-            <button id="backToHomeBtn" class="text-slate-400 hover:text-blue-600 transition text-2xl"><i class="fas fa-arrow-left"></i></button>
-            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Student Dashboard</h2>
-        </div>
+    <!-- ================= VIEW: STUDENT DASHBOARD ================= -->
+    <div id="dashboardView" class="hidden-view flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8">Student Dashboard</h2>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-4">
-                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100 text-center relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-full h-36 bg-gradient-to-r from-blue-600 to-indigo-600 z-0"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Profile Card -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-blue-500 to-indigo-600 z-0"></div>
                     
-                    <div class="relative w-36 h-36 mx-auto mt-14 mb-5 z-10">
-                        <img id="dashProfileImg" src="https://via.placeholder.com/150" class="w-full h-full object-cover rounded-full border-[6px] border-white shadow-xl bg-white transition duration-300 group-hover:scale-105">
-                        <label for="imgUpload" class="absolute inset-0 bg-slate-900/60 rounded-full flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 cursor-pointer transition-all duration-300 border-[6px] border-transparent backdrop-blur-sm">
-                            <i class="fas fa-camera text-2xl mb-1"></i><span class="text-xs font-bold uppercase tracking-wider">Change</span>
+                    <!-- Profile Image with Upload -->
+                    <div class="relative w-32 h-32 mx-auto mt-12 mb-4 z-10 group">
+                        <img id="dashProfileImg" src="https://via.placeholder.com/150" class="w-full h-full object-cover rounded-full border-4 border-white shadow-lg bg-white">
+                        <label for="imgUpload" class="absolute inset-0 bg-black/60 rounded-full flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity duration-300 border-4 border-transparent">
+                            <i class="fas fa-camera text-2xl mb-1"></i>
+                            <span class="text-xs font-semibold">Change</span>
                         </label>
                         <input type="file" id="imgUpload" accept="image/*" class="hidden">
-                        
-                        <div id="imgLoader" class="hidden absolute inset-0 bg-white/90 rounded-full flex items-center justify-center z-20 backdrop-blur-sm border-[6px] border-white">
-                            <i class="fas fa-circle-notch fa-spin text-blue-600 text-4xl"></i>
+                        <div id="imgLoader" class="hidden absolute inset-0 bg-white/80 rounded-full flex items-center justify-center z-20">
+                            <i class="fas fa-spinner fa-spin text-blue-600 text-3xl"></i>
                         </div>
                     </div>
                     
-                    <h3 id="dashDisplayName" class="text-2xl font-black text-slate-900 relative z-10">Loading...</h3>
+                    <h3 id="dashDisplayName" class="text-2xl font-bold text-slate-900 relative z-10">Loading...</h3>
                     <p id="dashDisplayEmail" class="text-slate-500 font-medium text-sm mt-1 mb-6 relative z-10">...</p>
-                    <div class="border-t border-gray-100 pt-6 mt-2 relative z-10 bg-slate-50 rounded-2xl p-4">
-                        <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Status</p>
-                        <span class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold"><i class="fas fa-shield-alt"></i> Verified Student</span>
+                    <div class="border-t border-gray-100 pt-6 mt-2 relative z-10">
+                        <p class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-2">Account Status</p>
+                        <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-check-circle mr-1"></i> Verified Student</span>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-8">
-                <div class="bg-white rounded-[2rem] p-8 sm:p-10 shadow-lg border border-gray-100">
-                    <h3 class="text-2xl font-extrabold text-slate-900 mb-8 flex items-center gap-3"><i class="fas fa-user-edit text-blue-600"></i> Profile Settings</h3>
+            <!-- Right Column: Settings Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-gray-100 pb-4">Academic Details</h3>
                     <form id="dashboardForm" class="space-y-6">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
-                            <input type="text" id="dashName" required class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-user text-gray-400"></i></div>
+                                <input type="text" id="dashName" class="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-gray-50 focus:bg-white text-slate-800">
+                            </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">College Name</label>
-                            <input type="text" id="dashCollege" placeholder="e.g. Government Polytechnic" class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Branch</label>
-                                <select id="dashBranch" class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
-                                    <option value="">Select Branch</option>
-                                    <option value="Computer">Computer Engineering</option>
-                                    <option value="Mechanical">Mechanical Engineering</option>
-                                    <option value="Civil">Civil Engineering</option>
-                                    <option value="Electrical">Electrical Engineering</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Semester</label>
-                                <select id="dashSemester" class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-slate-50 focus:bg-white text-slate-800 font-semibold text-lg">
-                                    <option value="">Select Semester</option>
-                                    <option value="1">1st Semester</option>
-                                    <option value="2">2nd Semester</option>
-                                    <option value="3">3rd Semester</option>
-                                    <option value="4">4th Semester</option>
-                                    <option value="5">5th Semester</option>
-                                    <option value="6">6th Semester</option>
-                                </select>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">College Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-university text-gray-400"></i></div>
+                                <input type="text" id="dashCollege" placeholder="e.g. Government Polytechnic" class="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-gray-50 focus:bg-white text-slate-800">
                             </div>
                         </div>
-                        <div class="pt-6 border-t border-gray-100 mt-8">
-                            <button type="submit" id="dashSaveBtn" class="w-full md:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-xl shadow-blue-500/30 transition-all flex items-center justify-center gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Branch</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-code-branch text-gray-400"></i></div>
+                                    <select id="dashBranch" class="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-gray-50 focus:bg-white text-slate-800 appearance-none">
+                                        <option value="">Select Branch</option>
+                                        <option value="Computer Engineering">Computer Engineering</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                        <option value="Civil Engineering">Civil Engineering</option>
+                                        <option value="Electrical Engineering">Electrical Engineering</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Semester</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-graduation-cap text-gray-400"></i></div>
+                                    <select id="dashSemester" class="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-gray-50 focus:bg-white text-slate-800 appearance-none">
+                                        <option value="">Select Semester</option>
+                                        <option value="1">1st Semester</option>
+                                        <option value="2">2nd Semester</option>
+                                        <option value="3">3rd Semester</option>
+                                        <option value="4">4th Semester</option>
+                                        <option value="5">5th Semester</option>
+                                        <option value="6">6th Semester</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <button type="submit" id="dashSaveBtn" class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-2">
                                 <i class="fas fa-save"></i> Save Changes
                             </button>
                         </div>
@@ -306,65 +290,16 @@
         </div>
     </div>
 
-    <!-- ================= MODALS ================= -->
-    <!-- Auth Modal -->
-    <div id="authModal" class="hidden-view fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-[100] px-4">
-        <div class="bg-white p-8 sm:p-10 rounded-[2rem] shadow-2xl w-full max-w-md relative modal-animate">
-            <button id="closeModal" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition"><i class="fas fa-times"></i></button>
-            <h2 id="modalTitle" class="text-3xl font-black mb-8 text-center text-slate-900 tracking-tight">Welcome Back</h2>
-            
-            <button id="googleSignInBtn" class="flex items-center justify-center w-full border-2 border-slate-200 rounded-xl py-3.5 font-bold text-slate-700 hover:bg-slate-50 transition mb-6">
-                <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-3" alt="Google"> Continue with Google
-            </button>
-            <div class="relative flex py-3 items-center mb-4">
-                <div class="flex-grow border-t border-slate-200"></div><span class="mx-4 text-slate-400 text-xs font-black uppercase tracking-widest">Or Email</span><div class="flex-grow border-t border-slate-200"></div>
-            </div>
-            <form id="authForm" class="space-y-4">
-                <input type="email" id="email" placeholder="Email Address" required class="w-full border border-slate-200 rounded-xl px-5 py-4 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition bg-slate-50 font-semibold">
-                <input type="password" id="password" placeholder="Password" required class="w-full border border-slate-200 rounded-xl px-5 py-4 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition bg-slate-50 font-semibold">
-                <div class="flex justify-end"><button type="button" id="forgotPwdLink" class="text-sm font-bold text-blue-600 hover:text-blue-800">Forgot password?</button></div>
-                <button type="submit" id="authSubmitBtn" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition text-lg mt-2">Continue</button>
-            </form>
-            <p class="mt-6 text-center text-slate-600 font-medium"><span id="toggleAuthText">Don't have an account?</span> <button id="toggleAuthBtn" class="text-blue-600 font-bold hover:underline ml-1">Sign Up</button></p>
-        </div>
-    </div>
-
-    <!-- Password Reset Modal -->
-    <div id="resetModal" class="hidden-view fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-[100] px-4">
-        <div class="bg-white p-8 sm:p-10 rounded-[2rem] shadow-2xl w-full max-w-md relative modal-animate">
-            <button id="closeResetModal" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition"><i class="fas fa-times"></i></button>
-            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mx-auto mb-5"><i class="fas fa-unlock-alt"></i></div>
-            <h2 class="text-2xl font-black mb-2 text-center text-slate-900">Reset Password</h2>
-            <p class="text-sm text-slate-500 mb-6 text-center font-medium">Enter your email and we'll send you a link to reset your password.</p>
-            <form id="resetForm" class="space-y-4">
-                <input type="email" id="resetEmail" placeholder="Email Address" required class="w-full border border-slate-200 rounded-xl px-5 py-4 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition bg-slate-50 font-semibold">
-                <button type="submit" id="resetSubmitBtn" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition">Send Reset Link</button>
-            </form>
-        </div>
-    </div>
-
- 
-
-
-    <!-- ========================================== -->
     <!-- PREMIUM FOOTER -->
-    <!-- ========================================== -->
     <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <!-- Top Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-
-                <!-- Brand Info -->
                 <div class="lg:col-span-1">
                     <a href="index.html" class="flex items-center gap-3 mb-6">
                         <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
                         <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
                     </a>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.
-                    </p>
-                    <!-- Social Links -->
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.</p>
                     <div class="flex items-center gap-4">
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
@@ -372,133 +307,80 @@
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all duration-300"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-
-
-            <!-- Quick Links -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home
-                    </a></li>
-
-                    <li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches
-                    </a></li>
-
-                    <li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes
-                    </a></li>
-
-                    <li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community
-                    </a></li>
-
-                    <li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us
-                    </a></li>
-
-                    <li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us
-                    </a></li>
-
-                </ul>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home</a></li>
+                        <li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches</a></li>
+                        <li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes</a></li>
+                        <li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community</a></li>
+                        <li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us</a></li>
+                        <li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Branches</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.</a></li>
+                        <li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.</a></li>
+                        <li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.</a></li>
+                        <li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.</a></li>
+                        <li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE</a></li>
+                        <li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-blue-500"></i><span class="text-slate-400 text-sm">+91 8578009001</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-blue-500"></i><span class="text-slate-400 text-sm">diplomacampus@gmail.com</span></li>
+                    </ul>
+                </div>
             </div>
-
-
-            <!-- Branches -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Branches</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.
-                    </a></li>
-
-                    <li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.
-                    </a></li>
-
-                    <li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.
-                    </a></li>
-
-                    <li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.
-                    </a></li>
-
-                    <li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE
-                    </a></li>
-
-                    <li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.
-                    </a></li>
-
-                </ul>
+            <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm text-center md:text-left">&copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.</p>
+                <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong></p>
             </div>
-
-
-            <!-- Legal -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy
-                    </a></li>
-
-                    <li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions
-                    </a></li>
-
-                    <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Contact Info -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
-                <ul class="flex flex-col gap-4">
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-phone-alt text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">+91 8578009001</span>
-                    </li>
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">diplomacampus@gmail.com</span>
-                    </li>
-
-                </ul>
-            </div>
-
         </div>
+    </footer>
 
-
-        <!-- Bottom Bar -->
-        <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-
-            <p class="text-slate-500 text-sm text-center md:text-left">
-                &copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.
-            </p>
-
-            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">
-                Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by
-                <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong>
-            </p>
-
+    <!-- MODALS (Auth / Reset) -->
+    <div id="authModal" class="hidden-view fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-[200] px-4">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md relative animate-[fadeIn_0.3s_ease-out]">
+            <button id="closeModal" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800 transition"><i class="fas fa-times"></i></button>
+            <h2 id="modalTitle" class="text-2xl font-extrabold mb-6 text-center text-slate-900">Sign In</h2>
+            <button id="googleSignInBtn" class="flex items-center justify-center w-full border border-gray-300 rounded-xl py-3 font-semibold text-slate-700 hover:bg-gray-50 transition mb-5"><img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-3" alt="Google"> Continue with Google</button>
+            <div class="relative flex py-3 items-center mb-2"><div class="flex-grow border-t border-gray-200"></div><span class="flex-shrink-0 mx-4 text-gray-400 text-sm font-medium">or email</span><div class="flex-grow border-t border-gray-200"></div></div>
+            <form id="authForm" class="space-y-4">
+                <div><input type="email" id="email" placeholder="Email Address" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition bg-gray-50 focus:bg-white"></div>
+                <div><input type="password" id="password" placeholder="Password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition bg-gray-50 focus:bg-white"></div>
+                <div class="flex justify-end"><button type="button" id="forgotPwdLink" class="text-sm font-semibold text-blue-600 hover:underline">Forgot password?</button></div>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition">Continue</button>
+            </form>
+            <p class="mt-6 text-sm text-center text-gray-600 font-medium"><span id="toggleAuthText">Don't have an account?</span> <button id="toggleAuthBtn" class="text-blue-600 font-bold hover:underline ml-1">Sign Up</button></p>
         </div>
-
     </div>
-</footer>
-    <!-- ================= JAVASCRIPT ================= -->
+    <div id="resetModal" class="hidden-view fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-[200] px-4">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md relative">
+            <button id="closeResetModal" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800 transition"><i class="fas fa-times"></i></button>
+            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mx-auto mb-4"><i class="fas fa-key"></i></div>
+            <h2 class="text-2xl font-extrabold mb-2 text-center text-slate-900">Reset Password</h2>
+            <p class="text-sm text-gray-500 mb-6 text-center">Enter your email and we'll send you a link to reset your password.</p>
+            <form id="resetForm" class="space-y-4">
+                <input type="email" id="resetEmail" placeholder="Email Address" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition bg-gray-50 focus:bg-white">
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -514,71 +396,31 @@
             messagingSenderId: "330061663460",
             appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
         };
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getDatabase(app);
         const storage = getStorage(app);
         const googleProvider = new GoogleAuthProvider();
-
         let currentUser = null;
 
-        // --- 1. TOAST NOTIFICATION ---
-        window.showToast = function(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            
-            const colors = { success: 'bg-green-500', error: 'bg-red-500', info: 'bg-blue-500' };
-            const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
-
-            toast.className = `${colors[type]} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 font-bold toast-enter`;
-            toast.innerHTML = `<i class="fas ${icons[type]} text-xl"></i> <span>${message}</span>`;
-            
-            container.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(20px)';
-                toast.style.transition = 'all 0.3s ease';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // --- 2. RENDER NOTES ---
-        const notesData =[
-            { id: "n1", title: "C++ Data Structures", desc: "Complete guide to Arrays, Linked Lists, Trees, and Graphs.", price: 49, img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=80" },
-            { id: "n2", title: "Applied Mathematics-II", desc: "Derivatives, Integrals, and Differential equations simplified.", price: 29, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=500&q=80" },
-            { id: "n3", title: "Computer Networks", desc: "OSI Model, TCP/IP, IP Subnetting, and Routing protocols.", price: 39, img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=500&q=80" }
-        ];
-
-        const notesContainer = document.getElementById('notesContainer');
-        notesData.forEach(note => {
-            const card = document.createElement('div');
-            card.className = "premium-card bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden flex flex-col";
-            card.innerHTML = `
-                <div class="relative h-56 overflow-hidden group">
-                    <img src="${note.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4 bg-white/95 backdrop-blur text-blue-600 text-sm font-black px-4 py-1.5 rounded-full shadow-lg">₹${note.price}</div>
-                    <h4 class="absolute bottom-4 left-5 text-2xl font-extrabold text-white drop-shadow-md">${note.title}</h4>
-                </div>
-                <div class="p-6 flex-1 flex flex-col bg-white z-10 relative">
-                    <p class="text-slate-500 text-sm mb-6 font-medium flex-1">${note.desc}</p>
-                    <button class="buy-btn w-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-3.5 px-4 rounded-xl transition duration-300 flex justify-center items-center gap-2">
-                        <i class="fas fa-shopping-cart"></i> Purchase Note
-                    </button>
-                </div>`;
-            card.querySelector('.buy-btn').addEventListener('click', () => initiateRazorpay(note));
-            notesContainer.appendChild(card);
-        });
-
-        // --- 3. UI VIEW & SIDEBAR TOGGLES ---
-        const homeView = document.getElementById('homeView');
-        const dashboardView = document.getElementById('dashboardView');
+        // DOM elements
+        const hamburger = document.getElementById('hamburger');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
-        const profileMenu = document.getElementById('profileMenu');
+        const homeView = document.getElementById('homeView');
+        const dashboardView = document.getElementById('dashboardView');
 
+        // Helper: close sidebar if open & update hamburger animation
+        function closeSidebarIfOpen() {
+            if (!sidebar.classList.contains('translate-x-full')) {
+                toggleSidebar(); // this toggles, but we want close only; safer to use explicit close
+            }
+        }
+        function updateHamburgerState() {
+            const isSidebarOpen = !sidebar.classList.contains('translate-x-full');
+            if (isSidebarOpen) hamburger.classList.add('active');
+            else hamburger.classList.remove('active');
+        }
         function toggleSidebar() {
             const isClosed = sidebar.classList.contains('translate-x-full');
             if (isClosed) {
@@ -590,278 +432,146 @@
                 overlay.classList.add('hidden');
                 document.body.style.overflow = '';
             }
+            updateHamburgerState();
         }
-        
-        document.getElementById('hamburger').addEventListener('click', toggleSidebar);
-        document.getElementById('closeSidebar').addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-        document.querySelectorAll('.sidebar-link').forEach(link => link.addEventListener('click', toggleSidebar));
+        // ensure initial state
+        updateHamburgerState();
+        // event bindings
+        hamburger.onclick = toggleSidebar;
+        overlay.onclick = toggleSidebar;
+        document.querySelectorAll('.sidebar-link').forEach(link => { link.onclick = toggleSidebar; });
 
         function goHome() {
             homeView.classList.remove('hidden-view');
             dashboardView.classList.add('hidden-view');
-            profileMenu.classList.add('hidden');
-            window.scrollTo(0,0);
+            document.getElementById('profileMenu').classList.add('hidden');
+            if (!sidebar.classList.contains('translate-x-full')) toggleSidebar(); // close sidebar on home click
         }
-        
-        document.getElementById('logoBtn').addEventListener('click', goHome);
-        document.getElementById('navHome').addEventListener('click', goHome);
-        document.querySelectorAll('.mobile-home-btn').forEach(btn => btn.addEventListener('click', goHome));
-        document.getElementById('backToHomeBtn').addEventListener('click', goHome);
+        document.getElementById('logoBtn').onclick = goHome;
+        document.getElementById('navHome').onclick = goHome;
+        document.querySelector('.brand-container').onclick = goHome;
 
-        document.getElementById('navDashboardBtn').addEventListener('click', () => {
+        document.getElementById('navDashboardBtn').onclick = () => {
             homeView.classList.add('hidden-view');
             dashboardView.classList.remove('hidden-view');
-            profileMenu.classList.add('hidden');
-            window.scrollTo(0,0);
+            document.getElementById('profileMenu').classList.add('hidden');
+            if (!sidebar.classList.contains('translate-x-full')) toggleSidebar(); // close sidebar when opening dashboard
             loadDashboardData();
+        };
+
+        // Notes rendering
+        const notesData = [
+            { id: "n1", title: "C++ Data Structures", desc: "Complete guide to Arrays, Linked Lists, Trees, and Graphs.", price: 49, img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=80" },
+            { id: "n2", title: "Applied Mathematics-II", desc: "Derivatives, Integrals, and Differential equations simplified.", price: 29, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=500&q=80" },
+            { id: "n3", title: "Computer Networks", desc: "OSI Model, TCP/IP, IP Subnetting, and Routing protocols.", price: 39, img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=500&q=80" }
+        ];
+        const notesContainer = document.getElementById('notesContainer');
+        notesData.forEach(note => {
+            notesContainer.innerHTML += `
+                <div class="group bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${note.img}" alt="${note.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-blue-600 text-sm font-black px-4 py-1.5 rounded-full shadow-md">₹${note.price}</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">${note.title}</h4>
+                        <p class="text-slate-500 text-sm mb-6 flex-1">${note.desc}</p>
+                        <button onclick="window.buyNote('${note.id}')" class="w-full bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white font-bold py-3 px-4 rounded-xl transition duration-300 flex justify-center items-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                    </div>
+                </div>`;
         });
 
-        document.getElementById('headerProfileImg').addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileMenu.classList.toggle('hidden');
-        });
+        // Profile dropdown
+        const headerProfileImg = document.getElementById('headerProfileImg');
+        const profileMenu = document.getElementById('profileMenu');
+        headerProfileImg.onclick = () => profileMenu.classList.toggle('hidden');
+        window.onclick = (e) => { if (!headerProfileImg.contains(e.target) && !profileMenu.contains(e.target)) profileMenu.classList.add('hidden'); };
 
-        // --- 4. AUTHENTICATION LOGIC ---
+        // Auth modals logic
         let isLoginMode = true;
         const authModal = document.getElementById('authModal');
         const resetModal = document.getElementById('resetModal');
-
-        const openAuthModal = () => {
-            authModal.classList.remove('hidden-view');
-            if(!sidebar.classList.contains('translate-x-full')) toggleSidebar();
-        };
-
-        document.getElementById('authBtn').addEventListener('click', openAuthModal);
-        document.getElementById('mobileLoginBtn').addEventListener('click', openAuthModal);
-        
-        document.getElementById('closeModal').addEventListener('click', () => authModal.classList.add('hidden-view'));
-        document.getElementById('closeResetModal').addEventListener('click', () => resetModal.classList.add('hidden-view'));
-        
-        // Close modal on outside click
-        window.addEventListener('click', (e) => {
-            if (e.target === authModal) authModal.classList.add('hidden-view');
-            if (e.target === resetModal) resetModal.classList.add('hidden-view');
-            if (!document.getElementById('headerProfileImg').contains(e.target) && !profileMenu.contains(e.target)) {
-                profileMenu.classList.add('hidden');
-            }
-        });
-
-        document.getElementById('forgotPwdLink').addEventListener('click', () => {
-            authModal.classList.add('hidden-view');
-            resetModal.classList.remove('hidden-view');
-        });
-
-        document.getElementById('toggleAuthBtn').addEventListener('click', (e) => {
+        const authBtn = document.getElementById('authBtn');
+        authBtn.onclick = () => { authModal.classList.remove('hidden-view'); };
+        document.getElementById('closeModal').onclick = () => authModal.classList.add('hidden-view');
+        document.getElementById('forgotPwdLink').onclick = () => { authModal.classList.add('hidden-view'); resetModal.classList.remove('hidden-view'); };
+        document.getElementById('closeResetModal').onclick = () => resetModal.classList.add('hidden-view');
+        document.getElementById('toggleAuthBtn').onclick = (e) => {
             e.preventDefault();
             isLoginMode = !isLoginMode;
-            document.getElementById('modalTitle').innerText = isLoginMode ? "Welcome Back" : "Create Account";
+            document.getElementById('modalTitle').innerText = isLoginMode ? "Sign In" : "Create Account";
             document.getElementById('toggleAuthText').innerText = isLoginMode ? "Don't have an account?" : "Already have an account?";
             e.target.innerText = isLoginMode ? "Sign Up" : "Sign In";
-        });
+        };
+        document.getElementById('authForm').onsubmit = async (e) => {
+            e.preventDefault(); const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Processing...";
+            try { if (isLoginMode) await signInWithEmailAndPassword(auth, document.getElementById('email').value, document.getElementById('password').value);
+                  else await createUserWithEmailAndPassword(auth, document.getElementById('email').value, document.getElementById('password').value);
+                  authModal.classList.add('hidden-view'); e.target.reset(); } catch (err) { alert(err.message); }
+            btn.innerText = "Continue";
+        };
+        document.getElementById('googleSignInBtn').onclick = async () => { try { await signInWithPopup(auth, googleProvider); authModal.classList.add('hidden-view'); } catch (err) { alert(err.message); } };
+        document.getElementById('resetForm').onsubmit = async (e) => { e.preventDefault(); try { await sendPasswordResetEmail(auth, document.getElementById('resetEmail').value); alert("Reset email sent!"); resetModal.classList.add('hidden-view'); } catch (err) { alert(err.message); } };
+        document.getElementById('navLogoutBtn').onclick = async () => { await signOut(auth); goHome(); };
 
-        document.getElementById('authForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('authSubmitBtn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Processing...`;
-            btn.disabled = true;
-            
-            try {
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                if (isLoginMode) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    showToast('Logged in successfully!', 'success');
-                } else {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                    showToast('Account created successfully!', 'success');
-                }
-                authModal.classList.add('hidden-view');
-                e.target.reset();
-            } catch (err) { 
-                showToast(err.message.replace('Firebase: ', ''), 'error'); 
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        });
-
-        document.getElementById('googleSignInBtn').addEventListener('click', async () => {
-            try { 
-                await signInWithPopup(auth, googleProvider); 
-                authModal.classList.add('hidden-view');
-                showToast('Signed in with Google', 'success');
-            } catch (err) { showToast(err.message, 'error'); }
-        });
-
-        document.getElementById('resetForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('resetSubmitBtn');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Sending...`;
-            try {
-                await sendPasswordResetEmail(auth, document.getElementById('resetEmail').value);
-                showToast("Reset email sent! Please check your inbox.", 'info');
-                resetModal.classList.add('hidden-view');
-                e.target.reset();
-            } catch (err) { 
-                showToast(err.message, 'error'); 
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `Send Reset Link`;
-            }
-        });
-
-        document.getElementById('navLogoutBtn').addEventListener('click', async () => {
-            await signOut(auth);
-            goHome();
-            showToast('Logged out successfully', 'info');
-        });
-
-        // Global Auth State Listener
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
-            const authLoader = document.getElementById('authLoader');
-            const authBtn = document.getElementById('authBtn');
-            const mobileLoginBtn = document.getElementById('mobileLoginBtn');
-            const userProfileSection = document.getElementById('userProfileSection');
-
-            authLoader.classList.add('hidden');
-
             if (user) {
-                authBtn.classList.add('hidden-view');
-                mobileLoginBtn.classList.add('hidden-view');
-                userProfileSection.classList.remove('hidden');
-                
+                authBtn.classList.add('hidden');
+                document.getElementById('userProfileSection').classList.remove('hidden');
                 const name = user.displayName || "Student";
-                const photo = user.photoURL || `https://ui-avatars.com/api/?name=${user.email}&background=2563EB&color=fff&rounded=true&bold=true`;
-                
+                const photo = user.photoURL || `https://ui-avatars.com/api/?name=${user.email}&background=2563EB&color=fff`;
                 document.getElementById('headerName').innerText = name;
-                document.getElementById('navProfilePic').src = photo;
-                
+                headerProfileImg.src = photo;
                 document.getElementById('dashProfileImg').src = photo;
                 document.getElementById('dashDisplayName').innerText = name;
                 document.getElementById('dashDisplayEmail').innerText = user.email;
                 document.getElementById('dashName').value = user.displayName || '';
             } else {
-                authBtn.classList.remove('hidden-view');
-                mobileLoginBtn.classList.remove('hidden-view');
-                userProfileSection.classList.add('hidden');
+                authBtn.classList.remove('hidden');
+                document.getElementById('userProfileSection').classList.add('hidden');
             }
         });
 
-        // --- 5. DASHBOARD DB & STORAGE ---
-        document.getElementById('imgUpload').addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if(!file || !currentUser) return;
-            
-            const loader = document.getElementById('imgLoader');
-            loader.classList.remove('hidden');
-
+        document.getElementById('imgUpload').onchange = async (e) => {
+            const file = e.target.files[0]; if(!file || !currentUser) return;
+            const loader = document.getElementById('imgLoader'); loader.classList.remove('hidden');
             try {
                 const sRef = storageRef(storage, `profiles/${currentUser.uid}`);
                 await uploadBytes(sRef, file);
                 const downloadURL = await getDownloadURL(sRef);
                 await updateProfile(currentUser, { photoURL: downloadURL });
-                
                 document.getElementById('dashProfileImg').src = downloadURL;
-                document.getElementById('navProfilePic').src = downloadURL;
-                showToast('Profile picture updated!', 'success');
-            } catch(error) {
-                showToast("Upload Failed! Check connection or file size.", 'error');
-            } finally {
-                loader.classList.add('hidden');
-            }
-        });
+                document.getElementById('headerProfileImg').src = downloadURL;
+            } catch(error) { alert("Upload failed: " + error.message); } finally { loader.classList.add('hidden'); }
+        };
 
         async function loadDashboardData() {
             if(!currentUser) return;
             try {
                 const snap = await get(child(dbRef(db), `users/${currentUser.uid}`));
-                if (snap.exists()) {
-                    const data = snap.val();
-                    document.getElementById('dashCollege').value = data.college || '';
-                    document.getElementById('dashBranch').value = data.branch || '';
-                    document.getElementById('dashSemester').value = data.semester || '';
-                }
-            } catch (e) { console.error("Error loading data:", e); }
+                if (snap.exists()) { const data = snap.val(); document.getElementById('dashCollege').value = data.college || ''; document.getElementById('dashBranch').value = data.branch || ''; document.getElementById('dashSemester').value = data.semester || ''; }
+            } catch (e) { console.error(e); }
         }
-
-        document.getElementById('dashboardForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('dashSaveBtn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Saving...`;
-            btn.disabled = true;
-            
+        document.getElementById('dashboardForm').onsubmit = async (e) => {
+            e.preventDefault(); const btn = document.getElementById('dashSaveBtn'); const originalText = btn.innerHTML; btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving...`;
+            const newName = document.getElementById('dashName').value;
             try {
-                const newName = document.getElementById('dashName').value;
-                
                 await updateProfile(currentUser, { displayName: newName });
-                document.getElementById('headerName').innerText = newName;
-                document.getElementById('dashDisplayName').innerText = newName;
-
-                await set(dbRef(db, 'users/' + currentUser.uid), {
-                    college: document.getElementById('dashCollege').value,
-                    branch: document.getElementById('dashBranch').value,
-                    semester: document.getElementById('dashSemester').value
-                });
-
-                btn.classList.replace('bg-blue-600', 'bg-green-500');
-                btn.innerHTML = `<i class="fas fa-check"></i> Saved Successfully`;
-                showToast('Profile settings saved!', 'success');
-                
-                setTimeout(() => {
-                    btn.classList.replace('bg-green-500', 'bg-blue-600');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }, 2000);
-
-            } catch (err) { 
-                showToast(err.message, 'error'); 
-                btn.innerHTML = originalText; 
-                btn.disabled = false;
-            }
-        });
-
-        // --- 6. RAZORPAY GATEWAY ---
-        function initiateRazorpay(note) {
-            if (!currentUser) {
-                openAuthModal();
-                showToast('Please login to purchase notes.', 'info');
-                return;
-            }
-
-            if (typeof Razorpay === 'undefined') {
-                showToast('Payment gateway currently unavailable. Try again later.', 'error');
-                return;
-            }
-
-            const options = {
-                "key": "rzp_test_YOUR_KEY_HERE", // Add your actual Test/Live key here
-                "amount": note.price * 100, 
-                "currency": "INR",
-                "name": "Diploma Campus",
-                "description": "Premium Note: " + note.title,
-                "image": "https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png",
-                "handler": function (response){ 
-                    showToast(`Payment Successful! Note added to dashboard.`, 'success');
-                    console.log("Payment ID:", response.razorpay_payment_id);
-                },
-                "prefill": { 
-                    "name": currentUser.displayName || "", 
-                    "email": currentUser.email 
-                },
-                "theme": { "color": "#2563EB" }
-            };
-
-            const rzp = new Razorpay(options);
-            rzp.on('payment.failed', function (resp){ 
-                showToast("Payment Cancelled or Failed.", 'error'); 
-            });
-            rzp.open();
-        }
+                document.getElementById('headerName').innerText = newName; document.getElementById('dashDisplayName').innerText = newName;
+                await set(dbRef(db, 'users/' + currentUser.uid), { college: document.getElementById('dashCollege').value, branch: document.getElementById('dashBranch').value, semester: document.getElementById('dashSemester').value });
+                btn.classList.replace('bg-blue-600', 'bg-green-500'); btn.innerHTML = `<i class="fas fa-check"></i> Saved Successfully`;
+                setTimeout(() => { btn.classList.replace('bg-green-500', 'bg-blue-600'); btn.innerHTML = originalText; }, 2000);
+            } catch (err) { alert(err.message); btn.innerHTML = originalText; }
+        };
+        window.buyNote = function(noteId) {
+            if (!currentUser) { authModal.classList.remove('hidden-view'); return; }
+            const note = notesData.find(n => n.id === noteId);
+            const options = { "key": "rzp_test_YOUR_KEY_HERE", "amount": note.price * 100, "currency": "INR", "name": "Diploma Campus", "description": "Purchase: " + note.title, "handler": function (response){ alert(`Success! Payment ID: ${response.razorpay_payment_id}`); }, "prefill": { "name": currentUser.displayName || "", "email": currentUser.email }, "theme": { "color": "#2563EB" } };
+            const rzp = new Razorpay(options); rzp.on('payment.failed', function (resp){ alert("Failed: " + resp.error.description); }); rzp.open();
+        };
     </script>
 </body>
 </html>

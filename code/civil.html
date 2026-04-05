@@ -578,164 +578,329 @@
 
         // Database of Subjects (topics array now contains objects with name and pdfUrl)
         const subjectsData = {
-         1: [
+  1: [  // Semester 1 – Common for all branches
     {
-        code: "SEM11",
-        title: "Engg. Physics",
-        desc: "Core physics concepts for engineering: elasticity, heat, optics, etc.",
-        icon: "fa-flask",
-        color: "emerald",
-        topics: [
-            { name: "Units & Measurement", pdfUrl: "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1", icon: "fa-ruler" },
-            { name: "Elasticity", pdfUrl: "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1", icon: "fa-hand-peace" },
-            { name: "Heat", pdfUrl: "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1", icon: "fa-temperature-high" },
-            { name: "Gas Laws & Specific Heat of Gases", pdfUrl: "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1", icon: "fa-chart-line" },
-            { name: "Light, Laser & Sound", pdfUrl: "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1", icon: "fa-lightbulb" },
-            { name: "Photoelectricity", pdfUrl: "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1", icon: "fa-sun" },
-            { name: "Sound", pdfUrl: "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1", icon: "fa-music" },
-            { name: "Viscosity", pdfUrl: "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1", icon: "fa-tint" },
-            { name: "Surface Tension", pdfUrl: "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1", icon: "fa-water" }
-        ]
+      code: "SEM11",
+      title: "Engg. Physics",
+      desc: "Core physics concepts for engineering: elasticity, heat, optics, etc.",
+      icon: "fa-flask",
+      color: "emerald",
+      topics: [
+        { name: "Units & Measurement", pdfUrl: "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1", icon: "fa-ruler" },
+        { name: "Elasticity", pdfUrl: "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1", icon: "fa-hand-peace" },
+        { name: "Heat", pdfUrl: "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1", icon: "fa-temperature-high" },
+        { name: "Gas Laws & Specific Heat of Gases", pdfUrl: "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1", icon: "fa-chart-line" },
+        { name: "Light, Laser & Sound", pdfUrl: "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1", icon: "fa-lightbulb" },
+        { name: "Photoelectricity", pdfUrl: "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1", icon: "fa-sun" },
+        { name: "Sound", pdfUrl: "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1", icon: "fa-music" },
+        { name: "Viscosity", pdfUrl: "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1", icon: "fa-tint" },
+        { name: "Surface Tension", pdfUrl: "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1", icon: "fa-water" }
+      ]
     },
     {
-        code: "SEM12",
-        title: "Engg. Chemistry",
-        desc: "Fundamentals of chemistry for engineering applications.",
-        icon: "fa-atom",
-        color: "blue",
-        topics: [
-            { name: "Atomic Structure", pdfUrl: "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1", icon: "fa-atom" },
-            {name: "Atomic Structure MI questions", prfUrl:"https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1", icon: "fa-atom"}, 
-            { name: "Electrochemistry", pdfUrl: "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1", icon: "fa-battery-full" },
-             { name: "Electrochemistry MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0", icon: "fa-battery-full" },
-            { name: "Metals & Alloys - Part 1", pdfUrl: "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l4j76&dl=1", icon: "fa-cogs" },
-            { name: "Metals & Alloys MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1", icon: "fa-cogs" },
-
-            { name: "Metals & Alloys - Part 2", pdfUrl: "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1", icon: "fa-industry" },
-            { name: "Non-Metallic Materials", pdfUrl: "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1", icon: "fa-gem" },
-            { name: "Non-Metallic Materials MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1", icon: "fa-gem" },
-            { name: "Environment Effects", pdfUrl: "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1", icon: "fa-leaf" }, 
-            { name: "Environment Effects MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1", icon: "fa-leaf" }
-        ]
+      code: "SEM12",
+      title: "Engg. Chemistry",
+      desc: "Fundamentals of chemistry for engineering applications.",
+      icon: "fa-atom",
+      color: "blue",
+      topics: [
+        { name: "Atomic Structure", pdfUrl: "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1", icon: "fa-atom" },
+        { name: "Atomic Structure MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1", icon: "fa-atom" },
+        { name: "Electrochemistry", pdfUrl: "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1", icon: "fa-battery-full" },
+        { name: "Electrochemistry MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0", icon: "fa-battery-full" },
+        { name: "Metals & Alloys - Part 1", pdfUrl: "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l4j76&dl=1", icon: "fa-cogs" },
+        { name: "Metals & Alloys MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1", icon: "fa-cogs" },
+        { name: "Metals & Alloys - Part 2", pdfUrl: "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1", icon: "fa-industry" },
+        { name: "Non-Metallic Materials", pdfUrl: "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1", icon: "fa-gem" },
+        { name: "Non-Metallic Materials MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1", icon: "fa-gem" },
+        { name: "Environment Effects", pdfUrl: "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1", icon: "fa-leaf" },
+        { name: "Environment Effects MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1", icon: "fa-leaf" }
+      ]
     },
     {
-        code: "SEM13",
-        title: "Engg. Mathematics",
-        desc: "Algebra, Trigonometry, and Geometry.",
-        icon: "fa-square-root-variable",
-        color: "purple",
-        topics: [
-            { name: "Algebra & Determinants", pdfUrl: "assets/notes/sem1/maths_algebra.pdf", icon: "fa-calculator" },
-            { name: "Trigonometry Basics", pdfUrl: "assets/notes/sem1/maths_trig.pdf", icon: "fa-chart-pie" },
-            { name: "Coordinate Geometry", pdfUrl: "assets/notes/sem1/maths_coord.pdf", icon: "fa-chart-line" },
-            { name: "Mensuration", pdfUrl: "assets/notes/sem1/maths_mensuration.pdf", icon: "fa-draw-polygon" }
-        ]
+      code: "SEM13",
+      title: "Engg. Mathematics",
+      desc: "Algebra, Trigonometry, and Geometry.",
+      icon: "fa-square-root-variable",
+      color: "purple",
+      topics: [
+        { name: "Algebra & Determinants", pdfUrl: "assets/notes/sem1/maths_algebra.pdf", icon: "fa-calculator" },
+        { name: "Trigonometry Basics", pdfUrl: "assets/notes/sem1/maths_trig.pdf", icon: "fa-chart-pie" },
+        { name: "Coordinate Geometry", pdfUrl: "assets/notes/sem1/maths_coord.pdf", icon: "fa-chart-line" },
+        { name: "Mensuration", pdfUrl: "assets/notes/sem1/maths_mensuration.pdf", icon: "fa-draw-polygon" },
+        { name: "Matrices and Determinants - MI Questions", pdfUrl: "https://www.dropbox.com/scl/fi/3k6ul3q4yat9b3rr1ybaj/matrix-and-determination-most-important-questions.pdf?rlkey=sr8nntrwcottumtvy1xerkgbe&st=am79537i&dl=1", icon: "fa-calculator" },
+        { name: "Straight Line - MI Questions", pdfUrl: "https://www.dropbox.com/scl/fi/7xekod90qriarmg6a0qsd/Straight-line.pdf?rlkey=mld11uhzh22kycxjhhkxnmosp&st=w9kekqkj&dl=1", icon: "fa-chart-line" }
+      ]
     }
-], 
-   2: [
-                { code: "SEM21", title: "Applied Mathematics", desc: "Calculus, Integration, and Differentials.", icon: "fa-calculator", color: "blue", topics: [
-                    { name: "Integration", pdfUrl: "assets/notes/sem2/applied_maths_integration.pdf" },
-                    { name: "Differential Equations", pdfUrl: "assets/notes/sem2/applied_maths_diffeq.pdf" },
-                    { name: "Probability", pdfUrl: "assets/notes/sem2/applied_maths_prob.pdf" },
-                    { name: "Complex Numbers", pdfUrl: "assets/notes/sem2/applied_maths_complex.pdf" }
-                ] },
-                { code: "SEM22", title: "Programming in C", desc: "Foundations of C programming language.", icon: "fa-code", color: "orange", topics: [
-                    { name: "Variables & Data Types", pdfUrl: "assets/notes/sem2/c_variables.pdf" },
-                    { name: "Control Structures", pdfUrl: "assets/notes/sem2/c_control.pdf" },
-                    { name: "Arrays & Strings", pdfUrl: "assets/notes/sem2/c_arrays.pdf" },
-                    { name: "Functions & Pointers", pdfUrl: "assets/notes/sem2/c_functions.pdf" }
-                ] },
-                { code: "SEM23", title: "Basic Electronics", desc: "Diodes, Transistors, and logic gates.", icon: "fa-microchip", color: "rose", topics: [
-                    { name: "Semiconductor Diodes", pdfUrl: "assets/notes/sem2/electronics_diodes.pdf" },
-                    { name: "BJT Transistors", pdfUrl: "assets/notes/sem2/electronics_bjt.pdf" },
-                    { name: "Digital Logic Gates", pdfUrl: "assets/notes/sem2/electronics_gates.pdf" },
-                    { name: "Sensors Basics", pdfUrl: "assets/notes/sem2/electronics_sensors.pdf" }
-                ] }
-            ],
-            3: [
-                { code: "SEM31", title: "Data Structures Using C", desc: "Master algorithms and memory management.", icon: "fa-project-diagram", color: "blue", topics: [
-                    { name: "Arrays & Searching", pdfUrl: "assets/notes/sem3/ds_arrays.pdf" },
-                    { name: "Sorting Algorithms", pdfUrl: "assets/notes/sem3/ds_sorting.pdf" },
-                    { name: "Stacks & Queues", pdfUrl: "assets/notes/sem3/ds_stack_queue.pdf" },
-                    { name: "Linked Lists", pdfUrl: "assets/notes/sem3/ds_linkedlist.pdf" },
-                    { name: "Trees & Graphs", pdfUrl: "assets/notes/sem3/ds_trees_graphs.pdf" }
-                ] },
-                { code: "SEM32", title: "Object Oriented Prog. (C++)", desc: "Core concepts of classes and objects.", icon: "fa-cubes", color: "purple", topics: [
-                    { name: "Classes & Objects", pdfUrl: "assets/notes/sem3/oop_classes.pdf" },
-                    { name: "Constructors", pdfUrl: "assets/notes/sem3/oop_constructors.pdf" },
-                    { name: "Inheritance", pdfUrl: "assets/notes/sem3/oop_inheritance.pdf" },
-                    { name: "Polymorphism", pdfUrl: "assets/notes/sem3/oop_polymorphism.pdf" },
-                    { name: "File Handling", pdfUrl: "assets/notes/sem3/oop_filehandling.pdf" }
-                ] },
-                { code: "SEM33", title: "Database Management Sys.", desc: "SQL, Relational models, and queries.", icon: "fa-database", color: "emerald", topics: [
-                    { name: "Database Concepts", pdfUrl: "assets/notes/sem3/dbms_concepts.pdf" },
-                    { name: "ER Diagrams", pdfUrl: "assets/notes/sem3/dbms_er.pdf" },
-                    { name: "Interactive SQL", pdfUrl: "assets/notes/sem3/dbms_sql.pdf" },
-                    { name: "PL/SQL Basics", pdfUrl: "assets/notes/sem3/dbms_plsql.pdf" }
-                ] }
-            ],
-            4: [
-                { code: "SEM41", title: "Java Programming", desc: "Core Java, Applets, and GUI design.", icon: "fab fa-java", color: "orange", topics: [
-                    { name: "Java Syntaxes & OOP", pdfUrl: "assets/notes/sem4/java_syntax.pdf" },
-                    { name: "Inheritance & Interfaces", pdfUrl: "assets/notes/sem4/java_inheritance.pdf" },
-                    { name: "Exception Handling", pdfUrl: "assets/notes/sem4/java_exceptions.pdf" },
-                    { name: "Applets & Graphics", pdfUrl: "assets/notes/sem4/java_applets.pdf" }
-                ] },
-                { code: "SEM42", title: "Software Engineering", desc: "SDLC, Agile, and project management.", icon: "fa-laptop-medical", color: "rose", topics: [
-                    { name: "Development Models", pdfUrl: "assets/notes/sem4/se_models.pdf" },
-                    { name: "Requirement Engg (SRS)", pdfUrl: "assets/notes/sem4/se_srs.pdf" },
-                    { name: "Software Design", pdfUrl: "assets/notes/sem4/se_design.pdf" },
-                    { name: "Testing Strategies", pdfUrl: "assets/notes/sem4/se_testing.pdf" }
-                ] },
-                { code: "SEM43", title: "Civil Networks", desc: "OSI Model, IP addressing, and routing.", icon: "fa-network-wired", color: "cyan", topics: [
-                    { name: "Transmission Media", pdfUrl: "assets/notes/sem4/cn_media.pdf" },
-                    { name: "OSI & TCP/IP Models", pdfUrl: "assets/notes/sem4/cn_models.pdf" },
-                    { name: "Network Layer & IP", pdfUrl: "assets/notes/sem4/cn_ip.pdf" },
-                    { name: "Application Protocols", pdfUrl: "assets/notes/sem4/cn_protocols.pdf" }
-                ] }
-            ],
-            5: [
-                { code: "SEM51", title: "Advanced Java", desc: "J2EE, Servlets, and JSP fundamentals.", icon: "fa-server", color: "blue", topics: [
-                    { name: "AWT & Swing GUI", pdfUrl: "assets/notes/sem5/advjava_awt.pdf" },
-                    { name: "Event Handling", pdfUrl: "assets/notes/sem5/advjava_events.pdf" },
-                    { name: "JDBC Database", pdfUrl: "assets/notes/sem5/advjava_jdbc.pdf" },
-                    { name: "Servlets Basics", pdfUrl: "assets/notes/sem5/advjava_servlets.pdf" },
-                    { name: "JSP Architecture", pdfUrl: "assets/notes/sem5/advjava_jsp.pdf" }
-                ] },
-                { code: "SEM52", title: "Operating Systems", desc: "Processes, scheduling, and memory.", icon: "fa-desktop", color: "purple", topics: [
-                    { name: "OS Structures", pdfUrl: "assets/notes/sem5/os_structures.pdf" },
-                    { name: "Process Management", pdfUrl: "assets/notes/sem5/os_processes.pdf" },
-                    { name: "CPU Scheduling", pdfUrl: "assets/notes/sem5/os_scheduling.pdf" },
-                    { name: "Memory Management", pdfUrl: "assets/notes/sem5/os_memory.pdf" }
-                ] },
-                { code: "SEM53", title: "Software Testing", desc: "Manual and Automation testing concepts.", icon: "fa-bug", color: "rose", topics: [
-                    { name: "Testing Fundamentals", pdfUrl: "assets/notes/sem5/st_fundamentals.pdf" },
-                    { name: "Black & White Box", pdfUrl: "assets/notes/sem5/st_box.pdf" },
-                    { name: "Defect Management", pdfUrl: "assets/notes/sem5/st_defect.pdf" },
-                    { name: "Selenium Basics", pdfUrl: "assets/notes/sem5/st_selenium.pdf" }
-                ] }
-            ],
-            6: [
-                { code: "SEM61", title: "Programming with Python", desc: "Syntax, libraries, and script writing.", icon: "fab fa-python", color: "emerald", topics: [
-                    { name: "Python Basics", pdfUrl: "assets/notes/sem6/python_basics.pdf" },
-                    { name: "Data Structures (Lists, Dicts)", pdfUrl: "assets/notes/sem6/python_ds.pdf" },
-                    { name: "Functions & Modules", pdfUrl: "assets/notes/sem6/python_functions.pdf" },
-                    { name: "File Handling", pdfUrl: "assets/notes/sem6/python_files.pdf" }
-                ] },
-                { code: "SEM62", title: "Mobile App Development", desc: "Android Studio and App creation.", icon: "fab fa-android", color: "cyan", topics: [
-                    { name: "Android Architecture", pdfUrl: "assets/notes/sem6/mobile_arch.pdf" },
-                    { name: "UI Components", pdfUrl: "assets/notes/sem6/mobile_ui.pdf" },
-                    { name: "Intents & Activities", pdfUrl: "assets/notes/sem6/mobile_intents.pdf" },
-                    { name: "SQLite Database", pdfUrl: "assets/notes/sem6/mobile_sqlite.pdf" }
-                ] },
-                { code: "SEM63", title: "Emerging Trends in IT", desc: "AI, IoT, and Cloud Computing basics.", icon: "fa-robot", color: "orange", topics: [
-                    { name: "Artificial Intelligence", pdfUrl: "assets/notes/sem6/emerging_ai.pdf" },
-                    { name: "Internet of Things", pdfUrl: "assets/notes/sem6/emerging_iot.pdf" },
-                    { name: "Cloud Computing", pdfUrl: "assets/notes/sem6/emerging_cloud.pdf" },
-                    { name: "Digital Forensics", pdfUrl: "assets/notes/sem6/emerging_forensics.pdf" }
-                ] }
-            ]
-        };
+  ],
+
+  // ========== SEMESTER 2 – CIVIL ENGINEERING ==========
+  2: [
+    {
+      code: "CIV21",
+      title: "Applied Mechanics",
+      desc: "Forces, equilibrium, friction, and centroid.",
+      icon: "fa-cogs",
+      color: "blue",
+      topics: [
+        { name: "Force Systems & Equilibrium", pdfUrl: "assets/notes/sem2/civil_app_mech_force.pdf", icon: "fa-arrows-alt" },
+        { name: "Friction", pdfUrl: "assets/notes/sem2/civil_app_mech_friction.pdf", icon: "fa-hand-rock" },
+        { name: "Centroid & Centre of Gravity", pdfUrl: "assets/notes/sem2/civil_app_mech_centroid.pdf", icon: "fa-balance-scale" },
+        { name: "Moment of Inertia", pdfUrl: "assets/notes/sem2/civil_app_mech_moi.pdf", icon: "fa-sync-alt" }
+      ]
+    },
+    {
+      code: "CIV22",
+      title: "Building Materials",
+      desc: "Stones, bricks, cement, timber, and modern materials.",
+      icon: "fa-brick",
+      color: "orange",
+      topics: [
+        { name: "Stones & Bricks", pdfUrl: "assets/notes/sem2/civil_bm_stones.pdf", icon: "fa-gem" },
+        { name: "Cement & Concrete", pdfUrl: "assets/notes/sem2/civil_bm_cement.pdf", icon: "fa-cubes" },
+        { name: "Timber & Wood Products", pdfUrl: "assets/notes/sem2/civil_bm_timber.pdf", icon: "fa-tree" },
+        { name: "Modern Materials (Steel, Glass, Composites)", pdfUrl: "assets/notes/sem2/civil_bm_modern.pdf", icon: "fa-industry" }
+      ]
+    },
+    {
+      code: "CIV23",
+      title: "Building Construction",
+      desc: "Construction techniques, foundations, masonry, and scaffolding.",
+      icon: "fa-building",
+      color: "purple",
+      topics: [
+        { name: "Site Preparation & Foundations", pdfUrl: "assets/notes/sem2/civil_const_foundation.pdf", icon: "fa-digging" },
+        { name: "Masonry (Stone & Brick)", pdfUrl: "assets/notes/sem2/civil_const_masonry.pdf", icon: "fa-layer-group" },
+        { name: "Doors, Windows & Ventilation", pdfUrl: "assets/notes/sem2/civil_const_doors.pdf", icon: "fa-door-open" },
+        { name: "Scaffolding & Shoring", pdfUrl: "assets/notes/sem2/civil_const_scaffold.pdf", icon: "fa-chart-line" }
+      ]
+    },
+    {
+      code: "CIV24",
+      title: "Engineering Drawing (Civil)",
+      desc: "Plan, elevation, section, and CAD basics.",
+      icon: "fa-drafting-compass",
+      color: "emerald",
+      topics: [
+        { name: "Drawing Instruments & Scales", pdfUrl: "assets/notes/sem2/civil_draw_instr.pdf", icon: "fa-ruler" },
+        { name: "Orthographic Projections", pdfUrl: "assets/notes/sem2/civil_draw_ortho.pdf", icon: "fa-cube" },
+        { name: "Plan & Elevation of Buildings", pdfUrl: "assets/notes/sem2/civil_draw_plan.pdf", icon: "fa-draw-polygon" },
+        { name: "Introduction to AutoCAD", pdfUrl: "assets/notes/sem2/civil_draw_cad.pdf", icon: "fa-laptop" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 3 – CIVIL ENGINEERING ==========
+  3: [
+    {
+      code: "CIV31",
+      title: "Strength of Materials",
+      desc: "Stress, strain, bending, and torsion.",
+      icon: "fa-chart-line",
+      color: "blue",
+      topics: [
+        { name: "Simple Stress & Strain", pdfUrl: "assets/notes/sem3/civil_som_stress.pdf", icon: "fa-arrows-alt" },
+        { name: "Shear Force & Bending Moment", pdfUrl: "assets/notes/sem3/civil_som_sfbm.pdf", icon: "fa-chart-bar" },
+        { name: "Bending & Shear Stresses", pdfUrl: "assets/notes/sem3/civil_som_bending.pdf", icon: "fa-torii-gate" },
+        { name: "Torsion & Columns", pdfUrl: "assets/notes/sem3/civil_som_torsion.pdf", icon: "fa-building" }
+      ]
+    },
+    {
+      code: "CIV32",
+      title: "Fluid Mechanics",
+      desc: "Properties, flow measurement, and pipe flow.",
+      icon: "fa-water",
+      color: "cyan",
+      topics: [
+        { name: "Fluid Properties & Pressure", pdfUrl: "assets/notes/sem3/civil_fluid_props.pdf", icon: "fa-tint" },
+        { name: "Flow through Pipes", pdfUrl: "assets/notes/sem3/civil_fluid_pipes.pdf", icon: "fa-long-arrow-alt-right" },
+        { name: "Flow Measurement (Venturi, Orifice)", pdfUrl: "assets/notes/sem3/civil_fluid_measure.pdf", icon: "fa-chart-line" },
+        { name: "Open Channel Flow", pdfUrl: "assets/notes/sem3/civil_fluid_open.pdf", icon: "fa-river" }
+      ]
+    },
+    {
+      code: "CIV33",
+      title: "Surveying",
+      desc: "Chain, compass, leveling, and theodolite.",
+      icon: "fa-map",
+      color: "orange",
+      topics: [
+        { name: "Chain & Tape Surveying", pdfUrl: "assets/notes/sem3/civil_surv_chain.pdf", icon: "fa-link" },
+        { name: "Compass Surveying & Bearing", pdfUrl: "assets/notes/sem3/civil_surv_compass.pdf", icon: "fa-compass" },
+        { name: "Levelling & Contouring", pdfUrl: "assets/notes/sem3/civil_surv_level.pdf", icon: "fa-level-up-alt" },
+        { name: "Theodolite & Traversing", pdfUrl: "assets/notes/sem3/civil_surv_theo.pdf", icon: "fa-binoculars" }
+      ]
+    },
+    {
+      code: "CIV34",
+      title: "Concrete Technology",
+      desc: "Ingredients, mix design, workability, and curing.",
+      icon: "fa-cubes",
+      color: "purple",
+      topics: [
+        { name: "Cement & Aggregates", pdfUrl: "assets/notes/sem3/civil_concrete_cement.pdf", icon: "fa-cube" },
+        { name: "Fresh Concrete & Workability", pdfUrl: "assets/notes/sem3/civil_concrete_fresh.pdf", icon: "fa-tachometer-alt" },
+        { name: "Mix Design (IS Method)", pdfUrl: "assets/notes/sem3/civil_concrete_mix.pdf", icon: "fa-chart-pie" },
+        { name: "Hardened Concrete & Curing", pdfUrl: "assets/notes/sem3/civil_concrete_hard.pdf", icon: "fa-calendar-alt" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 4 – CIVIL ENGINEERING ==========
+  4: [
+    {
+      code: "CIV41",
+      title: "Structural Mechanics",
+      desc: "Determinate beams, trusses, and columns.",
+      icon: "fa-bezier-curve",
+      color: "blue",
+      topics: [
+        { name: "Types of Supports & Beams", pdfUrl: "assets/notes/sem4/civil_struct_beams.pdf", icon: "fa-chart-line" },
+        { name: "Analysis of Trusses", pdfUrl: "assets/notes/sem4/civil_struct_truss.pdf", icon: "fa-project-diagram" },
+        { name: "Columns & Struts", pdfUrl: "assets/notes/sem4/civil_struct_columns.pdf", icon: "fa-building" },
+        { name: "Deflection of Beams", pdfUrl: "assets/notes/sem4/civil_struct_deflection.pdf", icon: "fa-waveform" }
+      ]
+    },
+    {
+      code: "CIV42",
+      title: "Soil Mechanics",
+      desc: "Index properties, permeability, shear strength, and compaction.",
+      icon: "fa-mountain",
+      color: "orange",
+      topics: [
+        { name: "Soil Classification", pdfUrl: "assets/notes/sem4/civil_soil_class.pdf", icon: "fa-layer-group" },
+        { name: "Permeability & Seepage", pdfUrl: "assets/notes/sem4/civil_soil_permeability.pdf", icon: "fa-tint" },
+        { name: "Shear Strength of Soil", pdfUrl: "assets/notes/sem4/civil_soil_shear.pdf", icon: "fa-hand-peace" },
+        { name: "Compaction & Consolidation", pdfUrl: "assets/notes/sem4/civil_soil_compaction.pdf", icon: "fa-arrow-down" }
+      ]
+    },
+    {
+      code: "CIV43",
+      title: "Hydraulics",
+      desc: "Flow in pipes, pumps, and turbines.",
+      icon: "fa-water",
+      color: "cyan",
+      topics: [
+        { name: "Flow through Pipes (Losses)", pdfUrl: "assets/notes/sem4/civil_hydra_pipes.pdf", icon: "fa-long-arrow-alt-right" },
+        { name: "Hydraulic Pumps", pdfUrl: "assets/notes/sem4/civil_hydra_pumps.pdf", icon: "fa-water" },
+        { name: "Hydraulic Turbines", pdfUrl: "assets/notes/sem4/civil_hydra_turbines.pdf", icon: "fa-fan" },
+        { name: "Hydraulic Structures (Weirs, Notches)", pdfUrl: "assets/notes/sem4/civil_hydra_weirs.pdf", icon: "fa-dam" }
+      ]
+    },
+    {
+      code: "CIV44",
+      title: "Highway Engineering",
+      desc: "Geometric design, pavement materials, and construction.",
+      icon: "fa-road",
+      color: "emerald",
+      topics: [
+        { name: "Geometric Design of Roads", pdfUrl: "assets/notes/sem4/civil_highway_geo.pdf", icon: "fa-chart-line" },
+        { name: "Pavement Materials (Bitumen, Concrete)", pdfUrl: "assets/notes/sem4/civil_highway_materials.pdf", icon: "fa-cubes" },
+        { name: "Flexible & Rigid Pavements", pdfUrl: "assets/notes/sem4/civil_highway_pavement.pdf", icon: "fa-road" },
+        { name: "Highway Construction & Maintenance", pdfUrl: "assets/notes/sem4/civil_highway_const.pdf", icon: "fa-tools" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 5 – CIVIL ENGINEERING ==========
+  5: [
+    {
+      code: "CIV51",
+      title: "Design of Steel Structures",
+      desc: "Connections, tension members, beams, and columns (IS 800).",
+      icon: "fa-industry",
+      color: "blue",
+      topics: [
+        { name: "Bolted & Welded Connections", pdfUrl: "assets/notes/sem5/civil_steel_conn.pdf", icon: "fa-link" },
+        { name: "Tension Members", pdfUrl: "assets/notes/sem5/civil_steel_tension.pdf", icon: "fa-expand-arrows-alt" },
+        { name: "Compression Members (Columns)", pdfUrl: "assets/notes/sem5/civil_steel_columns.pdf", icon: "fa-arrow-down" },
+        { name: "Beams & Plate Girders", pdfUrl: "assets/notes/sem5/civil_steel_beams.pdf", icon: "fa-chart-line" }
+      ]
+    },
+    {
+      code: "CIV52",
+      title: "Design of RCC Structures",
+      desc: "Limit state design, beams, slabs, columns, and footings.",
+      icon: "fa-cubes",
+      color: "orange",
+      topics: [
+        { name: "Limit State Method", pdfUrl: "assets/notes/sem5/civil_rcc_lsm.pdf", icon: "fa-chart-bar" },
+        { name: "Design of Singly & Doubly Beams", pdfUrl: "assets/notes/sem5/civil_rcc_beams.pdf", icon: "fa-chart-line" },
+        { name: "Design of One-way & Two-way Slabs", pdfUrl: "assets/notes/sem5/civil_rcc_slabs.pdf", icon: "fa-layer-group" },
+        { name: "Columns & Isolated Footings", pdfUrl: "assets/notes/sem5/civil_rcc_footings.pdf", icon: "fa-building" }
+      ]
+    },
+    {
+      code: "CIV53",
+      title: "Environmental Engineering",
+      desc: "Water supply, wastewater, and sanitation.",
+      icon: "fa-leaf",
+      color: "purple",
+      topics: [
+        { name: "Water Demand & Sources", pdfUrl: "assets/notes/sem5/civil_env_water.pdf", icon: "fa-tint" },
+        { name: "Water Treatment Processes", pdfUrl: "assets/notes/sem5/civil_env_wtp.pdf", icon: "fa-filter" },
+        { name: "Wastewater Collection (Sewers)", pdfUrl: "assets/notes/sem5/civil_env_sewer.pdf", icon: "fa-pipe" },
+        { name: "Sewage Treatment", pdfUrl: "assets/notes/sem5/civil_env_stp.pdf", icon: "fa-recycle" }
+      ]
+    },
+    {
+      code: "CIV54",
+      title: "Estimation & Costing",
+      desc: "Quantity takeoff, rate analysis, and tenders.",
+      icon: "fa-calculator",
+      color: "cyan",
+      topics: [
+        { name: "Detailed Estimation", pdfUrl: "assets/notes/sem5/civil_est_detailed.pdf", icon: "fa-file-invoice" },
+        { name: "Rate Analysis", pdfUrl: "assets/notes/sem5/civil_est_rate.pdf", icon: "fa-rupee-sign" },
+        { name: "Specifications & Tenders", pdfUrl: "assets/notes/sem5/civil_est_tender.pdf", icon: "fa-file-signature" },
+        { name: "Valuation of Properties", pdfUrl: "assets/notes/sem5/civil_est_valuation.pdf", icon: "fa-chart-line" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 6 – CIVIL ENGINEERING ==========
+  6: [
+    {
+      code: "CIV61",
+      title: "Foundation Engineering",
+      desc: "Bearing capacity, settlement, shallow & deep foundations.",
+      icon: "fa-hard-hat",
+      color: "blue",
+      topics: [
+        { name: "Bearing Capacity of Soil", pdfUrl: "assets/notes/sem6/civil_found_bc.pdf", icon: "fa-chart-line" },
+        { name: "Shallow Foundations", pdfUrl: "assets/notes/sem6/civil_found_shallow.pdf", icon: "fa-layer-group" },
+        { name: "Deep Foundations (Piles, Well)", pdfUrl: "assets/notes/sem6/civil_found_deep.pdf", icon: "fa-arrow-down" },
+        { name: "Settlement Analysis", pdfUrl: "assets/notes/sem6/civil_found_settlement.pdf", icon: "fa-waveform" }
+      ]
+    },
+    {
+      code: "CIV62",
+      title: "Transportation Engineering",
+      desc: "Railways, bridges, tunnels, and airports.",
+      icon: "fa-subway",
+      color: "orange",
+      topics: [
+        { name: "Railway Engineering", pdfUrl: "assets/notes/sem6/civil_trans_rail.pdf", icon: "fa-train" },
+        { name: "Bridge Engineering", pdfUrl: "assets/notes/sem6/civil_trans_bridge.pdf", icon: "fa-archway" },
+        { name: "Tunnel Construction", pdfUrl: "assets/notes/sem6/civil_trans_tunnel.pdf", icon: "fa-mountain" },
+        { name: "Airport Planning & Design", pdfUrl: "assets/notes/sem6/civil_trans_airport.pdf", icon: "fa-plane-departure" }
+      ]
+    },
+    {
+      code: "CIV63",
+      title: "Project Management & Quality Control",
+      desc: "CPM/PERT, quality assurance, and safety.",
+      icon: "fa-chart-pie",
+      color: "emerald",
+      topics: [
+        { name: "CPM & PERT Networks", pdfUrl: "assets/notes/sem6/civil_pm_cpm.pdf", icon: "fa-project-diagram" },
+        { name: "Bar Charts & Scheduling", pdfUrl: "assets/notes/sem6/civil_pm_schedule.pdf", icon: "fa-calendar-alt" },
+        { name: "Quality Control in Construction", pdfUrl: "assets/notes/sem6/civil_pm_qc.pdf", icon: "fa-clipboard-list" },
+        { name: "Safety Management", pdfUrl: "assets/notes/sem6/civil_pm_safety.pdf", icon: "fa-shield-alt" }
+      ]
+    }
+  ]
+};
 
         // UI Elements
         const tabs = document.querySelectorAll('.sem-tab');

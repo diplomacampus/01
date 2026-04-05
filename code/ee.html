@@ -290,7 +290,7 @@
             <div class="text-center max-w-2xl mx-auto mb-14">
                 <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-4"><i class="fas fa-book-open"></i> <span>Official Curriculum</span></div>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">📖 Semester-wise Syllabus</h2>
-                <p class="text-slate-600 text-lg">Download complete syllabus for all 6 semesters as per JSUT / Polytechnic Board (CSE Branch).</p>
+                <p class="text-slate-600 text-lg">Download complete syllabus for all 6 semesters as per JUT Board (EE Branch).</p>
                 <div class="w-24 h-1 bg-blue-600 mx-auto mt-5 rounded-full"></div>
             </div>
 
@@ -666,164 +666,329 @@
 
         // Database of Subjects (topics array now contains objects with name and pdfUrl)
         const subjectsData = {
-         1: [
+  1: [  // Semester 1 – Common for all branches
     {
-        code: "SEM11",
-        title: "Engg. Physics",
-        desc: "Core physics concepts for engineering: elasticity, heat, optics, etc.",
-        icon: "fa-flask",
-        color: "emerald",
-        topics: [
-            { name: "Units & Measurement", pdfUrl: "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1", icon: "fa-ruler" },
-            { name: "Elasticity", pdfUrl: "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1", icon: "fa-hand-peace" },
-            { name: "Heat", pdfUrl: "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1", icon: "fa-temperature-high" },
-            { name: "Gas Laws & Specific Heat of Gases", pdfUrl: "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1", icon: "fa-chart-line" },
-            { name: "Light, Laser & Sound", pdfUrl: "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1", icon: "fa-lightbulb" },
-            { name: "Photoelectricity", pdfUrl: "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1", icon: "fa-sun" },
-            { name: "Sound", pdfUrl: "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1", icon: "fa-music" },
-            { name: "Viscosity", pdfUrl: "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1", icon: "fa-tint" },
-            { name: "Surface Tension", pdfUrl: "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1", icon: "fa-water" }
-        ]
+      code: "SEM11",
+      title: "Engg. Physics",
+      desc: "Core physics concepts for engineering: elasticity, heat, optics, etc.",
+      icon: "fa-flask",
+      color: "emerald",
+      topics: [
+        { name: "Units & Measurement", pdfUrl: "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1", icon: "fa-ruler" },
+        { name: "Elasticity", pdfUrl: "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1", icon: "fa-hand-peace" },
+        { name: "Heat", pdfUrl: "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1", icon: "fa-temperature-high" },
+        { name: "Gas Laws & Specific Heat of Gases", pdfUrl: "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1", icon: "fa-chart-line" },
+        { name: "Light, Laser & Sound", pdfUrl: "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1", icon: "fa-lightbulb" },
+        { name: "Photoelectricity", pdfUrl: "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1", icon: "fa-sun" },
+        { name: "Sound", pdfUrl: "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1", icon: "fa-music" },
+        { name: "Viscosity", pdfUrl: "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1", icon: "fa-tint" },
+        { name: "Surface Tension", pdfUrl: "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1", icon: "fa-water" }
+      ]
     },
     {
-        code: "SEM12",
-        title: "Engg. Chemistry",
-        desc: "Fundamentals of chemistry for engineering applications.",
-        icon: "fa-atom",
-        color: "blue",
-        topics: [
-            { name: "Atomic Structure", pdfUrl: "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1", icon: "fa-atom" },
-            {name: "Atomic Structure MI questions", prfUrl:"https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1", icon: "fa-atom"}, 
-            { name: "Electrochemistry", pdfUrl: "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1", icon: "fa-battery-full" },
-             { name: "Electrochemistry MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0", icon: "fa-battery-full" },
-            { name: "Metals & Alloys - Part 1", pdfUrl: "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l4j76&dl=1", icon: "fa-cogs" },
-            { name: "Metals & Alloys MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1", icon: "fa-cogs" },
-
-            { name: "Metals & Alloys - Part 2", pdfUrl: "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1", icon: "fa-industry" },
-            { name: "Non-Metallic Materials", pdfUrl: "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1", icon: "fa-gem" },
-            { name: "Non-Metallic Materials MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1", icon: "fa-gem" },
-            { name: "Environment Effects", pdfUrl: "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1", icon: "fa-leaf" }, 
-            { name: "Environment Effects MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1", icon: "fa-leaf" }
-        ]
+      code: "SEM12",
+      title: "Engg. Chemistry",
+      desc: "Fundamentals of chemistry for engineering applications.",
+      icon: "fa-atom",
+      color: "blue",
+      topics: [
+        { name: "Atomic Structure", pdfUrl: "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1", icon: "fa-atom" },
+        { name: "Atomic Structure MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1", icon: "fa-atom" },
+        { name: "Electrochemistry", pdfUrl: "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1", icon: "fa-battery-full" },
+        { name: "Electrochemistry MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0", icon: "fa-battery-full" },
+        { name: "Metals & Alloys - Part 1", pdfUrl: "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l4j76&dl=1", icon: "fa-cogs" },
+        { name: "Metals & Alloys MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1", icon: "fa-cogs" },
+        { name: "Metals & Alloys - Part 2", pdfUrl: "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1", icon: "fa-industry" },
+        { name: "Non-Metallic Materials", pdfUrl: "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1", icon: "fa-gem" },
+        { name: "Non-Metallic Materials MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1", icon: "fa-gem" },
+        { name: "Environment Effects", pdfUrl: "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1", icon: "fa-leaf" },
+        { name: "Environment Effects MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1", icon: "fa-leaf" }
+      ]
     },
     {
-        code: "SEM13",
-        title: "Engg. Mathematics",
-        desc: "Algebra, Trigonometry, and Geometry.",
-        icon: "fa-square-root-variable",
-        color: "purple",
-        topics: [
-            { name: "Algebra & Determinants", pdfUrl: "assets/notes/sem1/maths_algebra.pdf", icon: "fa-calculator" },
-            { name: "Trigonometry Basics", pdfUrl: "assets/notes/sem1/maths_trig.pdf", icon: "fa-chart-pie" },
-            { name: "Coordinate Geometry", pdfUrl: "assets/notes/sem1/maths_coord.pdf", icon: "fa-chart-line" },
-            { name: "Mensuration", pdfUrl: "assets/notes/sem1/maths_mensuration.pdf", icon: "fa-draw-polygon" }
-        ]
+      code: "SEM13",
+      title: "Engg. Mathematics",
+      desc: "Algebra, Trigonometry, and Geometry.",
+      icon: "fa-square-root-variable",
+      color: "purple",
+      topics: [
+        { name: "Algebra & Determinants", pdfUrl: "assets/notes/sem1/maths_algebra.pdf", icon: "fa-calculator" },
+        { name: "Trigonometry Basics", pdfUrl: "assets/notes/sem1/maths_trig.pdf", icon: "fa-chart-pie" },
+        { name: "Coordinate Geometry", pdfUrl: "assets/notes/sem1/maths_coord.pdf", icon: "fa-chart-line" },
+        { name: "Mensuration", pdfUrl: "assets/notes/sem1/maths_mensuration.pdf", icon: "fa-draw-polygon" },
+        { name: "Matrices and Determinants - MI Questions", pdfUrl: "https://www.dropbox.com/scl/fi/3k6ul3q4yat9b3rr1ybaj/matrix-and-determination-most-important-questions.pdf?rlkey=sr8nntrwcottumtvy1xerkgbe&st=am79537i&dl=1", icon: "fa-calculator" },
+        { name: "Straight Line - MI Questions", pdfUrl: "https://www.dropbox.com/scl/fi/7xekod90qriarmg6a0qsd/Straight-line.pdf?rlkey=mld11uhzh22kycxjhhkxnmosp&st=w9kekqkj&dl=1", icon: "fa-chart-line" }
+      ]
     }
-], 
-   2: [
-                { code: "SEM21", title: "Applied Mathematics", desc: "Calculus, Integration, and Differentials.", icon: "fa-calculator", color: "blue", topics: [
-                    { name: "Integration", pdfUrl: "assets/notes/sem2/applied_maths_integration.pdf" },
-                    { name: "Differential Equations", pdfUrl: "assets/notes/sem2/applied_maths_diffeq.pdf" },
-                    { name: "Probability", pdfUrl: "assets/notes/sem2/applied_maths_prob.pdf" },
-                    { name: "Complex Numbers", pdfUrl: "assets/notes/sem2/applied_maths_complex.pdf" }
-                ] },
-                { code: "SEM22", title: "Programming in C", desc: "Foundations of C programming language.", icon: "fa-code", color: "orange", topics: [
-                    { name: "Variables & Data Types", pdfUrl: "assets/notes/sem2/c_variables.pdf" },
-                    { name: "Control Structures", pdfUrl: "assets/notes/sem2/c_control.pdf" },
-                    { name: "Arrays & Strings", pdfUrl: "assets/notes/sem2/c_arrays.pdf" },
-                    { name: "Functions & Pointers", pdfUrl: "assets/notes/sem2/c_functions.pdf" }
-                ] },
-                { code: "SEM23", title: "Basic Electronics", desc: "Diodes, Transistors, and logic gates.", icon: "fa-microchip", color: "rose", topics: [
-                    { name: "Semiconductor Diodes", pdfUrl: "assets/notes/sem2/electronics_diodes.pdf" },
-                    { name: "BJT Transistors", pdfUrl: "assets/notes/sem2/electronics_bjt.pdf" },
-                    { name: "Digital Logic Gates", pdfUrl: "assets/notes/sem2/electronics_gates.pdf" },
-                    { name: "Sensors Basics", pdfUrl: "assets/notes/sem2/electronics_sensors.pdf" }
-                ] }
-            ],
-            3: [
-                { code: "SEM31", title: "Data Structures Using C", desc: "Master algorithms and memory management.", icon: "fa-project-diagram", color: "blue", topics: [
-                    { name: "Arrays & Searching", pdfUrl: "assets/notes/sem3/ds_arrays.pdf" },
-                    { name: "Sorting Algorithms", pdfUrl: "assets/notes/sem3/ds_sorting.pdf" },
-                    { name: "Stacks & Queues", pdfUrl: "assets/notes/sem3/ds_stack_queue.pdf" },
-                    { name: "Linked Lists", pdfUrl: "assets/notes/sem3/ds_linkedlist.pdf" },
-                    { name: "Trees & Graphs", pdfUrl: "assets/notes/sem3/ds_trees_graphs.pdf" }
-                ] },
-                { code: "SEM32", title: "Object Oriented Prog. (C++)", desc: "Core concepts of classes and objects.", icon: "fa-cubes", color: "purple", topics: [
-                    { name: "Classes & Objects", pdfUrl: "assets/notes/sem3/oop_classes.pdf" },
-                    { name: "Constructors", pdfUrl: "assets/notes/sem3/oop_constructors.pdf" },
-                    { name: "Inheritance", pdfUrl: "assets/notes/sem3/oop_inheritance.pdf" },
-                    { name: "Polymorphism", pdfUrl: "assets/notes/sem3/oop_polymorphism.pdf" },
-                    { name: "File Handling", pdfUrl: "assets/notes/sem3/oop_filehandling.pdf" }
-                ] },
-                { code: "SEM33", title: "Database Management Sys.", desc: "SQL, Relational models, and queries.", icon: "fa-database", color: "emerald", topics: [
-                    { name: "Database Concepts", pdfUrl: "assets/notes/sem3/dbms_concepts.pdf" },
-                    { name: "ER Diagrams", pdfUrl: "assets/notes/sem3/dbms_er.pdf" },
-                    { name: "Interactive SQL", pdfUrl: "assets/notes/sem3/dbms_sql.pdf" },
-                    { name: "PL/SQL Basics", pdfUrl: "assets/notes/sem3/dbms_plsql.pdf" }
-                ] }
-            ],
-            4: [
-                { code: "SEM41", title: "Java Programming", desc: "Core Java, Applets, and GUI design.", icon: "fab fa-java", color: "orange", topics: [
-                    { name: "Java Syntaxes & OOP", pdfUrl: "assets/notes/sem4/java_syntax.pdf" },
-                    { name: "Inheritance & Interfaces", pdfUrl: "assets/notes/sem4/java_inheritance.pdf" },
-                    { name: "Exception Handling", pdfUrl: "assets/notes/sem4/java_exceptions.pdf" },
-                    { name: "Applets & Graphics", pdfUrl: "assets/notes/sem4/java_applets.pdf" }
-                ] },
-                { code: "SEM42", title: "Software Engineering", desc: "SDLC, Agile, and project management.", icon: "fa-laptop-medical", color: "rose", topics: [
-                    { name: "Development Models", pdfUrl: "assets/notes/sem4/se_models.pdf" },
-                    { name: "Requirement Engg (SRS)", pdfUrl: "assets/notes/sem4/se_srs.pdf" },
-                    { name: "Software Design", pdfUrl: "assets/notes/sem4/se_design.pdf" },
-                    { name: "Testing Strategies", pdfUrl: "assets/notes/sem4/se_testing.pdf" }
-                ] },
-                { code: "SEM43", title: "Mechanical Networks", desc: "OSI Model, IP addressing, and routing.", icon: "fa-network-wired", color: "cyan", topics: [
-                    { name: "Transmission Media", pdfUrl: "assets/notes/sem4/cn_media.pdf" },
-                    { name: "OSI & TCP/IP Models", pdfUrl: "assets/notes/sem4/cn_models.pdf" },
-                    { name: "Network Layer & IP", pdfUrl: "assets/notes/sem4/cn_ip.pdf" },
-                    { name: "Application Protocols", pdfUrl: "assets/notes/sem4/cn_protocols.pdf" }
-                ] }
-            ],
-            5: [
-                { code: "SEM51", title: "Advanced Java", desc: "J2EE, Servlets, and JSP fundamentals.", icon: "fa-server", color: "blue", topics: [
-                    { name: "AWT & Swing GUI", pdfUrl: "assets/notes/sem5/advjava_awt.pdf" },
-                    { name: "Event Handling", pdfUrl: "assets/notes/sem5/advjava_events.pdf" },
-                    { name: "JDBC Database", pdfUrl: "assets/notes/sem5/advjava_jdbc.pdf" },
-                    { name: "Servlets Basics", pdfUrl: "assets/notes/sem5/advjava_servlets.pdf" },
-                    { name: "JSP Architecture", pdfUrl: "assets/notes/sem5/advjava_jsp.pdf" }
-                ] },
-                { code: "SEM52", title: "Operating Systems", desc: "Processes, scheduling, and memory.", icon: "fa-desktop", color: "purple", topics: [
-                    { name: "OS Structures", pdfUrl: "assets/notes/sem5/os_structures.pdf" },
-                    { name: "Process Management", pdfUrl: "assets/notes/sem5/os_processes.pdf" },
-                    { name: "CPU Scheduling", pdfUrl: "assets/notes/sem5/os_scheduling.pdf" },
-                    { name: "Memory Management", pdfUrl: "assets/notes/sem5/os_memory.pdf" }
-                ] },
-                { code: "SEM53", title: "Software Testing", desc: "Manual and Automation testing concepts.", icon: "fa-bug", color: "rose", topics: [
-                    { name: "Testing Fundamentals", pdfUrl: "assets/notes/sem5/st_fundamentals.pdf" },
-                    { name: "Black & White Box", pdfUrl: "assets/notes/sem5/st_box.pdf" },
-                    { name: "Defect Management", pdfUrl: "assets/notes/sem5/st_defect.pdf" },
-                    { name: "Selenium Basics", pdfUrl: "assets/notes/sem5/st_selenium.pdf" }
-                ] }
-            ],
-            6: [
-                { code: "SEM61", title: "Programming with Python", desc: "Syntax, libraries, and script writing.", icon: "fab fa-python", color: "emerald", topics: [
-                    { name: "Python Basics", pdfUrl: "assets/notes/sem6/python_basics.pdf" },
-                    { name: "Data Structures (Lists, Dicts)", pdfUrl: "assets/notes/sem6/python_ds.pdf" },
-                    { name: "Functions & Modules", pdfUrl: "assets/notes/sem6/python_functions.pdf" },
-                    { name: "File Handling", pdfUrl: "assets/notes/sem6/python_files.pdf" }
-                ] },
-                { code: "SEM62", title: "Mobile App Development", desc: "Android Studio and App creation.", icon: "fab fa-android", color: "cyan", topics: [
-                    { name: "Android Architecture", pdfUrl: "assets/notes/sem6/mobile_arch.pdf" },
-                    { name: "UI Components", pdfUrl: "assets/notes/sem6/mobile_ui.pdf" },
-                    { name: "Intents & Activities", pdfUrl: "assets/notes/sem6/mobile_intents.pdf" },
-                    { name: "SQLite Database", pdfUrl: "assets/notes/sem6/mobile_sqlite.pdf" }
-                ] },
-                { code: "SEM63", title: "Emerging Trends in IT", desc: "AI, IoT, and Cloud Computing basics.", icon: "fa-robot", color: "orange", topics: [
-                    { name: "Artificial Intelligence", pdfUrl: "assets/notes/sem6/emerging_ai.pdf" },
-                    { name: "Internet of Things", pdfUrl: "assets/notes/sem6/emerging_iot.pdf" },
-                    { name: "Cloud Computing", pdfUrl: "assets/notes/sem6/emerging_cloud.pdf" },
-                    { name: "Digital Forensics", pdfUrl: "assets/notes/sem6/emerging_forensics.pdf" }
-                ] }
-            ]
-        };
+  ],
+
+  // ========== SEMESTER 2 – ELECTRICAL ENGINEERING ==========
+  2: [
+    {
+      code: "EE21",
+      title: "Basic Electrical Engineering",
+      desc: "DC circuits, AC fundamentals, and single-phase transformers.",
+      icon: "fa-bolt",
+      color: "blue",
+      topics: [
+        { name: "DC Circuits & Ohm's Law", pdfUrl: "assets/notes/sem2/ee_basic_dc.pdf", icon: "fa-battery-full" },
+        { name: "Kirchhoff's Laws & Network Theorems", pdfUrl: "assets/notes/sem2/ee_basic_theorems.pdf", icon: "fa-chart-line" },
+        { name: "AC Fundamentals (RMS, Phase)", pdfUrl: "assets/notes/sem2/ee_basic_ac.pdf", icon: "fa-waveform" },
+        { name: "Single Phase Transformer", pdfUrl: "assets/notes/sem2/ee_basic_transformer.pdf", icon: "fa-exchange-alt" }
+      ]
+    },
+    {
+      code: "EE22",
+      title: "Electrical Wiring & Estimating",
+      desc: "Wiring systems, components, and estimation.",
+      icon: "fa-plug",
+      color: "orange",
+      topics: [
+        { name: "Types of Wiring (Batton, Conduit, etc.)", pdfUrl: "assets/notes/sem2/ee_wiring_types.pdf", icon: "fa-code-branch" },
+        { name: "Switches, Fuses & MCB", pdfUrl: "assets/notes/sem2/ee_wiring_switches.pdf", icon: "fa-toggle-on" },
+        { name: "Earthing & Safety", pdfUrl: "assets/notes/sem2/ee_wiring_earthing.pdf", icon: "fa-shield-alt" },
+        { name: "Estimation of Materials", pdfUrl: "assets/notes/sem2/ee_wiring_estimation.pdf", icon: "fa-calculator" }
+      ]
+    },
+    {
+      code: "EE23",
+      title: "Engineering Drawing (Electrical)",
+      desc: "Electrical symbols, single line diagrams, and layouts.",
+      icon: "fa-drafting-compass",
+      color: "purple",
+      topics: [
+        { name: "Electrical Symbols", pdfUrl: "assets/notes/sem2/ee_draw_symbols.pdf", icon: "fa-ruler" },
+        { name: "Single Line Diagrams", pdfUrl: "assets/notes/sem2/ee_draw_sld.pdf", icon: "fa-code-branch" },
+        { name: "Wiring & Lighting Layouts", pdfUrl: "assets/notes/sem2/ee_draw_layout.pdf", icon: "fa-draw-polygon" },
+        { name: "Introduction to AutoCAD Electrical", pdfUrl: "assets/notes/sem2/ee_draw_cad.pdf", icon: "fa-laptop" }
+      ]
+    },
+    {
+      code: "EE24",
+      title: "Computer Applications",
+      desc: "MS Office, programming basics, and electrical software.",
+      icon: "fa-laptop-code",
+      color: "emerald",
+      topics: [
+        { name: "MS Excel for Electrical", pdfUrl: "assets/notes/sem2/ee_computer_excel.pdf", icon: "fa-table" },
+        { name: "C Programming Basics", pdfUrl: "assets/notes/sem2/ee_computer_c.pdf", icon: "fa-code" },
+        { name: "Introduction to MATLAB", pdfUrl: "assets/notes/sem2/ee_computer_matlab.pdf", icon: "fa-chart-line" },
+        { name: "Electrical Simulation Tools", pdfUrl: "assets/notes/sem2/ee_computer_sim.pdf", icon: "fa-microchip" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 3 – ELECTRICAL ENGINEERING ==========
+  3: [
+    {
+      code: "EE31",
+      title: "Electrical Machines - I",
+      desc: "DC machines, construction, characteristics, and starters.",
+      icon: "fa-cogs",
+      color: "blue",
+      topics: [
+        { name: "DC Generator (Construction & Working)", pdfUrl: "assets/notes/sem3/ee_machines_dc_gen.pdf", icon: "fa-battery-full" },
+        { name: "DC Motor (Types & Characteristics)", pdfUrl: "assets/notes/sem3/ee_machines_dc_motor.pdf", icon: "fa-motorcycle" },
+        { name: "Speed Control & Starters", pdfUrl: "assets/notes/sem3/ee_machines_dc_control.pdf", icon: "fa-tachometer-alt" },
+        { name: "Losses & Efficiency", pdfUrl: "assets/notes/sem3/ee_machines_dc_losses.pdf", icon: "fa-chart-line" }
+      ]
+    },
+    {
+      code: "EE32",
+      title: "Electrical Measurements",
+      desc: "Instruments, wattmeter, energy meter, and bridges.",
+      icon: "fa-tachometer-alt",
+      color: "orange",
+      topics: [
+        { name: "Analog & Digital Meters", pdfUrl: "assets/notes/sem3/ee_meas_meters.pdf", icon: "fa-chart-bar" },
+        { name: "Wattmeter & Energy Meter", pdfUrl: "assets/notes/sem3/ee_meas_wattmeter.pdf", icon: "fa-charging-station" },
+        { name: "Measurement of Resistance (Wheatstone Bridge)", pdfUrl: "assets/notes/sem3/ee_meas_bridge.pdf", icon: "fa-bezier-curve" },
+        { name: "CRO & Signal Generators", pdfUrl: "assets/notes/sem3/ee_meas_cro.pdf", icon: "fa-waveform" }
+      ]
+    },
+    {
+      code: "EE33",
+      title: "Electrical Circuits",
+      desc: "Mesh, nodal analysis, transients, and resonance.",
+      icon: "fa-project-diagram",
+      color: "cyan",
+      topics: [
+        { name: "Mesh & Nodal Analysis", pdfUrl: "assets/notes/sem3/ee_circuits_mesh.pdf", icon: "fa-chart-line" },
+        { name: "Network Theorems (Thevenin, Norton, Superposition)", pdfUrl: "assets/notes/sem3/ee_circuits_theorems.pdf", icon: "fa-bezier-curve" },
+        { name: "Transient Response (RL, RC, RLC)", pdfUrl: "assets/notes/sem3/ee_circuits_transient.pdf", icon: "fa-waveform" },
+        { name: "Resonance in Series & Parallel", pdfUrl: "assets/notes/sem3/ee_circuits_resonance.pdf", icon: "fa-chart-line" }
+      ]
+    },
+    {
+      code: "EE34",
+      title: "Electrical Workshop",
+      desc: "Soldering, winding, and wiring practice.",
+      icon: "fa-tools",
+      color: "purple",
+      topics: [
+        { name: "Soldering & Desoldering", pdfUrl: "assets/notes/sem3/ee_workshop_solder.pdf", icon: "fa-fire" },
+        { name: "Transformer Winding", pdfUrl: "assets/notes/sem3/ee_workshop_winding.pdf", icon: "fa-cog" },
+        { name: "House Wiring Practice", pdfUrl: "assets/notes/sem3/ee_workshop_wiring.pdf", icon: "fa-plug" },
+        { name: "Testing of Electrical Components", pdfUrl: "assets/notes/sem3/ee_workshop_testing.pdf", icon: "fa-check-circle" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 4 – ELECTRICAL ENGINEERING ==========
+  4: [
+    {
+      code: "EE41",
+      title: "Electrical Machines - II",
+      desc: "Three-phase induction motors, alternators, and synchronous motors.",
+      icon: "fa-cogs",
+      color: "blue",
+      topics: [
+        { name: "Three-phase Induction Motor (Construction & Working)", pdfUrl: "assets/notes/sem4/ee_machines_im.pdf", icon: "fa-motorcycle" },
+        { name: "Starting & Speed Control of IM", pdfUrl: "assets/notes/sem4/ee_machines_im_control.pdf", icon: "fa-tachometer-alt" },
+        { name: "Alternator (Synchronous Generator)", pdfUrl: "assets/notes/sem4/ee_machines_alternator.pdf", icon: "fa-battery-full" },
+        { name: "Synchronous Motor", pdfUrl: "assets/notes/sem4/ee_machines_sync.pdf", icon: "fa-sync-alt" }
+      ]
+    },
+    {
+      code: "EE42",
+      title: "Power Electronics",
+      desc: "SCR, triac, rectifiers, choppers, and inverters.",
+      icon: "fa-microchip",
+      color: "orange",
+      topics: [
+        { name: "Power Diodes & SCR", pdfUrl: "assets/notes/sem4/ee_power_scr.pdf", icon: "fa-diode" },
+        { name: "Triac & Diac", pdfUrl: "assets/notes/sem4/ee_power_triac.pdf", icon: "fa-cogs" },
+        { name: "Controlled Rectifiers", pdfUrl: "assets/notes/sem4/ee_power_rectifier.pdf", icon: "fa-waveform" },
+        { name: "Choppers & Inverters", pdfUrl: "assets/notes/sem4/ee_power_inverter.pdf", icon: "fa-sync-alt" }
+      ]
+    },
+    {
+      code: "EE43",
+      title: "Transmission & Distribution",
+      desc: "Overhead lines, cables, substations, and insulators.",
+      icon: "fa-broadcast-tower",
+      color: "cyan",
+      topics: [
+        { name: "Transmission Line Parameters", pdfUrl: "assets/notes/sem4/ee_td_line.pdf", icon: "fa-chart-line" },
+        { name: "Overhead Insulators & Cables", pdfUrl: "assets/notes/sem4/ee_td_insulator.pdf", icon: "fa-plug" },
+        { name: "Distribution Systems", pdfUrl: "assets/notes/sem4/ee_td_distribution.pdf", icon: "fa-code-branch" },
+        { name: "Substation Layout", pdfUrl: "assets/notes/sem4/ee_td_substation.pdf", icon: "fa-building" }
+      ]
+    },
+    {
+      code: "EE44",
+      title: "Electrical Estimation & Costing",
+      desc: "Estimation of materials, costing, and tenders.",
+      icon: "fa-calculator",
+      color: "emerald",
+      topics: [
+        { name: "Estimation of Wiring", pdfUrl: "assets/notes/sem4/ee_est_wiring.pdf", icon: "fa-chart-line" },
+        { name: "Estimation of Panel Boards", pdfUrl: "assets/notes/sem4/ee_est_panel.pdf", icon: "fa-layer-group" },
+        { name: "Rate Analysis", pdfUrl: "assets/notes/sem4/ee_est_rate.pdf", icon: "fa-rupee-sign" },
+        { name: "Tender & Contract Documents", pdfUrl: "assets/notes/sem4/ee_est_tender.pdf", icon: "fa-file-signature" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 5 – ELECTRICAL ENGINEERING ==========
+  5: [
+    {
+      code: "EE51",
+      title: "Switchgear & Protection",
+      desc: "Fuses, circuit breakers, relays, and protection schemes.",
+      icon: "fa-shield-alt",
+      color: "blue",
+      topics: [
+        { name: "Fuses & Isolators", pdfUrl: "assets/notes/sem5/ee_protection_fuse.pdf", icon: "fa-shield-virus" },
+        { name: "Circuit Breakers (SF6, Vacuum, Air)", pdfUrl: "assets/notes/sem5/ee_protection_cb.pdf", icon: "fa-toggle-off" },
+        { name: "Protective Relays", pdfUrl: "assets/notes/sem5/ee_protection_relay.pdf", icon: "fa-microchip" },
+        { name: "Earth Fault & Overcurrent Protection", pdfUrl: "assets/notes/sem5/ee_protection_earth.pdf", icon: "fa-chart-line" }
+      ]
+    },
+    {
+      code: "EE52",
+      title: "Utilization of Electrical Energy",
+      desc: "Illumination, heating, traction, and refrigeration.",
+      icon: "fa-lightbulb",
+      color: "orange",
+      topics: [
+        { name: "Electric Illumination (Lamps, Lux)", pdfUrl: "assets/notes/sem5/ee_util_light.pdf", icon: "fa-lightbulb" },
+        { name: "Electric Heating & Welding", pdfUrl: "assets/notes/sem5/ee_util_heating.pdf", icon: "fa-fire" },
+        { name: "Electric Traction", pdfUrl: "assets/notes/sem5/ee_util_traction.pdf", icon: "fa-train" },
+        { name: "Refrigeration & Air Conditioning", pdfUrl: "assets/notes/sem5/ee_util_hvac.pdf", icon: "fa-snowflake" }
+      ]
+    },
+    {
+      code: "EE53",
+      title: "Microcontrollers & Programming",
+      desc: "8051/AVR architecture, embedded C, and interfacing.",
+      icon: "fa-microchip",
+      color: "purple",
+      topics: [
+        { name: "8051 Architecture", pdfUrl: "assets/notes/sem5/ee_mcu_8051.pdf", icon: "fa-cpu" },
+        { name: "Embedded C Programming", pdfUrl: "assets/notes/sem5/ee_mcu_c.pdf", icon: "fa-code" },
+        { name: "Interfacing (LED, LCD, Relay)", pdfUrl: "assets/notes/sem5/ee_mcu_interfacing.pdf", icon: "fa-plug" },
+        { name: "Applications in Electrical", pdfUrl: "assets/notes/sem5/ee_mcu_apps.pdf", icon: "fa-cogs" }
+      ]
+    },
+    {
+      code: "EE54",
+      title: "Energy Conservation & Audit",
+      desc: "Energy efficiency, load management, and auditing.",
+      icon: "fa-leaf",
+      color: "cyan",
+      topics: [
+        { name: "Energy Conservation Techniques", pdfUrl: "assets/notes/sem5/ee_energy_conserve.pdf", icon: "fa-leaf" },
+        { name: "Load Management", pdfUrl: "assets/notes/sem5/ee_energy_load.pdf", icon: "fa-chart-line" },
+        { name: "Energy Audit Procedure", pdfUrl: "assets/notes/sem5/ee_energy_audit.pdf", icon: "fa-clipboard-list" },
+        { name: "BEE Standards & Star Ratings", pdfUrl: "assets/notes/sem5/ee_energy_bee.pdf", icon: "fa-star" }
+      ]
+    }
+  ],
+
+  // ========== SEMESTER 6 – ELECTRICAL ENGINEERING ==========
+  6: [
+    {
+      code: "EE61",
+      title: "Electric Drives",
+      desc: "DC and AC drives, speed control, and applications.",
+      icon: "fa-tachometer-alt",
+      color: "blue",
+      topics: [
+        { name: "DC Drives (Chopper, Converter)", pdfUrl: "assets/notes/sem6/ee_drives_dc.pdf", icon: "fa-battery-full" },
+        { name: "AC Drives (VFD)", pdfUrl: "assets/notes/sem6/ee_drives_ac.pdf", icon: "fa-sync-alt" },
+        { name: "Speed Control Methods", pdfUrl: "assets/notes/sem6/ee_drives_speed.pdf", icon: "fa-tachometer-alt" },
+        { name: "Applications (Conveyor, Pump)", pdfUrl: "assets/notes/sem6/ee_drives_apps.pdf", icon: "fa-cogs" }
+      ]
+    },
+    {
+      code: "EE62",
+      title: "Renewable Energy Systems",
+      desc: "Solar, wind, biomass, and hybrid systems.",
+      icon: "fa-solar-panel",
+      color: "orange",
+      topics: [
+        { name: "Solar PV Systems", pdfUrl: "assets/notes/sem6/ee_renewable_solar.pdf", icon: "fa-sun" },
+        { name: "Wind Energy Conversion", pdfUrl: "assets/notes/sem6/ee_renewable_wind.pdf", icon: "fa-wind" },
+        { name: "Biomass & Biogas", pdfUrl: "assets/notes/sem6/ee_renewable_biomass.pdf", icon: "fa-leaf" },
+        { name: "Grid Integration & Hybrid", pdfUrl: "assets/notes/sem6/ee_renewable_grid.pdf", icon: "fa-charging-station" }
+      ]
+    },
+    {
+      code: "EE63",
+      title: "Industrial Automation & PLC",
+      desc: "PLC programming, SCADA, and industrial control.",
+      icon: "fa-industry",
+      color: "emerald",
+      topics: [
+        { name: "PLC Architecture & Ladder Logic", pdfUrl: "assets/notes/sem6/ee_plc_ladder.pdf", icon: "fa-code-branch" },
+        { name: "PLC Programming (Timers, Counters)", pdfUrl: "assets/notes/sem6/ee_plc_prog.pdf", icon: "fa-code" },
+        { name: "SCADA Systems", pdfUrl: "assets/notes/sem6/ee_plc_scada.pdf", icon: "fa-desktop" },
+        { name: "Industrial Sensors & Actuators", pdfUrl: "assets/notes/sem6/ee_plc_sensors.pdf", icon: "fa-microchip" }
+      ]
+    }
+  ]
+};
 
         // UI Elements
         const tabs = document.querySelectorAll('.sem-tab');

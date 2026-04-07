@@ -577,63 +577,200 @@
         }
 
         // Database of Subjects (topics array now contains objects with name and pdfUrl)
-        const subjectsData = {
-  1: [  // Semester 1 – Common for all branches
+                const subjectsData = {
+    1: [
     {
-      code: "SEM11",
-      title: "Engg. Physics",
-      desc: "Core physics concepts for engineering: elasticity, heat, optics, etc.",
-      icon: "fa-flask",
-      color: "emerald",
-      topics: [
-        { name: "Units & Measurement", pdfUrl: "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1", icon: "fa-ruler" },
-        { name: "Elasticity", pdfUrl: "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1", icon: "fa-hand-peace" },
-        { name: "Heat", pdfUrl: "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1", icon: "fa-temperature-high" },
-        { name: "Gas Laws & Specific Heat of Gases", pdfUrl: "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1", icon: "fa-chart-line" },
-        { name: "Light, Laser & Sound", pdfUrl: "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1", icon: "fa-lightbulb" },
-        { name: "Photoelectricity", pdfUrl: "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1", icon: "fa-sun" },
-        { name: "Sound", pdfUrl: "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1", icon: "fa-music" },
-        { name: "Viscosity", pdfUrl: "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1", icon: "fa-tint" },
-        { name: "Surface Tension", pdfUrl: "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1", icon: "fa-water" }
-      ]
+        "code": "SEM11",
+        "title": "Engg. Physics",
+        "desc": "Core physics concepts for engineering: elasticity, heat, optics, etc.",
+        "icon": "fa-flask",
+        "color": "emerald",
+        "topics": [
+            {
+                "name": "Units & Measurement",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1",
+                "icon": "fa-ruler"
+            },
+            {
+                "name": "Elasticity",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1",
+                "icon": "fa-hand-peace"
+            },
+            {
+                "name": "Heat",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1",
+                "icon": "fa-temperature-high"
+            },
+            {
+                "name": "Gas Laws & Specific Heat of Gases",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1",
+                "icon": "fa-chart-line"
+            },
+            {
+                "name": "Light, Laser & Sound",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1",
+                "icon": "fa-lightbulb"
+            },
+            {
+                "name": "Photoelectricity",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1",
+                "icon": "fa-sun"
+            },
+            {
+                "name": "Sound",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1",
+                "icon": "fa-music"
+            },
+            {
+                "name": "Viscosity",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1",
+                "icon": "fa-tint"
+            },
+            {
+                "name": "Surface Tension",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1",
+                "icon": "fa-water"
+            },
+            {
+                "name": "Gravitation",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/gczso5761dz4r7p57ppil/Gravitation-diplomacampus.pdf?rlkey=vgt50huom9x8i7uyzvhdqq8ij&st=dulcqqrd&dl=1",
+                "icon": "fa-globe"
+            },
+            {
+                "name": "Laser",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/6132cld30wjfaj8q40evo/Laser-Handwritten-Notes-diplomacampus.pdf?rlkey=u41fxpengq9oeq4z39h8zx6jl&st=zjh4uvd5&dl=1",
+                "icon": "fa-lightbulb"
+            }
+        ]
     },
     {
-      code: "SEM12",
-      title: "Engg. Chemistry",
-      desc: "Fundamentals of chemistry for engineering applications.",
-      icon: "fa-atom",
-      color: "blue",
-      topics: [
-        { name: "Atomic Structure", pdfUrl: "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1", icon: "fa-atom" },
-        { name: "Atomic Structure MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1", icon: "fa-atom" },
-        { name: "Electrochemistry", pdfUrl: "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1", icon: "fa-battery-full" },
-        { name: "Electrochemistry MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0", icon: "fa-battery-full" },
-        { name: "Metals & Alloys - Part 1", pdfUrl: "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l4j76&dl=1", icon: "fa-cogs" },
-        { name: "Metals & Alloys MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1", icon: "fa-cogs" },
-        { name: "Metals & Alloys - Part 2", pdfUrl: "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1", icon: "fa-industry" },
-        { name: "Non-Metallic Materials", pdfUrl: "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1", icon: "fa-gem" },
-        { name: "Non-Metallic Materials MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1", icon: "fa-gem" },
-        { name: "Environment Effects", pdfUrl: "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1", icon: "fa-leaf" },
-        { name: "Environment Effects MI questions", pdfUrl: "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1", icon: "fa-leaf" }
-      ]
+        "code": "SEM12",
+        "title": "Engg. Chemistry",
+        "desc": "Fundamentals of chemistry for engineering applications.",
+        "icon": "fa-atom",
+        "color": "blue",
+        "topics": [
+            {
+                "name": "Atomic Structure",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1",
+                "icon": "fa-atom"
+            },
+            {
+                "name": "Atomic Structure MI questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1",
+                "icon": "fa-atom"
+            },
+            {
+                "name": "Electrochemistry",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1",
+                "icon": "fa-battery-full"
+            },
+            {
+                "name": "Electrochemistry MI questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0",
+                "icon": "fa-battery-full"
+            },
+            {
+                "name": "Metals & Alloys - Part 1",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l7j76&dl=1",
+                "icon": "fa-cogs"
+            },
+            {
+                "name": "Metals & Alloys MI questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1",
+                "icon": "fa-cogs"
+            },
+            {
+                "name": "Metals & Alloys - Part 2",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1",
+                "icon": "fa-industry"
+            },
+            {
+                "name": "Non-Metallic Materials",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1",
+                "icon": "fa-gem"
+            },
+            {
+                "name": "Non-Metallic Materials MI questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1",
+                "icon": "fa-gem"
+            },
+            {
+                "name": "Environment Effects",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1",
+                "icon": "fa-leaf"
+            },
+            {
+                "name": "Environment Effects MI questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1",
+                "icon": "fa-leaf"
+            },
+            {
+                "name": "Rubber and Vulcanisation",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/wqs93l5dhabx36kxwa208/Rubber-and-Vulcanisation-of-Rubber-diplomacampus.pdf?rlkey=as0f2nin6z6ibx0mfz1mcot9t&st=ivwou5gw&dl=1",
+                "icon": "fa-cogs"
+            }
+        ]
     },
     {
-      code: "SEM13",
-      title: "Engg. Mathematics",
-      desc: "Algebra, Trigonometry, and Geometry.",
-      icon: "fa-square-root-variable",
-      color: "purple",
-      topics: [
-        { name: "Algebra & Determinants", pdfUrl: "assets/notes/sem1/maths_algebra.pdf", icon: "fa-calculator" },
-        { name: "Trigonometry Basics", pdfUrl: "assets/notes/sem1/maths_trig.pdf", icon: "fa-chart-pie" },
-        { name: "Coordinate Geometry", pdfUrl: "assets/notes/sem1/maths_coord.pdf", icon: "fa-chart-line" },
-        { name: "Mensuration", pdfUrl: "assets/notes/sem1/maths_mensuration.pdf", icon: "fa-draw-polygon" },
-        { name: "Matrices and Determinants - MI Questions", pdfUrl: "https://www.dropbox.com/scl/fi/3k6ul3q4yat9b3rr1ybaj/matrix-and-determination-most-important-questions.pdf?rlkey=sr8nntrwcottumtvy1xerkgbe&st=am79537i&dl=1", icon: "fa-calculator" },
-        { name: "Straight Line - MI Questions", pdfUrl: "https://www.dropbox.com/scl/fi/7xekod90qriarmg6a0qsd/Straight-line.pdf?rlkey=mld11uhzh22kycxjhhkxnmosp&st=w9kekqkj&dl=1", icon: "fa-chart-line" }
-      ]
+        "code": "SEM13",
+        "title": "Engg. Mathematics",
+        "desc": "Algebra, Trigonometry, and Geometry.",
+        "icon": "fa-square-root-variable",
+        "color": "purple",
+        "topics": [
+            {
+                "name": "Matrices & Determinants",
+                "pdfUrl": "assets/notes/sem1/maths_algebra.pdf",
+                "icon": "fa-calculator"
+            },
+            {
+                "name": "Matrices and Determinants - MI Questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/3k6ul3q4yat9b3rr1ybaj/matrix-and-determination-most-important-questions.pdf?rlkey=sr8nntrwcottumtvy1xerkgbe&st=am79537i&dl=1",
+                "icon": "fa-calculator"
+            },
+            {
+                "name": "Trigonometry Basics",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/hhj27m3l5d5gs7u1h5qe3/Trigonometry-Handwritten-Notes-by-Diploma-Campus.pdf?rlkey=z48zyvkcl3p3yd9w402hhdbmb&st=oruyrwkc&dl=1",
+                "icon": "fa-chart-pie"
+            },
+            {
+                "name": "Straight Line",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/8uhpmphpuf8mwbics9e6r/Complete-Straight-Line-By-Diploma-Campus.pdf?rlkey=7ktb4nhg2vgd3oymzr208p3t2&st=yp3hku1f&dl=1",
+                "icon": "fa-chart-line"
+            },
+            {
+                "name": "Straight Line - MI Questions",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/7xekod90qriarmg6a0qsd/Straight-line.pdf?rlkey=mld11uhzh22kycxjhhkxnmosp&st=w9kekqkj&dl=1",
+                "icon": "fa-chart-line"
+            }
+        ]
+    },
+    {
+        "code": "SEM14",
+        "title": "Communication Skills",
+        "desc": "Develop effective communication skills for professional and academic success.",
+        "icon": "fa-comments",
+        "color": "teal",
+        "topics": [
+            {
+                "name": "Unit 1",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/uw7bvhzq45uaobotmba6a/COMMUINICATION-01-diplomacampus.pdf?rlkey=shd0sygylm4l6bnzusu7lm2i4&st=i15b1kcx&dl=1",
+                "icon": "fa-comment-dots"
+            },
+            {
+                "name": "Unit 2",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/6egrsez9dojzkdmhpizzf/COMMUINICATION-02-diplomacampus.pdf?rlkey=qmbzg2cbrlgdam0da4polh8f3&st=d001anwt&dl=1",
+                "icon": "fa-comment-dots"
+            },
+            {
+                "name": "Unit 3",
+                "pdfUrl": "https://www.dropbox.com/scl/fi/adkpynvl3tsq1ykku19xy/COMMUINICATION-03-diplomacampus.pdf?rlkey=wr80rvuqkvd9wujlrbnxorqfy&st=20bby5tn&dl=1",
+                "icon": "fa-comment-dots"
+            }
+        ]
     }
-  ],
-
+], 
   // ========== SEMESTER 2 – ELECTRICAL & ELECTRONICS ENGINEERING ==========
   2: [
     {
@@ -901,20 +1038,20 @@
     }
   ]
 };
-        // UI Elements
+                // UI Elements
         const tabs = document.querySelectorAll('.sem-tab');
         const container = document.getElementById('subjects-container');
 
         // Color maps
         const themeColors = {
-            blue: { border: 'border-blue-500', iconBg: 'bg-blue-50', iconText: 'text-blue-600', hoverBg: 'group-hover:bg-blue-600', shadow: 'hover:shadow-blue-500/10', btnBg: 'bg-blue-600', btnHover: 'hover:bg-blue-700', btnShadow: 'shadow-blue-600/20' },
-            purple: { border: 'border-purple-500', iconBg: 'bg-purple-50', iconText: 'text-purple-600', hoverBg: 'group-hover:bg-purple-600', shadow: 'hover:shadow-purple-500/10', btnBg: 'bg-purple-600', btnHover: 'hover:bg-purple-700', btnShadow: 'shadow-purple-600/20' },
-            emerald: { border: 'border-emerald-500', iconBg: 'bg-emerald-50', iconText: 'text-emerald-600', hoverBg: 'group-hover:bg-emerald-600', shadow: 'hover:shadow-emerald-500/10', btnBg: 'bg-emerald-600', btnHover: 'hover:bg-emerald-700', btnShadow: 'shadow-emerald-600/20' },
-            orange: { border: 'border-orange-500', iconBg: 'bg-orange-50', iconText: 'text-orange-600', hoverBg: 'group-hover:bg-orange-600', shadow: 'hover:shadow-orange-500/10', btnBg: 'bg-orange-500', btnHover: 'hover:bg-orange-600', btnShadow: 'shadow-orange-500/20' },
-            rose: { border: 'border-rose-500', iconBg: 'bg-rose-50', iconText: 'text-rose-600', hoverBg: 'group-hover:bg-rose-600', shadow: 'hover:shadow-rose-500/10', btnBg: 'bg-rose-600', btnHover: 'hover:bg-rose-700', btnShadow: 'shadow-rose-600/20' },
-            cyan: { border: 'border-cyan-500', iconBg: 'bg-cyan-50', iconText: 'text-cyan-600', hoverBg: 'group-hover:bg-cyan-600', shadow: 'hover:shadow-cyan-500/10', btnBg: 'bg-cyan-600', btnHover: 'hover:bg-cyan-700', btnShadow: 'shadow-cyan-600/20' }
-        };
-
+    blue: { border: 'border-blue-500', iconBg: 'bg-blue-50', iconText: 'text-blue-600', hoverBg: 'group-hover:bg-blue-600', shadow: 'hover:shadow-blue-500/10', btnBg: 'bg-blue-600', btnHover: 'hover:bg-blue-700', btnShadow: 'shadow-blue-600/20' },
+    purple: { border: 'border-purple-500', iconBg: 'bg-purple-50', iconText: 'text-purple-600', hoverBg: 'group-hover:bg-purple-600', shadow: 'hover:shadow-purple-500/10', btnBg: 'bg-purple-600', btnHover: 'hover:bg-purple-700', btnShadow: 'shadow-purple-600/20' },
+    emerald: { border: 'border-emerald-500', iconBg: 'bg-emerald-50', iconText: 'text-emerald-600', hoverBg: 'group-hover:bg-emerald-600', shadow: 'hover:shadow-emerald-500/10', btnBg: 'bg-emerald-600', btnHover: 'hover:bg-emerald-700', btnShadow: 'shadow-emerald-600/20' },
+    orange: { border: 'border-orange-500', iconBg: 'bg-orange-50', iconText: 'text-orange-600', hoverBg: 'group-hover:bg-orange-600', shadow: 'hover:shadow-orange-500/10', btnBg: 'bg-orange-500', btnHover: 'hover:bg-orange-600', btnShadow: 'shadow-orange-500/20' },
+    rose: { border: 'border-rose-500', iconBg: 'bg-rose-50', iconText: 'text-rose-600', hoverBg: 'group-hover:bg-rose-600', shadow: 'hover:shadow-rose-500/10', btnBg: 'bg-rose-600', btnHover: 'hover:bg-rose-700', btnShadow: 'shadow-rose-600/20' },
+    cyan: { border: 'border-cyan-500', iconBg: 'bg-cyan-50', iconText: 'text-cyan-600', hoverBg: 'group-hover:bg-cyan-600', shadow: 'hover:shadow-cyan-500/10', btnBg: 'bg-cyan-600', btnHover: 'hover:bg-cyan-700', btnShadow: 'shadow-cyan-600/20' },
+    teal: { border: 'border-teal-500', iconBg: 'bg-teal-50', iconText: 'text-teal-600', hoverBg: 'group-hover:bg-teal-600', shadow: 'hover:shadow-teal-500/10', btnBg: 'bg-teal-600', btnHover: 'hover:bg-teal-700', btnShadow: 'shadow-teal-600/20' }
+};
         // Render function with LARGE, clickable topic blocks
         function renderSubjects(sem) {
             container.innerHTML = '';

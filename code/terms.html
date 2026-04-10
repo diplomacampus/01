@@ -2,364 +2,350 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Conditions | Diploma Campus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Terms & Conditions · Diploma Campus</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .terms-card {
+            backdrop-filter: blur(2px);
+        }
+        .terms-section h2 {
+            scroll-margin-top: 5rem;
+        }
+    </style>
 </head>
 <body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
-    
 
 <script src="preloader.js"></script>
-    <!-- MAIN HEADER -->
-    <header class="header sticky top-0 z-[110]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
-                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
-                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
+
+<!-- ========== HEADER ========== -->
+<header class="header sticky top-0 z-[110]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+            <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
+                <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
+                <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
+                <a href="index.html" class="nav-link flex items-center gap-2"><i class="fas fa-home text-blue-500"></i><span>Home</span></a>
+                <div class="relative group">
+                    <button class="flex items-center gap-2"><i class="fas fa-graduation-cap text-blue-500"></i><span>Branches</span></button>
+                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
+                        <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
+                        <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
+                        <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
+                        <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
+                        <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical & Electronics Engg.</a>
+                        <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
+                    </div>
+                </div>
+                <a href="index.html#notes" class="nav-link flex items-center gap-2"><i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span></a>
+                <a href="index.html#community" class="nav-link flex items-center gap-2"><i class="fas fa-users text-blue-500"></i><span>Community</span></a>
+                <a href="contact_us.html" class="nav-link flex items-center gap-2"><i class="fas fa-envelope text-blue-500"></i><span>Contact</span></a>
+            </nav>
+            <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ========== SIDEBAR ========== -->
+<div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
+    <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
+        <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
+        <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
+    </div>
+    <div class="flex-1 px-4 py-5 overflow-y-auto">
+        <nav class="flex flex-col gap-1.5">
+            <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-home text-blue-600"></i><span>Home</span></a>
+            <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span></a>
+            <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span></a>
+            <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span></a>
+            <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span></a>
+            <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-microchip text-blue-600"></i><span>Electrical & Electronics Engg.</span></a>
+            <a href="ece.html" class="sidebar-link flex item-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-broadcast-tower text-blue-600"></i><span>Electronics & Communication Engg.</span></a>
+            <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span></a>
+            <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-info-circle text-blue-600"></i><span>About Us</span></a>
+            <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-envelope text-blue-600"></i><span>Contact</span></a>
+        </nav>
+    </div>
+</div>
+<div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+
+<!-- ========== MAIN CONTENT (ENHANCED PROFESSIONAL TERMS) ========== -->
+<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-12 lg:py-20 relative z-10">
+    <div class="absolute top-0 right-0 w-72 h-72 bg-indigo-400/5 blur-[100px] rounded-full -z-10"></div>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-[3rem] p-8 md:p-14 shadow-2xl shadow-indigo-500/5 border border-white/50 terms-card">
+        
+        <!-- Header -->
+        <div class="text-center mb-14">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold tracking-widest uppercase mb-4 border border-indigo-200/50">
+                <i class="fas fa-file-contract text-sm"></i> Legal Agreement
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Terms <span class="text-indigo-600">& Conditions</span>
+            </h1>
+            <div class="mt-4 flex items-center justify-center gap-2 text-slate-500">
+                <i class="far fa-calendar-alt text-indigo-500"></i>
+                <span>Effective Date: <strong>April 1, 2025</strong></span>
+                <span class="mx-2 text-slate-300">|</span>
+                <span>Last Updated: April 10, 2026</span>
+            </div>
+            <div class="w-24 h-1 bg-gradient-to-r from-indigo-400 to-purple-400 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- Terms Content -->
+        <div class="prose prose-slate max-w-none space-y-10 text-slate-700 leading-relaxed">
+            
+            <!-- Section 1: Introduction & Acceptance -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-md shadow-indigo-200"><i class="fas fa-check-double"></i></div>
+                    1. Acceptance of Terms
+                </h2>
+                <p class="text-lg text-slate-600">Welcome to <strong>Diploma Campus</strong> ("we," "our," or "us"). By accessing or using our website, mobile applications, or any related services (collectively, the "Services"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to all of these Terms, you are expressly prohibited from using the Services and must discontinue use immediately.</p>
+                <p class="mt-4">These Terms constitute a legally binding agreement between you and Diploma Campus. We reserve the right, at our sole discretion, to modify or replace these Terms at any time. Your continued use of the Services after any such changes constitutes your acceptance of the new Terms.</p>
+            </section>
+
+            <!-- Section 2: Eligibility -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-200"><i class="fas fa-user-check"></i></div>
+                    2. Eligibility & User Accounts
+                </h2>
+                <p>By using the Services, you represent and warrant that:</p>
+                <ul class="list-disc ml-6 space-y-2 mt-3 text-slate-600 marker:text-indigo-500">
+                    <li>You are at least 13 years of age and have the legal capacity to enter into this agreement.</li>
+                    <li>If you are under 18, you have obtained parental or guardian consent to use the Services.</li>
+                    <li>All information you provide to us is accurate, current, and complete.</li>
+                    <li>You will maintain the security of any account credentials and promptly notify us of any unauthorized use.</li>
+                </ul>
+                <p class="mt-4">We reserve the right to suspend or terminate your access to the Services if any information provided is found to be false, inaccurate, or violates these Terms.</p>
+            </section>
+
+            <!-- Section 3: Intellectual Property Rights -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center text-sm shadow-md shadow-amber-200"><i class="fas fa-copyright"></i></div>
+                    3. Intellectual Property Rights
+                </h2>
+                <p>Unless otherwise indicated, the Services and all content, features, and functionality (including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software) are the exclusive property of Diploma Campus or its licensors and are protected by Indian and international copyright, trademark, and other intellectual property laws.</p>
+                <p class="mt-4 font-semibold">You are granted a limited, non-exclusive, non-transferable, revocable license to:</p>
+                <ul class="list-disc ml-6 space-y-2 mt-2 text-slate-600 marker:text-indigo-500">
+                    <li>Access and view the content for personal, non-commercial educational purposes.</li>
+                    <li>Download or print a single copy of study materials for your individual study.</li>
+                </ul>
+                <p class="mt-4 font-semibold">You may NOT:</p>
+                <ul class="list-disc ml-6 space-y-2 mt-2 text-slate-600 marker:text-red-500">
+                    <li>Republish, redistribute, sell, rent, or sub-license any material from this website.</li>
+                    <li>Reproduce, duplicate, copy, or exploit material for any commercial purpose.</li>
+                    <li>Remove any copyright, trademark, or other proprietary notices from copies of content.</li>
+                    <li>Use the Diploma Campus logo or branding without prior written permission.</li>
+                </ul>
+            </section>
+
+            <!-- Section 4: User Conduct & Community Guidelines -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center text-sm shadow-md shadow-emerald-200"><i class="fas fa-users"></i></div>
+                    4. Community Guidelines & User Conduct
+                </h2>
+                <p>When participating in our community channels (WhatsApp, Telegram, or any future interactive features), you agree to abide by the following rules:</p>
+                <ul class="list-disc ml-6 space-y-2 mt-3 text-slate-600 marker:text-indigo-500">
+                    <li><strong>Respectful Communication:</strong> Treat all members with courtesy and respect. Harassment, hate speech, bullying, or personal attacks will not be tolerated.</li>
+                    <li><strong>Academic Integrity:</strong> Use the community for legitimate educational discussions. Do not solicit or share exam answers, engage in cheating, or promote academic dishonesty.</li>
+                    <li><strong>No Spam or Self-Promotion:</strong> Do not post unsolicited advertisements, affiliate links, chain messages, or promotional content without prior approval.</li>
+                    <li><strong>Privacy:</strong> Do not collect or share other users' personal information without explicit consent.</li>
+                    <li><strong>Lawful Use:</strong> Do not use the Services for any illegal or unauthorized purpose.</li>
+                </ul>
+                <p class="mt-4">We reserve the right, but have no obligation, to monitor user conduct and remove any content or member at our sole discretion. <span class="font-bold text-red-600">Violation of these guidelines may result in immediate and permanent termination of access to community groups and, if warranted, the website.</span></p>
+            </section>
+
+            <!-- Section 5: User-Generated Content -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center text-sm shadow-md shadow-rose-200"><i class="fas fa-comment-dots"></i></div>
+                    5. User-Generated Content
+                </h2>
+                <p>If you submit, post, or display any content (including comments, feedback, suggestions, or messages) on or through the Services, you grant Diploma Campus a non-exclusive, royalty-free, perpetual, irrevocable, and fully sublicensable right to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content throughout the world in any media. You represent and warrant that you own or control all rights to the content and that it does not violate any third-party rights.</p>
+            </section>
+
+            <!-- Section 6: Third-Party Links & Services -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-sm shadow-md shadow-sky-200"><i class="fas fa-link"></i></div>
+                    6. Third-Party Links & Services
+                </h2>
+                <p>The Services may contain links to third-party websites or services that are not owned or controlled by Diploma Campus (e.g., Google Drive, WhatsApp, Telegram). We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You acknowledge and agree that Diploma Campus shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such third-party websites.</p>
+            </section>
+
+            <!-- Section 7: Disclaimer of Warranties -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-slate-600 to-slate-800 text-white flex items-center justify-center text-sm shadow-md shadow-slate-300"><i class="fas fa-exclamation-circle"></i></div>
+                    7. Disclaimer of Warranties
+                </h2>
+                <p>THE SERVICES AND ALL CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, DIPLOMA CAMPUS DISCLAIMS ALL WARRANTIES, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE, OR THAT ANY DEFECTS WILL BE CORRECTED.</p>
+            </section>
+
+            <!-- Section 8: Limitation of Liability -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 text-white flex items-center justify-center text-sm shadow-md shadow-red-200"><i class="fas fa-shield"></i></div>
+                    8. Limitation of Liability
+                </h2>
+                <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL DIPLOMA CAMPUS, ITS AFFILIATES, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICES; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICES; OR (iii) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.</p>
+                <p class="mt-4">IN NO EVENT SHALL DIPLOMA CAMPUS'S TOTAL LIABILITY TO YOU FOR ALL DAMAGES EXCEED THE AMOUNT OF ONE HUNDRED INDIAN RUPEES (₹100) OR THE EQUIVALENT IN LOCAL CURRENCY.</p>
+            </section>
+
+            <!-- Section 9: Indemnification -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 text-white flex items-center justify-center text-sm shadow-md shadow-purple-200"><i class="fas fa-hand-holding-heart"></i></div>
+                    9. Indemnification
+                </h2>
+                <p>You agree to defend, indemnify, and hold harmless Diploma Campus, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Services, including, but not limited to, your User Content, any use of the Services' content other than as expressly authorized in these Terms.</p>
+            </section>
+
+            <!-- Section 10: Governing Law & Dispute Resolution -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center text-sm shadow-md shadow-blue-200"><i class="fas fa-gavel"></i></div>
+                    10. Governing Law & Jurisdiction
+                </h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any legal suit, action, or proceeding arising out of, or related to, these Terms or the Services shall be instituted exclusively in the courts located in Ranchi, Jharkhand, India. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.</p>
+            </section>
+
+            <!-- Section 11: Termination -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-600 to-yellow-600 text-white flex items-center justify-center text-sm shadow-md shadow-amber-200"><i class="fas fa-ban"></i></div>
+                    11. Termination
+                </h2>
+                <p>We may terminate or suspend your access to the Services immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. All provisions of these Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
+            </section>
+
+            <!-- Section 12: Miscellaneous -->
+            <section class="terms-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 text-white flex items-center justify-center text-sm shadow-md shadow-teal-200"><i class="fas fa-ellipsis-h"></i></div>
+                    12. Miscellaneous Provisions
+                </h2>
+                <ul class="list-disc ml-6 space-y-2 mt-3 text-slate-600 marker:text-indigo-500">
+                    <li><strong>Severability:</strong> If any provision of these Terms is held to be invalid or unenforceable, such provision shall be struck and the remaining provisions shall be enforced to the fullest extent under law.</li>
+                    <li><strong>Waiver:</strong> Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</li>
+                    <li><strong>Entire Agreement:</strong> These Terms constitute the entire agreement between you and Diploma Campus regarding the Services and supersede all prior agreements.</li>
+                    <li><strong>Assignment:</strong> You may not assign or transfer these Terms, or any rights or obligations hereunder, without our prior written consent. We may assign these Terms without restriction.</li>
+                </ul>
+            </section>
+
+            <!-- Section 13: Contact Information -->
+            <section class="terms-section border-t border-slate-200 pt-10 mt-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-800 text-white flex items-center justify-center text-sm shadow-md shadow-indigo-200"><i class="fas fa-phone-alt"></i></div>
+                    13. Contact Us
+                </h2>
+                <p class="text-lg">If you have any questions, concerns, or comments about these Terms and Conditions, please contact us using the information below:</p>
+                <div class="mt-6 grid sm:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-envelope text-indigo-600 text-xl"></i>
+                            <span class="font-semibold text-slate-800">Legal Department</span>
+                        </div>
+                        <a href="mailto:diplomacampus@gmail.com" class="text-indigo-600 hover:underline text-lg">legal@diplomacampus.com</a>
+                        <p class="text-sm text-slate-500 mt-1">(For terms-related inquiries)</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-headset text-indigo-600 text-xl"></i>
+                            <span class="font-semibold text-slate-800">General Support</span>
+                        </div>
+                        <a href="mailto:diplomacampus@gmail.com" class="text-blue-600 hover:underline text-lg">support@diplomacampus.com</a>
+                        <p class="text-sm text-slate-500 mt-1">(Response within 48 hours)</p>
+                    </div>
+                </div>
+                
+            </section>
+        </div>
+
+        <!-- Footer note inside card -->
+        <div class="mt-14 pt-6 border-t border-slate-200/80 text-center">
+            <p class="text-slate-500 text-sm flex items-center justify-center gap-2 flex-wrap">
+                <i class="fas fa-balance-scale text-indigo-500"></i> Your use of Diploma Campus constitutes acceptance of these terms.
+                <span class="hidden sm:inline mx-2">•</span>
+                <a href="privacy.html" class="text-blue-600 hover:underline font-medium">Privacy Policy</a> 
+                <span>|</span>
+                <a href="disclaimer.html" class="text-blue-600 hover:underline font-medium">Disclaimer</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+<!-- ========== COMMUNITY SECTION ========== -->
+<section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
+            <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp"></i></div>
+                <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
+                <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i></a>
+            </div>
+            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20"><i class="fab fa-telegram-plane ml-[-2px]"></i></div>
+                <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
+                <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
+                <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i></a>
+            </div>
+            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp"></i></div>
+                <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
+                <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp channel for daily campus updates, important alerts, and quick notices.</p>
+                <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+            <div class="lg:col-span-1">
+                <a href="index.html" class="flex items-center gap-3 mb-6">
+                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
+                    <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
                 </a>
-
-                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-
-    <a href="index.html" class="nav-link flex items-center gap-2">
-        <i class="fas fa-home text-blue-500"></i><span>Home</span>
-    </a>
-
-    <!-- Branch Dropdown -->
-    <div class="relative group">
-        <button class="flex items-center gap-2">
-            <i class="fas fa-graduation-cap text-blue-500"></i>
-            <span>Branches</span>
-        </button>
-
-        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
-            <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
-            <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
-            <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
-            <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
-            <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical & Electronics Engg. </a>
-            <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
-        </div>
-    </div>
-
-    <a href="index.html#notes" class="nav-link flex items-center gap-2">
-        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
-    </a>
-
-    <a href="index.html#community" class="nav-link flex items-center gap-2">
-        <i class="fas fa-users text-blue-500"></i><span>Community</span>
-    </a>
-
-    <a href="contact_us.html" class="nav-link flex items-center gap-2">
-        <i class="fas fa-envelope text-blue-500"></i><span>Contact</span>
-    </a>
-
-</nav>
-                <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-     <!-- RIGHT SIDEBAR -->
-    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
-        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
-            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
-            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
-        </div>
-        <div class="flex-1 px-4 py-5 overflow-y-auto">
-           <nav class="flex flex-col gap-1.5">
-
-    <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-home text-blue-600"></i><span>Home</span>
-    </a>
-
-    <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span>
-    </a>
-
-    <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span>
-    </a>
-
-    <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span>
-    </a>
-
-    <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span>
-    </a>
-
-    <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-microchip text-blue-600"></i><span>Electrical & Electronics Engg.</span>
-    </a>
-
-    <a href="ece.html" class="sidebar-link flex item-center gap-4 px-4 py-3.5 rounded-2xl">
-       <i class="fas fa-broadcast-tower text-blue-600"></i><span>Electronics & Communication Engg.</span>
-   </a>
-
-    <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span>
-    </a>
-
-    <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-info-circle text-blue-600"></i><span>About Us</span>
-    </a>
-
-    <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-envelope text-blue-600"></i><span>Contact</span>
-    </a>
-
-</nav>
-        </div>
-    </div>
-    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
-
- <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-20">
-        <div class="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-2xl border-t-8 border-indigo-600">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-extrabold text-slate-900">Terms & <span class="text-indigo-600">Conditions</span></h1>
-            </div>
-
-            <div class="space-y-8 text-slate-600">
-                <section>
-                    <h2 class="text-xl font-bold text-slate-900 mb-3 underline decoration-indigo-200">1. Acceptance of Terms</h2>
-                    <p>By accessing <strong>Diploma Campus</strong>, you agree to follow these rules. If you do not agree with any part of these terms, please stop using the resources immediately.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-xl font-bold text-slate-900 mb-3 underline decoration-indigo-200">2. Intellectual Property</h2>
-                    <p>The notes and materials are organized and provided for free. However, the branding, logo, and compilation of resources are owned by <strong>Sumit Kumar Mahato / Diploma Campus</strong>. You may not re-sell these notes on other commercial platforms.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-xl font-bold text-slate-900 mb-3 underline decoration-indigo-200">3. Community Guidelines</h2>
-                    <p>When using our <strong>WhatsApp and Telegram</strong> groups, you agree to:</p>
-                    <ul class="list-disc ml-6 mt-2 space-y-2">
-                        <li>Not share spam or promotional links.</li>
-                        <li>Respect fellow students and faculty members.</li>
-                        <li>Use the groups only for academic discussions.</li>
-                    </ul>
-                    <p class="mt-2 text-sm text-red-500 font-bold">Failure to comply will result in an immediate permanent ban.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-xl font-bold text-slate-900 mb-3 underline decoration-indigo-200">4. Limitation of Liability</h2>
-                    <p>Diploma Campus will not be liable for any damages that arise from using the study materials provided, including but not limited to technical errors in PDFs or exam performance.</p>
-                </section>
-            </div>
-        </div>
-    </main>
-<!-- ========================================== -->
-    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
-    <!-- ========================================== -->
-    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
-                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                
-                <!-- WhatsApp 1st sem group Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
                 </div>
-                
-                
-                <!-- Telegram Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
-                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
-                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-                
- <!-- WhatsApp Channel Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for daily campus updates, important alerts, and quick notices.</p>
-                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-
             </div>
+            <div><h4 class="text-white font-bold text-lg mb-6">Quick Links</h4><ul class="flex flex-col gap-3"><li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home</a></li><li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches</a></li><li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes</a></li><li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community</a></li><li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us</a></li><li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us</a></li></ul></div>
+            <div><h4 class="text-white font-bold text-lg mb-6">Branches</h4><ul class="flex flex-col gap-3"><li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.</a></li><li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.</a></li><li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.</a></li><li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.</a></li><li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE</a></li><li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.</a></li></ul></div>
+            <div><h4 class="text-white font-bold text-lg mb-6">Legal</h4><ul class="flex flex-col gap-3"><li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy</a></li><li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions</a></li><li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer</a></li></ul></div>
+            <div><h4 class="text-white font-bold text-lg mb-6">Contact Us</h4><ul class="flex flex-col gap-4"><li class="flex items-center gap-3"><i class="fas fa-phone-alt text-blue-500"></i><span class="text-slate-400 text-sm">+91 8578009001</span></li><li class="flex items-center gap-3"><i class="fas fa-envelope text-blue-500"></i><span class="text-slate-400 text-sm">diplomacampus@gmail.com</span></li></ul></div>
         </div>
-    </section>
-
-   
-    <!-- ========================================== -->
-    <!-- PREMIUM FOOTER -->
-    <!-- ========================================== -->
-    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <!-- Top Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-
-                <!-- Brand Info -->
-                <div class="lg:col-span-1">
-                    <a href="index.html" class="flex items-center gap-3 mb-6">
-                        <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
-                        <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
-                    </a>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.
-                    </p>
-                    <!-- Social Links -->
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all duration-300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all duration-300"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-
-            <!-- Quick Links -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home
-                    </a></li>
-
-                    <li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches
-                    </a></li>
-
-                    <li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes
-                    </a></li>
-
-                    <li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community
-                    </a></li>
-
-                    <li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us
-                    </a></li>
-
-                    <li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Branches -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Branches</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.
-                    </a></li>
-
-                    <li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.
-                    </a></li>
-
-                    <li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.
-                    </a></li>
-
-                    <li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.
-                    </a></li>
-
-                    <li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE
-                    </a></li>
-
-                    <li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Legal -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy
-                    </a></li>
-
-                    <li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions
-                    </a></li>
-
-                    <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Contact Info -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
-                <ul class="flex flex-col gap-4">
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-phone-alt text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">+91 8578009001</span>
-                    </li>
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">diplomacampus@gmail.com</span>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-
-
-        <!-- Bottom Bar -->
         <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-
-            <p class="text-slate-500 text-sm text-center md:text-left">
-                &copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.
-            </p>
-
-            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">
-                Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by
-                <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong>
-            </p>
-
+            <p class="text-slate-500 text-sm text-center md:text-left">&copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.</p>
+            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong></p>
         </div>
-
     </div>
 </footer>
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
 </body>
 </html>

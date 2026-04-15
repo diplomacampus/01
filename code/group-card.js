@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Inject the Card into your page
     container.innerHTML = `
         <div class="max-w-xs mx-auto bg-white rounded-xl shadow-lg p-6 text-center">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Our Community</h2>
-            <p class="text-gray-500 mb-5 text-sm">Connect, share ideas, and stay updated!</p>
+           
             <button id="join-groups-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition duration-200">
                 Join our groups
             </button>
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="group-modal-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex justify-center items-center opacity-0 transition-opacity duration-300">
             <div id="group-modal-content" class="bg-white rounded-2xl w-11/12 max-w-sm p-6 relative transform scale-95 transition-transform duration-300 shadow-2xl">
                 <button id="close-modal-btn" class="absolute top-3 right-4 text-gray-400 hover:text-gray-800 text-3xl">&times;</button>
-                <h3 class="text-xl font-bold text-center text-gray-800 mb-5">Select a Platform</h3>
+                <h3 class="text-xl font-bold text-center text-gray-800 mb-5">Select Your Session group</h3>
                 <div class="flex flex-col gap-3">
                     ${groups.map(g => `
                         <a href="${g.url}" target="_blank" class="${g.color} text-white flex items-center p-3.5 rounded-xl font-medium transition duration-200 hover:scale-[1.02]">

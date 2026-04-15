@@ -1,663 +1,896 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Diploma Campus | JUT | JCECEB | Jharkhand Polytechnic - Notes, syllabus, PYQs, and more...</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Primary SEO -->
-  <title>Diploma Campus | Jharkhand Polytechnic Notes</title>
-  <meta name="description" content="Diploma Campus provides high-quality notes for Jharkhand Polytechnic students. Access notes for CSE, Civil, Mechanical, Electrical, EEE, ECE and Automobile engineering.">
-  <meta name="keywords" content="Diploma Campus, Jharkhand Polytechnic notes, CSE notes, Civil notes, Mechanical notes, Electrical notes, EEE notes, ECE notes, Automobile notes">
-  <meta name="author" content="Diploma Campus">
-  <meta name="robots" content="index, follow">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://diplomacampus.vercel.app/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Diploma Campus - Polytechnic Notes">
-  <meta property="og:description" content="Free diploma notes for all branches of Jharkhand Polytechnic.">
-  <meta property="og:url" content="https://diplomacampus.vercel.app/">
-  <meta property="og:site_name" content="Diploma Campus">
-  <meta property="og:image" content="https://diplomacampus.vercel.app/Images/DClogo.png">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Diploma Campus - Polytechnic Notes">
-  <meta name="twitter:description" content="Download diploma notes for all branches.">
-  <meta name="twitter:image" content="https://diplomacampus.vercel.app/Images/DClogo.png">
-
-  <!-- Branding (helps Google show name correctly) -->
-  <meta name="application-name" content="Diploma Campus">
-
-  <!-- Theme -->
-  <meta name="theme-color" content="#3b82f6">
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://diplomacampus.vercel.app/Images/DClogo.png">
-
-  <!-- 🔗 Internal Page Links (SEO discovery) -->
-  <link rel="alternate" href="https://diplomacampus.vercel.app/cse.html" title="CSE Notes">
-  <link rel="alternate" href="https://diplomacampus.vercel.app/auto.html" title="Automobile Notes">
-  <link rel="alternate" href="https://diplomacampus.vercel.app/civil.html" title="Civil Notes">
-  <link rel="alternate" href="https://diplomacampus.vercel.app/mech.html" title="Mechanical Notes">
-  <link rel="alternate" href="https://diplomacampus.vercel.app/ee.html" title="Electrical Notes">
-  <link rel="alternate" href="https://diplomacampus.vercel.app/eee.html" title="EEE Notes">
-  <link rel="alternate" href="https://diplomacampus.vercel.app/ece.html" title="ECE Notes">
-
-  <!-- 🧠 Structured Data (VERY IMPORTANT FOR GOOGLE NAME + SITELINKS) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Diploma Campus",
-    "url": "https://diplomacampus.vercel.app/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://diplomacampus.vercel.app/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
-  <!-- 🧠 Organization Schema (Brand Identity) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Diploma Campus",
-    "url": "https://diplomacampus.vercel.app/",
-    "logo": "https://diplomacampus.vercel.app/Images/DClogo.png"
-  }
-  </script>
-
-  <!-- Performance -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com">
-
-  <!-- Styles -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%);
+            overflow-x: hidden;
+        }
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            min-height: 100vh;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #0f766e, #ca8a04);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .arrow-animate {
+            transition: transform 0.3s ease-in-out;
+        }
+        .branch-card:active .arrow-animate, .branch-card.clicked .arrow-animate {
+            transform: translateX(8px);
+            color: #0f766e;
+        }
+        /* YouTube Style Skeleton Loading CSS */
+        .skeleton-box {
+            background: #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .skeleton-box::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.8) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        .skeleton-circle { border-radius: 50%; }
+        #toast-message {
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+    </style>
 </head>
-<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="text-gray-800">
 
+<!-- Toast container -->
+<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
+</div>
 
-<script src="preloader.js"></script>
-    <!-- MAIN HEADER -->
-    <header class="header sticky top-0 z-[110]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
-                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
-                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
-                </a>
+<div class="bg-grid pb-20">
 
-                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-
-    <a href="index.html" class="nav-link flex items-center gap-2">
-        <i class="fas fa-home text-blue-500"></i><span>Home</span>
-    </a>
-
-    <!-- Branch Dropdown -->
-    <div class="relative group">
-        <button class="flex items-center gap-2">
-            <i class="fas fa-graduation-cap text-blue-500"></i>
-            <span>Branches</span>
-        </button>
-
-        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
-            <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
-            <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
-            <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
-            <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
-            <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical & Electronics Engg. </a>
-            <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
+    <!-- ========================================== -->
+    <!-- HEADER (FIXED ON TOP)                      -->
+    <!-- ========================================== -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+        <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
+            <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
         </div>
-    </div>
 
-    <a href="index.html#notes" class="nav-link flex items-center gap-2">
-        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
-    </a>
+        <div class="flex items-center gap-3">
+            <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+            
+            <button id="header-login-btn" class="hidden text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">
+                Sign In
+            </button>
 
-    <a href="index.html#community" class="nav-link flex items-center gap-2">
-        <i class="fas fa-users text-blue-500"></i><span>Community</span>
-    </a>
-
-    <a href="contact_us.html" class="nav-link flex items-center gap-2">
-        <i class="fas fa-envelope text-blue-500"></i><span>Contact</span>
-    </a>
-
-</nav>
-                <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+            <img id="header-avatar" onclick="window.location.href='login.html'" src="" alt="Profile" referrerpolicy="no-referrer" class="user-avatar w-8 h-8 rounded-full border border-gray-300 hidden cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
+            
+            <!-- Menu button visible on all screen sizes (removed md:hidden) -->
+            <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
     </header>
 
-     <!-- RIGHT SIDEBAR -->
-    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
-        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
-            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
-            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
+    <!-- ========================================== -->
+    <!-- SIDEBAR DRAWER                             -->
+    <!-- ========================================== -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+    
+    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="font-bold text-lg"> <span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+            <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="flex-1 px-4 py-5 overflow-y-auto">
-           <nav class="flex flex-col gap-1.5">
 
-    <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-home text-blue-600"></i><span>Home</span>
-    </a>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
+                <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                
+                <li><hr class="my-2 border-gray-200"></li>
+                <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy</a></li>
+                <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
 
-    <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span>
-    </a>
-
-    <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span>
-    </a>
-
-    <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span>
-    </a>
-
-    <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span>
-    </a>
-
-    <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-microchip text-blue-600"></i><span>Electrical & Electronics Engg.</span>
-    </a>
-
-    <a href="ece.html" class="sidebar-link flex item-center gap-4 px-4 py-3.5 rounded-2xl">
-       <i class="fas fa-broadcast-tower text-blue-600"></i><span>Electronics & Communication Engg.</span>
-   </a>
-
-    <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span>
-    </a>
-
-    <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-info-circle text-blue-600"></i><span>About Us</span>
-    </a>
-
-    <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-envelope text-blue-600"></i><span>Contact</span>
-    </a>
-
-</nav>
+        <div class="p-4 border-t" id="sidebar-auth-section">
+            <!-- Dynamically filled by JS -->
         </div>
-    </div>
-    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+    </aside>
 
     <!-- ========================================== -->
-    <!-- EDUCATIONAL HERO SECTION -->
+    <!-- YOUTUBE-STYLE SKELETON LOADER              -->
     <!-- ========================================== -->
-    <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 lg:pt-20 lg:pb-24 relative z-10">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/20 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div id="skeleton-loader" class="max-w-5xl mx-auto px-4 pt-28 md:pt-36 w-full text-center">
+        <div class="skeleton-box h-12 md:h-20 w-3/4 md:w-1/2 mx-auto mb-6"></div>
+        <div class="skeleton-box h-6 w-1/2 md:w-1/3 mx-auto mb-12"></div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            <div class="flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 sm:space-y-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100/50 border border-blue-200/60 text-blue-700 text-xs sm:text-sm font-semibold tracking-wide shadow-sm hover:shadow-md transition cursor-pointer">
-                    <span class="flex h-2.5 w-2.5 rounded-full bg-blue-600 animate-pulse"></span>
-                    Based on NEP 2026-2027 JUT,RANCHI <i class="fas fa-chevron-right text-[10px] ml-1"></i>
-                </div>
-                
-                <h1 class="text-[2.5rem] leading-[1.1] sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight">
-                    Shape your future with <br class="hidden sm:block">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">DiplomaCampus team. </span>
-                </h1>
-                
-                <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl leading-relaxed">
-                    Access complete study resources including eBooks, notes, PYQs, practice papers and more all in one place.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full pt-2">
-                    <a href="#branches" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-full transition-all duration-300 shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center justify-center gap-2 hover:-translate-y-0.5">
-                        Explore Branches <i class="fas fa-arrow-right text-sm"></i>
-                    </a>
-                   
-                </div>
-            </div>
-
-            <div class="relative w-full flex justify-center lg:justify-end mt-4 lg:mt-0">
-                <div class="relative z-10 w-full max-w-[450px] lg:max-w-full rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-2.5 bg-white/40 backdrop-blur-xl border border-white/80 shadow-2xl">
-                    <img src="https://i.ibb.co/Y7jmcZsj/203c77dd43b8d8ce91dc4390b043c267.jpg" alt="Students in campus" class="w-full h-auto rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-inner transform transition duration-700 hover:scale-[1.01]">
-                    
-                    <div class="hidden sm:flex absolute top-10 -left-8 bg-white/95 backdrop-blur-sm p-3.5 rounded-2xl shadow-xl border border-white flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
-                        <div class="h-11 w-11 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-lg">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="pr-3">
-                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Placements</p>
-                            <p class="text-base font-bold text-slate-900">100% Assisted</p>
-                        </div>
-                    </div>
-
-                    <div class="hidden sm:flex absolute bottom-12 -right-6 bg-white/95 backdrop-blur-sm p-3.5 rounded-2xl shadow-xl border border-white flex items-center gap-3 animate-bounce" style="animation-duration: 4s; animation-delay: 1s;">
-                        <div class="h-11 w-11 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="pr-3">
-                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Alumni</p>
-                            <p class="text-base font-bold text-slate-900">5,000+ Placed</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            <div class="flex flex-col items-center"><div class="skeleton-box skeleton-circle w-12 h-12 mb-3"></div><div class="skeleton-box h-4 w-24"></div></div>
+            <div class="flex flex-col items-center"><div class="skeleton-box skeleton-circle w-12 h-12 mb-3"></div><div class="skeleton-box h-4 w-24"></div></div>
+            <div class="flex flex-col items-center"><div class="skeleton-box skeleton-circle w-12 h-12 mb-3"></div><div class="skeleton-box h-4 w-24"></div></div>
+            <div class="flex flex-col items-center"><div class="skeleton-box skeleton-circle w-12 h-12 mb-3"></div><div class="skeleton-box h-4 w-24"></div></div>
         </div>
-    </main>
+        
+        <div class="skeleton-box max-w-2xl mx-auto h-48 rounded-2xl mb-12"></div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            <div class="skeleton-box h-20 rounded-2xl"></div>
+            <div class="skeleton-box h-20 rounded-2xl"></div>
+            <div class="skeleton-box h-20 rounded-2xl"></div>
+        </div>
+    </div>
 
     <!-- ========================================== -->
-<!-- DIPLOMA BRANCHES SECTION -->
-<!-- ========================================== -->
-<section id="branches" class="relative w-full py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Our Programs</h2>
-            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Explore Diploma Branches</h3>
-            <p class="text-slate-600 text-lg">Choose from our industry-aligned diploma courses designed to make you a skilled engineer ready for the future.</p>
-        </div>
+    <!-- ACTUAL CONTENT (Hidden until Auth loads)   -->
+    <!-- ========================================== -->
+    <div id="actual-content" class="hidden">
+        <main class="max-w-5xl mx-auto px-4 pt-24 md:pt-32 text-center relative">
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 text-gradient">
+                Diploma Campus
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-10">Your complete study companion for college success</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Computer Engineering -->
-            <a href="cse.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(59,130,246,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"><i class="fas fa-laptop-code"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Computer Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Learn programming, software development, web technologies, and database management.</p>
-                <span class="text-blue-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
+            <!-- Feature Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-3 shadow-sm"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Comprehensive Notes</h3>
+                    <p class="text-xs text-gray-500 mt-1">Detailed study materials</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-3 shadow-sm"><i class="fa-regular fa-circle-question"></i></div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Practice Questions</h3>
+                    <p class="text-xs text-gray-500 mt-1">MCQs & exam prep</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-3 shadow-sm"><i class="fa-regular fa-comments"></i></div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Q&A Community</h3>
+                    <p class="text-xs text-gray-500 mt-1">Get instant answers</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-3 shadow-sm"><i class="fa-solid fa-video"></i></div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Video Tutorials</h3>
+                    <p class="text-xs text-gray-500 mt-1">Learn visually</p>
+                </div>
+            </div>
 
-            <!-- Mechanical Engineering -->
-            <a href="mech.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(239,68,68,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-red-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-300"><i class="fas fa-cogs"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Mechanical Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Master the principles of mechanics, thermodynamics, robotics, and modern manufacturing.</p>
-                <span class="text-red-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
+            <!-- Welcome Box -->
+            <div id="welcome-section" class="hidden">
+                <p class="text-gray-700 text-lg mb-8 bg-white/60 inline-block px-6 py-2 rounded-full shadow-sm border border-gray-100 backdrop-blur-sm">
+                    Welcome back, <span id="welcome-name" class="font-bold text-teal-700">Student</span>! 👋
+                </p>
+            </div>
 
-            <!-- Civil Engineering -->
-            <a href="civil.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(249,115,22,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-orange-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300"><i class="fas fa-building"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Civil Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Build the future with in-depth knowledge of structural design, construction, and planning.</p>
-                <span class="text-orange-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
+            <!-- Action Card -->
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden text-left p-6 md:p-8">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+                <h2 class="text-center font-bold text-gray-800 text-lg mb-1"><i class="fa-solid fa-graduation-cap text-gray-600"></i> Start Your Learning Journey</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Select a subject and dive into comprehensive study materials</p>
+                
+                <div class="relative mb-6">
+                    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500"><i class="fa-solid fa-book"></i></div>
+                    <select id="subject-select" class="w-full bg-white border border-gray-200 text-gray-700 py-3 pl-10 pr-8 rounded-lg appearance-none focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 cursor-pointer">
+                        <option value="">Select a subject to study</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-teal-500"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
 
-            <!-- Electrical Engineering (EE) -->
-            <a href="ee.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(16,185,129,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300"><i class="fas fa-bolt"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Electrical Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Explore power systems, electrical machines, renewable energy, and circuit design.</p>
-                <span class="text-emerald-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
+                <div class="relative flex items-center justify-center mb-6">
+                    <div class="border-t border-gray-200 w-full"></div>
+                    <span class="bg-white px-3 text-xs text-gray-400 uppercase tracking-widest absolute">OR</span>
+                </div>
 
-            <!-- Electrical & Electronics Engineering (EEE) -->
-            <a href="eee.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(139,92,246,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300"><i class="fas fa-microchip"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Electrical & Electronics Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Study integrated systems, control systems, power electronics, and embedded solutions.</p>
-                <span class="text-purple-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
+                <button id="search-notes-btn" class="w-full border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm">
+                    <i class="fa-solid fa-magnifying-glass text-teal-500"></i> Search for Notes Directly <i class="fa-regular fa-pen-to-square text-teal-500 ml-1"></i>
+                </button>
+            </div>
+            <br><br>
 
-            <!-- Automobile Engineering -->
-            <a href="auto.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(245,158,11,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-amber-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300"><i class="fas fa-car"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Automobile Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Design, develop, and innovate in automotive systems, electric vehicles, and transport technology.</p>
-                <span class="text-amber-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
+            <!-- DIPLOMA BRANCHES SECTION -->
+            <div class="text-left mb-12 max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 px-2 flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-teal-500"></i> Select Your Branch
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    
+                    <div data-branch="Computer Science Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center"><i class="fa-solid fa-laptop-code"></i></div>
+                            <div class="font-semibold text-gray-800">Computer Science</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
+                    
+                    <div data-branch="Information Technology" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center"><i class="fa-solid fa-network-wired"></i></div>
+                            <div class="font-semibold text-gray-800">Info. Technology</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
 
-            <!-- Electronics & Communication Engineering (ECE) -->
-            <a href="ece.html" class="group block bg-[#f8fafc] border border-gray-200 rounded-[1.5rem] p-8 hover:bg-white hover:shadow-[0_20px_40px_rgb(6,182,212,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-cyan-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <div class="h-14 w-14 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300"><i class="fas fa-wifi"></i></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Electronics & Communication Engineering</h4>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">Dive into analog/digital circuits, communication systems, IoT, and signal processing.</p>
-                <span class="text-cyan-600 font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">View Details <i class="fas fa-arrow-right"></i></span>
-            </a>
-        </div>
-    </div>
-</section>
-    
-    
-             <!-- top downloaded notes -->
+                    <div data-branch="Mechanical Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center"><i class="fa-solid fa-gears"></i></div>
+                            <div class="font-semibold text-gray-800">Mechanical Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
 
-<div class="notes-container" id="notes">
-    <div class="notes-header">
-        <h2>Most Downloaded Notes</h2>
-        <p>Master your exams with our top-rated community resources.</p>
-    </div>
+                    <div data-branch="Civil Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-50 text-stone-500 flex items-center justify-center"><i class="fa-solid fa-bridge"></i></div>
+                            <div class="font-semibold text-gray-800">Civil Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
 
-    <div class="notes-grid">
-        <!-- Card 1: Web Development Road Map -->
-        <div class="note-card card-blue">
-            <span class="dl-count"><i class="fas fa-eye"></i> 124</span>
-            <img src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=500&h=350&fit=crop" alt="Web Development Roadmap" class="note-image">
-            <h3 class="note-title">Web Development Road Map</h3>
-            <span class="note-subject">Full Stack • PDF</span>
-            <a href="https://www.dropbox.com/scl/fi/f8xub09dw68f8jve4e6vg/web-roadmap-by-Diploma-Campus.pdf?rlkey=emkah3pdxgg8kkcf8pfl97mcm&st=h4mrfrei&dl=1" class="download-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-cloud-download-alt"></i> Download
-            </a>
-        </div>
+                    <div data-branch="Electrical Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="font-semibold text-gray-800">Electrical Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
 
-        <!-- Card 2: Atomic Structure -->
-        <div class="note-card card-purple">
-            <span class="dl-count"><i class="fas fa-eye"></i> 98</span>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReFYTDplcI7hyIKUimRoIC1VD0vK83Hro4HkQZn8MUFg&s=10" alt="Atomic Structure" class="note-image">
-            <h3 class="note-title">Atomic Structure</h3>
-            <span class="note-subject">Chemistry • PDF</span>
-            <a href="https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=4ntqnc0o&dl=1" class="download-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-cloud-download-alt"></i> Download
-            </a>
-        </div>
+                    <div data-branch="Electronics & Communication Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center"><i class="fa-solid fa-microchip"></i></div>
+                            <div class="font-semibold text-gray-800">Electronics Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
 
-        <!-- Card 3: Unit and Measurement -->
-        <div class="note-card card-orange">
-            <span class="dl-count"><i class="fas fa-eye"></i> 87</span>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSF9cfWlLri8gJbRKjIk8IljRlc6JTqWUDvJZ92wTrgQ&s=10" alt="Unit and Measurement" class="note-image">
-            <h3 class="note-title">Unit and Measurement</h3>
-            <span class="note-subject">Physics • PDF</span>
-            <a href="https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=76h4v1pt&dl=1" class="download-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-cloud-download-alt"></i> Download
-            </a>
-        </div>
+                    <div data-branch="Automobile Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center"><i class="fa-solid fa-car"></i></div>
+                            <div class="font-semibold text-gray-800">Automobile Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
+
+                    <div data-branch="Chemical Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center"><i class="fa-solid fa-flask"></i></div>
+                            <div class="font-semibold text-gray-800">Chemical Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
+
+                    <div data-branch="Plastic Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center"><i class="fa-solid fa-cube"></i></div>
+                            <div class="font-semibold text-gray-800">Plastic Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
+
+                    <div data-branch="Architecture Assistantship" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center"><i class="fa-solid fa-pen-ruler"></i></div>
+                            <div class="font-semibold text-gray-800">Architecture</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
+
+                    <div data-branch="Agriculture Engineering" class="branch-card cursor-pointer bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-teal-400 hover:shadow-md transition group flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center"><i class="fa-solid fa-tractor"></i></div>
+                            <div class="font-semibold text-gray-800">Agriculture Engg</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 arrow-animate group-hover:text-teal-400"></i>
+                    </div>
+
+                </div>
+            </div>   
+        </main>
+
+        <!-- ========================================== -->
+        <!-- JOIN COMMUNITY SECTION                      -->
+        <!-- ========================================== -->
+        <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-sm font-bold text-teal-600 tracking-widest uppercase mb-3">Stay Connected</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">Join Our Student Community</h3>
+                    <p class="text-gray-500 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">WhatsApp Group</h4>
+                        <p class="text-gray-500 mb-8 max-w-sm">Join our official WhatsApp group for <b class="text-gray-700">SESSION 2025-28</b> to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                        <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">WhatsApp Group</h4>
+                        <p class="text-gray-500 mb-8 max-w-sm">Join our official WhatsApp group for <b class="text-gray-700">SESSION 2024-27</b> to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
+                        <a href="https://chat.whatsapp.com/LFGSEy4uJsL4GcOL1rN2ui?mode=gi_t" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
+                            <i class="fab fa-telegram-plane ml-[-2px]"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">Telegram Channel</h4>
+                        <p class="text-gray-500 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
+                        <a href="https://t.me/diplomacampus" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+
+                    <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">WhatsApp Channel</h4>
+                        <p class="text-gray-500 mb-8 max-w-sm">Join our official WhatsApp Channel for daily campus updates, important alerts, and quick notices.</p>
+                        <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
+                            Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TESTIMONIALS SECTION (WORKING CAROUSEL)    -->
+        <!-- ========================================== -->
+        <section class="w-full py-20 bg-gradient-to-b from-white to-teal-50/30 border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-sm font-bold text-teal-600 tracking-widest uppercase mb-3">Testimonials</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">What Our Students Say</h3>
+                    <p class="text-gray-500 text-lg">Real experiences from diploma students who transformed their learning with us.</p>
+                </div>
+
+                <div class="relative max-w-5xl mx-auto">
+                    
+                    <div class="overflow-hidden rounded-3xl">
+                        <div id="testimonial-slides" class="flex transition-transform duration-500 ease-in-out">
+                            
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-10 relative">
+                                    <div class="absolute top-6 right-8 text-6xl text-teal-100">❝</div>
+                                    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                                        <div class="flex-shrink-0">
+                                            <img src="https://ui-avatars.com/api/?name=Riya+Sharma&size=80&background=0D9488&color=fff&bold=true" alt="Riya Sharma" class="w-20 h-20 rounded-full border-4 border-teal-100 shadow-md">
+                                        </div>
+                                        <div class="flex-1 text-center md:text-left">
+                                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+                                                "Diploma Campus saved my semester! The notes are perfectly organized, and the PYQ section helped me score 85% in Applied Maths. The WhatsApp group is super active too."
+                                            </p>
+                                            <h4 class="font-bold text-gray-800 text-lg">Riya Sharma</h4>
+                                            <p class="text-teal-600 text-sm font-medium">CSE · 4th Semester</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-10 relative">
+                                    <div class="absolute top-6 right-8 text-6xl text-teal-100">❝</div>
+                                    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                                        <div class="flex-shrink-0">
+                                            <img src="https://ui-avatars.com/api/?name=Arjun+Singh&size=80&background=0D9488&color=fff&bold=true" alt="Arjun Singh" class="w-20 h-20 rounded-full border-4 border-teal-100 shadow-md">
+                                        </div>
+                                        <div class="flex-1 text-center md:text-left">
+                                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+                                                "The YouTube links and Drive resources are a game changer. I could revise entire chapters in one night before my Mechanics exam. Highly recommended!"
+                                            </p>
+                                            <h4 class="font-bold text-gray-800 text-lg">Arjun Singh</h4>
+                                            <p class="text-teal-600 text-sm font-medium">Mechanical · 5th Semester</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-10 relative">
+                                    <div class="absolute top-6 right-8 text-6xl text-teal-100">❝</div>
+                                    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                                        <div class="flex-shrink-0">
+                                            <img src="https://ui-avatars.com/api/?name=Pooja+Patel&size=80&background=0D9488&color=fff&bold=true" alt="Pooja Patel" class="w-20 h-20 rounded-full border-4 border-teal-100 shadow-md">
+                                        </div>
+                                        <div class="flex-1 text-center md:text-left">
+                                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+                                                "I love how everything is sorted by branch and semester. The community is very supportive—I got my doubts cleared within minutes on Telegram."
+                                            </p>
+                                            <h4 class="font-bold text-gray-800 text-lg">Pooja Patel</h4>
+                                            <p class="text-teal-600 text-sm font-medium">Civil · 3rd Semester</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-10 relative">
+                                    <div class="absolute top-6 right-8 text-6xl text-teal-100">❝</div>
+                                    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                                        <div class="flex-shrink-0">
+                                            <img src="https://ui-avatars.com/api/?name=Vikram+Reddy&size=80&background=0D9488&color=fff&bold=true" alt="Vikram Reddy" class="w-20 h-20 rounded-full border-4 border-teal-100 shadow-md">
+                                        </div>
+                                        <div class="flex-1 text-center md:text-left">
+                                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+                                                "From lab manuals to e-books, this platform has everything. The admin is responsive and keeps adding new resources. Best site for diploma students!"
+                                            </p>
+                                            <h4 class="font-bold text-gray-800 text-lg">Vikram Reddy</h4>
+                                            <p class="text-teal-600 text-sm font-medium">ECE · 6th Semester</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg border border-gray-200 text-teal-600 hover:bg-teal-500 hover:text-white hover:border-teal-500 transition-all duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-chevron-left text-xl"></i>
+                    </button>
+                    <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg border border-gray-200 text-teal-600 hover:bg-teal-500 hover:text-white hover:border-teal-500 transition-all duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-chevron-right text-xl"></i>
+                    </button>
+
+                    <div class="flex justify-center gap-2 mt-8">
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-teal-500 transition-all duration-300" data-index="0"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-teal-400 transition-all duration-300" data-index="1"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-teal-400 transition-all duration-300" data-index="2"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-teal-400 transition-all duration-300" data-index="3"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAROUSEL SCRIPT -->
+        <script>
+            (function() {
+                const slidesContainer = document.getElementById('testimonial-slides');
+                const slides = slidesContainer.children;
+                const totalSlides = slides.length;
+                const prevBtn = document.getElementById('prev-testimonial');
+                const nextBtn = document.getElementById('next-testimonial');
+                const dots = document.querySelectorAll('.testimonial-dot');
+                
+                let currentIndex = 0;
+                let autoSlideInterval;
+                
+                function updateCarousel() {
+                    slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    dots.forEach((dot, idx) => {
+                        if (idx === currentIndex) {
+                            dot.classList.remove('bg-gray-300');
+                            dot.classList.add('bg-teal-500');
+                        } else {
+                            dot.classList.remove('bg-teal-500');
+                            dot.classList.add('bg-gray-300');
+                        }
+                    });
+                }
+                
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    updateCarousel();
+                }
+                
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                }
+                
+                function goToSlide(index) {
+                    currentIndex = index;
+                    updateCarousel();
+                }
+                
+                function startAutoSlide() {
+                    autoSlideInterval = setInterval(nextSlide, 5000);
+                }
+                
+                function resetAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                    startAutoSlide();
+                }
+                
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoSlide();
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoSlide();
+                });
+                
+                dots.forEach((dot, idx) => {
+                    dot.addEventListener('click', () => {
+                        goToSlide(idx);
+                        resetAutoSlide();
+                    });
+                });
+                
+                const carouselWrapper = document.querySelector('.overflow-hidden');
+                carouselWrapper.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+                carouselWrapper.addEventListener('mouseleave', startAutoSlide);
+                
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                carouselWrapper.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, {passive: true});
+                
+                carouselWrapper.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+                
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    if (touchEndX < touchStartX - swipeThreshold) {
+                        nextSlide();
+                        resetAutoSlide();
+                    } else if (touchEndX > touchStartX + swipeThreshold) {
+                        prevSlide();
+                        resetAutoSlide();
+                    }
+                }
+                
+                updateCarousel();
+                startAutoSlide();
+            })();
+        </script>
+
+        <!-- ========================================== -->
+        <!-- FOOTER                                    -->
+        <!-- ========================================== -->
+        <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+            
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+                <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                    <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-teal-500"></i> Quick search across all resources</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">Find notes, videos, or ask the community</p>
+                        </div>
+                        <div class="flex w-full sm:w-auto relative">
+                            <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                            <button id="footer-search-btn" onclick="window.location.href='notes.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-teal-500 hover:bg-teal-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
+                        </div>
+                    </div>
+                </div>
+            </div>                 
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+                <div class="mb-8">
+                    <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                    <div class="flex flex-wrap gap-3 sm:gap-4">
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                        <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                    <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
+                    <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                        <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                            <li><a href="notes.html" class="hover:text-teal-600 transition">Browse Notes</a></li>
+                            <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Video Lectures</a></li>
+                            <li><a href="QnA.html" class="hover:text-teal-600 transition">Q&A Community</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-teal-500"></i> Information</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="about-us.html" class="hover:text-teal-600 transition">About Us</a></li>
+                            <li><a href="contact-us.html" class="hover:text-teal-600 transition">Contact Us</a></li>
+                            <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard / Login</a></li>
+                            <li><a href="disclaimer.html" class="hover:text-teal-600 transition">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-teal-500"></i> Legal</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="terms.html" class="hover:text-teal-600 transition">Terms of Service</a></li>
+                            <li><a href="privacy.html" class="hover:text-teal-600 transition">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-teal-500"></i> Quick Links</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                            <li><a href="notes.html" class="hover:text-teal-600 transition">Notes</a></li>
+                            <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Videos</a></li>
+                            <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                    <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                    <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 </div>
-    <!-- ========================================== -->
-    <!-- STUDENT REVIEWS SECTION -->
-    <!-- ========================================== -->
-   <section id="reviews" class="relative w-full py-20 bg-[#f0f4f8] overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-sm font-bold text-indigo-600 tracking-widest uppercase mb-3">Testimonials</h2>
-            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Student Reviews</h3>
-            <p class="text-slate-600 text-lg">Real feedback from students using our notes and study materials.</p>
-        </div>
+<!-- UI Sidebar & Toast Logic -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
 
-            <!-- Review 1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="flex text-yellow-400 mb-4">
-                    ★★★★★
-                </div>
-                <p class="text-slate-700 mb-6 italic">
-                    "The notes are very clear and easy to understand. PYQs and important questions helped me score well in exams."
-                </p>
-                <div class="flex items-center gap-3">
-                    <img src="https://i.pravatar.cc/150?img=12" class="w-10 h-10 rounded-full">
-                    <div>
-                        <h5 class="font-semibold text-sm">Ankit Kumar</h5>
-                        <p class="text-xs text-gray-500">CSE Student</p>
-                    </div>
-                </div>
-            </div>
+        if (menuBtn) menuBtn.addEventListener('click', toggleSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', toggleSidebar);
+        
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
+        };
 
-            <!-- Review 2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="flex text-yellow-400 mb-4">
-                    ★★★★★
-                </div>
-                <p class="text-slate-700 mb-6 italic">
-                    "Regular updates and well-organized notes made preparation easy. PYQs were very useful."
-                </p>
-                <div class="flex items-center gap-3">
-                    <img src="https://i.pravatar.cc/150?img=47" class="w-10 h-10 rounded-full">
-                    <div>
-                        <h5 class="font-semibold text-sm">Sneha Patel</h5>
-                        <p class="text-xs text-gray-500">ECE Student</p>
-                    </div>
-                </div>
-            </div>
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Study Resources', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
+            }
+        };
 
-            <!-- Review 3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="flex text-yellow-400 mb-4">
-                    ★★★★☆
-                </div>
-                <p class="text-slate-700 mb-6 italic">
-                    "All important questions and PYQs are covered. Updates are always on time. Very helpful for exams."
-                </p>
-                <div class="flex items-center gap-3">
-                    <img src="https://i.pravatar.cc/150?img=68" class="w-10 h-10 rounded-full">
-                    <div>
-                        <h5 class="font-semibold text-sm">Rohit Singh</h5>
-                        <p class="text-xs text-gray-500">Mechanical Student</p>
-                    </div>
-                </div>
-            </div>
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', shareApp);
 
-        </div>
-    </div>
-</section>
+        // Branch card redirects
+        document.querySelectorAll('.branch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const branchName = this.getAttribute('data-branch');
+                this.classList.add('clicked');
+                setTimeout(() => { 
+                    this.classList.remove('clicked'); 
+                    if(branchName) {
+                        window.location.href = `notes.html?branch=${encodeURIComponent(branchName)}`;
+                    }
+                }, 300);
+            });
+        });
+    })();
+</script>
 
-    <!-- ========================================== -->
-    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
-    <!-- ========================================== -->
-    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
-                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
-            </div>
+<!-- Firebase Auth & Database Script -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                
-<!-- WhatsApp sem group Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for <b>SESSION 2025-28</b> to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+        authDomain: "diplomacampus.firebaseapp.com",
+        databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "diplomacampus",
+        storageBucket: "diplomacampus.firebasestorage.app",
+        messagingSenderId: "330061663460",
+        appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
+    };
 
-<!-- WhatsApp group Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for <b>SESSION 2024-27</b> to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                    <a href="https://chat.whatsapp.com/LFGSEy4uJsL4GcOL1rN2ui?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-                
-                
-                <!-- Telegram Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
-                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
-                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-                
- <!-- WhatsApp Channel Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp Channel for daily campus updates, important alerts, and quick notices.</p>
-                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+    const provider = new GoogleAuthProvider();
 
-            </div>
-        </div>
-    </section>
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerAvatar = document.getElementById('header-avatar');
+    const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+    const welcomeSection = document.getElementById('welcome-section');
+    const welcomeNameText = document.getElementById('welcome-name');
+    const skeletonLoader = document.getElementById('skeleton-loader');
+    const actualContent = document.getElementById('actual-content');
+    const subjectSelect = document.getElementById('subject-select');
+    const searchNotesBtn = document.getElementById('search-notes-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
 
-    <!-- ========================================== -->
-    <!-- PREMIUM FOOTER -->
-    <!-- ========================================== -->
-    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    function closeSidebar() {
+        if (sidebar) {
+            sidebar.classList.add('-translate-x-full');
+            if (overlay) overlay.classList.add('hidden');
+        }
+    }
+
+    function getAvatarUrl(user) {
+        if (!user) return '';
+        const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+        return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+    }
+
+    const handleLogin = () => {
+        signInWithPopup(auth, provider).catch(error => console.error("Login Failed:", error));
+    };
+
+    headerLoginBtn.addEventListener('click', handleLogin);
+
+    function populateSubjectDropdown() {
+        const notesRef = ref(db, 'notes');
+        onValue(notesRef, (snapshot) => {
+            const subjects = new Set();
+            if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                    const note = childSnapshot.val();
+                    if (note.subject && note.subject.trim() !== '') {
+                        subjects.add(note.subject.trim());
+                    }
+                });
+            }
+            while (subjectSelect.options.length > 1) {
+                subjectSelect.remove(1);
+            }
+            const sortedSubjects = Array.from(subjects).sort();
+            sortedSubjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectSelect.appendChild(option);
+            });
+        });
+    }
+
+    populateSubjectDropdown();
+
+    searchNotesBtn.addEventListener('click', () => {
+        const selectedSubject = subjectSelect.value;
+        if (selectedSubject) {
+            window.location.href = `notes.html?search=${encodeURIComponent(selectedSubject)}`;
+        } else {
+            window.location.href = 'notes.html';
+        }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+        skeletonLoader.classList.add('hidden');
+        actualContent.classList.remove('hidden');
+
+        if (user) {
+            headerLoginBtn.classList.add('hidden');
+            headerAvatar.classList.remove('hidden');
             
-            <!-- Top Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-                
-                <!-- Brand Info -->
-                <div class="lg:col-span-1">
-                    <a href="index.html" class="flex items-center gap-3 mb-6">
-                        <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
-                        <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
-                    </a>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.
-                    </p>
-                    <!-- Social Links -->
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all duration-300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all duration-300"><i class="fab fa-youtube"></i></a>
+            const photoURL = getAvatarUrl(user);
+            headerAvatar.src = photoURL;
+            headerAvatar.onerror = () => { 
+                headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`; 
+            };
+
+            welcomeSection.classList.remove('hidden');
+            welcomeNameText.innerText = user.displayName ? user.displayName.split(' ')[0] : user.email?.split('@')[0];
+
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            sidebarAuthSection.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${photoURL}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                        <p class="text-xs text-gray-500 truncate">${user.email}</p>
                     </div>
                 </div>
+                <div class="flex flex-col gap-2">
+                    <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                signOut(auth);
+                closeSidebar();
+            });
+        } else {
+            headerLoginBtn.classList.remove('hidden');
+            headerAvatar.classList.add('hidden');
+            welcomeSection.classList.add('hidden');
+            
+            sidebarAuthSection.innerHTML = `
+                <div class="text-center py-2">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                    <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                        <i class="fa-brands fa-google mr-1"></i> Sign In
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                handleLogin();
+                closeSidebar();
+            });
+        }
+    });
+</script>
 
-              
-            <!-- Quick Links -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home
-                    </a></li>
-
-                    <li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches
-                    </a></li>
-
-                    <li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes
-                    </a></li>
-
-                    <li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community
-                    </a></li>
-
-                    <li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us
-                    </a></li>
-
-                    <li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Branches -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Branches</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.
-                    </a></li>
-
-                    <li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.
-                    </a></li>
-
-                    <li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.
-                    </a></li>
-
-                    <li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.
-                    </a></li>
-
-                    <li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE
-                    </a></li>
-
-                    <li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Legal -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy
-                    </a></li>
-
-                    <li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions
-                    </a></li>
-
-                    <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Contact Info -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
-                <ul class="flex flex-col gap-4">
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-phone-alt text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">+91 8578009001</span>
-                    </li>
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">diplomacampus@gmail.com</span>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-
-
-        <!-- Bottom Bar -->
-        <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-
-            <p class="text-slate-500 text-sm text-center md:text-left">
-                &copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.
-            </p>
-
-            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">
-                Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by
-                <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong>
-            </p>
-
-        </div>
-
-    </div>
-</footer>
-
-<script src="script.js"></script>
 </body>
 </html>

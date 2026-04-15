@@ -2,307 +2,406 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Disclaimer · Diploma Campus</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* subtle professional enhancements */
-        .disclaimer-card {
-            backdrop-filter: blur(2px);
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .disclaimer-section h2 {
-            scroll-margin-top: 5rem;
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            flex: 1;
         }
-        .highlight-warning {
-            background: linear-gradient(145deg, #fff1f0, #fee2e2);
+        #toast-message {
+            transition: opacity 0.3s ease;
+            z-index: 100;
         }
     </style>
 </head>
-<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="text-gray-800">
 
-<script src="preloader.js"></script>
+<!-- Toast container -->
+<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
+</div>
 
-<!-- ========== HEADER (unchanged) ========== -->
-<header class="header sticky top-0 z-[110]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 lg:h-20">
-            <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
-                <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
-                <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
-            </a>
+<div class="bg-grid flex flex-col pb-20 relative">
 
-            <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-                <a href="index.html" class="nav-link flex items-center gap-2"><i class="fas fa-home text-blue-500"></i><span>Home</span></a>
-                <div class="relative group">
-                    <button class="flex items-center gap-2"><i class="fas fa-graduation-cap text-blue-500"></i><span>Branches</span></button>
-                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
-                        <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
-                        <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
-                        <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
-                        <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
-                        <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical & Electronics Engg.</a>
-                        <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
+    <!-- ========== HEADER ========== -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+        <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
+            <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+            <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">Sign In</button>
+            <img id="header-avatar" src="" alt="Profile" onclick="window.location.href='login.html'" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
+            <!-- Removed md:hidden to enable sidebar on desktop -->
+            <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="font-bold text-lg"><span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+            <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
+                <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                <li><hr class="my-2 border-gray-200"></li>
+                <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy</a></li>
+                <li><a href="#" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t" id="sidebar-auth-section"></div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="w-full max-w-4xl mx-auto px-4 pt-24 md:pt-32 flex-1">
+        
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
+                Disclaimer
+            </h1>
+            <p class="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">Last updated: April 14, 2026</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 space-y-6 text-gray-700">
+            
+            <p class="leading-relaxed">
+                The information provided by Diploma Campus ("we", "us", or "our") on this website is for general informational and educational purposes only. All information on the site is provided in good faith; however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.
+            </p>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-book text-teal-500 text-lg"></i> Educational Content & Notes</h2>
+                <p class="mb-2">
+                    The notes, study materials, and resources available on Diploma Campus are contributed by students, educators, and community members. While we strive to maintain high quality and relevance:
+                </p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li>We do not guarantee that the content is free from errors or omissions.</li>
+                    <li>The materials are meant to supplement official curriculum and textbooks, not replace them.</li>
+                    <li>Users are advised to cross-check information with official sources (syllabus, faculty, university notifications).</li>
+                    <li>Any reliance you place on such information is strictly at your own risk.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-link text-teal-500 text-lg"></i> External Links & Third‑Party Resources</h2>
+                <p class="mb-2">
+                    Our website may contain links to external websites (e.g., Google Drive, YouTube, other educational platforms) that are not provided or maintained by or in any way affiliated with Diploma Campus. Please note that:
+                </p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li>We do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.</li>
+                    <li>We are not responsible for the content, privacy policies, or practices of any third‑party sites.</li>
+                    <li>Inclusion of any link does not imply endorsement by Diploma Campus.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-regular fa-comments text-teal-500 text-lg"></i> User‑Generated Content (Q&A Community)</h2>
+                <p class="mb-2">
+                    The Q&A Community allows users to post questions, answers, and images. We act as a platform provider and do not actively monitor all content.
+                </p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li>Views expressed by users are their own and do not reflect the views of Diploma Campus.</li>
+                    <li>We reserve the right to remove any content that violates our guidelines or is deemed inappropriate, but we are not obligated to do so.</li>
+                    <li>You are solely responsible for the content you post and any consequences thereof.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-regular fa-copyright text-teal-500 text-lg"></i> Copyright & Intellectual Property</h2>
+                <p class="mb-2">
+                    All original content created by Diploma Campus (including website design, logo, and unique compilations) is the property of Diploma Campus. For user‑submitted content:
+                </p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li>We respect the intellectual property rights of others. If you believe that any content on our site infringes your copyright, please contact us immediately at <a href="mailto:diplomacampus@gmail.com" class="text-teal-600 hover:underline">diplomacampus@gmail.com</a> with details, and we will take appropriate action.</li>
+                    <li>Users retain ownership of the notes or materials they upload; however, by uploading you grant us a non‑exclusive, royalty‑free license to display and distribute the content on the platform.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-teal-500 text-lg"></i> Limitation of Liability</h2>
+                <p class="mb-2">
+                    To the maximum extent permitted by applicable law, in no event shall Diploma Campus, its contributors, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+                </p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li>Your access to or use of (or inability to access or use) the website.</li>
+                    <li>Any conduct or content of any third party on the website.</li>
+                    <li>Any content obtained from the website.</li>
+                    <li>Unauthorized access, use, or alteration of your transmissions or content.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-gavel text-teal-500 text-lg"></i> Fair Use Notice</h2>
+                <p>This site may contain copyrighted material the use of which has not always been specifically authorized by the copyright owner. We are making such material available in our efforts to advance understanding of educational topics. We believe this constitutes a "fair use" of any such copyrighted material as provided for in section 107 of the US Copyright Law and similar provisions in other jurisdictions. If you wish to use copyrighted material from this site for purposes of your own that go beyond fair use, you must obtain permission from the copyright owner.</p>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-pen text-teal-500 text-lg"></i> Changes to This Disclaimer</h2>
+                <p>We may update this Disclaimer from time to time. We will notify you of any changes by posting the new Disclaimer on this page. You are advised to review this Disclaimer periodically for any changes.</p>
+            </div>
+
+            <div class="mt-8 p-5 bg-teal-50/50 rounded-xl border border-teal-100">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-regular fa-envelope text-teal-600"></i> Questions or Concerns?</h3>
+                <p class="text-gray-600">If you have any questions about this Disclaimer, you can contact us:</p>
+                <a href="mailto:diplomacampus@gmail.com" class="inline-block mt-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg transition shadow-sm">
+                    <i class="fa-regular fa-paper-plane mr-1"></i> diplomacampus@gmail.com
+                </a>
+                <p class="text-sm text-gray-500 mt-3">Or visit our <a href="about-us.html" class="text-teal-600 hover:underline">About Us</a> page for more ways to connect.</p>
+            </div>
+
+        </div>
+
+        <div class="h-8"></div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+            <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-teal-500"></i> Quick search across all resources</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">Find notes, videos, or ask the community</p>
+                    </div>
+                    <div class="flex w-full sm:w-auto relative">
+                        <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                        <button id="footer-search-btn" onclick="window.location.href='notes.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-teal-500 hover:bg-teal-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
                     </div>
                 </div>
-                <a href="index.html#notes" class="nav-link flex items-center gap-2"><i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span></a>
-                <a href="index.html#community" class="nav-link flex items-center gap-2"><i class="fas fa-users text-blue-500"></i><span>Community</span></a>
-                <a href="contact_us.html" class="nav-link flex items-center gap-2"><i class="fas fa-envelope text-blue-500"></i><span>Contact</span></a>
-            </nav>
-            <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- ========== SIDEBAR (unchanged) ========== -->
-<div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
-    <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
-        <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
-        <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
-    </div>
-    <div class="flex-1 px-4 py-5 overflow-y-auto">
-        <nav class="flex flex-col gap-1.5">
-            <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-home text-blue-600"></i><span>Home</span></a>
-            <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span></a>
-            <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span></a>
-            <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span></a>
-            <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span></a>
-            <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-microchip text-blue-600"></i><span>Electrical & Electronics Engg.</span></a>
-            <a href="ece.html" class="sidebar-link flex item-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-broadcast-tower text-blue-600"></i><span>Electronics & Communication Engg.</span></a>
-            <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span></a>
-            <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-info-circle text-blue-600"></i><span>About Us</span></a>
-            <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-envelope text-blue-600"></i><span>Contact</span></a>
-        </nav>
-    </div>
-</div>
-<div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
-
-<!-- ========== MAIN CONTENT (ENHANCED PROFESSIONAL DISCLAIMER) ========== -->
-<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-12 lg:py-20 relative z-10">
-    <div class="absolute top-0 right-0 w-72 h-72 bg-red-400/5 blur-[100px] rounded-full -z-10"></div>
-
-    <div class="bg-white/90 backdrop-blur-sm rounded-[3rem] p-8 md:p-14 shadow-2xl shadow-red-500/5 border border-white/50 disclaimer-card">
-        
-        <!-- Header -->
-        <div class="text-center mb-14">
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 text-red-700 text-xs font-bold tracking-widest uppercase mb-4 border border-red-200/50">
-                <i class="fas fa-gavel text-sm"></i> Legal Notice
-            </span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Legal <span class="text-red-600">Disclaimer</span>
-            </h1>
-            <div class="mt-4 flex items-center justify-center gap-2 text-slate-500">
-                <i class="far fa-calendar-alt text-red-500"></i>
-                <span>Effective Date: <strong>April 1, 2025</strong></span>
-                <span class="mx-2 text-slate-300">|</span>
-                <span>Last Updated: April 10, 2026</span>
             </div>
-            <div class="w-24 h-1 bg-gradient-to-r from-red-400 to-amber-400 mx-auto mt-6 rounded-full"></div>
         </div>
-
-        <!-- Prominent Warning Banner -->
-        <div class="bg-gradient-to-r from-red-50 to-amber-50 rounded-3xl p-6 md:p-8 border-l-8 border-red-500 shadow-inner mb-12">
-            <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 text-xl shrink-0">
-                    <i class="fas fa-exclamation-triangle"></i>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+            <div class="mb-8">
+                <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                <div class="flex flex-wrap gap-3 sm:gap-4">
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
+                <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Browse Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Video Lectures</a></li>
+                        <li><a href="QnA.html" class="hover:text-teal-600 transition">Q&A Community</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-red-800 mb-2">Important Notice: Not an Official Website</h3>
-                    <p class="text-slate-700 text-lg leading-relaxed">
-                        <strong class="text-red-700">Diploma Campus</strong> is an independent, student-focused educational portal. We are <u>not</u> affiliated with, endorsed by, or the official website of the <strong>Jharkhand University of Technology (JUT), Ranchi</strong> or any other government examination board or university. All official announcements, results, and syllabi must be verified through official government sources.
-                    </p>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-teal-500"></i> Information</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="about-us.html" class="hover:text-teal-600 transition">About Us</a></li>
+                        <li><a href="contact-us.html" class="hover:text-teal-600 transition">Contact Us</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard / Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-teal-500"></i> Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="terms.html" class="hover:text-teal-600 transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-teal-600 transition">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html" class="hover:text-teal-600 transition">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-teal-500"></i> Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Videos</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard</a></li>
+                    </ul>
                 </div>
             </div>
+            <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+            </div>
         </div>
+    </footer>
+</div>
 
-        <!-- Disclaimer Content Sections -->
-        <div class="prose prose-slate max-w-none space-y-10 text-slate-700 leading-relaxed">
-            
-            <!-- Section 1: General Information -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-slate-600 to-slate-800 text-white flex items-center justify-center text-sm shadow-md shadow-slate-200"><i class="fas fa-info-circle"></i></div>
-                    1. General Information & Purpose
-                </h2>
-                <p>The information provided on this website — including but not limited to study notes, previous year question papers (PYQs), e‑books, syllabus updates, and examination tips — is for <strong>general informational and educational purposes only</strong>. While we strive to keep the content up‑to‑date and accurate, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.</p>
-            </section>
+<!-- ========== UI Sidebar & Toast Logic ========== -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
 
-            <!-- Section 2: Educational Use Only -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center text-sm shadow-md shadow-amber-200"><i class="fas fa-graduation-cap"></i></div>
-                    2. Educational Purpose & No Guarantee of Results
-                </h2>
-                <p>All study materials, PDF notes, and question papers are curated and shared with the intent to assist diploma students in their academic preparation. However, reliance on these materials is <strong>strictly at your own risk</strong>. Diploma Campus does not guarantee any specific academic outcome, passing marks, or success in examinations. The content should not be considered a substitute for official textbooks, classroom instruction, or guidance from qualified faculty members.</p>
-            </section>
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
 
-            <!-- Section 3: Accuracy of Syllabus & Curriculum -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-200"><i class="fas fa-sync-alt"></i></div>
-                    3. Syllabus Accuracy & Updates
-                </h2>
-                <p>We make every effort to align our resources with the latest <strong>NEP 2020–2026 JUT syllabus</strong> and other prescribed curricula. Nevertheless, syllabus revisions, subject code changes, and curriculum updates occur periodically and may be implemented by universities without prior public notice. Students are solely responsible for verifying the current syllabus and examination pattern from official university notifications or their respective institution's academic office.</p>
-            </section>
+        if (menuBtn) menuBtn.addEventListener('click', toggleSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', toggleSidebar);
+        
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
+        };
 
-            <!-- Section 4: External Links & Third-Party Content -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center text-sm shadow-md shadow-emerald-200"><i class="fas fa-external-link-alt"></i></div>
-                    4. External Links & Third-Party Resources
-                </h2>
-                <p>Our website may contain links to external websites or services (e.g., Google Drive, Telegram, WhatsApp, third‑party PDF hosts) that are not operated by us. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third‑party websites or services. The inclusion of any link does not imply endorsement by Diploma Campus. We strongly advise you to review the terms and conditions and privacy policies of any third‑party websites you visit.</p>
-            </section>
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Disclaimer', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
+            }
+        };
 
-            <!-- Section 5: Copyright & Intellectual Property -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 text-white flex items-center justify-center text-sm shadow-md shadow-purple-200"><i class="fas fa-copyright"></i></div>
-                    5. Copyright & Intellectual Property
-                </h2>
-                <p>All original content, including the website design, logo, and curated compilations, is the property of Diploma Campus unless otherwise stated. Study materials and PDFs shared on this platform may contain copyrighted content belonging to respective publishers or authors. These materials are shared under <strong>fair use</strong> for educational purposes only. If you believe any content infringes your copyright, please contact us immediately with proper documentation, and we will promptly address the issue.</p>
-            </section>
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', shareApp);
+    })();
+</script>
 
-            <!-- Section 6: Limitation of Liability -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center text-sm shadow-md shadow-rose-200"><i class="fas fa-scale-balanced"></i></div>
-                    6. Limitation of Liability
-                </h2>
-                <p>In no event shall Diploma Campus, its contributors, or its operators be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of your access to or use of, or inability to access or use, the website or any content therein. This includes, without limitation, any loss of data, loss of marks, or any other academic or personal setback.</p>
-            </section>
+<!-- ========== Firebase Auth (Header & Sidebar) ========== -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-            <!-- Section 7: No Professional Advice -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-sm shadow-md shadow-sky-200"><i class="fas fa-user-tie"></i></div>
-                    7. No Professional or Legal Advice
-                </h2>
-                <p>The content on this website does not constitute professional, legal, or career advice. For specific guidance regarding admissions, examinations, or career pathways, you should consult directly with official university representatives, academic advisors, or qualified professionals.</p>
-            </section>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+        authDomain: "diplomacampus.firebaseapp.com",
+        databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "diplomacampus",
+        storageBucket: "diplomacampus.firebasestorage.app",
+        messagingSenderId: "330061663460",
+        appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
+    };
 
-            <!-- Section 8: Changes to Disclaimer -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-md shadow-indigo-200"><i class="fas fa-pen"></i></div>
-                    8. Changes to This Disclaimer
-                </h2>
-                <p>We reserve the right to modify or replace this Disclaimer at any time without prior notice. Changes are effective immediately upon posting to this page. Your continued use of the website after any modifications constitutes acceptance of the updated Disclaimer. It is your responsibility to review this page periodically for changes.</p>
-            </section>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-            <!-- Section 9: Consent -->
-            <section class="disclaimer-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 text-white flex items-center justify-center text-sm shadow-md shadow-green-200"><i class="fas fa-check-circle"></i></div>
-                    9. Consent & Acknowledgment
-                </h2>
-                <p>By using our website, you hereby consent to this Disclaimer and agree to its terms. If you do not agree with any part of this disclaimer, you must discontinue use of the Diploma Campus website immediately.</p>
-            </section>
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerAvatar = document.getElementById('header-avatar');
+    const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
 
-            <!-- Contact & Report Section -->
-            <section class="disclaimer-section border-t border-slate-200 pt-10 mt-12">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-red-600 to-red-800 text-white flex items-center justify-center text-sm shadow-md shadow-red-200"><i class="fas fa-flag"></i></div>
-                    Report a Concern or Copyright Issue
-                </h2>
-                <p class="text-lg">If you find any content that is inaccurate, outdated, or potentially infringing on intellectual property rights, please notify us immediately. We are committed to maintaining a respectful and lawful educational environment.</p>
-                <div class="mt-6 grid sm:grid-cols-2 gap-6">
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-envelope text-red-600 text-xl"></i>
-                            <span class="font-semibold text-slate-800">Email for Legal Issues</span>
-                        </div>
-                        <a href="mailto:diplomacampus@gmail.com" class="text-red-600 hover:underline text-lg">legal@diplomacampus.com</a>
-                        <p class="text-sm text-slate-500 mt-1">(For DMCA / content removal)</p>
+    function getAvatarUrl(user) {
+        if (!user) return '';
+        const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+        return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+    }
+
+    function closeSidebar() {
+        if (sidebar) {
+            sidebar.classList.add('-translate-x-full');
+            if (overlay) overlay.classList.add('hidden');
+        }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            headerLoginBtn.style.display = 'none';
+            headerAvatar.style.display = 'block';
+            const avatarUrl = getAvatarUrl(user);
+            headerAvatar.src = avatarUrl;
+            headerAvatar.onerror = () => { 
+                headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`; 
+            };
+
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            sidebarAuthSection.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                        <p class="text-xs text-gray-500 truncate">${user.email}</p>
                     </div>
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-headset text-red-600 text-xl"></i>
-                            <span class="font-semibold text-slate-800">General Support</span>
-                        </div>
-                        <a href="mailto:diplomacampus@gmail.com" class="text-blue-600 hover:underline text-lg">support@diplomacampus.com</a>
-                        <p class="text-sm text-slate-500 mt-1">(Response within 48 hours)</p>
-                    </div>
                 </div>
-            </section>
-        </div>
-
-        <!-- Footer note inside card -->
-        <div class="mt-14 pt-6 border-t border-slate-200/80 text-center">
-            <p class="text-slate-500 text-sm flex items-center justify-center gap-2 flex-wrap">
-                <i class="fas fa-shield-alt text-red-500"></i> This disclaimer is part of our commitment to transparency.
-                <span class="hidden sm:inline mx-2">•</span>
-                <a href="privacy.html" class="text-blue-600 hover:underline font-medium">Privacy Policy</a> 
-                <span>|</span>
-                <a href="terms.html" class="text-blue-600 hover:underline font-medium">Terms of Service</a>
-            </p>
-        </div>
-    </div>
-</main>
-
-<!-- ========== COMMUNITY SECTION (unchanged) ========== -->
-<section id="community" class="w-full py-20 bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
-            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
-            <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp"></i></div>
-                <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i></a>
-            </div>
-            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
-                <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20"><i class="fab fa-telegram-plane ml-[-2px]"></i></div>
-                <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
-                <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
-                <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i></a>
-            </div>
-            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp"></i></div>
-                <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
-                <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp channel for daily campus updates, important alerts, and quick notices.</p>
-                <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== FOOTER (unchanged) ========== -->
-<footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-            <div class="lg:col-span-1">
-                <a href="index.html" class="flex items-center gap-3 mb-6">
-                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
-                    <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
-                </a>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.</p>
-                <div class="flex items-center gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
+                <div class="flex flex-col gap-2">
+                    <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                    </button>
                 </div>
-            </div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Quick Links</h4><ul class="flex flex-col gap-3"><li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home</a></li><li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches</a></li><li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes</a></li><li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community</a></li><li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us</a></li><li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us</a></li></ul></div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Branches</h4><ul class="flex flex-col gap-3"><li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.</a></li><li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.</a></li><li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.</a></li><li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.</a></li><li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE</a></li><li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.</a></li></ul></div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Legal</h4><ul class="flex flex-col gap-3"><li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy</a></li><li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions</a></li><li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer</a></li></ul></div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Contact Us</h4><ul class="flex flex-col gap-4"><li class="flex items-center gap-3"><i class="fas fa-phone-alt text-blue-500"></i><span class="text-slate-400 text-sm">+91 8578009001</span></li><li class="flex items-center gap-3"><i class="fas fa-envelope text-blue-500"></i><span class="text-slate-400 text-sm">diplomacampus@gmail.com</span></li></ul></div>
-        </div>
-        <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-slate-500 text-sm text-center md:text-left">&copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.</p>
-            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong></p>
-        </div>
-    </div>
-</footer>
+            `;
+            document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                signOut(auth);
+                closeSidebar();
+            });
+        } else {
+            headerLoginBtn.style.display = 'block';
+            headerAvatar.style.display = 'none';
+            sidebarAuthSection.innerHTML = `
+                <div class="text-center py-2">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                    <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                        <i class="fa-brands fa-google mr-1"></i> Sign In
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                signInWithPopup(auth, provider).catch(err => console.warn(err));
+                closeSidebar();
+            });
+        }
+    });
 
-<script src="script.js"></script>
+    headerLoginBtn.addEventListener('click', () => {
+        signInWithPopup(auth, provider).catch(err => console.warn(err));
+    });
+</script>
 </body>
 </html>

@@ -2,319 +2,403 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Privacy Policy · Diploma Campus</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* subtle professional enhancements */
-        .policy-card {
-            backdrop-filter: blur(2px);
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .policy-section h2 {
-            scroll-margin-top: 5rem;
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            flex: 1;
         }
-        .policy-divider {
-            background: linear-gradient(90deg, #e2e8f0 0%, #94a3b8 50%, #e2e8f0 100%);
+        #toast-message {
+            transition: opacity 0.3s ease;
+            z-index: 100;
         }
     </style>
 </head>
-<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="text-gray-800">
 
-<script src="preloader.js"></script>
-
-<!-- ========== HEADER (unchanged) ========== -->
-<header class="header sticky top-0 z-[110]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 lg:h-20">
-            <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
-                <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
-                <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
-            </a>
-
-            <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-                <a href="index.html" class="nav-link flex items-center gap-2"><i class="fas fa-home text-blue-500"></i><span>Home</span></a>
-                <div class="relative group">
-                    <button class="flex items-center gap-2"><i class="fas fa-graduation-cap text-blue-500"></i><span>Branches</span></button>
-                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
-                        <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
-                        <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
-                        <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
-                        <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
-                        <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical & Electronics Engg.</a>
-                        <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
-                    </div>
-                </div>
-                <a href="index.html#notes" class="nav-link flex items-center gap-2"><i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span></a>
-                <a href="index.html#community" class="nav-link flex items-center gap-2"><i class="fas fa-users text-blue-500"></i><span>Community</span></a>
-                <a href="contact_us.html" class="nav-link flex items-center gap-2"><i class="fas fa-envelope text-blue-500"></i><span>Contact</span></a>
-            </nav>
-            <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- ========== SIDEBAR (unchanged) ========== -->
-<div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
-    <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
-        <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
-        <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
-    </div>
-    <div class="flex-1 px-4 py-5 overflow-y-auto">
-        <nav class="flex flex-col gap-1.5">
-            <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-home text-blue-600"></i><span>Home</span></a>
-            <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span></a>
-            <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span></a>
-            <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span></a>
-            <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span></a>
-            <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-microchip text-blue-600"></i><span>Electrical & Electronics Engg.</span></a>
-            <a href="ece.html" class="sidebar-link flex item-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-broadcast-tower text-blue-600"></i><span>Electronics & Communication Engg.</span></a>
-            <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span></a>
-            <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-info-circle text-blue-600"></i><span>About Us</span></a>
-            <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl"><i class="fas fa-envelope text-blue-600"></i><span>Contact</span></a>
-        </nav>
-    </div>
+<!-- Toast container -->
+<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
 </div>
-<div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
 
-<!-- ========== MAIN CONTENT (ENHANCED PROFESSIONAL PRIVACY POLICY) ========== -->
-<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-12 lg:py-20 relative z-10">
-    <div class="absolute top-0 right-0 w-72 h-72 bg-blue-400/10 blur-[100px] rounded-full -z-10"></div>
+<div class="bg-grid flex flex-col pb-20 relative">
 
-    <div class="bg-white/90 backdrop-blur-sm rounded-[3rem] p-8 md:p-14 shadow-2xl shadow-blue-500/5 border border-white/50 policy-card">
+    <!-- ========== HEADER ========== -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+        <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
+            <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+            <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">Sign In</button>
+            <img id="header-avatar" src="" alt="Profile" onclick="window.location.href='login.html'" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
+            <!-- Removed md:hidden to enable sidebar on desktop -->
+            <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="font-bold text-lg"><span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+            <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
+                <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                
+                <li><hr class="my-2 border-gray-200"></li>
+                <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                <li><a href="#" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
+                <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t" id="sidebar-auth-section"></div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="w-full max-w-4xl mx-auto px-4 pt-24 md:pt-32 flex-1">
         
-        <!-- Header -->
-        <div class="text-center mb-14">
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold tracking-widest uppercase mb-4 border border-blue-200/50">
-                <i class="fas fa-shield-alt text-sm"></i> Legal & Compliance
-            </span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Privacy <span class="text-blue-600">Policy</span>
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
+                Privacy <span class="text-teal-500">Policy</span>
             </h1>
-            <div class="mt-4 flex items-center justify-center gap-2 text-slate-500">
-                <i class="far fa-calendar-alt text-blue-500"></i>
-                <span>Effective Date: <strong>April 1, 2025</strong></span>
-                <span class="mx-2 text-slate-300">|</span>
-                <span>Last Reviewed: April 10, 2026</span>
-            </div>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mt-6 rounded-full"></div>
+            <p class="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">Last updated: April 14, 2026</p>
         </div>
 
-        <!-- Policy Content -->
-        <div class="prose prose-slate max-w-none space-y-10 text-slate-700 leading-relaxed">
+        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 space-y-6 text-gray-700">
             
-            <!-- Section 1: Overview -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-200"><i class="fas fa-clipboard-list"></i></div>
-                    1. Overview & Scope
-                </h2>
-                <p class="text-lg text-slate-600">Diploma Campus (“we,” “our,” or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <strong>diplomacampus.com</strong> (the “Site”) and interact with our educational resources, community channels (WhatsApp/Telegram), and services. By accessing or using the Site, you consent to the practices described in this policy.</p>
-                <p class="mt-4">This policy applies to all users, including prospective students, enrolled diploma candidates, and visitors. If you do not agree with our policies and practices, please discontinue use of our services.</p>
-            </section>
-
-            <!-- Section 2: Information We Collect -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center text-sm shadow-md shadow-emerald-200"><i class="fas fa-database"></i></div>
-                    2. Information We Collect
-                </h2>
-                <p class="font-semibold text-slate-800">We collect information in the following ways:</p>
-                <ul class="list-disc ml-6 space-y-3 mt-3 text-slate-600 marker:text-blue-500">
-                    <li><strong>Personal Information Provided Voluntarily:</strong> When you contact us via email, subscribe to newsletters, or join our community groups, you may provide your name, email address, phone number, or student details. We only collect what is necessary.</li>
-                    <li><strong>Automatically Collected Data (Usage & Device):</strong> As you navigate the Site, we may collect certain information automatically, including your IP address, browser type, operating system, referring URLs, device identifiers, and clickstream data. This is used for analytics, security, and to improve user experience.</li>
-                    <li><strong>Cookies and Similar Technologies:</strong> We use essential cookies and analytics cookies (e.g., Google Analytics) to understand site traffic and enhance functionality. You can control cookie preferences through your browser settings.</li>
-                    <li><strong>Community Platform Data:</strong> When you join our official WhatsApp or Telegram channels, your profile name and phone number (as per platform settings) become visible to other members. We do not control the data processing within third‑party platforms.</li>
-                </ul>
-            </section>
-
-            <!-- Section 3: How We Use Information -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center text-sm shadow-md shadow-amber-200"><i class="fas fa-cogs"></i></div>
-                    3. How We Use Your Information
-                </h2>
-                <p>We use the collected information for legitimate educational and operational purposes, including:</p>
-                <ul class="list-disc ml-6 space-y-2 mt-3 text-slate-600 marker:text-blue-500">
-                    <li>Providing, maintaining, and improving our Site and academic resources.</li>
-                    <li>Responding to inquiries, support requests, and feedback.</li>
-                    <li>Sending important updates, security alerts, and administrative messages.</li>
-                    <li>Analyzing usage trends to optimize content delivery (e.g., most downloaded notes).</li>
-                    <li>Protecting against fraudulent, unauthorized, or illegal activity.</li>
-                    <li>Facilitating community interaction through our official groups (subject to platform terms).</li>
-                </ul>
-                <p class="mt-4"><i class="fas fa-ban text-red-400 mr-2"></i> <strong>We do not sell, rent, or trade your personal information to third parties for marketing purposes.</strong></p>
-            </section>
-
-            <!-- Section 4: Cookies & Tracking Technologies -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 text-white flex items-center justify-center text-sm shadow-md shadow-purple-200"><i class="fas fa-cookie-bite"></i></div>
-                    4. Cookies & Tracking
-                </h2>
-                <p>We use cookies and similar tracking technologies to enhance your browsing experience. Cookies are small text files placed on your device. You may refuse to accept browser cookies by activating the appropriate setting; however, some parts of the Site may become inaccessible or not function properly.</p>
-                <p class="mt-3">We may use third‑party analytics providers (such as Google Analytics) that set cookies to help us analyze how users engage with the Site. These providers have their own privacy policies addressing how they use such information.</p>
-            </section>
-
-            <!-- Section 5: Third-Party Services & Links -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center text-sm shadow-md shadow-rose-200"><i class="fas fa-external-link-alt"></i></div>
-                    5. Third-Party Services & External Links
-                </h2>
-                <p>The Site may contain links to third‑party websites, plug‑ins, and applications (e.g., WhatsApp, Telegram, Google Drive). Clicking on those links or enabling those connections may allow third parties to collect or share data about you. We do not control these third‑party websites and are not responsible for their privacy statements. We encourage you to read the privacy policy of every site you visit.</p>
-            </section>
-
-            <!-- Section 6: Community & Social Features -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-white flex items-center justify-center text-sm shadow-md shadow-cyan-200"><i class="fas fa-users"></i></div>
-                    6. Community Interaction (WhatsApp / Telegram)
-                </h2>
-                <p>Our student community operates via third‑party messaging platforms. When you join:</p>
-                <ul class="list-disc ml-6 space-y-2 mt-3 text-slate-600 marker:text-blue-500">
-                    <li>Your display name, profile picture, and phone number (if visible) may be seen by other group/channel members.</li>
-                    <li>We strongly advise against sharing sensitive personal information (address, financial details) in these groups.</li>
-                    <li>Diploma Campus is not liable for interactions or private messages exchanged between members outside of official announcements.</li>
-                    <li>We reserve the right to remove any member who violates community guidelines or posts inappropriate content.</li>
-                </ul>
-            </section>
-
-            <!-- Section 7: Data Security -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-slate-700 to-slate-900 text-white flex items-center justify-center text-sm shadow-md shadow-slate-300"><i class="fas fa-lock"></i></div>
-                    7. Data Security
-                </h2>
-                <p>We implement appropriate technical and organizational measures designed to protect the security of any personal information we process. However, please note that no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure. We strive to use commercially acceptable means to protect your personal information, but we cannot guarantee its absolute security.</p>
-            </section>
-
-            <!-- Section 8: Children’s Privacy -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 text-white flex items-center justify-center text-sm shadow-md shadow-yellow-200"><i class="fas fa-child"></i></div>
-                    8. Children’s Privacy
-                </h2>
-                <p>Our services are intended for users who are at least 13 years of age. We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will take steps to delete such information. If you believe we might have any information from or about a child under 13, please contact us.</p>
-            </section>
-
-            <!-- Section 9: Your Privacy Rights -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-500 to-blue-500 text-white flex items-center justify-center text-sm shadow-md shadow-sky-200"><i class="fas fa-user-shield"></i></div>
-                    9. Your Rights & Choices
-                </h2>
-                <p>Depending on your location, you may have certain rights regarding your personal information, such as the right to access, correct, or delete your data. To exercise any of these rights, please contact us using the details below. We will respond to your request in accordance with applicable data protection laws.</p>
-                <p class="mt-3">You can also opt out of receiving promotional communications by following the unsubscribe instructions in any email we send. Please note that you may still receive transactional or administrative messages.</p>
-            </section>
-
-            <!-- Section 10: Policy Updates -->
-            <section class="policy-section">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-md shadow-indigo-200"><i class="fas fa-sync-alt"></i></div>
-                    10. Changes to This Privacy Policy
-                </h2>
-                <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. The updated version will be indicated by an updated “Effective Date” and the updated version will be effective as soon as it is accessible. We encourage you to review this Privacy Policy periodically.</p>
-            </section>
-
-            <!-- Section 11: Contact Us -->
-            <section class="policy-section border-t border-slate-200 pt-10 mt-12">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 flex items-center gap-3">
-                    <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 text-white flex items-center justify-center text-sm shadow-md shadow-blue-200"><i class="fas fa-envelope-open-text"></i></div>
-                    11. Contact Information
-                </h2>
-                <p class="text-lg">If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please reach out to our Privacy Team:</p>
-                <div class="mt-6 grid sm:grid-cols-2 gap-6">
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-envelope text-blue-600 text-xl"></i>
-                            <span class="font-semibold text-slate-800">Email</span>
-                        </div>
-                        <a href="mailto:diplomacampus@gmail.com" class="text-blue-600 hover:underline text-lg">privacy@diplomacampus.com</a>
-                        <p class="text-sm text-slate-500 mt-1">(Response within 2 business days)</p>
-                    </div>
-                    
-                </div>
-                <p class="mt-6 text-sm text-slate-500">For urgent community‑related issues, please use the contact form on our website.</p>
-            </section>
-        </div>
-
-        <!-- Footer note inside card -->
-        <div class="mt-14 pt-6 border-t border-slate-200/80 text-center">
-            <p class="text-slate-500 text-sm flex items-center justify-center gap-2 flex-wrap">
-                <i class="fas fa-check-circle text-green-500"></i> Thank you for trusting Diploma Campus with your educational journey.
-                <span class="hidden sm:inline mx-2">•</span>
-                <a href="terms.html" class="text-blue-600 hover:underline font-medium">Terms of Service</a> 
-                <span>|</span>
-                <a href="disclaimer.html" class="text-blue-600 hover:underline font-medium">Disclaimer</a>
+            <p class="leading-relaxed">
+                Welcome to Diploma Campus. Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. Please read this policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
             </p>
-        </div>
-    </div>
-</main>
 
-<!-- ========== COMMUNITY SECTION (unchanged) ========== -->
-<section id="community" class="w-full py-20 bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
-            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
-            <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp"></i></div>
-                <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i></a>
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-database text-teal-500 text-lg"></i> Information We Collect</h2>
+                <p class="mb-2">We collect information that you voluntarily provide to us when you:</p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li><strong>Register / Sign In:</strong> When you sign in using Google, we receive your name, email address, and profile picture from Google. We also store a unique user ID.</li>
+                    <li><strong>Profile Dashboard:</strong> You may optionally provide your college name, phone number, branch, and semester.</li>
+                    <li><strong>Q&A Community:</strong> Any messages, images, or replies you post in the community chat are stored on our servers.</li>
+                    <li><strong>Uploaded Content:</strong> Notes, video links, and other resources you upload (as an admin) are stored along with metadata like branch and semester.</li>
+                </ul>
+                <p class="mt-2 text-sm text-gray-500">We do not collect sensitive personal data such as passwords, financial information, or government IDs.</p>
             </div>
-            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
-                <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20"><i class="fab fa-telegram-plane ml-[-2px]"></i></div>
-                <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
-                <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
-                <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i></a>
-            </div>
-            <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp"></i></div>
-                <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
-                <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp channel for daily campus updates, important alerts, and quick notices.</p>
-                <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- ========== FOOTER (unchanged) ========== -->
-<footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-            <div class="lg:col-span-1">
-                <a href="index.html" class="flex items-center gap-3 mb-6">
-                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
-                    <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-gear text-teal-500 text-lg"></i> How We Use Your Information</h2>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li>To provide, operate, and maintain our website and services.</li>
+                    <li>To identify you as a user and display your profile information (name, avatar) in the Q&A community.</li>
+                    <li>To enable admin features (only for authorized administrators).</li>
+                    <li>To send you important updates, security alerts, or respond to your inquiries.</li>
+                    <li>To improve our website and develop new features based on usage patterns.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-brands fa-google text-teal-500 text-lg"></i> Third‑Party Services</h2>
+                <p class="mb-2">We rely on trusted third‑party services to power our platform. These services may collect information as governed by their own privacy policies.</p>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li><strong>Firebase (Google):</strong> We use Firebase Authentication for sign‑in and Firebase Realtime Database & Storage to store user data, notes, videos, and chat messages. Your data resides on Google Cloud servers. <a href="https://firebase.google.com/support/privacy" target="_blank" class="text-teal-600 hover:underline">Firebase Privacy Policy</a>.</li>
+                    <li><strong>Google Sign‑In:</strong> When you choose "Sign in with Google", Google shares your basic profile information with us. <a href="https://policies.google.com/privacy" target="_blank" class="text-teal-600 hover:underline">Google Privacy Policy</a>.</li>
+                    <li><strong>EmailJS (optional):</strong> We may use EmailJS to send email notifications (e.g., when an admin replies to your question). Your email address is used only for this purpose.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-shield-halved text-teal-500 text-lg"></i> Data Retention & Security</h2>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li><strong>Chat Messages:</strong> Automatically deleted after 10 days to keep the community fresh and protect your privacy.</li>
+                    <li><strong>Notes & Videos:</strong> Stored indefinitely unless removed by an administrator.</li>
+                    <li><strong>Profile Data:</strong> Retained as long as your account is active. You can request deletion by contacting us.</li>
+                    <li><strong>Security:</strong> We use Firebase Security Rules to restrict database access. However, no method of transmission over the Internet is 100% secure.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-cookie-bite text-teal-500 text-lg"></i> Cookies & Local Storage</h2>
+                <p class="mb-2">We use <strong>localStorage</strong> (browser storage) to remember basic preferences (e.g., cooldown timers for chat). We do not use third‑party tracking cookies. Firebase Authentication may set essential cookies to maintain your login session.</p>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-user-check text-teal-500 text-lg"></i> Your Rights & Choices</h2>
+                <ul class="list-disc pl-6 space-y-1 text-gray-600">
+                    <li><strong>Access & Correction:</strong> You can view and update your profile details on the <a href="login.html" class="text-teal-600 hover:underline">Dashboard</a> page.</li>
+                    <li><strong>Data Deletion:</strong> You may request deletion of your account and associated data by emailing us at <a href="mailto:diplomacampus@gmail.com" class="text-teal-600 hover:underline">diplomacampus@gmail.com</a>. Please note that some public contributions (like chat messages) may remain anonymized or be deleted automatically.</li>
+                    <li><strong>Opt‑Out of Emails:</strong> We currently do not send marketing emails. Any notification emails (e.g., admin replies) are sent only based on your activity.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-children text-teal-500 text-lg"></i> Children's Privacy</h2>
+                <p>Diploma Campus is intended for students of diploma‑level education (generally 16 years and older). We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such data, please contact us for removal.</p>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-pen text-teal-500 text-lg"></i> Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. Continued use of the site after changes constitutes acceptance.</p>
+            </div>
+
+            <div class="mt-8 p-5 bg-teal-50/50 rounded-xl border border-teal-100">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-regular fa-envelope text-teal-600"></i> Contact Us</h3>
+                <p class="text-gray-600">If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+                <a href="mailto:diplomacampus@gmail.com" class="inline-block mt-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg transition shadow-sm">
+                    <i class="fa-regular fa-paper-plane mr-1"></i> diplomacampus@gmail.com
                 </a>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.</p>
-                <div class="flex items-center gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
+                <p class="text-sm text-gray-500 mt-3">Or reach out via our <a href="QnA.html" class="text-teal-600 hover:underline">Q&A Community</a>.</p>
+            </div>
+
+        </div>
+
+        <div class="h-8"></div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+            <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-teal-500"></i> Quick search across all resources</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">Find notes, videos, or ask the community</p>
+                    </div>
+                    <div class="flex w-full sm:w-auto relative">
+                        <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                        <button id="footer-search-btn" onclick="window.location.href='notes.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-teal-500 hover:bg-teal-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
+                    </div>
                 </div>
             </div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Quick Links</h4><ul class="flex flex-col gap-3"><li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home</a></li><li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches</a></li><li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes</a></li><li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community</a></li><li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us</a></li><li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us</a></li></ul></div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Branches</h4><ul class="flex flex-col gap-3"><li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.</a></li><li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.</a></li><li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.</a></li><li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.</a></li><li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE</a></li><li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.</a></li></ul></div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Legal</h4><ul class="flex flex-col gap-3"><li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy</a></li><li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions</a></li><li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer</a></li></ul></div>
-            <div><h4 class="text-white font-bold text-lg mb-6">Contact Us</h4><ul class="flex flex-col gap-4"><li class="flex items-center gap-3"><i class="fas fa-phone-alt text-blue-500"></i><span class="text-slate-400 text-sm">+91 8578009001</span></li><li class="flex items-center gap-3"><i class="fas fa-envelope text-blue-500"></i><span class="text-slate-400 text-sm">diplomacampus@gmail.com</span></li></ul></div>
         </div>
-        <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-slate-500 text-sm text-center md:text-left">&copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.</p>
-            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong></p>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+            <div class="mb-8">
+                <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                <div class="flex flex-wrap gap-3 sm:gap-4">
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
+                <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Browse Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Video Lectures</a></li>
+                        <li><a href="QnA.html" class="hover:text-teal-600 transition">Q&A Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-teal-500"></i> Information</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="about-us.html" class="hover:text-teal-600 transition">About Us</a></li>
+                        <li><a href="contact-us.html" class="hover:text-teal-600 transition">Contact Us</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard / Login</a></li>
+                        <li><a href="disclaimer.html" class="hover:text-teal-600 transition">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-teal-500"></i> Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="terms.html" class="hover:text-teal-600 transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-teal-600 transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-teal-500"></i> Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Videos</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>
 
-<script src="script.js"></script>
+<!-- ========== UI Sidebar & Toast Logic ========== -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        if (menuBtn) menuBtn.addEventListener('click', toggleSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', toggleSidebar);
+        
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
+        };
+
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Privacy Policy', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
+            }
+        };
+
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', shareApp);
+    })();
+</script>
+
+<!-- ========== Firebase Auth (Header & Sidebar) ========== -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+        authDomain: "diplomacampus.firebaseapp.com",
+        databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "diplomacampus",
+        storageBucket: "diplomacampus.firebasestorage.app",
+        messagingSenderId: "330061663460",
+        appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerAvatar = document.getElementById('header-avatar');
+    const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    function getAvatarUrl(user) {
+        if (!user) return '';
+        const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+        return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+    }
+
+    function closeSidebar() {
+        if (sidebar) {
+            sidebar.classList.add('-translate-x-full');
+            if (overlay) overlay.classList.add('hidden');
+        }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            headerLoginBtn.style.display = 'none';
+            headerAvatar.style.display = 'block';
+            const avatarUrl = getAvatarUrl(user);
+            headerAvatar.src = avatarUrl;
+            headerAvatar.onerror = () => { 
+                headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`; 
+            };
+
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            sidebarAuthSection.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                        <p class="text-xs text-gray-500 truncate">${user.email}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                signOut(auth);
+                closeSidebar();
+            });
+        } else {
+            headerLoginBtn.style.display = 'block';
+            headerAvatar.style.display = 'none';
+            sidebarAuthSection.innerHTML = `
+                <div class="text-center py-2">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                    <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                        <i class="fa-brands fa-google mr-1"></i> Sign In
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                signInWithPopup(auth, provider).catch(err => console.warn(err));
+                closeSidebar();
+            });
+        }
+    });
+
+    headerLoginBtn.addEventListener('click', () => {
+        signInWithPopup(auth, provider).catch(err => console.warn(err));
+    });
+</script>
 </body>
 </html>

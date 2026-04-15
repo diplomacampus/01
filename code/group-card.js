@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Auto-generate and Inject the Modal into the body
     const modalHTML = `
         <div id="group-modal-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex justify-center items-center opacity-0 transition-opacity duration-300">
-            <div id="group-modal-content" class="bg-white rounded-2xl w-11/12 max-w-sm p-6 relative transform scale-95 transition-transform duration-300 shadow-2xl">
+            
                 <button id="close-modal-btn" class="absolute top-3 right-4 text-gray-400 hover:text-gray-800 text-3xl">&times;</button>
                 <h3 class="text-xl font-bold text-center text-gray-800 mb-5">Select Your Session group</h3>
                 <div class="flex flex-col gap-3">
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </a>
                     `).join('')}
                 </div>
-            </div>
+            
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);

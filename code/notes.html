@@ -1,790 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Browse Notes — DiplomaCampus</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-</head>
-<body>
-
-<div id="preloader"><div class="loader"></div></div>
-
-<nav class="navbar">
-  <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><img src="https://i.ibb.co/whMZLcJW/logo.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 50px;
-  min-width: 50px;
-  margin-right:-10px;
-  border-radius:50%;
-  height: auto;
-  "><img src="https://i.ibb.co/rT44QJc/IMG-20260328-203936.png" alt="logo" border="0" style="
-  width: 10vw;     /* scales with screen width */
-  max-width: 250px;
-  min-width: 250px;
-  margin-left: 8px;
-  height: auto; "></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="notes.html">Notes</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-         <div class="nav-cta">
-<a href="premium.html" class="btn btn-primary btn-sm"><i class='bx bx-crown'></i> Premium Notes</a>
-</div>
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mobile-menu">
-  <a href="index.html"><i class='bx bx-home'></i> Home</a>
-  <a href="notes.html"><i class='bx bx-book-open'></i> Notes</a>
-  <a href="privacy.html"><i class='bx bx-tag'></i> Privacy</a>
-  <a href="about.html"><i class='bx bx-info-circle'></i> About</a>
-  
-   <a href="premium.html" class="btn btn-primary"><i class='bx bx-crown'></i> Premium Notes</a>
-</div>
-
-<!-- Page Hero -->
-<div class="page-hero">
-  <div class="container">
-    <div class="section-label"><i class='bx bx-book-open'></i> Study Materials</div>
-    <h1>Engineering <span style="color:var(--clr-gold)">Notes Library</span></h1>
-    <p>Browse 2,500+ PDFs organized by branch and semester. Filter by your department and download instantly.</p>
-    <div class="search-bar">
-      <i class='bx bx-search'></i>
-      <input type="text" id="notesSearch" placeholder="Search subjects, topics, keywords…">
-    </div>
-  </div>
-</div>
-<!-- Notes Content -->
-
-<section class="bg-base">
-  <div class="container">
-    <div class="branch-tabs reveal">
-      <button class="tab-btn active" data-branch="all"><i class='bx bx-grid-alt'></i> All Branches</button>
-      <button class="tab-btn" data-branch="cse"><i class='bx bx-code-alt'></i> CSE</button>
-      <button class="tab-btn" data-branch="ece"><i class='bx bx-chip'></i> ECE</button>
-      <button class="tab-btn" data-branch="ee"><i class='bx bx-bolt-circle'></i> EE</button>
-      <button class="tab-btn" data-branch="mech"><i class='bx bx-cog'></i> Mechanical</button>
-      <button class="tab-btn" data-branch="civil"><i class='bx bx-building-house'></i> Civil</button>
-      <button class="tab-btn" data-branch="it"><i class='bx bx-laptop'></i> IT</button>
-      <button class="tab-btn" data-branch="automobile"><i class='bx bx-car'></i> Automobile</button>
-      <button class="tab-btn" data-branch="mining"><i class='bx bx-hard-hat'></i> Mining</button>
-      <button class="tab-btn" data-branch="metallurgical"><i class='bx bx-atom'></i> Metallurgical</button>
-      <button class="tab-btn" data-branch="chemical"><i class='bx bx-flask'></i> Chemical</button>
-    </div>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Notes Library · Diploma Campus</title>
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            flex: 1;
+        }
+        .modal-enter { animation: modalFadeIn 0.3s ease-out forwards; }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        #toast-message {
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
 
-
-<!-- ================= COMMON SUBJECTS SECTION (always visible) ================= -->
-<div class="common-subjects reveal" style="margin-bottom: 2.5rem;">
-  <h2><i class='bx bx-book-open'></i> Common Subjects – Semester 1 &amp 2 </h2>
-  <hr>
-  <br>
-
-  <!-- Engineering Mathematics -->
-  <div class="accordion-item">
-    <div class="accordion-hdr open">
-      <span><i class='bx bx-math'></i> &nbsp; Engineering Mathematics</span>
-      <i class='bx bx-chevron-down'></i>
-    </div>
-    <div class="accordion-body open">
-      <div class="subject-grid">
-
-        <div class="subj-card">
-          <h4>Algebra & Trigonometry</h4>
-          <p>Matrices, Determinants, Complex Numbers, Trigonometric Identities</p>
-          <div class="subj-actions">
-            <a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Calculus</h4>
-          <p>Limits, Derivatives, Applications, Integration, Definite Integrals</p>
-          <div class="subj-actions">
-            <a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Differential Equations</h4>
-          <p>First Order ODE, Second Order Linear, Applications</p>
-          <div class="subj-actions">
-            <a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Vector Calculus & Laplace Transforms</h4>
-          <p>Gradient, Divergence, Curl, Laplace Transform Applications</p>
-          <div class="subj-actions">
-            <a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Engineering Physics -->
-  <div class="accordion-item">
-    <div class="accordion-hdr">
-      <span><i class='bx bx-atom'></i> &nbsp; Engineering Physics</span>
-      <i class='bx bx-chevron-down'></i>
-    </div>
-    <div class="accordion-body">
-      <div class="subject-grid">
-
-        <div class="subj-card">
-          <h4>Elasticity</h4>
-          <p>Stress, Strain, Hooke’s Law, Young’s Modulus, Bulk Modulus, Shear Modulus</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=uqh34nxu&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Gas Laws & Specific Heat of Gases</h4>
-          <p>Boyle’s Law, Charles’s Law, Gay-Lussac’s Law, Ideal Gas Equation</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/GAS-LAWS-AND-SPECIFIC-HEAT-OF-GASES.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=fyey50kj&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Heat</h4>
-          <p>Temperature, Heat Transfer, Thermodynamics</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=xtzhwcbm&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Light & Laser</h4>
-          <p>Reflection, Refraction, Interference, Laser</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fo/y83o56gu4x6u8ba67gi2v/AJaicu1Cs0KN4m_a92KaZO8?rlkey=31a987g7peycshqizc5efn4kv&st=ucejvht2&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Photoelectric Effect</h4>
-          <p>Photoelectric Emission, Einstein Equation</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=zz6wdou3&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Sound</h4>
-          <p>Wave Motion, Echo, Doppler Effect</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fo/q1qmirdvl195ija4tkpf3/APn9eFtz6WIJxK6SRnJ5pQ0?rlkey=i3xpv1v4rza9z4t4n3gngtar2&st=fjnbxqjg&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Surface Tension</h4>
-          <p>Cohesion, Adhesion, Capillarity</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=x67kr34t&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Units & Measurement</h4>
-          <p>SI Units, Measurement Errors</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fo/mjehzgd3m7pexqo6ut74x/ALQ8BMdvmrhxmgFyLkke1W4?rlkey=9gh0d3bmofux94jr8gp6s2pqj&st=8xyy1y8m&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-        <div class="subj-card">
-          <h4>Viscosity</h4>
-          <p>Fluid Flow, Newton’s Law</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=96wgyt6p&dl=1" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Engineering Chemistry -->
-  <div class="accordion-item">
-    <div class="accordion-hdr">
-      <span><i class='bx bx-test-tube'></i> &nbsp; Engineering Chemistry</span>
-      <i class='bx bx-chevron-down'></i>
-    </div>
-    <div class="accordion-body">
-      <div class="subject-grid">
-
-        <div class="subj-card">
-          <h4>Atomic Structure</h4>
-          <p>Bohr’s Model, Quantum Numbers, Orbitals</p>
-          <div class="subj-actions">
-            <a href="https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=xihnpoui&dl=1" class="btn btn-primary btn-sm">
-              <i class='bx bx-download'></i> PDF
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
+<!-- Toast container -->
+<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
 </div>
 
-    <!-- CSE Branch - Diploma -->
-    <div class="semester-section" data-branch="cse">
-      <h2><i class='bx bx-code-alt'></i> Computer Science &amp; Engineering</h2>
+<div class="bg-grid flex flex-col pb-20 relative">
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
+    <!-- ========== HEADER ========== -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+        <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
+            <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
         </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Algebra, Trigonometry, Calculus, Matrices</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Optics, Waves, Electricity &amp; Magnetism</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Fundamentals of IT &amp; Computer</h4><p>Hardware, OS Basics, Number Systems</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>C Programming</h4><p>Syntax, Loops, Functions, Arrays, Pointers</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
+        <div class="flex items-center gap-3">
+            <button id="admin-upload-btn" style="display: none;" class="text-sm font-bold bg-teal-600 text-white px-4 py-1.5 rounded-full hover:bg-teal-700 transition shadow border border-teal-800 items-center gap-1.5">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+            </button>
+            <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+            <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">Sign In</button>
+            <img id="header-avatar" src="" alt="Profile" onclick="window.location.href='login.html'" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
+            <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
         </div>
-      </div>
+    </header>
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
+    <!-- ========== SIDEBAR (Enhanced, Active on Notes) ========== -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="font-bold text-lg"><span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+            <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Data Structures</h4><p>Arrays, Linked Lists, Stacks, Queues, Trees</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Object Oriented Programming (C++)</h4><p>Classes, Inheritance, Polymorphism, Exception Handling</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Digital Electronics &amp; Logic Design</h4><p>Gates, Combinational Circuits, Flip-Flops, Counters</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Database Management Systems</h4><p>SQL, Normalization, ER Diagrams, Transactions</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                <li><a href="#" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
+                <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                
+                <li><hr class="my-2 border-gray-200"></li>
+                <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
+                <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t" id="sidebar-auth-section">
+            <!-- Dynamically filled by JS -->
         </div>
-      </div>
+    </aside>
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="w-full max-w-7xl mx-auto px-4 pt-24 md:pt-32 flex-1 flex flex-col items-center">
+        
+        <div class="text-center mb-10 w-full">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
+                Notes <span class="text-teal-500">Library</span>
+            </h1>
+            <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">Search across hundreds of verified diploma notes, assignments, and study materials.</p>
+            
+            <!-- SEARCH & FILTERS -->
+            <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-5xl mx-auto flex flex-col lg:flex-row gap-3 md:gap-4">
+                
+                <!-- Search Bar -->
+                <div class="relative flex-1 group">
+                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500 transition-colors group-focus-within:text-teal-600">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" id="search-input" placeholder="Search by subject, topic or tags..." 
+                        class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
+                </div>
+
+                <!-- Branch Filter -->
+                <div class="relative lg:w-72 group">
+                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500">
+                        <i class="fa-solid fa-code-branch"></i>
+                    </div>
+                    <select id="filter-branch" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white text-sm cursor-pointer text-gray-700 font-medium transition">
+                        <option value="">All Branches</option>
+                        <option value="Computer Science Engineering">Computer Science Engineering</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
+                        <option value="Automobile Engineering">Automobile Engineering</option>
+                        <option value="Chemical Engineering">Chemical Engineering</option>
+                        <option value="Plastic Engineering">Plastic Engineering</option>
+                        <option value="Architecture Assistantship">Architecture Assistantship</option>
+                        <option value="Agriculture Engineering">Agriculture Engineering</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Semester Filter -->
+                <div class="relative lg:w-48 group">
+                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <select id="filter-semester" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white text-sm cursor-pointer text-gray-700 font-medium transition">
+                        <option value="">All Semesters</option>
+                        <option value="1st Semester">1st Semester</option>
+                        <option value="2nd Semester">2nd Semester</option>
+                        <option value="3rd Semester">3rd Semester</option>
+                        <option value="4th Semester">4th Semester</option>
+                        <option value="5th Semester">5th Semester</option>
+                        <option value="6th Semester">6th Semester</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Operating Systems</h4><p>Processes, Scheduling, Memory Management, File Systems</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Computer Networks</h4><p>OSI Model, TCP/IP, Routing, LAN/WAN</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Software Engineering</h4><p>SDLC, UML, Testing, Project Management</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Web Technologies</h4><p>HTML, CSS, JavaScript, PHP, MySQL</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
+
+        <!-- Notes Loading / Empty State -->
+        <div id="notes-status" class="w-full text-center py-12 text-gray-500">
+            <i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i>
+            <p>Loading study materials...</p>
         </div>
-      </div>
+
+        <!-- Notes Grid -->
+        <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden">
+            <!-- Cards injected here by JS -->
+        </div>
+
+    </main>
+
+    <!-- ========== ADMIN UPLOAD MODAL ========== -->
+    <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-yellow-400 rounded-t-2xl"></div>
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h2 class="text-xl font-bold text-gray-800"><i class="fa-solid fa-cloud-arrow-up text-teal-500 mr-2"></i> Upload New Note</h2>
+                <button id="close-modal-btn" class="text-gray-400 hover:text-red-500 transition text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="upload-form" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Branch</label>
+                        <select id="up-branch" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm appearance-none">
+                            <option value="" disabled selected>Select Branch</option>
+                            <option value="Common">All Branches Common</option>
+                            <option value="Computer Science Engineering">Computer Science Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
+                            <option value="Automobile Engineering">Automobile Engineering</option>
+                            <option value="Chemical Engineering">Chemical Engineering</option>
+                            <option value="Plastic Engineering">Plastic Engineering</option>
+                            <option value="Architecture Assistantship">Architecture Assistantship</option>
+                            <option value="Agriculture Engineering">Agriculture Engineering</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Semester</label>
+                        <select id="up-semester" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm appearance-none">
+                            <option value="" disabled selected>Select Semester</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <option value="3rd Semester">3rd Semester</option>
+                            <option value="4th Semester">4th Semester</option>
+                            <option value="5th Semester">5th Semester</option>
+                            <option value="6th Semester">6th Semester</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Subject Name</label>
+                    <input type="text" id="up-subject" placeholder="e.g. Applied Mathematics-I" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Topic / Chapter Name</label>
+                    <input type="text" id="up-topic" placeholder="e.g. Matrices and Determinants" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
+                    <input type="text" id="up-tags" placeholder="e.g. math, matrix, important questions" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link (Drive, YouTube, PDF, etc.)</label>
+                    <input type="url" id="up-link" placeholder="https://..." required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
+                    <button type="button" id="cancel-upload" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition">Cancel</button>
+                    <button type="submit" id="submit-upload" class="px-6 py-2.5 text-sm font-bold bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition shadow-md">
+                        Upload to Library
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- ECE Branch - Diploma -->
-    <div class="semester-section" data-branch="ece">
-      <h2><i class='bx bx-chip'></i> Electronics &amp; Communication Engineering</h2>
+    <!-- ========== FOOTER (Enhanced with four columns) ========== -->
+    <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+        
+        <!-- Search Action Box -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+            <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-teal-500"></i> Quick search across all resources</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">Find notes, videos, or ask the community</p>
+                    </div>
+                    <div class="flex w-full sm:w-auto relative">
+                        <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                        <button id="footer-search-btn" onclick="window.location.href='notes.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-teal-500 hover:bg-teal-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+            <!-- Social Media Connections -->
+            <div class="mb-8">
+                <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                <div class="flex flex-wrap gap-3 sm:gap-4">
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Differential Equations, Complex Numbers</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Semiconductors, Optics, Quantum Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Basic Electrical Engineering</h4><p>Circuits, AC/DC, Transformers</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Electronic Devices &amp; Circuits - I</h4><p>Diodes, BJT, FET, Biasing</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+            <!-- Join Team Section -->
+            <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
+                <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                </div>
+            </div>
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Analog Electronics</h4><p>Op-Amps, Amplifiers, Oscillators</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Digital Electronics</h4><p>Logic Gates, K-Maps, FSM, ADC/DAC</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Signals &amp; Systems</h4><p>Fourier, Laplace, Z-Transform, Filters</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Communication Systems</h4><p>Modulation, AM/FM, Transmission Lines</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+            <!-- Footer Columns -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Browse Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Video Lectures</a></li>
+                        <li><a href="QnA.html" class="hover:text-teal-600 transition">Q&A Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-teal-500"></i> Information</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="about-us.html" class="hover:text-teal-600 transition">About Us</a></li>
+                        <li><a href="contact-us.html" class="hover:text-teal-600 transition">Contact Us</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard / Login</a></li>
+                        <li><a href="disclaimer.html" class="hover:text-teal-600 transition">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-teal-500"></i> Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="terms.html" class="hover:text-teal-600 transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-teal-600 transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-teal-500"></i> Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Videos</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
+            <!-- Copyright -->
+            <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+            </div>
         </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Microprocessor &amp; Microcontroller</h4><p>8085, 8086, 8051, Assembly, Interfacing</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Embedded Systems</h4><p>RTOS, ARM, IoT Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Antenna &amp; Wave Propagation</h4><p>Radiation, Antenna Types, Propagation Modes</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Optical Fiber Communication</h4><p>Fiber Types, Losses, Optical Networks</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </footer>
+</div>
 
-    <!-- EE Branch - Diploma -->
-    <div class="semester-section" data-branch="ee">
-      <h2><i class='bx bx-bolt-circle'></i> Electrical Engineering</h2>
+<!-- ========== UI Sidebar & Toast Logic ========== -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Laplace, Fourier Series</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Electromagnetism, Electrostatics, Current Electricity</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Basic Electrical Engineering</h4><p>Kirchhoff’s Laws, AC/DC Circuits, Power Factor</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Electrical Circuits &amp; Network</h4><p>Thevenin, Norton, Mesh/Nodal Analysis</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        }
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Electrical Machines - I</h4><p>DC Machines, Transformers, Induction Motors</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Power Systems - I</h4><p>Generation, Transmission, Distribution</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Analog &amp; Digital Electronics</h4><p>Op-Amps, Logic Gates, Flip-Flops</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Electrical Measurements &amp; Instrumentation</h4><p>Wattmeter, CT/PT, Bridges, Transducers</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+        menuBtn.addEventListener('click', toggleSidebar);
+        closeBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
+        };
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Electrical Machines - II</h4><p>Synchronous Machines, Special Motors</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Power Systems - II</h4><p>Protection, Fault Analysis, Stability</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Switchgear &amp; Protection</h4><p>Relays, Circuit Breakers, Earthing</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Industrial Drives &amp; Control</h4><p>PLC, SCADA, Variable Speed Drives</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Notes Library', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
+            }
+        };
 
-    <!-- Mechanical Branch - Diploma -->
-    <div class="semester-section" data-branch="mech">
-      <h2><i class='bx bx-cog'></i> Mechanical Engineering</h2>
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', shareApp);
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Vectors, Differential Equations</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Mechanics, Properties of Matter, Thermodynamics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Mechanics</h4><p>Force Systems, Friction, Centroids</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Engineering Drawing</h4><p>Orthographic Projections, Isometric Views, GD&amp;T</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+        window.closeSidebar = closeSidebar;
+        window.toggleSidebar = toggleSidebar;
+    })();
+</script>
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Thermodynamics</h4><p>Laws, Steam, Gas Cycles, IC Engines</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Fluid Mechanics</h4><p>Bernoulli Equation, Pumps, Turbines, Flow Measurement</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Strength of Materials</h4><p>Stress, Strain, Bending, Torsion, Columns</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Manufacturing Processes</h4><p>Casting, Welding, Machining, Forming</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+<!-- ========== Firebase Logic (with Admin Delete) ========== -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getDatabase, ref, onValue, push, set, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Theory of Machines</h4><p>Mechanisms, Gears, Cams, Balancing</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Heat Transfer &amp; Refrigeration</h4><p>Conduction, Convection, Radiation, RAC Systems</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Machine Design</h4><p>Shafts, Bearings, Gears, Springs</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Industrial Engineering &amp; Management</h4><p>Work Study, Production Planning, Quality Control</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+        authDomain: "diplomacampus.firebaseapp.com",
+        databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "diplomacampus",
+        storageBucket: "diplomacampus.firebasestorage.app",
+        messagingSenderId: "330061663460",
+        appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
+    };
 
-    <!-- Civil Branch - Diploma -->
-    <div class="semester-section" data-branch="civil">
-      <h2><i class='bx bx-building-house'></i> Civil Engineering</h2>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+    const googleProvider = new GoogleAuthProvider();
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Statistics, Probability</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Mechanics, Fluid Properties, Elasticity</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Surveying &amp; Levelling - I</h4><p>Chain, Compass, Plane Table, Leveling</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Building Materials &amp; Construction</h4><p>Bricks, Cement, Timber, Foundations</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    // DOM Elements
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerAvatar = document.getElementById('header-avatar');
+    const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+    const adminUploadBtn = document.getElementById('admin-upload-btn');
+    const uploadModal = document.getElementById('upload-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const cancelUploadBtn = document.getElementById('cancel-upload');
+    const uploadForm = document.getElementById('upload-form');
+    const submitUploadBtn = document.getElementById('submit-upload');
+    const notesGrid = document.getElementById('notes-grid');
+    const notesStatus = document.getElementById('notes-status');
+    const searchInput = document.getElementById('search-input');
+    const filterBranch = document.getElementById('filter-branch');
+    const filterSemester = document.getElementById('filter-semester');
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Structural Mechanics</h4><p>Beams, Trusses, Frames, Shear Force</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Fluid Mechanics</h4><p>Hydrostatics, Flow through Pipes, Open Channels</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Soil Mechanics &amp; Foundation</h4><p>Soil Properties, Bearing Capacity, Foundations</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Concrete Technology</h4><p>Properties, Mix Design, RCC Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    let currentUser = null;
+    let isAdmin = false;
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Transportation Engineering</h4><p>Highway Design, Railways, Traffic Engineering</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Environmental Engineering</h4><p>Water Supply, Sewage Treatment, Pollution Control</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Irrigation &amp; Water Resources</h4><p>Canal Design, Dams, Hydrology</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Estimating &amp; Costing</h4><p>Rate Analysis, Valuation, Contracts</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    // Helper: Get avatar URL with fallback
+    function getAvatarUrl(user) {
+        if (!user) return '';
+        const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+        return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+    }
 
-    <!-- IT Branch - Diploma -->
-    <div class="semester-section" data-branch="it">
-      <h2><i class='bx bx-laptop'></i> Information Technology</h2>
+    // Update UI based on auth state (Header + Sidebar)
+    function updateAuthUI(user) {
+        currentUser = user;
+        isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
+        
+        if (user) {
+            headerLoginBtn.style.display = 'none';
+            headerAvatar.style.display = 'block';
+            const avatarUrl = getAvatarUrl(user);
+            headerAvatar.src = avatarUrl;
+            headerAvatar.onerror = () => { 
+                headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`; 
+            };
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Algebra, Calculus, Probability, Statistics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Optics, Electricity, Magnetism, Semiconductors</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Fundamentals of Information Technology</h4><p>Computer Hardware, Software, Networking Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Programming in C</h4><p>Syntax, Loops, Functions, Arrays, Pointers</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+            if (isAdmin) {
+                adminUploadBtn.style.display = 'flex';
+            } else {
+                adminUploadBtn.style.display = 'none';
+            }
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Data Structures &amp; Algorithms</h4><p>Arrays, Linked Lists, Trees, Graphs, Sorting</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Database Management Systems</h4><p>SQL, Normalization, ER Model, Transactions</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Computer Networks</h4><p>OSI/TCP-IP, Routing, LAN, WAN, Internet</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Web Technologies</h4><p>HTML, CSS, JavaScript, PHP, MySQL</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            sidebarAuthSection.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                        <p class="text-xs text-gray-500 truncate">${user.email}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                signOut(auth);
+                closeSidebar();
+            });
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Operating Systems</h4><p>Processes, Memory, File Systems, Linux</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Software Engineering</h4><p>SDLC, Agile, UML, Testing</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mobile Application Development</h4><p>Android, Flutter, UI/UX Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Cloud Computing &amp; Cybersecurity</h4><p>AWS/Azure, Encryption, Ethical Hacking</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+        } else {
+            currentUser = null;
+            isAdmin = false;
+            headerLoginBtn.style.display = 'block';
+            headerAvatar.style.display = 'none';
+            adminUploadBtn.style.display = 'none';
 
-    <!-- Automobile Branch - Diploma -->
-    <div class="semester-section" data-branch="automobile">
-      <h2><i class='bx bx-car'></i> Automobile Engineering</h2>
+            sidebarAuthSection.innerHTML = `
+                <div class="text-center py-2">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                    <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                        <i class="fa-brands fa-google mr-1"></i> Sign In
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+                closeSidebar();
+            });
+        }
+        
+        // Re-render to show/hide delete buttons
+        filterAndRenderNotes();
+    }
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Vectors, Differential Equations</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Mechanics, Thermodynamics, Properties of Matter</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Mechanics</h4><p>Force Systems, Friction, Centroids, Moments</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Engineering Drawing &amp; CAD</h4><p>Projections, Isometric, AutoCAD Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    onAuthStateChanged(auth, (user) => {
+        updateAuthUI(user);
+    });
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Thermodynamics &amp; IC Engines</h4><p>Laws, Petrol/Diesel Cycles, Engine Components</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Automobile Chassis &amp; Transmission</h4><p>Frames, Suspension, Gearbox, Differential</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Fluid Mechanics &amp; Hydraulic Machines</h4><p>Bernoulli, Pumps, Turbines, Hydraulics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Strength of Materials</h4><p>Stress, Strain, Bending, Torsion in Vehicles</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    headerLoginBtn.addEventListener('click', () => {
+        signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+    });
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Vehicle Dynamics &amp; Suspension</h4><p>Steering, Brakes, Vibration, Stability</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Automobile Electrical &amp; Electronics</h4><p>Battery, Ignition, Lighting, Sensors</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Manufacturing Processes for Automobile</h4><p>Casting, Welding, CNC, Assembly</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Automotive Pollution &amp; Control</h4><p>Emission Norms, Catalytic Converter, EV Basics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    // Read URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const branchParam = urlParams.get('branch');
+    const searchParam = urlParams.get('search');
 
-    <!-- Mining Branch - Diploma -->
-    <div class="semester-section" data-branch="mining">
-      <h2><i class='bx bx-hard-hat'></i> Mining Engineering</h2>
+    if (branchParam) {
+        const optionExists = Array.from(filterBranch.options).some(opt => opt.value === branchParam);
+        if (optionExists) {
+            filterBranch.value = branchParam;
+        }
+    }
+    if (searchParam) {
+        searchInput.value = searchParam;
+    }
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Vectors, Differential Equations</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Mechanics, Waves, Electricity</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mining Geology - I</h4><p>Rocks, Minerals, Structural Geology</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Engineering Drawing &amp; Surveying</h4><p>Projections, Chain Survey, Levelling</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    let allNotes = [];
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Mining Methods &amp; Machinery</h4><p>Drilling, Blasting, Loading, Transport</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Rock Mechanics &amp; Ground Control</h4><p>Rock Properties, Roof Support, Subsidence</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mine Ventilation &amp; Environment</h4><p>Air Flow, Gases, Dust Control, Lighting</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mineral Processing</h4><p>Crushing, Grinding, Separation Techniques</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    // Modal logic
+    const toggleModal = () => {
+        uploadModal.classList.toggle('hidden');
+        if(!uploadModal.classList.contains('hidden')) uploadForm.reset();
+    };
+    adminUploadBtn.addEventListener('click', toggleModal);
+    closeModalBtn.addEventListener('click', toggleModal);
+    cancelUploadBtn.addEventListener('click', toggleModal);
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Mine Safety, Legislation &amp; First Aid</h4><p>Accident Prevention, Mines Act, Rescue</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Underground Mining Methods</h4><p>Room &amp; Pillar, Longwall, Cut &amp; Fill</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Surface Mining &amp; Quarry Operations</h4><p>Open Pit, Dragline, Dredging</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Environmental Management in Mining</h4><p>Reclamation, EIA, Waste Management</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    // Upload logic
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const originalBtnHtml = submitUploadBtn.innerHTML;
+        submitUploadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading...`;
+        submitUploadBtn.disabled = true;
 
-    <!-- Metallurgical Branch - Diploma -->
-    <div class="semester-section" data-branch="metallurgical">
-      <h2><i class='bx bx-atom'></i> Metallurgical Engineering</h2>
+        const branch = document.getElementById('up-branch').value;
+        const semester = document.getElementById('up-semester').value;
+        const subject = document.getElementById('up-subject').value.trim();
+        const topic = document.getElementById('up-topic').value.trim();
+        const tags = document.getElementById('up-tags').value.trim();
+        const link = document.getElementById('up-link').value.trim();
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Differential Equations, Statistics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Mechanics, Heat, Electricity</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Chemistry</h4><p>Reactions, Electrochemistry, Solutions</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Engineering Drawing &amp; Materials</h4><p>Projections, Crystal Structure, Alloys</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+        if (!link.match(/^https?:\/\/.+/)) {
+            alert("Please enter a valid URL starting with http:// or https://");
+            submitUploadBtn.innerHTML = originalBtnHtml;
+            submitUploadBtn.disabled = false;
+            return;
+        }
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Physical Metallurgy</h4><p>Phase Diagrams, Heat Treatment, Microstructure</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Extractive Metallurgy</h4><p>Pyro, Hydro, Electro Metallurgy</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mechanical Metallurgy</h4><p>Deformation, Fracture, Fatigue, Creep</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Foundry Technology</h4><p>Casting Processes, Moulding, Defects</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+        const newNote = {
+            branch,
+            semester,
+            subject,
+            topic,
+            tags,
+            link,
+            timestamp: new Date().toISOString()
+        };
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Heat Treatment &amp; Surface Engineering</h4><p>Annealing, Hardening, Coating Techniques</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Corrosion &amp; Protection of Metals</h4><p>Types of Corrosion, Inhibitors, Coatings</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Metal Forming &amp; Powder Metallurgy</h4><p>Rolling, Forging, Extrusion, Sintering</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Advanced Materials &amp; Testing</h4><p>Composites, Ceramics, NDT Techniques</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+        try {
+            const notesRef = ref(db, 'notes');
+            const newNoteRef = push(notesRef);
+            await set(newNoteRef, newNote);
+            showToast('✅ Note uploaded successfully!');
+            toggleModal();
+        } catch (error) {
+            console.error("Upload failed:", error);
+            alert("Failed to upload. Ensure you are logged in as admin.");
+        } finally {
+            submitUploadBtn.innerHTML = originalBtnHtml;
+            submitUploadBtn.disabled = false;
+        }
+    });
 
-    <!-- Chemical Branch - Diploma -->
-    <div class="semester-section" data-branch="chemical">
-      <h2><i class='bx bx-flask'></i> Chemical Engineering</h2>
+    // Fetch Notes
+    const notesRef = ref(db, 'notes');
+    onValue(notesRef, (snapshot) => {
+        allNotes = [];
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                allNotes.push({ id: childSnapshot.key, ...childSnapshot.val() });
+            });
+            allNotes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            filterAndRenderNotes();
+        } else {
+            notesStatus.innerHTML = `<p class="text-gray-500">No study materials available yet.</p>`;
+            notesStatus.classList.remove('hidden');
+            notesGrid.classList.add('hidden');
+        }
+    });
 
-      <div class="accordion-item">
-        <div class="accordion-hdr open">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 1 &amp; 2 — Foundation</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body open">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Engineering Mathematics - I</h4><p>Calculus, Differential Equations, Statistics</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Chemistry</h4><p>Organic/Inorganic, Electrochemistry, Solutions</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Applied Physics</h4><p>Thermodynamics, Fluid Properties, Heat</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Engineering Drawing &amp; Workshop</h4><p>Projections, Piping Layout, Basic Fitting</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    // Branch abbreviations
+    const branchAbbreviations = {
+        "Computer Science Engineering": "CSE",
+        "Information Technology": "IT",
+        "Mechanical Engineering": "MECH",
+        "Civil Engineering": "CIVIL",
+        "Electrical Engineering": "EE",
+        "Electronics & Communication Engineering": "ECE",
+        "Automobile Engineering": "AUTO",
+        "Chemical Engineering": "CHEM",
+        "Plastic Engineering": "PLASTIC",
+        "Architecture Assistantship": "ARCH",
+        "Agriculture Engineering": "AGRI",
+        "Common": "COMMON"
+    };
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 3 &amp; 4 — Core</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Chemical Process Calculations</h4><p>Material &amp; Energy Balances, Stoichiometry</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Fluid Flow Operations</h4><p>Bernoulli, Pumps, Valves, Pipe Flow</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Heat Transfer Operations</h4><p>Conduction, Convection, Evaporation, Exchangers</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mechanical Operations</h4><p>Size Reduction, Filtration, Centrifugation</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
+    // Delete note function
+    window.deleteNote = async (noteId) => {
+        if (!isAdmin) return;
+        if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
+        try {
+            await remove(ref(db, `notes/${noteId}`));
+            showToast('🗑️ Note deleted');
+        } catch (error) {
+            console.error("Delete failed:", error);
+            alert("Failed to delete note.");
+        }
+    };
 
-      <div class="accordion-item">
-        <div class="accordion-hdr">
-          <span><i class='bx bx-book'></i> &nbsp; Semester 5 &amp; 6 — Advanced</span>
-          <i class='bx bx-chevron-down'></i>
-        </div>
-        <div class="accordion-body">
-          <div class="subject-grid">
-            <div class="subj-card"><h4>Chemical Reaction Engineering</h4><p>Kinetics, Reactors, Catalysis</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Mass Transfer Operations</h4><p>Distillation, Absorption, Extraction, Drying</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Process Instrumentation &amp; Control</h4><p>Sensors, Controllers, PLC, SCADA</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-            <div class="subj-card"><h4>Industrial Safety &amp; Environmental Engg.</h4><p>Hazards, Pollution Control, Waste Treatment</p><div class="subj-actions"><a href="#" class="btn btn-primary btn-sm"><i class='bx bx-download'></i> PDF</a><a href="#" class="btn btn-ghost btn-sm"><i class='bx bx-show'></i> Preview</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    // Render Cards
+    const renderCards = (notes) => {
+        if(notes.length === 0) {
+            notesStatus.innerHTML = `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No notes found matching your search.</p>`;
+            notesStatus.classList.remove('hidden');
+            notesGrid.classList.add('hidden');
+            return;
+        }
 
-  </div>
-</section>
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><i class='bx bxs-book-bookmark'></i>Diploma<span>Campus</span></a>
-        <p>India's most trusted platform for engineering study materials — organized, verified, and always free to browse.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-          <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-          <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
-          <a href="#" aria-label="Telegram"><i class='bx bxl-telegram'></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="notes.html"><i class='bx bx-chevron-right'></i> Browse Free Notes</a></li>
-          <li><a href="premium.html"><i class='bx bx-chevron-right'></i> Premium Notes</a></li>
-          <li><a href="about.html"><i class='bx bx-chevron-right'></i> About Us</a></li>
-        </ul>
-      </div>
-     
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="privacy.html"><i class='bx bx-chevron-right'></i> Privacy Policy</a></li>
-          <li><a href="terms.html"><i class='bx bx-chevron-right'></i> Terms of Service</a></li>
-          <li><a href="contact-us.html"><i class='bx bx-chevron-right'></i> Contact Us</a></li>
-          
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 DiplomaCampus. All rights reserved.</p>
-      <p>Made with <i class='bx bxs-heart' style="color:var(--clr-pink)"></i> by Sumit Kumar Mahato</p>
-    </div>
-  </div>
-</footer>
+        notesStatus.classList.add('hidden');
+        notesGrid.classList.remove('hidden');
+        notesGrid.innerHTML = '';
 
-<button class="btt" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
-<script src="script.js"></script>
+        notes.forEach(note => {
+            const card = document.createElement('div');
+            card.className = "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
+            
+            let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0,4).toUpperCase();
+            let shortSem = note.semester.replace("Semester", "Sem");
+
+            let linkIcon = 'fa-link';
+            let buttonText = 'Open Resource';
+            if (note.link.includes('drive.google.com')) {
+                linkIcon = 'fa-brands fa-google-drive';
+                buttonText = 'View on Drive';
+            } else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) {
+                linkIcon = 'fa-brands fa-youtube';
+                buttonText = 'Watch Video';
+            } else if (note.link.includes('.pdf')) {
+                linkIcon = 'fa-regular fa-file-pdf';
+                buttonText = 'Download PDF';
+            }
+
+            // Admin delete button
+            const deleteBtnHtml = isAdmin ? `
+                <button onclick="deleteNote('${note.id}')" class="absolute top-3 right-3 z-10 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 shadow-md transition-transform hover:scale-110" title="Delete note">
+                    <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+            ` : '';
+
+            card.innerHTML = `
+                ${deleteBtnHtml}
+                <div>
+                    <div class="flex gap-2 mb-4">
+                        <span class="bg-teal-50 text-teal-700 border border-teal-100 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortBranch}</span>
+                        <span class="bg-yellow-50 text-yellow-700 border border-yellow-100 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortSem}</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg leading-snug mb-1 group-hover:text-teal-600 transition pr-6">${note.topic}</h3>
+                    <p class="text-sm text-gray-500 font-medium mb-3"><i class="fa-solid fa-book text-gray-400 mr-1"></i> ${note.subject}</p>
+                    <div class="flex flex-wrap gap-1.5 mb-5">
+                        ${note.tags.split(',').map(t => `<span class="text-[11px] bg-gray-100 font-medium text-gray-600 px-2 py-0.5 rounded-md">#${t.trim()}</span>`).join('')}
+                    </div>
+                </div>
+                <a href="${note.link}" target="_blank" class="w-full block text-center bg-gray-50 border border-gray-200 group-hover:bg-teal-500 group-hover:border-teal-500 text-gray-700 group-hover:text-white font-semibold py-2.5 rounded-xl transition-all duration-300">
+                    <i class="${linkIcon} mr-1"></i> ${buttonText}
+                </a>
+            `;
+            notesGrid.appendChild(card);
+        });
+    };
+
+    // Filter function – shows all notes when branch and semester are "All"
+    const filterAndRenderNotes = () => {
+        const query = searchInput.value.toLowerCase();
+        const branch = filterBranch.value;
+        const semester = filterSemester.value;
+
+        const filteredNotes = allNotes.filter(note => {
+            const matchSearch = note.subject.toLowerCase().includes(query) || 
+                                note.topic.toLowerCase().includes(query) || 
+                                note.tags.toLowerCase().includes(query);
+            
+            const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
+            const matchSem = semester === "" || note.semester === semester;
+
+            return matchSearch && matchBranch && matchSem;
+        });
+
+        renderCards(filteredNotes);
+    };
+
+    // Event listeners
+    searchInput.addEventListener('input', filterAndRenderNotes);
+    filterBranch.addEventListener('change', filterAndRenderNotes);
+    filterSemester.addEventListener('change', filterAndRenderNotes);
+</script>
 </body>
 </html>

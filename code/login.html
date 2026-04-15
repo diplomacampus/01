@@ -1,985 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Diploma Campus — Sign In</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --ink:     #0f1117;
-      --paper:   #f5f3ee;
-      --cream:   #ede9e0;
-      --gold:    #b8903a;
-      --gold-lt: #d4ac58;
-      --muted:   #7a7670;
-      --border:  #d8d3c9;
-      --red:     #c0392b;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-    }
-
-    /* ── layout ── */
-    .page {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    /* ── left panel ── */
-    .panel-left {
-      position: relative;
-      background: var(--ink);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 56px 52px;
-      overflow: hidden;
-    }
-
-    .panel-left::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(184,144,58,.18) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 80% 10%, rgba(184,144,58,.10) 0%, transparent 60%);
-    }
-
-    .panel-left::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px);
-      pointer-events: none;
-    }
-
-    .brand {
-      position: relative;
-      z-index: 1;
-      animation: fadeUp .7s ease both;
-    }
-
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .brand-icon {
-      width: 44px; height: 44px;
-      border: 1.5px solid var(--gold);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .brand-icon svg { width: 22px; height: 22px; }
-
-    .brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 500;
-      color: #fff;
-      letter-spacing: .04em;
-    }
-
-    .brand-name span { color: var(--gold-lt); }
-
-    .tagline {
-      font-size: .78rem;
-      color: rgba(255,255,255,.35);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .panel-headline {
-      position: relative;
-      z-index: 1;
-      animation: fadeUp .7s .15s ease both;
-    }
-
-    .panel-headline h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 4vw, 3.8rem);
-      font-weight: 300;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-
-    .panel-headline h1 em {
-      font-style: italic;
-      color: var(--gold-lt);
-    }
-
-    .panel-headline p {
-      font-size: .88rem;
-      color: rgba(255,255,255,.45);
-      line-height: 1.7;
-      max-width: 300px;
-    }
-
-    .panel-footer {
-      position: relative;
-      z-index: 1;
-      animation: fadeUp .7s .3s ease both;
-    }
-
-    .stats {
-      display: flex;
-      gap: 32px;
-    }
-
-    .stat-item { text-align: left; }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      font-weight: 500;
-      color: var(--gold-lt);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: .72rem;
-      color: rgba(255,255,255,.35);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
-    /* ── right panel ── */
-    .panel-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 32px;
-      background: var(--paper);
-    }
-
-    .form-card {
-      width: 100%;
-      max-width: 400px;
-      animation: fadeUp .6s .1s ease both;
-    }
-
-    /* ── AUTH LOADING STATE ── */
-    #authLoading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 60px 0;
-    }
-
-    .auth-spinner {
-      width: 36px; height: 36px;
-      border: 2.5px solid var(--border);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-    }
-
-    #authLoading p {
-      font-size: .84rem;
-      color: var(--muted);
-    }
-
-    /* ── LOGIN SECTION ── */
-    #loginSection { display: none; }
-
-    .form-header {
-      margin-bottom: 36px;
-    }
-
-    .form-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .form-header p {
-      font-size: .84rem;
-      color: var(--muted);
-    }
-
-    /* ── USER PROFILE SECTION ── */
-    #userSection { display: none; }
-
-    .user-card {
-      animation: fadeUp .5s ease both;
-    }
-
-    .user-header {
-      margin-bottom: 28px;
-    }
-
-    .user-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .user-header p {
-      font-size: .84rem;
-      color: var(--muted);
-    }
-
-    .user-avatar-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px;
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      margin-bottom: 20px;
-    }
-
-    .user-avatar {
-      width: 54px; height: 54px;
-      border-radius: 50%;
-      background: var(--cream);
-      border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--gold);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .user-avatar img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .user-info { flex: 1; min-width: 0; }
-
-    .user-name {
-      font-weight: 500;
-      font-size: .97rem;
-      color: var(--ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .user-email {
-      font-size: .8rem;
-      color: var(--muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 2px;
-    }
-
-    .user-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
-      background: rgba(184,144,58,.1);
-      border: 1px solid rgba(184,144,58,.25);
-      border-radius: 20px;
-      font-size: .72rem;
-      color: var(--gold);
-      font-weight: 500;
-      letter-spacing: .04em;
-      flex-shrink: 0;
-    }
-
-    .user-badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-    }
-
-    .user-details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .detail-card {
-      padding: 14px 16px;
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-    }
-
-    .detail-card-label {
-      font-size: .7rem;
-      color: var(--muted);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .detail-card-value {
-      font-size: .87rem;
-      font-weight: 500;
-      color: var(--ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .detail-card-value.mono {
-      font-size: .76rem;
-      font-family: monospace;
-      color: var(--muted);
-    }
-
-    .user-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .btn-primary {
-      width: 100%;
-      padding: 13px 20px;
-      border: none;
-      border-radius: 10px;
-      background: var(--ink);
-      color: #fff;
-      font-size: .92rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      cursor: pointer;
-      letter-spacing: .04em;
-      transition: background .2s, transform .1s, box-shadow .2s;
-      position: relative;
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      text-decoration: none;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(184,144,58,.15), transparent);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-
-    .btn-primary:hover { background: #1a1e28; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:active { transform: scale(.985); }
-    .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; }
-
-    .btn-primary.loading .btn-text { display: none; }
-    .btn-primary.loading .spinner { display: block; }
-
-    .btn-outline {
-      width: 100%;
-      padding: 12px 20px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background: transparent;
-      color: var(--muted);
-      font-size: .88rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      cursor: pointer;
-      letter-spacing: .04em;
-      transition: border-color .2s, color .2s, background .2s;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--red);
-      color: var(--red);
-      background: rgba(192,57,43,.04);
-    }
-
-    /* ── divider ── */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-      font-size: .75rem;
-      color: var(--muted);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── social btn ── */
-    .btn-social {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 11px 20px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      font-size: .87rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--ink);
-      cursor: pointer;
-      transition: border-color .2s, box-shadow .2s, background .2s;
-      margin-bottom: 20px;
-    }
-
-    .btn-social:hover {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(184,144,58,.08);
-      background: #fffdf9;
-    }
-
-    .btn-social svg { flex-shrink: 0; }
-
-    /* ── field ── */
-    .field { margin-bottom: 16px; }
-
-    .field label {
-      display: block;
-      font-size: .78rem;
-      font-weight: 500;
-      color: var(--ink);
-      letter-spacing: .04em;
-      margin-bottom: 7px;
-    }
-
-    .field-wrap { position: relative; }
-
-    .field-wrap svg {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px; height: 16px;
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    .field input {
-      width: 100%;
-      padding: 11px 14px 11px 40px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      font-size: .9rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--ink);
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
-    .field input::placeholder { color: #bbb8b3; }
-
-    .field input:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(184,144,58,.1);
-    }
-
-    .field input.error-field {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(192,57,43,.08);
-    }
-
-    .toggle-pw {
-      position: absolute;
-      right: 35px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 2px;
-      color: var(--muted);
-      display: flex; align-items: center;
-      transition: color .2s;
-    }
-    .toggle-pw:hover { color: var(--ink); }
-    .toggle-pw svg { width: 17px; height: 17px; }
-
-    /* ── row ── */
-    .row-forgot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 22px;
-    }
-
-    .remember {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: .82rem;
-      color: var(--muted);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .remember input[type=checkbox] {
-      width: 15px; height: 15px;
-      accent-color: var(--gold);
-      cursor: pointer;
-    }
-
-    .link {
-      font-size: .82rem;
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color .2s;
-    }
-    .link:hover { color: var(--gold-lt); text-decoration: underline; }
-
-    /* spinner (inline button) */
-    .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      display: none;
-    }
-
-    /* ── alert ── */
-    .alert {
-      display: none;
-      padding: 11px 14px;
-      border-radius: 9px;
-      font-size: .83rem;
-      margin-bottom: 18px;
-      animation: fadeIn .3s ease;
-    }
-    .alert.error { background: #fdf1f0; border: 1px solid #f5c6c2; color: var(--red); }
-    .alert.success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
-    .alert.visible { display: flex; align-items: center; gap: 8px; }
-    .alert svg { flex-shrink: 0; width: 15px; height: 15px; }
-
-    /* ── footer note ── */
-    .form-footer {
-      margin-top: 24px;
-      text-align: center;
-      font-size: .82rem;
-      color: var(--muted);
-    }
-
-    .form-footer a { color: var(--gold); text-decoration: none; font-weight: 500; }
-    .form-footer a:hover { text-decoration: underline; }
-
-    /* ── animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* ── responsive ── */
-    @media (max-width: 768px) {
-      .page { grid-template-columns: 1fr; }
-      .panel-left { display: none; }
-      .panel-right { padding: 40px 24px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Dashboard & Login · Diploma Campus</title>
+    
+    <!-- Tailwind + Fonts + Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(0,128,128,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,128,128,0.05) 1px, transparent 1px);
+            background-size: 50px 50px; flex:1;
+        }
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid #14b8a6; border-radius: 50%;
+            width: 40px; height: 40px; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .auth-toggle-btn.active { background-color: #14b8a6; color: white; border-color: #14b8a6; }
+        #toast-message {
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+    </style>
 </head>
-<body>
-<div class="page">
+<body class="text-gray-800">
 
-  <!-- ─────────── LEFT PANEL ─────────── -->
-  <div class="panel-left">
-    <div class="brand">
-      <div class="brand-mark">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#b8903a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-          </svg>
-        </div>
-        <div>
-          <div class="brand-name">Diploma<span>Campus</span></div>
-          <div class="tagline">Academic Excellence</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel-headline">
-      <h1>Learn today,<br/><em>lead</em> tomorrow.</h1>
-      <p>Access your courses, certifications, and learning resources from one unified platform.</p>
-    </div>
-
-    <div class="panel-footer">
-      <div class="stats">
-        <div class="stat-item">
-          <div class="stat-num">12K+</div>
-          <div class="stat-label">Students</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">340</div>
-          <div class="stat-label">Courses</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">98%</div>
-          <div class="stat-label">Satisfaction</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─────────── RIGHT PANEL ─────────── -->
-  <div class="panel-right">
-    <div class="form-card">
-
-      <!-- ── AUTH LOADING ── -->
-      <div id="authLoading">
-        <div class="auth-spinner"></div>
-        <p>Checking your session…</p>
-      </div>
-
-      <!-- ── LOGIN SECTION ── -->
-      <div id="loginSection">
-        <div class="form-header">
-          <h2>Welcome back</h2>
-          <p>Sign in to your account to continue learning.</p>
-        </div>
-
-        <!-- Google sign-in -->
-        <button class="btn-social" id="btnGoogle" type="button">
-          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58Z"/></svg>
-          Continue with Google
-        </button>
-
-        <div class="divider">or sign in with email</div>
-
-        <!-- Alert box -->
-        <div class="alert error" id="alertBox">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span id="alertMsg"></span>
-        </div>
-
-        <form id="loginForm" novalidate>
-          <!-- Email -->
-          <div class="field">
-            <label for="email">Email address</label>
-            <div class="field-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-              <input type="email" id="email" placeholder="sample@gmail.com" autocomplete="email" required/>
-            </div>
-          </div>
-
-          <!-- Password -->
-          <div class="field">
-            <label for="password">Password</label>
-            <div class="field-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required/>
-              <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">
-                <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Remember / Forgot -->
-          <div class="row-forgot">
-            <label class="remember">
-              <input type="checkbox" id="remember"/> Keep me signed in
-            </label>
-            <a href="#" class="link">Forgot password?</a>
-          </div>
-
-          <button type="submit" class="btn-primary" id="btnSignIn">
-            <span class="btn-text">Sign in to Dashboard</span>
-            <div class="spinner"></div>
-          </button>
-        </form>
-
-        <div class="form-footer">
-          Don't have an account? Create one free by enter your *Email* and *Password*.
-        </div>
-      </div>
-
-      <!-- ── USER PROFILE SECTION ── -->
-      <div id="userSection">
-        <div class="user-card">
-          <div class="user-header">
-            <h2>My Account</h2>
-            <p>You're signed in and ready to learn.</p>
-          </div>
-
-          <!-- Avatar + name row -->
-          <div class="user-avatar-row">
-            <div class="user-avatar" id="userAvatar">
-              <!-- initials or photo -->
-            </div>
-            <div class="user-info">
-              <div class="user-name" id="userName">—</div>
-              <div class="user-email" id="userEmail">—</div>
-            </div>
-            <div class="user-badge">Active</div>
-          </div>
-
-          <!-- Detail cards -->
-          <div class="user-details-grid">
-            <div class="detail-card">
-              <div class="detail-card-label">Sign-in method</div>
-              <div class="detail-card-value" id="userProvider">—</div>
-            </div>
-            <div class="detail-card">
-              <div class="detail-card-label">Email verified</div>
-              <div class="detail-card-value" id="userVerified">—</div>
-            </div>
-            <div class="detail-card">
-              <div class="detail-card-label">Member since</div>
-              <div class="detail-card-value" id="userCreated">—</div>
-            </div>
-            <div class="detail-card">
-              <div class="detail-card-label">Last sign-in</div>
-              <div class="detail-card-value" id="userLastLogin">—</div>
-            </div>
-          </div>
-
-          <!-- UID row (full width) -->
-          <div class="detail-card" style="margin-bottom:20px;">
-            <div class="detail-card-label">User ID</div>
-            <div class="detail-card-value mono" id="userUID">—</div>
-          </div>
-
-          <!-- Actions -->
-          <div class="user-actions">
-            <a href="https://diplomacampus.vercel.app/premium.html" class="btn-primary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              Go to Dashboard
-            </a>
-            <button class="btn-outline" id="btnSignOut" type="button">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-              Sign out
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<!-- Toast container -->
+<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
 </div>
 
-<!-- Firebase -->
+<div class="bg-grid flex flex-col pb-20">
+
+    <!-- ========== HEADER ========== -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+        <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
+            <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+            <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">Sign In</button>
+            <img id="header-avatar" src="" alt="Profile" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
+            <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- ========== SIDEBAR (Enhanced, Active on Dashboard) ========== -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="font-bold text-lg"><span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+            <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
+                <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                <li><a href="#" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                
+                <li><hr class="my-2 border-gray-200"></li>
+                <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
+                <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t" id="sidebar-auth-section">
+            <!-- Dynamically filled by JS -->
+        </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="w-full max-w-3xl mx-auto px-4 pt-28 md:pt-36 flex-1 flex flex-col items-center">
+        
+        <!-- LOADING -->
+        <div id="loading-view" class="w-full flex flex-col items-center justify-center py-20">
+            <div class="loader mb-4"></div>
+            <p class="text-gray-500 font-medium animate-pulse">Checking authentication...</p>
+        </div>
+
+        <!-- LOGGED OUT (LOGIN / SIGNUP BOX) -->
+        <div id="login-view" class="w-full max-w-md hidden bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+            <div class="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fa-solid fa-user-lock text-2xl text-teal-500"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-1 text-center" id="auth-title">Welcome Back</h2>
+            <p class="text-gray-500 mb-5 text-sm text-center" id="auth-subtitle">Sign in to access your dashboard</p>
+            
+            <!-- Auth mode toggle -->
+            <div class="flex rounded-lg bg-gray-100 p-1 mb-5">
+                <button id="tab-login" class="auth-toggle-btn active flex-1 py-2 text-sm font-medium rounded-md transition">Sign In</button>
+                <button id="tab-signup" class="auth-toggle-btn flex-1 py-2 text-sm font-medium rounded-md transition">Sign Up</button>
+            </div>
+
+            <!-- Email/Password Form -->
+            <form id="email-auth-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Email</label>
+                    <input type="email" id="auth-email" placeholder="you@college.edu" required
+                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none bg-gray-50">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Password</label>
+                    <input type="password" id="auth-password" placeholder="••••••••" required minlength="6"
+                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none bg-gray-50">
+                </div>
+                <div id="auth-extra" class="flex justify-end">
+                    <button type="button" id="forgot-password-btn" class="text-xs text-teal-600 hover:underline">Forgot password?</button>
+                </div>
+                <button type="submit" id="email-auth-submit" class="w-full bg-teal-500 text-white font-semibold py-2.5 rounded-lg hover:bg-teal-600 transition shadow-sm">
+                    <i class="fa-solid fa-envelope mr-1"></i> <span id="submit-btn-text">Sign In</span>
+                </button>
+                <div id="auth-message" class="text-xs text-center min-h-[20px]"></div>
+            </form>
+
+            <div class="relative my-5">
+                <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
+                <div class="relative flex justify-center text-xs"><span class="bg-white px-3 text-gray-400">OR</span></div>
+            </div>
+
+            <button id="main-login-btn" class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition shadow-sm">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
+                Continue with Google
+            </button>
+            <p class="text-[11px] text-gray-400 text-center mt-4">By continuing, you agree to our Terms.</p>
+        </div>
+
+        <!-- LOGGED IN DASHBOARD -->
+        <div id="dashboard-view" class="w-full hidden">
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Your Dashboard</h1>
+            <p class="text-gray-500 mb-8">Manage your profile details below</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+                <div class="p-6 md:p-8 flex flex-col sm:flex-row items-center gap-6 border-b border-gray-100 bg-gray-50/50">
+                    <img id="dash-avatar" src="" alt="Avatar" class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover bg-white">
+                    <div class="text-center sm:text-left">
+                        <h2 id="dash-name" class="text-2xl font-bold text-gray-800">Student Name</h2>
+                        <p id="dash-email" class="text-gray-500 mb-2">email@example.com</p>
+                        <span id="user-role-badge" class="inline-block bg-teal-100 text-teal-700 border border-teal-200 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                            <i class="fa-solid fa-check-circle mr-1"></i> Verified Student
+                        </span>
+                    </div>
+                </div>
+                <form id="profile-form" class="p-6 md:p-8 space-y-5">
+                    <div id="form-alert" class="hidden p-4 rounded-lg text-sm mb-4"></div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">College Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="input-college" placeholder="e.g. Govt Polytechnic College" required
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none bg-gray-50 focus:bg-white">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="input-email" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-200 bg-gray-50 focus:bg-white"></div>
+                        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Phone <span class="text-red-500">*</span></label>
+                            <input type="tel" id="input-phone" placeholder="+91 XXXXXXXXXX" required pattern="[0-9]{10}" class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Branch</label>
+                            <select id="input-branch" required class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
+                                <option value="" disabled selected>Select Branch</option>
+                                <option>Computer Science Engineering</option><option>Information Technology</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Electronics & Communication</option>
+                            </select></div>
+                        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Semester</label>
+                            <select id="input-semester" required class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
+                                <option value="" disabled selected>Select Semester</option>
+                                <option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option>
+                            </select></div>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 mt-6 flex justify-end">
+                        <button type="submit" id="save-btn" class="bg-teal-500 text-white font-semibold py-2.5 px-8 rounded-lg hover:bg-teal-600 transition shadow-sm flex items-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Save Details
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-8 text-center">
+                <button id="main-logout-btn" class="text-red-500 font-medium hover:text-red-700 hover:underline transition"><i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER (Enhanced with four columns, search, social, legal) ========== -->
+    <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+        
+        <!-- Search Action Box -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+            <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-teal-500"></i> Quick search across all resources</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">Find notes, videos, or ask the community</p>
+                    </div>
+                    <div class="flex w-full sm:w-auto relative">
+                        <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                        <button id="footer-search-btn" onclick="window.location.href='notes.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-teal-500 hover:bg-teal-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+            <!-- Social Media Connections -->
+            <div class="mb-8">
+                <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                <div class="flex flex-wrap gap-3 sm:gap-4">
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <!-- Join Team Section -->
+            <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
+                <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                </div>
+            </div>
+
+            <!-- Footer Columns -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Browse Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Video Lectures</a></li>
+                        <li><a href="QnA.html" class="hover:text-teal-600 transition">Q&A Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-teal-500"></i> Information</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="about-us.html" class="hover:text-teal-600 transition">About Us</a></li>
+                        <li><a href="contact-us.html" class="hover:text-teal-600 transition">Contact Us</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard / Login</a></li>
+                        <li><a href="disclaimer.html" class="hover:text-teal-600 transition">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-teal-500"></i> Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="terms.html" class="hover:text-teal-600 transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-teal-600 transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-teal-500"></i> Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Videos</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- ========== UI Sidebar & Toast Logic ========== -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleSidebar);
+        closeBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
+        };
+
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Dashboard', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
+            }
+        };
+
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', shareApp);
+
+        window.closeSidebar = closeSidebar;
+        window.toggleSidebar = toggleSidebar;
+    })();
+</script>
+
+<!-- ========== Firebase & Core Logic ========== -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import {
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
-    GoogleAuthProvider,
-    setPersistence,
-    browserLocalPersistence,
-    browserSessionPersistence
-  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { 
+        getAuth, 
+        signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged,
+        signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail 
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
-    authDomain: "diplomacampus.firebaseapp.com",
-    databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "diplomacampus",
-    storageBucket: "diplomacampus.firebasestorage.app",
-    messagingSenderId: "330061663460",
-    appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
-  };
-
-  const app  = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  /* ── DOM refs ── */
-  const authLoading   = document.getElementById('authLoading');
-  const loginSection  = document.getElementById('loginSection');
-  const userSection   = document.getElementById('userSection');
-  const alertBox      = document.getElementById('alertBox');
-  const alertMsg      = document.getElementById('alertMsg');
-
-  /* ── Helpers ── */
-  function showAlert(msg, type = 'error') {
-    alertBox.className = `alert ${type} visible`;
-    alertMsg.textContent = msg;
-  }
-
-  function hideAlert() {
-    alertBox.classList.remove('visible');
-  }
-
-  function setLoading(on) {
-    const btn = document.getElementById('btnSignIn');
-    btn.classList.toggle('loading', on);
-    btn.disabled = on;
-  }
-
-  function friendlyError(code) {
-    const map = {
-      'auth/invalid-email': 'That email address looks invalid.',
-      'auth/user-not-found': 'No account found with this email.',
-      'auth/wrong-password': 'Incorrect password.',
-      'auth/invalid-credential': 'Email or password is incorrect.',
-      'auth/too-many-requests': 'Too many attempts. Try later.',
-      'auth/network-request-failed': 'Check your internet connection.',
+    const firebaseConfig = {
+        apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+        authDomain: "diplomacampus.firebaseapp.com",
+        databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "diplomacampus",
+        storageBucket: "diplomacampus.firebasestorage.app",
+        messagingSenderId: "330061663460",
+        appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
     };
-    return map[code] || 'Something went wrong.';
-  }
 
-  function fmtDate(dateStr) {
-    if (!dateStr) return '—';
-    const d = new Date(dateStr);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+    const googleProvider = new GoogleAuthProvider();
 
-  function providerLabel(providerId) {
-    if (!providerId) return 'Email';
-    if (providerId.includes('google')) return 'Google';
-    if (providerId.includes('password')) return 'Email & Password';
-    return providerId;
-  }
+    // ---------- DOM Elements ----------
+    const loadingView = document.getElementById('loading-view');
+    const loginView = document.getElementById('login-view');
+    const dashboardView = document.getElementById('dashboard-view');
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerAvatar = document.getElementById('header-avatar');
+    const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+    const mainLoginBtn = document.getElementById('main-login-btn');
+    const mainLogoutBtn = document.getElementById('main-logout-btn');
+    
+    // Email/Password elements
+    const authTitle = document.getElementById('auth-title');
+    const authSubtitle = document.getElementById('auth-subtitle');
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const emailAuthForm = document.getElementById('email-auth-form');
+    const authEmail = document.getElementById('auth-email');
+    const authPassword = document.getElementById('auth-password');
+    const submitBtnText = document.getElementById('submit-btn-text');
+    const authMessage = document.getElementById('auth-message');
+    const forgotBtn = document.getElementById('forgot-password-btn');
+    
+    // Dashboard form
+    const dashAvatar = document.getElementById('dash-avatar');
+    const dashName = document.getElementById('dash-name');
+    const dashEmail = document.getElementById('dash-email');
+    const profileForm = document.getElementById('profile-form');
+    const inputCollege = document.getElementById('input-college');
+    const inputEmail = document.getElementById('input-email');
+    const inputPhone = document.getElementById('input-phone');
+    const inputBranch = document.getElementById('input-branch');
+    const inputSemester = document.getElementById('input-semester');
+    const saveBtn = document.getElementById('save-btn');
+    const formAlert = document.getElementById('form-alert');
+    const userRoleBadge = document.getElementById('user-role-badge');
 
-  function getInitials(name, email) {
-    if (name && name.trim()) {
-      return name.trim().split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
-    }
-    return (email || '?')[0].toUpperCase();
-  }
+    let currentUser = null;
+    let authMode = 'login'; // 'login' or 'signup'
 
-  /* ── Auth state listener — the core of the feature ── */
-  onAuthStateChanged(auth, user => {
-    authLoading.style.display = 'none';
-
-    if (user) {
-      /* ── Populate user profile ── */
-      const name     = user.displayName || '';
-      const email    = user.email || '';
-      const photoURL = user.photoURL || '';
-      const uid      = user.uid || '';
-      const provider = user.providerData?.[0]?.providerId || '';
-      const verified = user.emailVerified;
-      const created  = user.metadata?.creationTime;
-      const lastLogin= user.metadata?.lastSignInTime;
-
-      document.getElementById('userName').textContent     = name || email.split('@')[0] || 'Student';
-      document.getElementById('userEmail').textContent    = email;
-      document.getElementById('userProvider').textContent = providerLabel(provider);
-      document.getElementById('userVerified').textContent = verified ? '✓ Verified' : '✗ Not verified';
-      document.getElementById('userCreated').textContent  = fmtDate(created);
-      document.getElementById('userLastLogin').textContent= fmtDate(lastLogin);
-      document.getElementById('userUID').textContent      = uid;
-
-      const avatarEl = document.getElementById('userAvatar');
-      if (photoURL) {
-        avatarEl.innerHTML = `<img src="${photoURL}" alt="Profile photo" referrerpolicy="no-referrer"/>`;
-      } else {
-        avatarEl.textContent = getInitials(name, email);
-      }
-
-      loginSection.style.display = 'none';
-      userSection.style.display  = 'block';
-
-    } else {
-      /* ── Show login form ── */
-      userSection.style.display  = 'none';
-      loginSection.style.display = 'block';
-    }
-  });
-
-  /* ── Sign out ── */
-  document.getElementById('btnSignOut').addEventListener('click', async () => {
-    try {
-      await signOut(auth);
-      // onAuthStateChanged will handle the UI switch automatically
-    } catch (err) {
-      console.error('Sign out error:', err);
-    }
-  });
-
-  /* ── Email login ── */
-  document.getElementById('loginForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    hideAlert();
-
-    const email    = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    const remember = document.getElementById('remember').checked;
-
-    if (!email || !password) {
-      showAlert('Please enter email and password.');
-      return;
+    // ---------- Helper: generate safe avatar URL ----------
+    function getAvatarUrl(user) {
+        if (!user) return 'https://ui-avatars.com/api/?name=User&background=14b8a6&color=fff&size=150';
+        const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+        const fallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+        return user.photoURL || fallback;
     }
 
-    setLoading(true);
-
-    try {
-      const persistence = remember ? browserLocalPersistence : browserSessionPersistence;
-      await setPersistence(auth, persistence);
-      await signInWithEmailAndPassword(auth, email, password);
-      // onAuthStateChanged handles showing user section
-      showAlert('Login successful!', 'success');
-    } catch (err) {
-      showAlert(friendlyError(err.code));
-    } finally {
-      setLoading(false);
+    function setAvatarWithFallback(imgElement, user) {
+        if (!imgElement) return;
+        const fallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || user?.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff&size=150`;
+        imgElement.src = user?.photoURL || fallback;
+        imgElement.onerror = () => { imgElement.src = fallback; };
     }
-  });
 
-  /* ── Google login ── */
-  document.getElementById('btnGoogle').addEventListener('click', async () => {
-    hideAlert();
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      // onAuthStateChanged handles showing user section
-    } catch (err) {
-      if (err.code !== 'auth/popup-closed-by-user') {
-        showAlert(friendlyError(err.code));
-      }
+    // ---------- UI Update based on Auth ----------
+    function updateUIForUser(user) {
+        if (user) {
+            currentUser = user;
+            loginView.classList.add('hidden');
+            dashboardView.classList.remove('hidden');
+            headerLoginBtn.style.display = 'none';
+            headerAvatar.style.display = 'block';
+            setAvatarWithFallback(headerAvatar, user);
+            setAvatarWithFallback(dashAvatar, user);
+            
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            dashName.innerText = displayName;
+            dashEmail.innerText = user.email;
+            inputEmail.value = user.email || '';
+            
+            // Admin badge
+            if (user.email?.toLowerCase() === 'diplomacampus@gmail.com') {
+                userRoleBadge.innerHTML = `<i class="fa-solid fa-crown mr-1"></i> Admin Campus`;
+                userRoleBadge.className = "inline-block bg-yellow-100 text-yellow-700 border border-yellow-200 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
+            } else {
+                userRoleBadge.innerHTML = `<i class="fa-solid fa-check-circle mr-1"></i> Verified Student`;
+                userRoleBadge.className = "inline-block bg-teal-100 text-teal-700 border border-teal-200 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
+            }
+            
+            // Fetch saved profile data
+            fetchUserData(user.uid);
+            
+            // Sidebar
+            const avatarUrl = getAvatarUrl(user);
+            sidebarAuthSection.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                        <p class="text-xs text-gray-500 truncate">${user.email}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <button id="logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium"><i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out</button>
+                </div>
+            `;
+            document.getElementById('logout-btn')?.addEventListener('click', () => signOut(auth));
+        } else {
+            currentUser = null;
+            dashboardView.classList.add('hidden');
+            loginView.classList.remove('hidden');
+            headerLoginBtn.style.display = 'block';
+            headerAvatar.style.display = 'none';
+            sidebarAuthSection.innerHTML = `
+                <div class="text-center py-2">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                    <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                        <i class="fa-brands fa-google mr-1"></i> Sign In
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                signInWithPopup(auth, googleProvider).catch(e => console.warn(e));
+                closeSidebar();
+            });
+        }
     }
-  });
 
-  /* ── Toggle password ── */
-  const pwInput = document.getElementById('password');
-  const eyeIcon = document.getElementById('eyeIcon');
+    // Fetch user data from Realtime DB
+    async function fetchUserData(uid) {
+        try {
+            const snapshot = await get(child(ref(db), `users/${uid}`));
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                if(data.college) inputCollege.value = data.college;
+                if(data.phone) inputPhone.value = data.phone;
+                if(data.branch) inputBranch.value = data.branch;
+                if(data.semester) inputSemester.value = data.semester;
+                if(data.email) inputEmail.value = data.email;
+            }
+        } catch (e) { console.warn("Fetch error:", e); }
+    }
 
-  document.getElementById('togglePw').addEventListener('click', () => {
-    const show = pwInput.type === 'password';
-    pwInput.type = show ? 'text' : 'password';
-    eyeIcon.innerHTML = show
-      ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/>`
-      : `<path d="M1 12s4-8 11-8 11 8 11 8"/><circle cx="12" cy="12" r="3"/>`;
-  });
+    function showFormAlert(msg, type) {
+        formAlert.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800', 'bg-yellow-100');
+        if(type==='success') formAlert.classList.add('bg-green-100','text-green-800');
+        else if(type==='warning') formAlert.classList.add('bg-yellow-100','text-yellow-800');
+        else formAlert.classList.add('bg-red-100','text-red-800');
+        formAlert.innerHTML = msg;
+    }
+
+    // Auth mode toggle
+    function setAuthMode(mode) {
+        authMode = mode;
+        if (mode === 'login') {
+            authTitle.innerText = 'Welcome Back';
+            authSubtitle.innerText = 'Sign in to access your dashboard';
+            submitBtnText.innerText = 'Sign In';
+            tabLogin.classList.add('active', 'bg-teal-500', 'text-white');
+            tabSignup.classList.remove('active', 'bg-teal-500', 'text-white');
+            tabSignup.classList.add('bg-transparent', 'text-gray-600');
+            forgotBtn.style.display = 'block';
+        } else {
+            authTitle.innerText = 'Create Account';
+            authSubtitle.innerText = 'Join Diploma Campus today';
+            submitBtnText.innerText = 'Sign Up';
+            tabSignup.classList.add('active', 'bg-teal-500', 'text-white');
+            tabLogin.classList.remove('active', 'bg-teal-500', 'text-white');
+            tabLogin.classList.add('bg-transparent', 'text-gray-600');
+            forgotBtn.style.display = 'none';
+        }
+        authMessage.innerText = '';
+    }
+
+    tabLogin.addEventListener('click', () => setAuthMode('login'));
+    tabSignup.addEventListener('click', () => setAuthMode('signup'));
+    setAuthMode('login');
+
+    // Email/Password submit
+    emailAuthForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = authEmail.value.trim();
+        const pass = authPassword.value.trim();
+        if (!email || !pass) return;
+        authMessage.innerText = '';
+        try {
+            if (authMode === 'signup') {
+                await createUserWithEmailAndPassword(auth, email, pass);
+                authMessage.innerHTML = '<span class="text-green-600">✓ Account created! You are now signed in.</span>';
+            } else {
+                await signInWithEmailAndPassword(auth, email, pass);
+            }
+        } catch (error) {
+            authMessage.innerHTML = `<span class="text-red-500">⚠️ ${error.message}</span>`;
+        }
+    });
+
+    forgotBtn.addEventListener('click', async () => {
+        const email = authEmail.value.trim();
+        if (!email) { authMessage.innerText = 'Enter your email first'; return; }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            authMessage.innerHTML = '<span class="text-green-600">📧 Password reset email sent!</span>';
+        } catch (e) { authMessage.innerHTML = `<span class="text-red-500">${e.message}</span>`; }
+    });
+
+    // Google Sign-in
+    const googleLogin = () => signInWithPopup(auth, googleProvider).catch(e => console.warn(e));
+    mainLoginBtn.addEventListener('click', googleLogin);
+    headerLoginBtn.addEventListener('click', googleLogin);
+    
+    // Logout
+    mainLogoutBtn.addEventListener('click', () => signOut(auth));
+
+    // Profile save
+    profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!currentUser) return;
+        saveBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+        saveBtn.disabled = true;
+        const userData = {
+            name: currentUser.displayName || currentUser.email?.split('@')[0],
+            email: inputEmail.value,
+            phone: inputPhone.value,
+            college: inputCollege.value,
+            branch: inputBranch.value,
+            semester: inputSemester.value,
+            updatedAt: new Date().toISOString()
+        };
+        try {
+            await set(ref(db, 'users/' + currentUser.uid), userData);
+            try {
+                await fetch("https://formsubmit.co/ajax/diplomacampus@gmail.com", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ _subject: `Profile: ${userData.name}`, ...userData })
+                });
+                showFormAlert('✅ Profile details saved!', 'success');
+            } catch { showFormAlert('✅ Profile saved (email notification failed)', 'warning'); }
+        } catch (err) {
+            showFormAlert('❌ Database error. Check console.', 'error');
+        }
+        saveBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Save Details`;
+        saveBtn.disabled = false;
+    });
+
+    // Auth state listener
+    onAuthStateChanged(auth, (user) => {
+        loadingView.classList.add('hidden');
+        updateUIForUser(user);
+    });
 </script>
 </body>
 </html>

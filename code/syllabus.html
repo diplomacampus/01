@@ -133,6 +133,8 @@
                         <option value="Mechanical Engineering">Mechanical Engineering</option>
                         <option value="Civil Engineering">Civil Engineering</option>
                         <option value="Electrical Engineering">Electrical Engineering</option>
+ 
+                        <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
                         <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
                         <option value="Automobile Engineering">Automobile Engineering</option>
                         <option value="Chemical Engineering">Chemical Engineering</option>
@@ -199,6 +201,7 @@
                             <option value="Mechanical Engineering">Mechanical Engineering</option>
                             <option value="Civil Engineering">Civil Engineering</option>
                             <option value="Electrical Engineering">Electrical Engineering</option>
+  <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
                             <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
                             <option value="Automobile Engineering">Automobile Engineering</option>
                             <option value="Chemical Engineering">Chemical Engineering</option>
@@ -553,7 +556,7 @@
             const syllabusRef = ref(db, 'syllabus');
             const newRef = push(syllabusRef);
             await set(newRef, newSyllabus);
-            showToast('✅ Syllabus uploaded successfully!');
+            showToast(' Syllabus uploaded successfully!');
             toggleModal();
         } catch (error) {
             console.error("Upload failed:", error);
@@ -587,6 +590,7 @@
         "Mechanical Engineering": "MECH",
         "Civil Engineering": "CIVIL",
         "Electrical Engineering": "EE",
+        "Electrical and Electronics Engineering" : "EEE", 
         "Electronics & Communication Engineering": "ECE",
         "Automobile Engineering": "AUTO",
         "Chemical Engineering": "CHEM",
@@ -601,7 +605,7 @@
         if (!confirm('Delete this syllabus entry?')) return;
         try {
             await remove(ref(db, `syllabus/${id}`));
-            showToast('🗑️ Syllabus deleted');
+            showToast(' Syllabus deleted');
         } catch (err) {
             console.error(err);
             alert("Delete failed");

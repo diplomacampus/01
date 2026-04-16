@@ -2,12 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("group-card-container");
     if (!container) return; // Stop if container isn't found
 
-    // --- NEW: Inject custom CSS for the animated borders ---
+    // --- Inject custom CSS for the animated borders ---
     if (!document.getElementById("group-btn-styles")) {
         const style = document.createElement("style");
         style.id = "group-btn-styles";
         style.innerHTML = `
-            /* 1. Moving Gradient Aura */
             @keyframes moving-bg {
                 0% { background-position: 0% 50%; }
                 50% { background-position: 100% 50%; }
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 background-size: 200% 200%;
                 animation: moving-bg 3s ease infinite;
             }
-            /* 2. Sonar / Radar Pulse Border */
             @keyframes border-radar {
                 0% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.6); }
                 70% { box-shadow: 0 0 0 15px rgba(20, 184, 166, 0); }
@@ -26,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .animate-border-radar {
                 animation: border-radar 2s infinite;
             }
-            /* Stop pulse and add shadow on hover */
             .group:hover .animate-border-radar {
                 animation: none;
                 box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
@@ -42,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "WhatsApp channel for latest updates",  icon: "fa-whatsapp",  url: "https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q",  color: "bg-[#25D366] hover:bg-[#20bd5a]" }
     ];
 
-    // 2. Inject Button with Dual Animations (Gradient + Pulse)
+    // 2. Inject Button
     container.innerHTML = `
         <div class="flex justify-center mt-8 mb-6">
             <div class="relative inline-flex group cursor-pointer">
@@ -57,41 +54,45 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    // 3. Auto-generate and Inject the Modal into the body
-    const modalHTML = `
-        <div id="group-modal-overlay" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[100] hidden flex justify-center items-center opacity-0 transition-opacity duration-300 p-4">
-            <div id="group-modal-content" class="bg-white rounded-2xl w-full max-w-md relative transform scale-95 transition-transform duration-300 shadow-2xl overflow-hidden">
-                
-                <!-- Signature Gradient Top Border -->
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
-                
-                <!-- Modal Header -->
-                <div class="flex justify-between items-center p-6 border-b border-gray-100">
-                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-[#25D366] text-2xl"></i> Community
-                    </h2>
-                    <button id="close-modal-btn" class="text-gray-400 hover:text-red-500 transition text-lg outline-none">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
+    // 3. Prevent duplicate modals (Fixes the unclickable close button bug)
+    if (!document.getElementById("group-modal-overlay")) {
+        const modalHTML = `
+            <div id="group-modal-overlay" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[100] hidden flex justify-center items-center opacity-0 transition-opacity duration-300 p-4">
+                <div id="group-modal-content" class="bg-white rounded-2xl w-full max-w-md relative transform scale-95 transition-transform duration-300 shadow-2xl overflow-hidden">
+                    
+                    <!-- Signature Gradient Top Border -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400 z-10"></div>
+                    
+                    <!-- Modal Header -->
+                    <div class="flex justify-between items-center p-5 border-b border-gray-100 relative">
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-[#25D366] text-2xl"></i> Community
+                        </h2>
+                        
+                        <!-- FIXED CLOSE BUTTON: Larger hit area, better hover effect -->
+                        <button id="close-modal-btn" class="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors duration-200 outline-none cursor-pointer">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
 
-                <!-- Modal Body -->
-                <div class="p-6 flex flex-col gap-3.5">
-                    <p class="text-sm text-gray-500 mb-2 text-center font-medium">Select your session or join the channel to get the latest study materials.</p>
-                    ${groups.map(g => `
-                        <a href="${g.url}" target="_blank" class="${g.color} text-white flex items-center p-3.5 rounded-xl font-medium transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-lg group/link">
-                            <div class="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center mr-4 group-hover/link:scale-110 transition-transform duration-300 flex-shrink-0">
-                                <i class="fa-brands ${g.icon} text-2xl"></i>
-                            </div>
-                            <span class="text-sm sm:text-base text-left leading-tight drop-shadow-sm">${g.name}</span>
-                            <i class="fa-solid fa-chevron-right ml-auto opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all text-sm"></i>
-                        </a>
-                    `).join('')}
+                    <!-- Modal Body -->
+                    <div class="p-6 flex flex-col gap-3.5">
+                        <p class="text-sm text-gray-500 mb-2 text-center font-medium">Select your session or join the channel to get the latest study materials.</p>
+                        ${groups.map(g => `
+                            <a href="${g.url}" target="_blank" class="${g.color} text-white flex items-center p-3.5 rounded-xl font-medium transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-lg group/link">
+                                <div class="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center mr-4 group-hover/link:scale-110 transition-transform duration-300 flex-shrink-0">
+                                    <i class="fa-brands ${g.icon} text-2xl"></i>
+                                </div>
+                                <span class="text-sm sm:text-base text-left leading-tight drop-shadow-sm">${g.name}</span>
+                                <i class="fa-solid fa-chevron-right ml-auto opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all text-sm"></i>
+                            </a>
+                        `).join('')}
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
 
     // 4. Setup functionality and animations
     const btn = document.getElementById("join-groups-btn");
@@ -117,8 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => overlay.classList.add("hidden"), 300);
     };
 
-    // Trigger Close
+    // Trigger Close via X Button
     closeBtn.addEventListener("click", closeModal);
+    
+    // Trigger Close via clicking outside the modal
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeModal();
     });

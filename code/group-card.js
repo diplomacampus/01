@@ -1,8 +1,33 @@
+// 1. Define the open and close functions GLOBALLY so they never break
+window.openGroupModal = function() {
+    const overlay = document.getElementById("group-modal-overlay");
+    const modalContent = document.getElementById("group-modal-content");
+    if (overlay && modalContent) {
+        overlay.classList.remove("hidden");
+        setTimeout(() => {
+            overlay.classList.remove("opacity-0");
+            modalContent.classList.remove("scale-95");
+            modalContent.classList.add("scale-100");
+        }, 10);
+    }
+};
+
+window.closeGroupModal = function() {
+    const overlay = document.getElementById("group-modal-overlay");
+    const modalContent = document.getElementById("group-modal-content");
+    if (overlay && modalContent) {
+        overlay.classList.add("opacity-0");
+        modalContent.classList.remove("scale-100");
+        modalContent.classList.add("scale-95");
+        setTimeout(() => overlay.classList.add("hidden"), 300);
+    }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("group-card-container");
     if (!container) return; // Stop if container isn't found
 
-    // --- Inject custom CSS for the animated borders ---
+    // 2. Inject custom CSS for the animated borders
     if (!document.getElementById("group-btn-styles")) {
         const style = document.createElement("style");
         style.id = "group-btn-styles";
@@ -32,33 +57,33 @@ document.addEventListener("DOMContentLoaded", () => {
         document.head.appendChild(style);
     }
 
-    // 1. Your actual group links
+    // 3. Your actual group links
     const groups = [
         { name: "WhatsApp group for 2025-28 session", icon: "fa-whatsapp", url: "https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t", color: "bg-[#25D366] hover:bg-[#20bd5a]" },
         { name: "WhatsApp group for 2024-27 session", icon: "fa-whatsapp", url: "https://chat.whatsapp.com/LFGSEy4uJsL4GcOL1rN2ui?mode=gi_t", color: "bg-[#25D366] hover:bg-[#20bd5a]" },
         { name: "WhatsApp channel for latest updates",  icon: "fa-whatsapp",  url: "https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q",  color: "bg-[#25D366] hover:bg-[#20bd5a]" }
     ];
 
-    // 2. Inject Button
+    // 4. Inject Button (Using inline onclick="openGroupModal()")
     container.innerHTML = `
-        <div class="flex justify-center mt-8 mb-6">
-            <div class="relative inline-flex group cursor-pointer">
+        <div class="flex justify-center mt-8 mb-6 relative z-10">
+            <div class="relative inline-flex group cursor-pointer" onclick="openGroupModal()">
                 <!-- Animated Glowing Background Border -->
-                <div class="absolute -inset-1 bg-gradient-to-r from-teal-400 via-yellow-400 to-teal-500 rounded-full blur-md opacity-60 group-hover:opacity-100 transition duration-500 animate-moving-bg"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-teal-400 via-yellow-400 to-teal-500 rounded-full blur-md opacity-60 group-hover:opacity-100 transition duration-500 animate-moving-bg pointer-events-none"></div>
                 
-                <!-- Main Button with Radar Pulse -->
-                <button id="join-groups-btn" class="relative bg-teal-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 group-hover:-translate-y-1 flex items-center gap-2.5 animate-border-radar">
+                <!-- Main Button -->
+                <button type="button" class="relative bg-teal-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 group-hover:-translate-y-1 flex items-center gap-2.5 animate-border-radar pointer-events-none">
                     <i class="fa-brands fa-whatsapp text-xl"></i> Join Student Groups
                 </button>
             </div>
         </div>
     `;
 
-    // 3. Prevent duplicate modals (Fixes the unclickable close button bug)
+    // 5. Inject Modal (Using inline onclick="closeGroupModal()")
     if (!document.getElementById("group-modal-overlay")) {
         const modalHTML = `
-            <div id="group-modal-overlay" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[100] hidden flex justify-center items-center opacity-0 transition-opacity duration-300 p-4">
-                <div id="group-modal-content" class="bg-white rounded-2xl w-full max-w-md relative transform scale-95 transition-transform duration-300 shadow-2xl overflow-hidden">
+            <div id="group-modal-overlay" onclick="if(event.target === this) closeGroupModal()" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[9999] hidden flex justify-center items-center opacity-0 transition-opacity duration-300 p-4">
+                <div id="group-modal-content" class="bg-white rounded-2xl w-full max-w-md relative transform scale-95 transition-transform duration-300 shadow-2xl overflow-hidden cursor-default">
                     
                     <!-- Signature Gradient Top Border -->
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400 z-10"></div>
@@ -69,9 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i class="fa-brands fa-whatsapp text-[#25D366] text-2xl"></i> Community
                         </h2>
                         
-                        <!-- FIXED CLOSE BUTTON: Larger hit area, better hover effect -->
-                        <button id="close-modal-btn" class="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors duration-200 outline-none cursor-pointer">
-                            <i class="fa-solid fa-xmark text-xl"></i>
+                        <!-- BULLETPROOF CLOSE BUTTON -->
+                        <button type="button" onclick="closeGroupModal()" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors duration-200 outline-none cursor-pointer z-50 shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-xmark text-xl pointer-events-none"></i>
                         </button>
                     </div>
 
@@ -93,36 +118,4 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
-
-    // 4. Setup functionality and animations
-    const btn = document.getElementById("join-groups-btn");
-    const overlay = document.getElementById("group-modal-overlay");
-    const modalContent = document.getElementById("group-modal-content");
-    const closeBtn = document.getElementById("close-modal-btn");
-
-    // Open Modal
-    btn.addEventListener("click", () => {
-        overlay.classList.remove("hidden");
-        setTimeout(() => {
-            overlay.classList.remove("opacity-0");
-            modalContent.classList.remove("scale-95");
-            modalContent.classList.add("scale-100");
-        }, 10); 
-    });
-
-    // Close Modal Function
-    const closeModal = () => {
-        overlay.classList.add("opacity-0");
-        modalContent.classList.remove("scale-100");
-        modalContent.classList.add("scale-95");
-        setTimeout(() => overlay.classList.add("hidden"), 300);
-    };
-
-    // Trigger Close via X Button
-    closeBtn.addEventListener("click", closeModal);
-    
-    // Trigger Close via clicking outside the modal
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeModal();
-    });
 });

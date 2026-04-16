@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Notes Library · Diploma Campus</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -87,7 +87,7 @@
                 <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
                 <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
                 <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
-                
+
                 <li><hr class="my-2 border-gray-200"></li>
                 <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
                 <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
@@ -101,7 +101,7 @@
 
     <!-- ========== MAIN CONTENT ========== -->
     <main class="w-full max-w-7xl mx-auto px-4 pt-24 md:pt-32 flex-1 flex flex-col items-center">
-        
+
         <div class="text-center mb-10 w-full">
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
                 Notes <span class="text-teal-500">Library</span>
@@ -116,7 +116,7 @@
 <br>
             <!-- SEARCH & FILTERS -->
             <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-5xl mx-auto flex flex-col lg:flex-row gap-3 md:gap-4">
-                
+
                 <!-- Search Bar -->
                 <div class="relative flex-1 group">
                     <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500 transition-colors group-focus-within:text-teal-600">
@@ -138,6 +138,7 @@
                         <option value="Mechanical Engineering">Mechanical Engineering</option>
                         <option value="Civil Engineering">Civil Engineering</option>
                         <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
                         <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
                         <option value="Automobile Engineering">Automobile Engineering</option>
                         <option value="Chemical Engineering">Chemical Engineering</option>
@@ -208,6 +209,7 @@
                             <option value="Mechanical Engineering">Mechanical Engineering</option>
                             <option value="Civil Engineering">Civil Engineering</option>
                             <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
                             <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
                             <option value="Automobile Engineering">Automobile Engineering</option>
                             <option value="Chemical Engineering">Chemical Engineering</option>
@@ -260,7 +262,7 @@
     <!-- ========== FOOTER (Enhanced with four columns) ========== -->
     <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
-        
+
         <!-- Search Action Box -->
         <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
             <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
@@ -276,7 +278,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
             <!-- Social Media Connections -->
             <div class="mb-8">
@@ -368,7 +370,7 @@
         menuBtn.addEventListener('click', toggleSidebar);
         closeBtn.addEventListener('click', toggleSidebar);
         overlay.addEventListener('click', toggleSidebar);
-        
+
         window.showToast = function(msg) {
             const toast = document.getElementById('toast-message');
             const toastText = document.getElementById('toast-text');
@@ -454,7 +456,7 @@
     function updateAuthUI(user) {
         currentUser = user;
         isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
-        
+
         if (user) {
             headerLoginBtn.style.display = 'none';
             headerAvatar.style.display = 'block';
@@ -510,7 +512,7 @@
                 closeSidebar();
             });
         }
-        
+
         // Re-render to show/hide delete buttons
         filterAndRenderNotes();
     }
@@ -584,7 +586,7 @@
             const notesRef = ref(db, 'notes');
             const newNoteRef = push(notesRef);
             await set(newNoteRef, newNote);
-            showToast('✅ Note uploaded successfully!');
+            showToast(' Note uploaded successfully!');
             toggleModal();
         } catch (error) {
             console.error("Upload failed:", error);
@@ -619,6 +621,7 @@
         "Mechanical Engineering": "MECH",
         "Civil Engineering": "CIVIL",
         "Electrical Engineering": "EE",
+        "Electrical and Electronics Engineering" : "EEE", 
         "Electronics & Communication Engineering": "ECE",
         "Automobile Engineering": "AUTO",
         "Chemical Engineering": "CHEM",
@@ -634,7 +637,7 @@
         if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
         try {
             await remove(ref(db, `notes/${noteId}`));
-            showToast('🗑️ Note deleted');
+            showToast(' Note deleted');
         } catch (error) {
             console.error("Delete failed:", error);
             alert("Failed to delete note.");
@@ -657,7 +660,7 @@
         notes.forEach(note => {
             const card = document.createElement('div');
             card.className = "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
-            
+
             let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0,4).toUpperCase();
             let shortSem = note.semester.replace("Semester", "Sem");
 
@@ -712,7 +715,7 @@
             const matchSearch = note.subject.toLowerCase().includes(query) || 
                                 note.topic.toLowerCase().includes(query) || 
                                 note.tags.toLowerCase().includes(query);
-            
+
             const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
             const matchSem = semester === "" || note.semester === semester;
 

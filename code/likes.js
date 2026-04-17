@@ -1,6 +1,6 @@
 // likes.js
 (function() {
-    // Firebase configuration (must match your existing project)
+    // Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
         authDomain: "diplomacampus.firebaseapp.com",
@@ -11,21 +11,18 @@
         appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
     };
 
-    // Initialize Firebase (if not already initialized)
+    // Initialize Firebase
     if (typeof firebase !== 'undefined' && !firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
-    } else if (typeof firebase === 'undefined') {
-        console.error('Firebase SDK not loaded. Make sure to include firebase-app.js, firebase-auth.js, and firebase-database.js before likes.js');
-        return;
     }
 
     const db = firebase.database();
     const auth = firebase.auth();
 
-    // Create the like button element
+    // ----- SITE LIKE BUTTON (bottom-right) -----
     const likeBtn = document.createElement('button');
     likeBtn.id = 'site-like-button';
-    likeBtn.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full shadow-lg transition-all duration-200 bg-white text-gray-600 border border-gray-200 hover:bg-gray-50';
+    likeBtn.className = 'fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2 rounded-full shadow-lg transition-all duration-200 bg-white text-gray-600 border border-gray-200 hover:bg-gray-50';
     likeBtn.setAttribute('title', 'Like this site');
     likeBtn.innerHTML = `
         <i class="fa-regular fa-heart text-lg"></i>
@@ -36,7 +33,6 @@
     const heartIcon = likeBtn.querySelector('i');
     const countSpan = document.getElementById('site-like-count');
 
-    // Real‑time like count and user like status
     const siteLikesRef = db.ref('siteLikes/main');
     siteLikesRef.on('value', (snapshot) => {
         const likes = snapshot.val() || {};
@@ -46,7 +42,6 @@
 
         countSpan.textContent = likeCount;
 
-        // Update button styling based on liked state
         if (isLiked) {
             likeBtn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200', 'hover:bg-gray-50');
             likeBtn.classList.add('bg-red-50', 'text-red-500', 'border-red-200');
@@ -60,7 +55,6 @@
         }
     });
 
-    // Handle click to toggle like
     likeBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         const user = auth.currentUser;
@@ -82,8 +76,30 @@
         }
     });
 
-    // Re‑evaluate liked state when auth changes
-    auth.onAuthStateChanged(() => {
-        // The value listener will automatically update the UI
+    // ----- GO TO TOP BUTTON (above the like button) -----
+    const topBtn = document.createElement('button');
+    topBtn.id = 'go-to-top-btn';
+    topBtn.className = 'fixed bottom-24 right-6 z-40 flex items-center justify-center w-10 h-10 rounded-full shadow-lg bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition-all duration-300 opacity-0 scale-90 pointer-events-none';
+    topBtn.setAttribute('title', 'Go to top');
+    topBtn.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
+    document.body.appendChild(topBtn);
+
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            topBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+            topBtn.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+        } else {
+            topBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+            topBtn.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+        }
     });
+
+    // Smooth scroll to top on click
+    topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Re‑evaluate liked state when auth changes
+    auth.onAuthStateChanged(() => {});
 })();

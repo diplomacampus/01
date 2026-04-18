@@ -11,25 +11,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- HTML2Canvas (For generating the Report Card Image) -->
+    <!-- HTML2Canvas for Report Card -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f8fafc; min-height: 100vh; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%); min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
         .bg-grid {
-            background-image: linear-gradient(to right, rgba(14, 165, 233, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            flex: 1;
         }
-        /* Custom scrollbar for admin tables */
-        ::-webkit-scrollbar { w-2 h-2; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        /* Smooth View Transitions */
+        #toast-message { transition: opacity 0.3s ease; z-index: 100; }
         .view-section { display: none; animation: fadeIn 0.4s ease-in-out forwards; }
         .view-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Report Card Styling */
         #report-card-capture {
             background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             position: relative; overflow: hidden;
@@ -40,106 +36,125 @@
         }
     </style>
 </head>
-<body class="text-gray-800 flex flex-col bg-grid">
+<body class="text-gray-800">
 
-    <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+<!-- Toast Container -->
+<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
+</div>
+
+<div class="bg-grid flex flex-col pb-20 relative">
+
+    <!-- ========== HEADER ========== -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
         <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
-            <a href="index.html" class="hover:opacity-80 transition"><span class="text-sky-500 italic"><i class="fa-solid fa-laptop-code"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
+            <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-graduation-cap"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
         </div>
         <div class="flex items-center gap-3">
             <button id="nav-admin-btn" style="display: none;" onclick="switchView('admin-view')" class="text-sm font-bold bg-gray-900 text-white px-4 py-1.5 rounded-full hover:bg-gray-800 transition shadow">
                 <i class="fa-solid fa-lock"></i> Admin
             </button>
-            <button id="nav-home-btn" onclick="switchView('list-view')" class="text-sm font-bold bg-sky-100 text-sky-700 px-4 py-1.5 rounded-full hover:bg-sky-200 transition">
-                <i class="fa-solid fa-house"></i> Tests
-            </button>
-            <button id="header-login-btn" class="text-sm font-semibold bg-sky-500 text-white px-5 py-1.5 rounded-full hover:bg-sky-600 transition shadow-sm">Sign In</button>
-            <img id="header-avatar" src="" alt="Profile" style="display: none;" class="w-8 h-8 rounded-full border border-gray-300 ring-2 ring-sky-400 object-cover bg-white cursor-pointer">
+            <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+            <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">Sign In</button>
+            <img id="header-avatar" src="" alt="Profile" onclick="window.location.href='login.html'" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
+            <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
 
+    <!-- ========== SIDEBAR (Active on Mock Tests) ========== -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="font-bold text-lg"><span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+            <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
+                <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                <li><a href="syllabus.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book w-5 text-center"></i> Syllabus</a></li>
+                <li><a href="mock-tests.html" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-pencil-alt w-5 text-center"></i> Mock Tests</a></li>
+                <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                
+                <li><hr class="my-2 border-gray-200"></li>
+                <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
+                <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t" id="sidebar-auth-section"></div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
     <main class="w-full max-w-7xl mx-auto px-4 pt-24 pb-12 flex-1">
 
-        <!-- ================= 1. TEST LISTING VIEW ================= -->
+        <!-- 1. TEST LISTING VIEW -->
         <div id="list-view" class="view-section active max-w-5xl mx-auto">
             <div class="text-center mb-10">
-                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">Mock <span class="text-sky-500">Tests</span></h1>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">Mock <span class="text-teal-500">Tests</span></h1>
                 <p class="text-gray-500 text-sm md:text-base">Take timed MCQs, challenge yourself, and get a report card!</p>
             </div>
-            
-            <div id="tests-loading" class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-3xl text-sky-500"></i></div>
+
+            <div id="tests-loading" class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500"></i></div>
             <div id="tests-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- ================= 2. ACTIVE TEST TAKING VIEW ================= -->
+        <!-- 2. ACTIVE TEST TAKING VIEW -->
         <div id="test-taking-view" class="view-section max-w-4xl mx-auto">
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <!-- Header with Timer -->
                 <div class="bg-slate-900 text-white p-4 md:p-6 flex justify-between items-center sticky top-0 z-10">
                     <h2 id="active-test-title" class="font-bold text-lg md:text-xl truncate pr-4">Test Name</h2>
                     <div class="flex items-center gap-2 bg-slate-800 px-4 py-2 rounded-lg font-mono text-xl font-bold text-red-400 shadow-inner">
                         <i class="fa-regular fa-clock"></i> <span id="timer-display">00:00</span>
                     </div>
                 </div>
-
-                <!-- Progress Bar -->
                 <div class="w-full bg-gray-200 h-1.5">
-                    <div id="test-progress" class="bg-sky-500 h-1.5 transition-all duration-300 w-0"></div>
+                    <div id="test-progress" class="bg-teal-500 h-1.5 transition-all duration-300 w-0"></div>
                 </div>
-
-                <!-- Question Container -->
                 <div class="p-6 md:p-8 min-h-[300px]">
                     <div class="flex justify-between items-center mb-6 text-sm font-bold text-gray-400">
                         <span id="question-counter">Question 1 of 50</span>
-                        <span class="bg-sky-50 text-sky-600 px-2 py-1 rounded">1 Mark</span>
+                        <span class="bg-teal-50 text-teal-600 px-2 py-1 rounded">1 Mark</span>
                     </div>
-                    
                     <h3 id="question-text" class="text-xl md:text-2xl font-semibold text-gray-800 mb-8 leading-snug">Loading Question...</h3>
-                    
-                    <div id="options-container" class="space-y-3">
-                        <!-- Options injected via JS -->
-                    </div>
+                    <div id="options-container" class="space-y-3"></div>
                 </div>
-
-                <!-- Footer Navigation -->
                 <div class="p-4 md:p-6 border-t border-gray-100 flex justify-between items-center bg-gray-50">
                     <button id="prev-btn" class="px-5 py-2.5 rounded-lg font-medium text-gray-600 hover:bg-gray-200 transition disabled:opacity-50"><i class="fa-solid fa-arrow-left mr-1"></i> Previous</button>
-                    <button id="next-btn" class="px-5 py-2.5 rounded-lg font-medium bg-sky-500 text-white hover:bg-sky-600 shadow-md transition">Next <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    <button id="next-btn" class="px-5 py-2.5 rounded-lg font-medium bg-teal-500 text-white hover:bg-teal-600 shadow-md transition">Next <i class="fa-solid fa-arrow-right ml-1"></i></button>
                     <button id="submit-test-btn" style="display:none;" class="px-6 py-2.5 rounded-lg font-bold bg-green-500 text-white hover:bg-green-600 shadow-md transition">Submit Test</button>
                 </div>
             </div>
         </div>
 
-        <!-- ================= 3. REPORT CARD VIEW ================= -->
+        <!-- 3. REPORT CARD VIEW -->
         <div id="report-view" class="view-section max-w-2xl mx-auto text-center">
             <h2 class="text-3xl font-extrabold text-gray-800 mb-6">Test Completed! 🎉</h2>
-            
-            <!-- The Card to Capture -->
             <div id="report-card-capture" class="bg-white p-8 rounded-3xl shadow-xl border-2 border-gray-100 text-center mb-8 mx-auto w-full max-w-lg">
                 <div class="flex justify-center mb-4">
                     <img id="rc-avatar" src="" class="w-20 h-20 rounded-full border-4 border-teal-100 shadow-sm object-cover">
                 </div>
                 <h3 id="rc-name" class="text-2xl font-bold text-gray-800">Student Name</h3>
                 <p id="rc-test-name" class="text-gray-500 font-medium mb-6">Test Subject</p>
-                
                 <div class="grid grid-cols-2 gap-4 mb-8">
                     <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
                         <p class="text-xs text-gray-400 font-bold uppercase tracking-wide">Score</p>
-                        <p id="rc-score" class="text-3xl font-black text-sky-500">0/0</p>
+                        <p id="rc-score" class="text-3xl font-black text-teal-500">0/0</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
                         <p class="text-xs text-gray-400 font-bold uppercase tracking-wide">Accuracy</p>
                         <p id="rc-percent" class="text-3xl font-black text-teal-500">0%</p>
                     </div>
                 </div>
-                
                 <div class="text-xs text-gray-400 flex justify-between items-center border-t border-gray-100 pt-4">
                     <span id="rc-date">Date: ...</span>
                     <span class="font-bold text-teal-500"><i class="fa-solid fa-laptop-code"></i> Diploma Campus</span>
                 </div>
             </div>
-
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button onclick="downloadReportCard()" class="px-6 py-3 rounded-full font-bold bg-teal-500 text-white hover:bg-teal-600 shadow-lg transition flex items-center justify-center gap-2">
                     <i class="fa-solid fa-download"></i> Download Report Card
@@ -148,33 +163,30 @@
             </div>
         </div>
 
-        <!-- ================= 4. ADMIN DASHBOARD ================= -->
+        <!-- 4. ADMIN DASHBOARD -->
         <div id="admin-view" class="view-section max-w-6xl mx-auto">
             <div class="flex justify-between items-end mb-6">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-800"><i class="fa-solid fa-shield-halved text-red-500"></i> Admin Panel</h2>
-                    <p class="text-gray-500">Manage AI generated tests and view student reports.</p>
+                    <p class="text-gray-500">Manage tests and view student reports.</p>
                 </div>
+                <button onclick="switchView('list-view')" class="text-teal-600 hover:underline"><i class="fa-solid fa-arrow-left"></i> Back to Tests</button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
                 <!-- Create Test Form -->
                 <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
                     <h3 class="font-bold text-lg mb-4 text-gray-800">1. Create New Test</h3>
                     <div class="space-y-4">
-                        <input type="text" id="admin-test-name" placeholder="Test Name (e.g. Applied Math MCQ)" class="w-full p-3 bg-gray-50 rounded-lg border outline-none focus:ring-2 focus:ring-sky-400 text-sm">
-                        <input type="number" id="admin-test-time" placeholder="Time Limit (in minutes)" class="w-full p-3 bg-gray-50 rounded-lg border outline-none focus:ring-2 focus:ring-sky-400 text-sm">
-                        
+                        <input type="text" id="admin-test-name" placeholder="Test Name (e.g. Applied Math MCQ)" class="w-full p-3 bg-gray-50 rounded-lg border outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                        <input type="number" id="admin-test-time" placeholder="Time Limit (in minutes)" class="w-full p-3 bg-gray-50 rounded-lg border outline-none focus:ring-2 focus:ring-teal-400 text-sm">
                         <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                             <h4 class="text-xs font-bold text-yellow-800 uppercase mb-2"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generation Steps</h4>
                             <p class="text-xs text-yellow-700 mb-2">1. Copy your syllabus text.</p>
                             <p class="text-xs text-yellow-700 mb-2">2. Ask ChatGPT: <i>"Generate 50 multiple choice questions from this syllabus. Output STRICTLY as a JSON array where each object has: 'question', 'options' (array of 4 strings), and 'correct' (exact string matching the correct option). Nothing else."</i></p>
                             <p class="text-xs text-yellow-700">3. Paste that JSON below.</p>
                         </div>
-
                         <textarea id="admin-test-json" rows="6" placeholder='[ {"question": "...", "options": ["A","B","C","D"], "correct": "A"} ]' class="w-full p-3 bg-gray-900 text-green-400 font-mono rounded-lg border outline-none text-xs"></textarea>
-                        
                         <button id="admin-save-test-btn" class="w-full py-3 bg-slate-900 text-white font-bold rounded-lg hover:bg-slate-800 transition shadow">Publish Test</button>
                     </div>
                 </div>
@@ -193,290 +205,498 @@
                                     <th class="p-3 rounded-r-lg">Date</th>
                                 </tr>
                             </thead>
-                            <tbody id="admin-results-table" class="divide-y divide-gray-100">
-                                <!-- JS Inject -->
-                            </tbody>
+                            <tbody id="admin-results-table" class="divide-y divide-gray-100"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 
-    <!-- Firebase & Logic -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        import { getDatabase, ref, onValue, push, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-
-        // Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
-            authDomain: "diplomacampus.firebaseapp.com",
-            databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "diplomacampus",
-            storageBucket: "diplomacampus.firebasestorage.app"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getDatabase(app);
-        const googleProvider = new GoogleAuthProvider();
-
-        // State Variables
-        let currentUser = null;
-        let isAdmin = false;
-        let allTests = [];
-        
-        // Test Engine State
-        let activeTestId = null;
-        let activeQuestions = [];
-        let userAnswers = {};
-        let currentQIndex = 0;
-        let timeLeft = 0;
-        let timerInterval = null;
-
-        // UI Routing
-        window.switchView = function(viewId) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-        };
-
-        // Authentication UI
-        const loginBtn = document.getElementById('header-login-btn');
-        const avatarImg = document.getElementById('header-avatar');
-        const navAdminBtn = document.getElementById('nav-admin-btn');
-
-        loginBtn.addEventListener('click', () => signInWithPopup(auth, googleProvider));
-
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            if (user) {
-                loginBtn.style.display = 'none';
-                avatarImg.style.display = 'block';
-                avatarImg.src = user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName}`;
-                
-                isAdmin = user.email.includes('diplomacampus@gmail.com');
-                navAdminBtn.style.display = isAdmin ? 'block' : 'none';
-                
-                if(isAdmin) fetchAdminResults();
-            } else {
-                loginBtn.style.display = 'block';
-                avatarImg.style.display = 'none';
-                navAdminBtn.style.display = 'none';
-                isAdmin = false;
-            }
-        });
-
-        // 1. Load Tests from Firebase
-        onValue(ref(db, 'tests'), (snapshot) => {
-            allTests = [];
-            if(snapshot.exists()){
-                snapshot.forEach(child => allTests.push({id: child.key, ...child.val()}));
-            }
-            renderTestGrid();
-        });
-
-        function renderTestGrid() {
-            const grid = document.getElementById('tests-grid');
-            document.getElementById('tests-loading').style.display = 'none';
-            grid.innerHTML = '';
-            
-            if(allTests.length === 0) {
-                grid.innerHTML = `<p class="col-span-full text-center text-gray-500">No mock tests available right now.</p>`;
-                return;
-            }
-
-            allTests.forEach(test => {
-                const count = JSON.parse(test.questionsJson).length;
-                grid.innerHTML += `
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all group">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="bg-sky-100 text-sky-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-file-signature"></i></div>
-                            <span class="text-xs font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded"><i class="fa-regular fa-clock"></i> ${test.timeLimit}m</span>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-800 mb-1 line-clamp-1">${test.name}</h3>
-                        <p class="text-sm text-gray-500 mb-6">${count} Questions • Multiple Choice</p>
-                        <button onclick="startTest('${test.id}')" class="w-full py-2.5 bg-sky-50 text-sky-600 font-bold rounded-lg group-hover:bg-sky-500 group-hover:text-white transition">Start Test</button>
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+            <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-teal-500"></i> Quick search across all resources</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">Find notes, videos, or ask the community</p>
                     </div>
-                `;
-            });
+                    <div class="flex w-full sm:w-auto relative">
+                        <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-teal-200 focus:border-teal-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                        <button id="footer-search-btn" onclick="window.location.href='notes.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-teal-500 hover:bg-teal-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+            <div class="mb-8">
+                <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                <div class="flex flex-wrap gap-3 sm:gap-4">
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
+                <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                    <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Browse Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Video Lectures</a></li>
+                        <li><a href="QnA.html" class="hover:text-teal-600 transition">Q&A Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-teal-500"></i> Information</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="about-us.html" class="hover:text-teal-600 transition">About Us</a></li>
+                        <li><a href="contact-us.html" class="hover:text-teal-600 transition">Contact Us</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard / Login</a></li>
+                        <li><a href="disclaimer.html" class="hover:text-teal-600 transition">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-teal-500"></i> Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="terms.html" class="hover:text-teal-600 transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-teal-600 transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-teal-500"></i> Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-teal-600 transition">Home</a></li>
+                        <li><a href="notes.html" class="hover:text-teal-600 transition">Notes</a></li>
+                        <li><a href="video-lectures.html" class="hover:text-teal-600 transition">Videos</a></li>
+                        <li><a href="login.html" class="hover:text-teal-600 transition">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- ========== UI Sidebar & Toast Logic ========== -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
         }
 
-        // 2. Test Engine Logic
-        window.startTest = function(testId) {
-            if(!currentUser) {
-                alert("Please Sign In first to take the test and generate your report card!");
-                signInWithPopup(auth, googleProvider);
-                return;
-            }
+        menuBtn.addEventListener('click', toggleSidebar);
+        closeBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
 
-            const test = allTests.find(t => t.id === testId);
-            activeTestId = test.id;
-            activeQuestions = JSON.parse(test.questionsJson);
-            userAnswers = {};
-            currentQIndex = 0;
-            timeLeft = parseInt(test.timeLimit) * 60;
-
-            document.getElementById('active-test-title').innerText = test.name;
-            switchView('test-taking-view');
-            renderQuestion();
-            
-            clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 1000);
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
         };
 
-        function updateTimer() {
-            if(timeLeft <= 0) {
-                clearInterval(timerInterval);
-                submitTest();
-                return;
-            }
-            timeLeft--;
-            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const s = (timeLeft % 60).toString().padStart(2, '0');
-            document.getElementById('timer-display').innerText = `${m}:${s}`;
-        }
-
-        function renderQuestion() {
-            const q = activeQuestions[currentQIndex];
-            document.getElementById('question-counter').innerText = `Question ${currentQIndex + 1} of ${activeQuestions.length}`;
-            document.getElementById('question-text').innerText = q.question;
-            
-            // Progress bar width
-            const pct = ((currentQIndex + 1) / activeQuestions.length) * 100;
-            document.getElementById('test-progress').style.width = `${pct}%`;
-
-            const optsDiv = document.getElementById('options-container');
-            optsDiv.innerHTML = '';
-            
-            q.options.forEach((opt, idx) => {
-                const isChecked = userAnswers[currentQIndex] === opt;
-                optsDiv.innerHTML += `
-                    <label class="flex items-center p-4 border ${isChecked ? 'border-sky-500 bg-sky-50' : 'border-gray-200 hover:bg-gray-50'} rounded-xl cursor-pointer transition">
-                        <input type="radio" name="mcq" value="${opt}" ${isChecked ? 'checked' : ''} onchange="saveAnswer('${opt}')" class="w-5 h-5 text-sky-600 focus:ring-sky-500 border-gray-300">
-                        <span class="ml-3 text-gray-700 font-medium">${opt}</span>
-                    </label>
-                `;
-            });
-
-            document.getElementById('prev-btn').disabled = currentQIndex === 0;
-            
-            if(currentQIndex === activeQuestions.length - 1) {
-                document.getElementById('next-btn').style.display = 'none';
-                document.getElementById('submit-test-btn').style.display = 'block';
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Mock Tests', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
             } else {
-                document.getElementById('next-btn').style.display = 'block';
-                document.getElementById('submit-test-btn').style.display = 'none';
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
             }
-        }
-
-        window.saveAnswer = function(val) { userAnswers[currentQIndex] = val; renderQuestion(); }
-        document.getElementById('next-btn').addEventListener('click', () => { currentQIndex++; renderQuestion(); });
-        document.getElementById('prev-btn').addEventListener('click', () => { currentQIndex--; renderQuestion(); });
-        document.getElementById('submit-test-btn').addEventListener('click', () => {
-            if(confirm("Are you sure you want to submit?")) submitTest();
-        });
-
-        // 3. Evaluation & Report Card
-        async function submitTest() {
-            clearInterval(timerInterval);
-            let score = 0;
-            
-            activeQuestions.forEach((q, idx) => {
-                if(userAnswers[idx] === q.correct) score++;
-            });
-
-            const total = activeQuestions.length;
-            const testObj = allTests.find(t => t.id === activeTestId);
-            
-            // Build Report Card UI
-            document.getElementById('rc-avatar').src = currentUser.photoURL || `https://ui-avatars.com/api/?name=${currentUser.displayName}`;
-            document.getElementById('rc-name').innerText = currentUser.displayName || "Student";
-            document.getElementById('rc-test-name').innerText = testObj.name;
-            document.getElementById('rc-score').innerText = `${score}/${total}`;
-            document.getElementById('rc-percent').innerText = `${Math.round((score/total)*100)}%`;
-            document.getElementById('rc-date').innerText = `Date: ${new Date().toLocaleDateString()}`;
-
-            // Save to Firebase Database
-            const resultData = {
-                uid: currentUser.uid,
-                name: currentUser.displayName,
-                email: currentUser.email,
-                testName: testObj.name,
-                score: score,
-                total: total,
-                date: new Date().toISOString()
-            };
-            await set(push(ref(db, 'test_results')), resultData);
-
-            switchView('report-view');
-        }
-
-        window.downloadReportCard = function() {
-            const card = document.getElementById('report-card-capture');
-            html2canvas(card, { scale: 2, useCORS: true }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `ReportCard_${currentUser.displayName}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
         };
 
-        // 4. ADMIN: Save New Test
-        document.getElementById('admin-save-test-btn').addEventListener('click', async () => {
-            const name = document.getElementById('admin-test-name').value.trim();
-            const time = document.getElementById('admin-test-time').value.trim();
-            const jsonStr = document.getElementById('admin-test-json').value.trim();
+        document.getElementById('share-btn')?.addEventListener('click', shareApp);
+        window.closeSidebar = closeSidebar;
+    })();
+</script>
 
-            if(!name || !time || !jsonStr) return alert("Fill all fields.");
+<!-- ========== Firebase & Core Logic ========== -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getDatabase, ref, onValue, push, set, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-            try {
-                // Verify JSON is valid format
-                const parsed = JSON.parse(jsonStr);
-                if(!Array.isArray(parsed) || !parsed[0].question) throw new Error("Invalid JSON structure");
+    const firebaseConfig = {
+        apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+        authDomain: "diplomacampus.firebaseapp.com",
+        databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "diplomacampus",
+        storageBucket: "diplomacampus.firebasestorage.app"
+    };
 
-                await set(push(ref(db, 'tests')), { name, timeLimit: time, questionsJson: jsonStr, date: new Date().toISOString() });
-                alert("Test created successfully!");
-                document.getElementById('admin-test-name').value = '';
-                document.getElementById('admin-test-time').value = '';
-                document.getElementById('admin-test-json').value = '';
-            } catch(e) {
-                alert("JSON Error: Make sure you copied exactly what ChatGPT generated. Error: " + e.message);
-            }
-        });
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+    const googleProvider = new GoogleAuthProvider();
 
-        // 5. ADMIN: View Results
-        function fetchAdminResults() {
-            onValue(ref(db, 'test_results'), (snapshot) => {
-                const tbody = document.getElementById('admin-results-table');
-                tbody.innerHTML = '';
-                if(snapshot.exists()) {
-                    let results = [];
-                    snapshot.forEach(c => results.push(c.val()));
-                    results.sort((a,b) => new Date(b.date) - new Date(a.date)); // Newest first
-                    
-                    results.forEach(r => {
-                        const pct = Math.round((r.score/r.total)*100);
-                        const d = new Date(r.date).toLocaleDateString();
-                        tbody.innerHTML += `
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="p-3 font-medium text-gray-800">
-                                    ${r.name} <span class="block text-xs text-gray-400 font-normal">${r.email}</span>
-                                </td>
-                                <td class="p-3 text-sky-600 font-medium">${r.testName}</td>
-                                <td class="p-3 font-bold ${r.score > (r.total/2) ? 'text-green-500' : 'text-red-500'}">${r.score}/${r.total}</td>
-                                <td class="p-3"><span class="bg-gray-100 px-2 py-1 rounded text-xs font-bold">${pct}%</span></td>
-                                <td class="p-3 text-gray-500">${d}</td>
-                            </tr>
-                        `;
-                    });
-                } else {
-                    tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No submissions yet.</td></tr>`;
-                }
+    // UI Elements
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerAvatar = document.getElementById('header-avatar');
+    const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+    const navAdminBtn = document.getElementById('nav-admin-btn');
+
+    let currentUser = null;
+    let isAdmin = false;
+    let allTests = [];
+
+    // Test Engine State
+    let activeTestId = null;
+    let activeQuestions = [];
+    let userAnswers = {};
+    let currentQIndex = 0;
+    let timeLeft = 0;
+    let timerInterval = null;
+
+    // Helper: Avatar URL
+    function getAvatarUrl(user) {
+        if (!user) return '';
+        const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+        return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+    }
+
+    // View Switching with Timer Cleanup
+    window.switchView = function(viewId) {
+        // Clear timer if leaving test view
+        if (viewId !== 'test-taking-view' && timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+        document.getElementById(viewId).classList.add('active');
+        
+        // Refresh admin results when entering admin view
+        if (viewId === 'admin-view' && isAdmin) fetchAdminResults();
+    };
+
+    // Auth State Listener
+    onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        if (user) {
+            headerLoginBtn.style.display = 'none';
+            headerAvatar.style.display = 'block';
+            const avatarUrl = getAvatarUrl(user);
+            headerAvatar.src = avatarUrl;
+            headerAvatar.onerror = () => { 
+                headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || 'User')}&background=14b8a6&color=fff`; 
+            };
+
+            isAdmin = (user.email && user.email.toLowerCase() === 'diplomacampus@gmail.com');
+            navAdminBtn.style.display = isAdmin ? 'block' : 'none';
+
+            // Sidebar auth section
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            sidebarAuthSection.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                        <p class="text-xs text-gray-500 truncate">${user.email}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                signOut(auth);
+                closeSidebar();
+            });
+
+            if (isAdmin) fetchAdminResults();
+        } else {
+            headerLoginBtn.style.display = 'block';
+            headerAvatar.style.display = 'none';
+            navAdminBtn.style.display = 'none';
+            isAdmin = false;
+
+            sidebarAuthSection.innerHTML = `
+                <div class="text-center py-2">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                    <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                        <i class="fa-brands fa-google mr-1"></i> Sign In
+                    </button>
+                </div>
+            `;
+            document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+                closeSidebar();
             });
         }
-    </script>
+    });
+
+    headerLoginBtn.addEventListener('click', () => signInWithPopup(auth, googleProvider));
+
+    // Load Tests
+    onValue(ref(db, 'tests'), (snapshot) => {
+        allTests = [];
+        if (snapshot.exists()) {
+            snapshot.forEach(child => allTests.push({ id: child.key, ...child.val() }));
+        }
+        renderTestGrid();
+    });
+
+    function renderTestGrid() {
+        const grid = document.getElementById('tests-grid');
+        document.getElementById('tests-loading').style.display = 'none';
+        grid.innerHTML = '';
+
+        if (allTests.length === 0) {
+            grid.innerHTML = `<p class="col-span-full text-center text-gray-500">No mock tests available right now.</p>`;
+            return;
+        }
+
+        allTests.forEach(test => {
+            const count = JSON.parse(test.questionsJson).length;
+            grid.innerHTML += `
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all group relative">
+                    ${isAdmin ? `<button onclick="deleteTest('${test.id}')" class="absolute top-3 right-3 z-10 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 shadow-md" title="Delete test"><i class="fa-solid fa-trash-can text-xs"></i></button>` : ''}
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-teal-100 text-teal-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-file-signature"></i></div>
+                        <span class="text-xs font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded"><i class="fa-regular fa-clock"></i> ${test.timeLimit}m</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-1 line-clamp-1">${test.name}</h3>
+                    <p class="text-sm text-gray-500 mb-6">${count} Questions • Multiple Choice</p>
+                    <button onclick="startTest('${test.id}')" class="w-full py-2.5 bg-teal-50 text-teal-600 font-bold rounded-lg group-hover:bg-teal-500 group-hover:text-white transition">Start Test</button>
+                </div>
+            `;
+        });
+    }
+
+    // Admin Delete Test
+    window.deleteTest = async (testId) => {
+        if (!isAdmin) return;
+        if (!confirm('Delete this test permanently?')) return;
+        try {
+            await remove(ref(db, `tests/${testId}`));
+            showToast('🗑️ Test deleted');
+        } catch (err) {
+            showToast('❌ Delete failed');
+        }
+    };
+
+    // Start Test
+    window.startTest = function(testId) {
+        if (!currentUser) {
+            alert("Please Sign In first to take the test and generate your report card!");
+            signInWithPopup(auth, googleProvider);
+            return;
+        }
+
+        const test = allTests.find(t => t.id === testId);
+        activeTestId = test.id;
+        activeQuestions = JSON.parse(test.questionsJson);
+        userAnswers = {};
+        currentQIndex = 0;
+        timeLeft = parseInt(test.timeLimit) * 60;
+
+        document.getElementById('active-test-title').innerText = test.name;
+        switchView('test-taking-view');
+        renderQuestion();
+
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(updateTimer, 1000);
+    };
+
+    function updateTimer() {
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            submitTest();
+            return;
+        }
+        timeLeft--;
+        const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const s = (timeLeft % 60).toString().padStart(2, '0');
+        document.getElementById('timer-display').innerText = `${m}:${s}`;
+    }
+
+    function renderQuestion() {
+        const q = activeQuestions[currentQIndex];
+        document.getElementById('question-counter').innerText = `Question ${currentQIndex + 1} of ${activeQuestions.length}`;
+        document.getElementById('question-text').innerText = q.question;
+        document.getElementById('test-progress').style.width = `${((currentQIndex + 1) / activeQuestions.length) * 100}%`;
+
+        const optsDiv = document.getElementById('options-container');
+        optsDiv.innerHTML = '';
+        q.options.forEach(opt => {
+            const isChecked = userAnswers[currentQIndex] === opt;
+            optsDiv.innerHTML += `
+                <label class="flex items-center p-4 border ${isChecked ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:bg-gray-50'} rounded-xl cursor-pointer transition">
+                    <input type="radio" name="mcq" value="${opt}" ${isChecked ? 'checked' : ''} onchange="saveAnswer('${opt}')" class="w-5 h-5 text-teal-600 focus:ring-teal-500 border-gray-300">
+                    <span class="ml-3 text-gray-700 font-medium">${opt}</span>
+                </label>
+            `;
+        });
+
+        document.getElementById('prev-btn').disabled = currentQIndex === 0;
+        if (currentQIndex === activeQuestions.length - 1) {
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('submit-test-btn').style.display = 'block';
+        } else {
+            document.getElementById('next-btn').style.display = 'block';
+            document.getElementById('submit-test-btn').style.display = 'none';
+        }
+    }
+
+    window.saveAnswer = function(val) {
+        userAnswers[currentQIndex] = val;
+        renderQuestion();
+    };
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+        currentQIndex++;
+        renderQuestion();
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+        currentQIndex--;
+        renderQuestion();
+    });
+
+    document.getElementById('submit-test-btn').addEventListener('click', () => {
+        if (confirm("Are you sure you want to submit?")) submitTest();
+    });
+
+    async function submitTest() {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        let score = 0;
+        activeQuestions.forEach((q, idx) => {
+            if (userAnswers[idx] === q.correct) score++;
+        });
+
+        const total = activeQuestions.length;
+        const testObj = allTests.find(t => t.id === activeTestId);
+
+        // Update Report Card
+        document.getElementById('rc-avatar').src = getAvatarUrl(currentUser);
+        document.getElementById('rc-name').innerText = currentUser.displayName || "Student";
+        document.getElementById('rc-test-name').innerText = testObj.name;
+        document.getElementById('rc-score').innerText = `${score}/${total}`;
+        document.getElementById('rc-percent').innerText = `${Math.round((score / total) * 100)}%`;
+        document.getElementById('rc-date').innerText = `Date: ${new Date().toLocaleDateString()}`;
+
+        // Save to Firebase
+        const resultData = {
+            uid: currentUser.uid,
+            name: currentUser.displayName || 'Student',
+            email: currentUser.email,
+            testName: testObj.name,
+            score: score,
+            total: total,
+            date: new Date().toISOString()
+        };
+        await set(push(ref(db, 'test_results')), resultData);
+
+        switchView('report-view');
+    }
+
+    window.downloadReportCard = function() {
+        const card = document.getElementById('report-card-capture');
+        html2canvas(card, { scale: 2, useCORS: true }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = `ReportCard_${currentUser?.displayName || 'Student'}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showToast('📸 Report card downloaded!');
+        });
+    };
+
+    // Admin Save Test
+    document.getElementById('admin-save-test-btn').addEventListener('click', async () => {
+        if (!isAdmin) return;
+        const name = document.getElementById('admin-test-name').value.trim();
+        const time = document.getElementById('admin-test-time').value.trim();
+        const jsonStr = document.getElementById('admin-test-json').value.trim();
+
+        if (!name || !time || !jsonStr) return alert("Fill all fields.");
+
+        try {
+            const parsed = JSON.parse(jsonStr);
+            if (!Array.isArray(parsed) || !parsed[0]?.question) throw new Error("Invalid JSON structure");
+
+            await set(push(ref(db, 'tests')), {
+                name,
+                timeLimit: time,
+                questionsJson: jsonStr,
+                date: new Date().toISOString()
+            });
+            showToast('✅ Test published successfully!');
+            document.getElementById('admin-test-name').value = '';
+            document.getElementById('admin-test-time').value = '';
+            document.getElementById('admin-test-json').value = '';
+        } catch (e) {
+            alert("JSON Error: " + e.message);
+        }
+    });
+
+    function fetchAdminResults() {
+        onValue(ref(db, 'test_results'), (snapshot) => {
+            const tbody = document.getElementById('admin-results-table');
+            tbody.innerHTML = '';
+            if (snapshot.exists()) {
+                let results = [];
+                snapshot.forEach(c => results.push(c.val()));
+                results.sort((a, b) => new Date(b.date) - new Date(a.date));
+                results.forEach(r => {
+                    const pct = Math.round((r.score / r.total) * 100);
+                    const d = new Date(r.date).toLocaleDateString();
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-3 font-medium text-gray-800">${r.name}<span class="block text-xs text-gray-400">${r.email}</span></td>
+                            <td class="p-3 text-teal-600 font-medium">${r.testName}</td>
+                            <td class="p-3 font-bold ${r.score > (r.total/2) ? 'text-green-500' : 'text-red-500'}">${r.score}/${r.total}</td>
+                            <td class="p-3"><span class="bg-gray-100 px-2 py-1 rounded text-xs font-bold">${pct}%</span></td>
+                            <td class="p-3 text-gray-500">${d}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No submissions yet.</td></tr>`;
+            }
+        });
+    }
+</script>
 </body>
 </html>

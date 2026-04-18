@@ -506,9 +506,9 @@
         if (!confirm('Delete this test permanently?')) return;
         try {
             await remove(ref(db, `tests/${testId}`));
-            showToast('🗑️ Test deleted');
+            showToast('Test deleted');
         } catch (err) {
-            showToast('❌ Delete failed');
+            showToast('Delete failed');
         }
     };
 
@@ -639,7 +639,7 @@
             link.download = `ReportCard_${currentUser?.displayName || 'Student'}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
-            showToast('📸 Report card downloaded!');
+            showToast('Report card downloaded!');
         });
     };
 
@@ -662,7 +662,7 @@
                 questionsJson: jsonStr,
                 date: new Date().toISOString()
             });
-            showToast('✅ Test published successfully!');
+            showToast('Test published successfully!');
             document.getElementById('admin-test-name').value = '';
             document.getElementById('admin-test-time').value = '';
             document.getElementById('admin-test-json').value = '';

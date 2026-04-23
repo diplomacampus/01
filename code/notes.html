@@ -71,7 +71,7 @@
         </div>
     </header>
 
-    <!-- ========== SIDEBAR (Enhanced, Active on Notes) ========== -->
+    <!-- ========== SIDEBAR ========== -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
         <div class="flex justify-between items-center p-4 border-b">
@@ -82,14 +82,13 @@
             <ul class="space-y-1 px-3">
                 <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
                 <li><a href="#" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
- <li><a href="syllabus.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book w-5 text-center"></i> Syllabus</a></li>
+                <li><a href="syllabus.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book w-5 text-center"></i> Syllabus</a></li>
                 <li><a href="mock-tests.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-pencil-alt w-5 text-center"></i> Mock Tests</a></li>
                 <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
                 <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
                 <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
                 <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
                 <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
-
                 <li><hr class="my-2 border-gray-200"></li>
                 <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
                 <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
@@ -110,12 +109,10 @@
             </h1>
             <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">Search across hundreds of verified diploma notes, assignments, and study materials.</p>
 
-
             <div id="group-card-container"></div>
-<script src="group-card.js"></script>
+            <script src="group-card.js"></script>
+            <br><br>
 
-<br>
-<br>
             <!-- SEARCH & FILTERS -->
             <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-5xl mx-auto flex flex-col lg:flex-row gap-3 md:gap-4">
 
@@ -169,9 +166,7 @@
                     </select>
                     <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500">
                         <i class="fa-solid fa-chevron-down text-xs"></i>
-
                     </div>
-
                 </div>
 
             </div>
@@ -261,11 +256,78 @@
         </div>
     </div>
 
-    <!-- ========== FOOTER (Enhanced with four columns) ========== -->
+    <!-- ========== NEW: ADMIN EDIT MODAL ========== -->
+    <div id="edit-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-400 rounded-t-2xl"></div>
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h2 class="text-xl font-bold text-gray-800"><i class="fa-solid fa-pen-to-square text-blue-500 mr-2"></i> Edit Note</h2>
+                <button id="close-edit-modal-btn" class="text-gray-400 hover:text-red-500 transition text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="edit-form" class="p-6 space-y-4">
+                <input type="hidden" id="edit-note-id" value="">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Branch</label>
+                        <select id="edit-branch" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm appearance-none">
+                            <option value="Common">All Branches Common</option>
+                            <option value="Computer Science Engineering">Computer Science Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                            <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
+                            <option value="Automobile Engineering">Automobile Engineering</option>
+                            <option value="Chemical Engineering">Chemical Engineering</option>
+                            <option value="Plastic Engineering">Plastic Engineering</option>
+                            <option value="Architecture Assistantship">Architecture Assistantship</option>
+                            <option value="Agriculture Engineering">Agriculture Engineering</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Semester</label>
+                        <select id="edit-semester" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm appearance-none">
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <option value="3rd Semester">3rd Semester</option>
+                            <option value="4th Semester">4th Semester</option>
+                            <option value="5th Semester">5th Semester</option>
+                            <option value="6th Semester">6th Semester</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Subject Name</label>
+                    <input type="text" id="edit-subject" placeholder="e.g. Applied Mathematics-I" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Topic / Chapter Name</label>
+                    <input type="text" id="edit-topic" placeholder="e.g. Matrices and Determinants" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
+                    <input type="text" id="edit-tags" placeholder="e.g. math, matrix, important questions" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link (Drive, YouTube, PDF, etc.)</label>
+                    <input type="url" id="edit-link" placeholder="https://..." required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                </div>
+                <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
+                    <button type="button" id="cancel-edit" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition">Cancel</button>
+                    <button type="submit" id="submit-edit" class="px-6 py-2.5 text-sm font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
     <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
-
-        <!-- Search Action Box -->
         <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
             <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
                 <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -282,7 +344,6 @@
         </div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
-            <!-- Social Media Connections -->
             <div class="mb-8">
                 <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
                 <div class="flex flex-wrap gap-3 sm:gap-4">
@@ -295,7 +356,6 @@
                 </div>
             </div>
 
-            <!-- Join Team Section -->
             <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
                 <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
                 <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
@@ -305,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- Footer Columns -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
                 <div>
                     <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
@@ -343,7 +402,6 @@
                 </div>
             </div>
 
-            <!-- Copyright -->
             <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
                 <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
                 <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
@@ -407,11 +465,11 @@
     })();
 </script>
 
-<!-- ========== Firebase Logic (with Admin Delete) ========== -->
+<!-- ========== Firebase Logic (with Upload, Delete, and NEW: Edit) ========== -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-    import { getDatabase, ref, onValue, push, set, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
@@ -438,6 +496,21 @@
     const cancelUploadBtn = document.getElementById('cancel-upload');
     const uploadForm = document.getElementById('upload-form');
     const submitUploadBtn = document.getElementById('submit-upload');
+    
+    // NEW: Edit modal elements
+    const editModal = document.getElementById('edit-modal');
+    const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
+    const cancelEditBtn = document.getElementById('cancel-edit');
+    const editForm = document.getElementById('edit-form');
+    const submitEditBtn = document.getElementById('submit-edit');
+    const editNoteId = document.getElementById('edit-note-id');
+    const editBranch = document.getElementById('edit-branch');
+    const editSemester = document.getElementById('edit-semester');
+    const editSubject = document.getElementById('edit-subject');
+    const editTopic = document.getElementById('edit-topic');
+    const editTags = document.getElementById('edit-tags');
+    const editLink = document.getElementById('edit-link');
+
     const notesGrid = document.getElementById('notes-grid');
     const notesStatus = document.getElementById('notes-status');
     const searchInput = document.getElementById('search-input');
@@ -515,7 +588,7 @@
             });
         }
 
-        // Re-render to show/hide delete buttons
+        // Re-render to show/hide delete/edit buttons
         filterAndRenderNotes();
     }
 
@@ -544,16 +617,15 @@
 
     let allNotes = [];
 
-    // Modal logic
-    const toggleModal = () => {
+    // ---------- UPLOAD MODAL ----------
+    const toggleUploadModal = () => {
         uploadModal.classList.toggle('hidden');
         if(!uploadModal.classList.contains('hidden')) uploadForm.reset();
     };
-    adminUploadBtn.addEventListener('click', toggleModal);
-    closeModalBtn.addEventListener('click', toggleModal);
-    cancelUploadBtn.addEventListener('click', toggleModal);
+    adminUploadBtn.addEventListener('click', toggleUploadModal);
+    closeModalBtn.addEventListener('click', toggleUploadModal);
+    cancelUploadBtn.addEventListener('click', toggleUploadModal);
 
-    // Upload logic
     uploadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const originalBtnHtml = submitUploadBtn.innerHTML;
@@ -589,7 +661,7 @@
             const newNoteRef = push(notesRef);
             await set(newNoteRef, newNote);
             showToast(' Note uploaded successfully!');
-            toggleModal();
+            toggleUploadModal();
         } catch (error) {
             console.error("Upload failed:", error);
             alert("Failed to upload. Ensure you are logged in as admin.");
@@ -599,7 +671,68 @@
         }
     });
 
-    // Fetch Notes
+    // ---------- NEW: EDIT MODAL ----------
+    const toggleEditModal = () => {
+        editModal.classList.toggle('hidden');
+    };
+    closeEditModalBtn.addEventListener('click', toggleEditModal);
+    cancelEditBtn.addEventListener('click', toggleEditModal);
+
+    // Function to open edit modal with note data
+    window.openEditModal = (note) => {
+        if (!isAdmin) return;
+        editNoteId.value = note.id;
+        editBranch.value = note.branch || '';
+        editSemester.value = note.semester || '';
+        editSubject.value = note.subject || '';
+        editTopic.value = note.topic || '';
+        editTags.value = note.tags || '';
+        editLink.value = note.link || '';
+        toggleEditModal();
+    };
+
+    // Handle edit form submission
+    editForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const noteId = editNoteId.value;
+        if (!noteId) return;
+
+        const originalBtnHtml = submitEditBtn.innerHTML;
+        submitEditBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+        submitEditBtn.disabled = true;
+
+        const link = editLink.value.trim();
+        if (!link.match(/^https?:\/\/.+/)) {
+            alert("Please enter a valid URL starting with http:// or https://");
+            submitEditBtn.innerHTML = originalBtnHtml;
+            submitEditBtn.disabled = false;
+            return;
+        }
+
+        const updatedNote = {
+            branch: editBranch.value,
+            semester: editSemester.value,
+            subject: editSubject.value.trim(),
+            topic: editTopic.value.trim(),
+            tags: editTags.value.trim(),
+            link: link,
+            timestamp: new Date().toISOString()
+        };
+
+        try {
+            await update(ref(db, `notes/${noteId}`), updatedNote);
+            showToast('✏️ Note updated successfully!');
+            toggleEditModal();
+        } catch (error) {
+            console.error("Update failed:", error);
+            alert("Failed to update note.");
+        } finally {
+            submitEditBtn.innerHTML = originalBtnHtml;
+            submitEditBtn.disabled = false;
+        }
+    });
+
+    // ---------- FETCH & RENDER NOTES ----------
     const notesRef = ref(db, 'notes');
     onValue(notesRef, (snapshot) => {
         allNotes = [];
@@ -679,15 +812,20 @@
                 buttonText = 'Download PDF';
             }
 
-            // Admin delete button
-            const deleteBtnHtml = isAdmin ? `
-                <button onclick="deleteNote('${note.id}')" class="absolute top-3 right-3 z-10 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 shadow-md transition-transform hover:scale-110" title="Delete note">
-                    <i class="fa-solid fa-trash-can text-xs"></i>
-                </button>
+            // NEW: Admin Edit button + existing Delete button
+            const adminButtonsHtml = isAdmin ? `
+                <div class="absolute top-3 right-3 z-10 flex gap-1">
+                    <button onclick="openEditModal(${JSON.stringify(note).replace(/"/g, '&quot;')})" class="w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 shadow-md transition-transform hover:scale-110" title="Edit note">
+                        <i class="fa-solid fa-pencil text-xs"></i>
+                    </button>
+                    <button onclick="deleteNote('${note.id}')" class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 shadow-md transition-transform hover:scale-110" title="Delete note">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
             ` : '';
 
             card.innerHTML = `
-                ${deleteBtnHtml}
+                ${adminButtonsHtml}
                 <div>
                     <div class="flex gap-2 mb-4">
                         <span class="bg-teal-50 text-teal-700 border border-teal-100 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortBranch}</span>
@@ -707,7 +845,7 @@
         });
     };
 
-    // Filter function – shows all notes when branch and semester are "All"
+    // Filter function
     const filterAndRenderNotes = () => {
         const query = searchInput.value.toLowerCase();
         const branch = filterBranch.value;
@@ -736,8 +874,7 @@
 <!-- Firebase compat SDKs (required for likes.js) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js">
-</script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 <!-- Site like button (bottom-right corner) -->
 <script src="likes.js"></script>

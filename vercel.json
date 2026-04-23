@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/p/:path*.pdf",
-      "destination": "https://raw.githubusercontent.com/diplomacampus/01/main/:path*.pdf"
+      "source": "/p/:path*",
+      "destination": "https://github.com/diplomacampus/01/main/:path*"
     }
   ]
 }

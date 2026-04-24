@@ -6,7 +6,8 @@
     <title>Notes Library · Diploma Campus</title>
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,23 +24,50 @@
             display: flex;
             flex-direction: column;
         }
+
         .bg-grid {
-            background-image: 
+            background-image:
                 linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
             flex: 1;
         }
-        .modal-enter { animation: modalFadeIn 0.3s ease-out forwards; }
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+
+        .modal-enter {
+            animation: modalFadeIn 0.3s ease-out forwards;
         }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes fabPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.45);
+            }
+            50% {
+                box-shadow: 0 0 0 16px rgba(20, 184, 166, 0);
+            }
+        }
+
+        #share-notes-fab-btn {
+            animation: fabPulse 2.2s infinite;
+        }
+
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
         }
+
         #toast-message {
             transition: opacity 0.3s ease;
             z-index: 100;
@@ -48,9 +76,23 @@
 </head>
 <body class="text-gray-800">
 
-<!-- Toast container -->
-<div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
-    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
+    <!-- Toast container -->
+    <div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+        <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
+    </div>
+
+    <!-- ★ FLOATING SHARE NOTES BUTTON ★ -->
+    <div id="share-notes-fab" class="fixed bottom-24 right-5 sm:right-7 z-40 group cursor-pointer" title="Share your notes">
+        <div class="relative flex items-center">
+            <span class="absolute right-16 sm:right-[4.5rem] top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-semibold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none shadow-xl hidden sm:block">
+                📤 Share Notes
+            </span>
+            <button id="share-notes-fab-btn"
+            class="relative w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-full shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center text-xl border-2 border-white/30"
+            aria-label="Share notes">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
 </div>
 
 <div class="bg-grid flex flex-col pb-20 relative">
@@ -110,7 +152,8 @@
             <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">Search across hundreds of verified diploma notes, assignments, and study materials.</p>
 
             <div id="group-card-container"></div>
-            <script src="group-card.js"></script>
+            <script src="group-card.js">
+            </script>
             <br><br>
 
             <!-- SEARCH & FILTERS -->
@@ -121,8 +164,8 @@
                     <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500 transition-colors group-focus-within:text-teal-600">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <input type="text" id="search-input" placeholder="Search by subject, topic or tags..." 
-                        class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
+                    <input type="text" id="search-input" placeholder="Search by subject, topic or tags..."
+                    class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
                 </div>
 
                 <!-- Branch Filter -->
@@ -256,7 +299,7 @@
         </div>
     </div>
 
-    <!-- ========== NEW: ADMIN EDIT MODAL ========== -->
+    <!-- ========== ADMIN EDIT MODAL ========== -->
     <div id="edit-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-400 rounded-t-2xl"></div>
@@ -422,6 +465,7 @@
             sidebar.classList.toggle('-translate-x-full');
             overlay.classList.toggle('hidden');
         }
+
         function closeSidebar() {
             sidebar.classList.add('-translate-x-full');
             overlay.classList.add('hidden');
@@ -465,11 +509,13 @@
     })();
 </script>
 
-<!-- ========== Firebase Logic (with Upload, Delete, and NEW: Edit) ========== -->
+<!-- ========== Firebase Logic (with Upload, Delete, Edit + FAB Handler) ========== -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-    import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from
+    "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getDatabase, ref, onValue, push, set, remove, update } from
+    "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
@@ -496,8 +542,8 @@
     const cancelUploadBtn = document.getElementById('cancel-upload');
     const uploadForm = document.getElementById('upload-form');
     const submitUploadBtn = document.getElementById('submit-upload');
-    
-    // NEW: Edit modal elements
+
+    // Edit modal elements
     const editModal = document.getElementById('edit-modal');
     const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
     const cancelEditBtn = document.getElementById('cancel-edit');
@@ -510,6 +556,9 @@
     const editTopic = document.getElementById('edit-topic');
     const editTags = document.getElementById('edit-tags');
     const editLink = document.getElementById('edit-link');
+
+    // ★ FAB button
+    const shareNotesFabBtn = document.getElementById('share-notes-fab-btn');
 
     const notesGrid = document.getElementById('notes-grid');
     const notesStatus = document.getElementById('notes-status');
@@ -524,7 +573,8 @@
     function getAvatarUrl(user) {
         if (!user) return '';
         const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
-        return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
+        return user.photoURL ||
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
     }
 
     // Update UI based on auth state (Header + Sidebar)
@@ -537,8 +587,9 @@
             headerAvatar.style.display = 'block';
             const avatarUrl = getAvatarUrl(user);
             headerAvatar.src = avatarUrl;
-            headerAvatar.onerror = () => { 
-                headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`; 
+            headerAvatar.onerror = () => {
+                headerAvatar.src =
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`;
             };
 
             if (isAdmin) {
@@ -600,6 +651,29 @@
         signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
     });
 
+    // ★★★ FAB CLICK HANDLER ★★★
+    if (shareNotesFabBtn) {
+        shareNotesFabBtn.addEventListener('click', () => {
+            if (isAdmin) {
+                // Admin: open upload modal directly
+                toggleUploadModal();
+            } else if (currentUser) {
+                // Logged-in non-admin: scroll to "Join Our Team" section
+                showToast('📝 Want to contribute? Reach out & join our team!');
+                const joinSection = document.querySelector('footer .bg-teal-50\\/80');
+                if (joinSection) {
+                    joinSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    document.querySelector('footer')?.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Guest: prompt sign-in
+                showToast('🔐 Sign in to share your notes!');
+                signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+            }
+        });
+    }
+
     // Read URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const branchParam = urlParams.get('branch');
@@ -620,7 +694,7 @@
     // ---------- UPLOAD MODAL ----------
     const toggleUploadModal = () => {
         uploadModal.classList.toggle('hidden');
-        if(!uploadModal.classList.contains('hidden')) uploadForm.reset();
+        if (!uploadModal.classList.contains('hidden')) uploadForm.reset();
     };
     adminUploadBtn.addEventListener('click', toggleUploadModal);
     closeModalBtn.addEventListener('click', toggleUploadModal);
@@ -660,7 +734,7 @@
             const notesRef = ref(db, 'notes');
             const newNoteRef = push(notesRef);
             await set(newNoteRef, newNote);
-            showToast(' Note uploaded successfully!');
+            showToast('✅ Note uploaded successfully!');
             toggleUploadModal();
         } catch (error) {
             console.error("Upload failed:", error);
@@ -671,14 +745,13 @@
         }
     });
 
-    // ---------- NEW: EDIT MODAL ----------
+    // ---------- EDIT MODAL ----------
     const toggleEditModal = () => {
         editModal.classList.toggle('hidden');
     };
     closeEditModalBtn.addEventListener('click', toggleEditModal);
     cancelEditBtn.addEventListener('click', toggleEditModal);
 
-    // Function to open edit modal with note data
     window.openEditModal = (note) => {
         if (!isAdmin) return;
         editNoteId.value = note.id;
@@ -691,7 +764,6 @@
         toggleEditModal();
     };
 
-    // Handle edit form submission
     editForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const noteId = editNoteId.value;
@@ -756,7 +828,7 @@
         "Mechanical Engineering": "MECH",
         "Civil Engineering": "CIVIL",
         "Electrical Engineering": "EE",
-        "Electrical and Electronics Engineering" : "EEE", 
+        "Electrical and Electronics Engineering": "EEE",
         "Electronics & Communication Engineering": "ECE",
         "Automobile Engineering": "AUTO",
         "Chemical Engineering": "CHEM",
@@ -772,7 +844,7 @@
         if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
         try {
             await remove(ref(db, `notes/${noteId}`));
-            showToast(' Note deleted');
+            showToast('🗑️ Note deleted');
         } catch (error) {
             console.error("Delete failed:", error);
             alert("Failed to delete note.");
@@ -781,8 +853,9 @@
 
     // Render Cards
     const renderCards = (notes) => {
-        if(notes.length === 0) {
-            notesStatus.innerHTML = `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No notes found matching your search.</p>`;
+        if (notes.length === 0) {
+            notesStatus.innerHTML =
+                `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No notes found matching your search.</p>`;
             notesStatus.classList.remove('hidden');
             notesGrid.classList.add('hidden');
             return;
@@ -794,9 +867,10 @@
 
         notes.forEach(note => {
             const card = document.createElement('div');
-            card.className = "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
+            card.className =
+                "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
 
-            let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0,4).toUpperCase();
+            let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0, 4).toUpperCase();
             let shortSem = note.semester.replace("Semester", "Sem");
 
             let linkIcon = 'fa-link';
@@ -812,7 +886,6 @@
                 buttonText = 'Download PDF';
             }
 
-            // NEW: Admin Edit button + existing Delete button
             const adminButtonsHtml = isAdmin ? `
                 <div class="absolute top-3 right-3 z-10 flex gap-1">
                     <button onclick="openEditModal(${JSON.stringify(note).replace(/"/g, '&quot;')})" class="w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 shadow-md transition-transform hover:scale-110" title="Edit note">
@@ -852,9 +925,9 @@
         const semester = filterSemester.value;
 
         const filteredNotes = allNotes.filter(note => {
-            const matchSearch = note.subject.toLowerCase().includes(query) || 
-                                note.topic.toLowerCase().includes(query) || 
-                                note.tags.toLowerCase().includes(query);
+            const matchSearch = note.subject.toLowerCase().includes(query) ||
+                note.topic.toLowerCase().includes(query) ||
+                note.tags.toLowerCase().includes(query);
 
             const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
             const matchSem = semester === "" || note.semester === semester;
@@ -872,12 +945,16 @@
 </script>
 
 <!-- Firebase compat SDKs (required for likes.js) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js">
+</script>
 
 <!-- Site like button (bottom-right corner) -->
-<script src="likes.js"></script>
+<script src="likes.js">
+</script>
 
 </body>
 </html>

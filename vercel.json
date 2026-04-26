@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/p/:path*",
-      "destination": "https://github.com/diplomacampus/01/main/:path*"
-    }
-  ]
-}

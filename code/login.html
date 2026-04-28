@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Dashboard & Login · Diploma Campus</title>
-    
+
     <!-- Tailwind + Fonts + Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
         body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
         .bg-grid {
@@ -68,7 +68,7 @@
                 <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
                 <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
                 <li><a href="#" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
-                
+
                 <li><hr class="my-2 border-gray-200"></li>
                 <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
                 <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
@@ -82,7 +82,7 @@
 
     <!-- ========== MAIN CONTENT ========== -->
     <main class="w-full max-w-3xl mx-auto px-4 pt-28 md:pt-36 flex-1 flex flex-col items-center">
-        
+
         <!-- LOADING -->
         <div id="loading-view" class="w-full flex flex-col items-center justify-center py-20">
             <div class="loader mb-4"></div>
@@ -97,7 +97,7 @@
             </div>
             <h2 class="text-2xl font-bold text-gray-800 mb-1 text-center" id="auth-title">Welcome Back</h2>
             <p class="text-gray-500 mb-5 text-sm text-center" id="auth-subtitle">Sign in to access your dashboard</p>
-            
+
             <!-- Auth mode toggle -->
             <div class="flex rounded-lg bg-gray-100 p-1 mb-5">
                 <button id="tab-login" class="auth-toggle-btn active flex-1 py-2 text-sm font-medium rounded-md transition">Sign In</button>
@@ -170,7 +170,18 @@
                         <div><label class="block text-sm font-semibold text-gray-700 mb-1">Branch</label>
                             <select id="input-branch" required class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
                                 <option value="" disabled selected>Select Branch</option>
-                                <option>Computer Science Engineering</option><option>Information Technology</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Electronics & Communication</option>
+                                <option>Computer Science Engineering</option>
+                                <option>Information Technology</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Civil Engineering</option>
+                                <option>Electrical Engineering</option>
+                                <option>Electrical and Electronics Engineering</option>
+                                <option>Electronics & Communication Engineering</option>
+                                <option>Automobile Engineering</option>
+                                <option>Chemical Engineering</option>
+                                <option>Plastic Engineering</option>
+                                <option>Architecture Assistantship</option>
+                                <option>Agriculture Engineering</option>
                             </select></div>
                         <div><label class="block text-sm font-semibold text-gray-700 mb-1">Semester</label>
                             <select id="input-semester" required class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
@@ -196,7 +207,7 @@
     <!-- ========== FOOTER (Enhanced with four columns, search, social, legal) ========== -->
     <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-yellow-400"></div>
-        
+
         <!-- Search Action Box -->
         <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
             <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
@@ -212,7 +223,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
             <!-- Social Media Connections -->
             <div class="mb-8">
@@ -304,7 +315,7 @@
         menuBtn.addEventListener('click', toggleSidebar);
         closeBtn.addEventListener('click', toggleSidebar);
         overlay.addEventListener('click', toggleSidebar);
-        
+
         window.showToast = function(msg) {
             const toast = document.getElementById('toast-message');
             const toastText = document.getElementById('toast-text');
@@ -373,7 +384,7 @@
     const sidebarAuthSection = document.getElementById('sidebar-auth-section');
     const mainLoginBtn = document.getElementById('main-login-btn');
     const mainLogoutBtn = document.getElementById('main-logout-btn');
-    
+
     // Email/Password elements
     const authTitle = document.getElementById('auth-title');
     const authSubtitle = document.getElementById('auth-subtitle');
@@ -385,7 +396,7 @@
     const submitBtnText = document.getElementById('submit-btn-text');
     const authMessage = document.getElementById('auth-message');
     const forgotBtn = document.getElementById('forgot-password-btn');
-    
+
     // Dashboard form
     const dashAvatar = document.getElementById('dash-avatar');
     const dashName = document.getElementById('dash-name');
@@ -428,12 +439,12 @@
             headerAvatar.style.display = 'block';
             setAvatarWithFallback(headerAvatar, user);
             setAvatarWithFallback(dashAvatar, user);
-            
+
             const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
             dashName.innerText = displayName;
             dashEmail.innerText = user.email;
             inputEmail.value = user.email || '';
-            
+
             // Admin badge
             if (user.email?.toLowerCase() === 'diplomacampus@gmail.com') {
                 userRoleBadge.innerHTML = `<i class="fa-solid fa-crown mr-1"></i> Admin Campus`;
@@ -442,10 +453,10 @@
                 userRoleBadge.innerHTML = `<i class="fa-solid fa-check-circle mr-1"></i> Verified Student`;
                 userRoleBadge.className = "inline-block bg-teal-100 text-teal-700 border border-teal-200 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
             }
-            
+
             // Fetch saved profile data
             fetchUserData(user.uid);
-            
+
             // Sidebar
             const avatarUrl = getAvatarUrl(user);
             sidebarAuthSection.innerHTML = `
@@ -564,7 +575,7 @@
     const googleLogin = () => signInWithPopup(auth, googleProvider).catch(e => console.warn(e));
     mainLoginBtn.addEventListener('click', googleLogin);
     headerLoginBtn.addEventListener('click', googleLogin);
-    
+
     // Logout
     mainLogoutBtn.addEventListener('click', () => signOut(auth));
 

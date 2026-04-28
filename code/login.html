@@ -602,10 +602,10 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ _subject: `Profile: ${userData.name}`, ...userData })
                 });
-                showFormAlert('✅ Profile details saved!', 'success');
-            } catch { showFormAlert('✅ Profile saved (email notification failed)', 'warning'); }
+                showFormAlert(' Profile details saved!', 'success');
+            } catch { showFormAlert(' Profile saved (email notification failed)', 'warning'); }
         } catch (err) {
-            showFormAlert('❌ Database error. Check console.', 'error');
+            showFormAlert(' Database error. Check console.', 'error');
         }
         saveBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Save Details`;
         saveBtn.disabled = false;

@@ -60,10 +60,12 @@
         }
 
         /* File upload drop zone styles */
-        #file-drop-zone {
+        #file-drop-zone,
+        #user-file-drop-zone {
             transition: all 0.25s ease;
         }
-        #file-drop-zone.drag-over {
+        #file-drop-zone.drag-over,
+        #user-file-drop-zone.drag-over {
             border-color: #14b8a6;
             background-color: #f0fdfa;
             transform: scale(1.02);
@@ -194,6 +196,101 @@
                         </div>
                     </div>
 
+                </div>
+
+                <!-- ★ USER PDF UPLOAD SECTION (for any logged-in user) ★ -->
+                <div class="mt-4 max-w-5xl mx-auto w-full">
+                    <button id="toggle-user-upload-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-2 rounded-full hover:bg-teal-600 transition shadow">
+                        <i class="fa-solid fa-upload"></i> Upload PDF Note
+                    </button>
+                </div>
+
+                <div id="user-upload-section" class="bg-white p-5 rounded-2xl shadow-md border border-gray-200 mb-8 max-w-5xl mx-auto w-full hidden mt-2">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-teal-500"></i> Upload Your PDF Note
+                    </h2>
+                    <form id="user-upload-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="relative">
+                                <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Branch</label>
+                                <select id="user-up-branch" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm appearance-none">
+                                    <option value="" disabled selected>Select Branch</option>
+                                    <option value="Common">All Branches Common</option>
+                                    <option value="Computer Science Engineering">Computer Science Engineering</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                                    <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
+                                    <option value="Automobile Engineering">Automobile Engineering</option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                    <option value="Plastic Engineering">Plastic Engineering</option>
+                                    <option value="Architecture Assistantship">Architecture Assistantship</option>
+                                    <option value="Agriculture Engineering">Agriculture Engineering</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                            </div>
+                            <div class="relative">
+                                <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Semester</label>
+                                <select id="user-up-semester" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm appearance-none">
+                                    <option value="" disabled selected>Select Semester</option>
+                                    <option value="1st Semester">1st Semester</option>
+                                    <option value="2nd Semester">2nd Semester</option>
+                                    <option value="3rd Semester">3rd Semester</option>
+                                    <option value="4th Semester">4th Semester</option>
+                                    <option value="5th Semester">5th Semester</option>
+                                    <option value="6th Semester">6th Semester</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Subject Name</label>
+                            <input type="text" id="user-up-subject" placeholder="e.g. Applied Mathematics-I" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Topic / Chapter Name</label>
+                            <input type="text" id="user-up-topic" placeholder="e.g. Matrices and Determinants" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
+                            <input type="text" id="user-up-tags" placeholder="e.g. math, matrix, important questions" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
+                        </div>
+
+                        <!-- File drop zone -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">
+                                <i class="fa-solid fa-file-pdf text-teal-500 mr-1"></i> Select PDF file (max 50 MB)
+                            </label>
+                            <div id="user-file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer hover:border-teal-400 hover:bg-teal-50/50 transition-all duration-200 group">
+                                <input type="file" id="user-file-input" accept=".pdf" class="hidden" />
+                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-300 group-hover:text-teal-400 transition-colors mb-2 block"></i>
+                                <p id="user-file-drop-text" class="text-sm text-gray-500 font-medium">Click to browse or drag & drop</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Max 50 MB · PDF only</p>
+                            </div>
+                            <!-- Upload progress -->
+                            <div id="user-file-progress-container" class="hidden mt-3">
+                                <div class="flex items-center gap-3">
+                                    <span id="user-file-upload-filename" class="text-sm font-medium text-gray-700 truncate max-w-[200px]"></span>
+                                    <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden max-w-[250px]">
+                                        <div id="user-file-progress-bar" class="h-full bg-teal-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                    </div>
+                                    <span id="user-file-upload-percent" class="text-xs font-semibold text-teal-600 w-10 text-right">0%</span>
+                                </div>
+                            </div>
+                            <div id="user-file-success" class="hidden mt-2 text-sm text-teal-600 font-medium">
+                                <i class="fa-solid fa-circle-check mr-1"></i> File uploaded!
+                            </div>
+                            <div id="user-file-error" class="hidden mt-2 text-sm text-red-500 font-medium">
+                                <i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="user-file-error-text">Upload failed.</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="user-submit-upload" class="px-6 py-2.5 text-sm font-bold bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition shadow-md">
+                            Upload PDF Note
+                        </button>
+                    </form>
                 </div>
 
             </div>
@@ -528,7 +625,7 @@
         "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getDatabase, ref, onValue, push, set, remove, update } from
         "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from
+        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from
         "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
         const firebaseConfig = {
@@ -558,7 +655,7 @@
         const uploadForm = document.getElementById('upload-form');
         const submitUploadBtn = document.getElementById('submit-upload');
 
-        // File upload DOM elements
+        // File upload DOM elements (admin modal)
         const fileDropZone = document.getElementById('file-drop-zone');
         const fileUploadInput = document.getElementById('file-upload-input');
         const fileDropText = document.getElementById('file-drop-text');
@@ -591,9 +688,26 @@
         const filterBranch = document.getElementById('filter-branch');
         const filterSemester = document.getElementById('filter-semester');
 
+        // ★ USER PDF UPLOAD DOM elements ★
+        const toggleUserUploadBtn = document.getElementById('toggle-user-upload-btn');
+        const userUploadSection = document.getElementById('user-upload-section');
+        const userUploadForm = document.getElementById('user-upload-form');
+        const userFileDropZone = document.getElementById('user-file-drop-zone');
+        const userFileInput = document.getElementById('user-file-input');
+        const userFileDropText = document.getElementById('user-file-drop-text');
+        const userFileProgressContainer = document.getElementById('user-file-progress-container');
+        const userFileUploadFilename = document.getElementById('user-file-upload-filename');
+        const userFileProgressBar = document.getElementById('user-file-progress-bar');
+        const userFileUploadPercent = document.getElementById('user-file-upload-percent');
+        const userFileSuccess = document.getElementById('user-file-success');
+        const userFileError = document.getElementById('user-file-error');
+        const userFileErrorText = document.getElementById('user-file-error-text');
+        const userSubmitUpload = document.getElementById('user-submit-upload');
+
         let currentUser = null;
         let isAdmin = false;
-        let currentUploadTask = null; // Track ongoing file upload
+        let currentUploadTask = null; // Admin modal upload task
+        let currentUserUploadTask = null; // User PDF upload task
 
         // Helper: Get avatar URL with fallback
         function getAvatarUrl(user) {
@@ -619,7 +733,6 @@
             };
             if (navigator.share) {
                 navigator.share(shareData).catch(() => {
-                    // Fallback: copy link
                     navigator.clipboard?.writeText(link).then(() => {
                         window.showToast('📋 Note link copied!');
                     }).catch(() => {
@@ -640,6 +753,7 @@
             currentUser = user;
             isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
 
+            // Show/hide header elements
             if (user) {
                 headerLoginBtn.style.display = 'none';
                 headerAvatar.style.display = 'block';
@@ -655,6 +769,9 @@
                 } else {
                     adminUploadBtn.style.display = 'none';
                 }
+
+                // Show the user PDF upload button for any logged-in user
+                toggleUserUploadBtn.style.display = 'inline-block';
 
                 const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
                 sidebarAuthSection.innerHTML = `
@@ -682,6 +799,9 @@
                 headerLoginBtn.style.display = 'block';
                 headerAvatar.style.display = 'none';
                 adminUploadBtn.style.display = 'none';
+                toggleUserUploadBtn.style.display = 'none';
+                // Hide user upload form if logged out
+                userUploadSection.classList.add('hidden');
 
                 sidebarAuthSection.innerHTML = `
                     <div class="text-center py-2">
@@ -709,6 +829,15 @@
             signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
         });
 
+        // Toggle user upload section
+        toggleUserUploadBtn.addEventListener('click', () => {
+            userUploadSection.classList.toggle('hidden');
+            if (!userUploadSection.classList.contains('hidden')) {
+                userUploadForm.reset();
+                resetUserUploadUI();
+            }
+        });
+
         // Read URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const branchParam = urlParams.get('branch');
@@ -726,7 +855,7 @@
 
         let allNotes = [];
 
-        // ---------- FILE UPLOAD LOGIC ----------
+        // ---------- ADMIN FILE UPLOAD LOGIC ----------
         function resetFileUploadUI() {
             fileUploadInput.value = '';
             fileUploadProgressContainer.classList.add('hidden');
@@ -765,22 +894,18 @@
                 return;
             }
 
-            // Hide previous messages
             fileUploadError.classList.add('hidden');
             fileUploadSuccess.classList.add('hidden');
 
-            // Show progress container
             fileUploadProgressContainer.classList.remove('hidden');
             fileUploadFilename.textContent = file.name;
             fileUploadProgressBar.style.width = '0%';
             fileUploadPercent.textContent = '0%';
             fileDropText.textContent = 'Uploading...';
 
-            // Disable submit during upload
             submitUploadBtn.disabled = true;
             submitUploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading file...';
 
-            // Sanitize filename for storage
             const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
             const storagePath = `notes/${currentUser.uid}/${Date.now()}_${safeName}`;
             const fileRef = storageRef(storage, storagePath);
@@ -804,7 +929,6 @@
                     currentUploadTask = null;
                 },
                 async () => {
-                    // Upload complete
                     try {
                         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
                         upLinkInput.value = downloadURL;
@@ -829,10 +953,9 @@
             );
         }
 
-        // File drop zone events
         if (fileDropZone) {
             fileDropZone.addEventListener('click', () => {
-                if (currentUploadTask) return; // Don't allow new selection during upload
+                if (currentUploadTask) return;
                 fileUploadInput.click();
             });
 
@@ -868,7 +991,7 @@
             });
         }
 
-        // ---------- UPLOAD MODAL ----------
+        // ---------- ADMIN UPLOAD MODAL ----------
         const toggleUploadModal = () => {
             uploadModal.classList.toggle('hidden');
             if (!uploadModal.classList.contains('hidden')) {
@@ -876,7 +999,6 @@
                 resetFileUploadUI();
                 upLinkInput.value = '';
             } else {
-                // Cancel any ongoing upload when closing
                 if (currentUploadTask) {
                     try { currentUploadTask.cancel(); } catch (e) { /* ignore */ }
                     currentUploadTask = null;
@@ -992,6 +1114,188 @@
                 submitEditBtn.disabled = false;
             }
         });
+
+        // ---------- USER PDF UPLOAD LOGIC ----------
+        function resetUserUploadUI() {
+            userFileInput.value = '';
+            userFileProgressContainer.classList.add('hidden');
+            userFileSuccess.classList.add('hidden');
+            userFileError.classList.add('hidden');
+            userFileDropText.textContent = 'Click to browse or drag & drop';
+            userFileProgressBar.style.width = '0%';
+            userFileUploadPercent.textContent = '0%';
+            userFileUploadFilename.textContent = '';
+            if (currentUserUploadTask) {
+                try { currentUserUploadTask.cancel(); } catch (e) { /* ignore */ }
+                currentUserUploadTask = null;
+            }
+            userSubmitUpload.disabled = false;
+            userSubmitUpload.innerHTML = 'Upload PDF Note';
+        }
+
+        function startUserFileUpload(file) {
+            if (!currentUser) {
+                userFileErrorText.textContent = 'You must be signed in to upload.';
+                userFileError.classList.remove('hidden');
+                return;
+            }
+
+            const MAX_SIZE = 50 * 1024 * 1024;
+            if (file.size > MAX_SIZE) {
+                userFileErrorText.textContent = 'File is too large. Max 50 MB allowed.';
+                userFileError.classList.remove('hidden');
+                return;
+            }
+
+            if (file.type !== 'application/pdf') {
+                userFileErrorText.textContent = 'Only PDF files are allowed.';
+                userFileError.classList.remove('hidden');
+                return;
+            }
+
+            userFileError.classList.add('hidden');
+            userFileSuccess.classList.add('hidden');
+
+            userFileProgressContainer.classList.remove('hidden');
+            userFileUploadFilename.textContent = file.name;
+            userFileProgressBar.style.width = '0%';
+            userFileUploadPercent.textContent = '0%';
+            userFileDropText.textContent = 'Uploading...';
+
+            userSubmitUpload.disabled = true;
+            userSubmitUpload.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+            const storagePath = `user_notes/${currentUser.uid}/${Date.now()}_${safeName}`;
+            const fileRef = storageRef(storage, storagePath);
+            const uploadTask = uploadBytesResumable(fileRef, file);
+            currentUserUploadTask = uploadTask;
+
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    userFileProgressBar.style.width = progress + '%';
+                    userFileUploadPercent.textContent = progress + '%';
+                },
+                (error) => {
+                    console.error('User PDF upload error:', error);
+                    userFileErrorText.textContent = 'Upload failed: ' + (error.message || 'Unknown error');
+                    userFileError.classList.remove('hidden');
+                    userFileProgressContainer.classList.add('hidden');
+                    userFileDropText.textContent = 'Click to browse or drag & drop';
+                    userSubmitUpload.disabled = false;
+                    userSubmitUpload.innerHTML = 'Upload PDF Note';
+                    currentUserUploadTask = null;
+                },
+                async () => {
+                    try {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        // Now submit the note with this URL
+                        await submitUserNote(downloadURL);
+                        userFileSuccess.classList.remove('hidden');
+                        window.showToast('✅ PDF uploaded and note added!');
+                        resetUserUploadUI();
+                        userUploadForm.reset();
+                    } catch (urlError) {
+                        console.error('Error getting download URL:', urlError);
+                        userFileErrorText.textContent = 'File uploaded but failed to get link.';
+                        userFileError.classList.remove('hidden');
+                        userFileProgressContainer.classList.add('hidden');
+                        userFileDropText.textContent = 'Click to browse or drag & drop';
+                        userSubmitUpload.disabled = false;
+                        userSubmitUpload.innerHTML = 'Upload PDF Note';
+                        currentUserUploadTask = null;
+                    }
+                }
+            );
+        }
+
+        async function submitUserNote(downloadURL) {
+            const branch = document.getElementById('user-up-branch').value;
+            const semester = document.getElementById('user-up-semester').value;
+            const subject = document.getElementById('user-up-subject').value.trim();
+            const topic = document.getElementById('user-up-topic').value.trim();
+            const tags = document.getElementById('user-up-tags').value.trim();
+
+            const newNote = {
+                branch,
+                semester,
+                subject,
+                topic,
+                tags,
+                link: downloadURL,
+                timestamp: new Date().toISOString(),
+                uploadedBy: currentUser.email || currentUser.uid
+            };
+
+            const notesRef = ref(db, 'notes');
+            const newNoteRef = push(notesRef);
+            await set(newNoteRef, newNote);
+        }
+
+        userUploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // If a file is already selected and not yet uploaded, start upload
+            const file = userFileInput.files[0];
+            if (!file) {
+                alert('Please select a PDF file.');
+                return;
+            }
+            if (currentUserUploadTask) {
+                // Already uploading
+                return;
+            }
+            startUserFileUpload(file);
+        });
+
+        // User file drop zone events
+        if (userFileDropZone) {
+            userFileDropZone.addEventListener('click', () => {
+                if (currentUserUploadTask) return;
+                userFileInput.click();
+            });
+
+            userFileDropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                userFileDropZone.classList.add('drag-over');
+            });
+
+            userFileDropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                userFileDropZone.classList.remove('drag-over');
+            });
+
+            userFileDropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                userFileDropZone.classList.remove('drag-over');
+                if (currentUserUploadTask) return;
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    // Only accept PDF
+                    if (files[0].type !== 'application/pdf') {
+                        userFileErrorText.textContent = 'Only PDF files are allowed.';
+                        userFileError.classList.remove('hidden');
+                        return;
+                    }
+                    // Set file input for form submission
+                    userFileInput.files = files;
+                    // Optionally start upload immediately? We'll let the submit button do it.
+                    // But update text
+                    userFileDropText.textContent = files[0].name;
+                }
+            });
+        }
+
+        if (userFileInput) {
+            userFileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    userFileDropText.textContent = e.target.files[0].name;
+                }
+            });
+        }
 
         // ---------- FETCH & RENDER NOTES ----------
         const notesRef = ref(db, 'notes');

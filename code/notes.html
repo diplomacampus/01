@@ -198,6 +198,9 @@
 
             </div>
 
+            <!-- Shared Note Banner (dynamically inserted) -->
+            <div id="shared-note-banner-container"></div>
+
             <!-- Notes Loading / Empty State -->
             <div id="notes-status" class="w-full text-center py-12 text-gray-500">
                 <i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i>
@@ -590,6 +593,7 @@
         const searchInput = document.getElementById('search-input');
         const filterBranch = document.getElementById('filter-branch');
         const filterSemester = document.getElementById('filter-semester');
+        const sharedNoteBannerContainer = document.getElementById('shared-note-banner-container');
 
         let currentUser = null;
         let isAdmin = false;
@@ -609,27 +613,28 @@
             return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
         }
 
-        // ★ Share a specific note link ★
-        window.shareNoteLink = function(link, topic) {
+        // ★ Share a specific note – now shares the notes.html page URL with ?note=ID ★
+        window.shareNoteLink = function(noteId, topic) {
+            const shareUrl = window.location.origin + window.location.pathname + '?note=' + encodeURIComponent(noteId);
             const shareTitle = topic || 'Check out this study note';
             const shareData = {
                 title: shareTitle,
                 text: shareTitle + ' — Diploma Campus',
-                url: link
+                url: shareUrl
             };
             if (navigator.share) {
                 navigator.share(shareData).catch(() => {
-                    navigator.clipboard?.writeText(link).then(() => {
-                        window.showToast('📋 Note link copied!');
+                    navigator.clipboard?.writeText(shareUrl).then(() => {
+                        window.showToast(' Note link copied!');
                     }).catch(() => {
-                        window.showToast('🔗 ' + link);
+                        window.showToast('🔗 ' + shareUrl);
                     });
                 });
             } else {
-                navigator.clipboard?.writeText(link).then(() => {
-                    window.showToast('📋 Note link copied to clipboard');
+                navigator.clipboard?.writeText(shareUrl).then(() => {
+                    window.showToast(' Note link copied to clipboard');
                 }).catch(() => {
-                    window.showToast('🔗 ' + link);
+                    window.showToast('🔗 ' + shareUrl);
                 });
             }
         };
@@ -712,6 +717,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const branchParam = urlParams.get('branch');
         const searchParam = urlParams.get('search');
+        const noteIdParam = urlParams.get('note') || urlParams.get('id');
+        let urlNoteId = noteIdParam || null;
 
         if (branchParam) {
             const optionExists = Array.from(filterBranch.options).some(opt => opt.value === branchParam);
@@ -804,11 +811,11 @@
                         upLinkInput.value = downloadURL;
                         fileUploadSuccess.classList.remove('hidden');
                         fileUploadProgressContainer.classList.add('hidden');
-                        fileDropText.textContent = '✅ ' + file.name;
+                        fileDropText.textContent = ' ' + file.name;
                         submitUploadBtn.disabled = false;
                         submitUploadBtn.innerHTML = 'Upload to Library';
                         currentUploadTask = null;
-                        window.showToast('✅ File uploaded! Link auto‑filled.');
+                        window.showToast(' File uploaded! Link auto‑filled.');
                     } catch (urlError) {
                         console.error('Error getting download URL:', urlError);
                         fileUploadErrorText.textContent = 'File uploaded but failed to get link.';
@@ -915,7 +922,7 @@
                 const notesRef = ref(db, 'notes');
                 const newNoteRef = push(notesRef);
                 await set(newNoteRef, newNote);
-                window.showToast('✅ Note uploaded successfully!');
+                window.showToast(' Note uploaded successfully!');
                 toggleUploadModal();
             } catch (error) {
                 console.error("Upload failed:", error);
@@ -974,7 +981,7 @@
 
             try {
                 await update(ref(db, `notes/${noteId}`), updatedNote);
-                window.showToast('✏️ Note updated successfully!');
+                window.showToast(' Note updated successfully!');
                 toggleEditModal();
             } catch (error) {
                 console.error("Update failed:", error);
@@ -1025,7 +1032,7 @@
             if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
             try {
                 await remove(ref(db, `notes/${noteId}`));
-                window.showToast('🗑️ Note deleted');
+                window.showToast(' Note deleted');
             } catch (error) {
                 console.error("Delete failed:", error);
                 alert("Failed to delete note.");
@@ -1054,25 +1061,26 @@
                 let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0, 4).toUpperCase();
                 let shortSem = note.semester.replace("Semester", "Sem");
 
-                let linkIcon = 'fa-link';
-                let buttonText = 'Open Resource';
+                // ★ UPDATED: Button text now uses "Download" instead of "View" / "Open" ★
+                let linkIcon = 'fa-download';
+                let buttonText = 'Download';
                 if (note.link.includes('drive.google.com')) {
                     linkIcon = 'fa-brands fa-google-drive';
-                    buttonText = 'View on Drive';
+                    buttonText = 'Download from Drive';
                 } else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) {
                     linkIcon = 'fa-brands fa-youtube';
                     buttonText = 'Watch Video';
                 } else if (note.link.includes('.pdf') || note.link.includes('firebasestorage')) {
                     linkIcon = 'fa-regular fa-file-pdf';
-                    buttonText = 'Download / View';
+                    buttonText = 'Download';
                 }
 
                 const escapedTopic = escapeForOnclick(note.topic);
-                const escapedLink = escapeForOnclick(note.link);
+                const escapedNoteId = escapeForOnclick(note.id);
 
-                // Share button (always visible)
+                // ★ UPDATED: Share button now passes note ID (shares notes.html?note=ID) ★
                 const shareButtonHtml = `
-                    <button onclick="shareNoteLink('${escapedLink}', '${escapedTopic}')"
+                    <button onclick="shareNoteLink('${escapedNoteId}', '${escapedTopic}')"
                         class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-teal-100 hover:text-teal-600 shadow-sm transition-all hover:scale-110 z-10"
                         title="Share this note">
                         <i class="fa-solid fa-share-nodes text-xs"></i>
@@ -1115,32 +1123,130 @@
                 `;
                 notesGrid.appendChild(card);
             });
+
+            // If viewing a shared note, scroll to the first card
+            if (urlNoteId && notes.length === 1) {
+                setTimeout(() => {
+                    const firstCard = notesGrid.querySelector('.bg-white');
+                    if (firstCard) {
+                        firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstCard.classList.add('ring-2', 'ring-teal-400', 'ring-offset-2');
+                        setTimeout(() => {
+                            firstCard.classList.remove('ring-2', 'ring-teal-400', 'ring-offset-2');
+                        }, 2500);
+                    }
+                }, 300);
+            }
         };
 
-        // Filter function
+        // ★ UPDATED: Filter function with shared note support ★
         const filterAndRenderNotes = () => {
-            const query = searchInput.value.toLowerCase();
-            const branch = filterBranch.value;
-            const semester = filterSemester.value;
+            // Remove any existing shared-note banner
+            const existingBanner = document.getElementById('shared-note-banner');
+            if (existingBanner) existingBanner.remove();
 
-            const filteredNotes = allNotes.filter(note => {
-                const matchSearch = note.subject.toLowerCase().includes(query) ||
-                    note.topic.toLowerCase().includes(query) ||
-                    note.tags.toLowerCase().includes(query);
+            let notesToRender;
 
-                const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
-                const matchSem = semester === "" || note.semester === semester;
+            if (urlNoteId) {
+                // Show only the shared note by ID
+                notesToRender = allNotes.filter(note => note.id === urlNoteId);
 
-                return matchSearch && matchBranch && matchSem;
-            });
+                if (notesToRender.length === 0 && allNotes.length > 0) {
+                    // Note not found (data loaded but ID doesn't match)
+                    notesStatus.innerHTML =
+                        `<i class="fa-solid fa-circle-exclamation text-4xl text-yellow-400 mb-4 block"></i><p class="text-gray-500 font-medium">Shared note not found. It may have been removed.</p><button id="show-all-from-banner" class="mt-4 px-4 py-2 bg-teal-500 text-white rounded-lg text-sm font-medium hover:bg-teal-600 transition">Show All Notes</button>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    document.getElementById('show-all-from-banner')?.addEventListener('click', () => {
+                        urlNoteId = null;
+                        const newUrl = window.location.origin + window.location.pathname;
+                        window.history.replaceState({}, '', newUrl);
+                        filterAndRenderNotes();
+                    });
+                    return;
+                }
 
-            renderCards(filteredNotes);
+                if (notesToRender.length === 0 && allNotes.length === 0) {
+                    // Data still loading
+                    notesStatus.innerHTML =
+                        `<i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i><p>Loading study materials...</p>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    return;
+                }
+
+                // Insert a "Shared Note" banner above the grid
+                const banner = document.createElement('div');
+                banner.id = 'shared-note-banner';
+                banner.className =
+                    'w-full max-w-5xl mx-auto bg-teal-50 border border-teal-200 rounded-xl p-3 mb-4 text-center flex items-center justify-center gap-3 flex-wrap';
+                banner.innerHTML = `
+                    <span class="text-teal-700 text-sm font-medium"><i class="fa-solid fa-share-nodes mr-1"></i> Shared Note</span>
+                    <button id="clear-shared-note-btn" class="text-teal-600 underline text-sm font-medium hover:text-teal-800">Show All Notes</button>
+                `;
+                sharedNoteBannerContainer.appendChild(banner);
+
+                document.getElementById('clear-shared-note-btn')?.addEventListener('click', () => {
+                    urlNoteId = null;
+                    const newUrl = window.location.origin + window.location.pathname;
+                    window.history.replaceState({}, '', newUrl);
+                    const b = document.getElementById('shared-note-banner');
+                    if (b) b.remove();
+                    filterAndRenderNotes();
+                });
+
+            } else {
+                // Normal filtering
+                const query = searchInput.value.toLowerCase();
+                const branch = filterBranch.value;
+                const semester = filterSemester.value;
+
+                notesToRender = allNotes.filter(note => {
+                    const matchSearch = note.subject.toLowerCase().includes(query) ||
+                        note.topic.toLowerCase().includes(query) ||
+                        note.tags.toLowerCase().includes(query);
+
+                    const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
+                    const matchSem = semester === "" || note.semester === semester;
+
+                    return matchSearch && matchBranch && matchSem;
+                });
+            }
+
+            renderCards(notesToRender);
         };
 
-        // Event listeners
-        searchInput.addEventListener('input', filterAndRenderNotes);
-        filterBranch.addEventListener('change', filterAndRenderNotes);
-        filterSemester.addEventListener('change', filterAndRenderNotes);
+        // Event listeners for search and filters – also clear shared note mode on user interaction
+        searchInput.addEventListener('input', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
+        filterBranch.addEventListener('change', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
+        filterSemester.addEventListener('change', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
     </script>
 
     <!-- Firebase compat SDKs (required for likes.js) -->

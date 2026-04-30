@@ -271,7 +271,7 @@
                         <input type="text" id="up-tags" placeholder="e.g. math, matrix, important questions" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
                     </div>
 
-                    <!-- ★ DIRECT PDF/UPLOAD (Admin only) – fastest possible via Firebase Storage ★ -->
+                    <!-- ★ DIRECT PDF/UPLOAD (Admin only) – now using Supabase Storage ★ -->
                     <div>
                         <label class="block text-xs font-bold text-gray-600 uppercase mb-1">
                             <i class="fa-solid fa-file-arrow-up text-teal-500 mr-1"></i> Upload File (PDF / Image)
@@ -524,15 +524,15 @@
         })();
     </script>
 
-    <!-- ========== Firebase Logic (Admin‑only Upload + Storage) ========== -->
+    <!-- ========== Firebase + Supabase Logic (Only file upload replaced) ========== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from
         "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getDatabase, ref, onValue, push, set, remove, update } from
         "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from
-        "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+        // Supabase client import (replaces old Firebase Storage)
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
         const firebaseConfig = {
             apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
@@ -547,7 +547,12 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getDatabase(app);
-        const storage = getStorage(app);
+        // ✅ Supabase client for file uploads (bucket: Documents)
+        const supabase = createClient(
+            'https://faehgxlxwpkszdwmlej.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhZWhneGxxeHdwa3N6ZHdtbGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODYzNTUsImV4cCI6MjA5MzA2MjM1NX0.3nd4f1Ym9cQ9OoKF2N2C2L4vRjVZ4WrRN7Wh6ToBBSc'
+        );
+
         const googleProvider = new GoogleAuthProvider();
 
         // DOM Elements
@@ -597,7 +602,9 @@
 
         let currentUser = null;
         let isAdmin = false;
-        let currentUploadTask = null;
+        // Replace Firebase uploadTask with custom tracking
+        let isUploading = false;
+        let currentXhr = null;   // to allow abort
 
         // Helper: Get avatar URL with fallback
         function getAvatarUrl(user) {
@@ -613,7 +620,7 @@
             return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
         }
 
-        // ★ Share a specific note – now shares the notes.html page URL with ?note=ID ★
+        // ★ Share a specific note – shares the notes.html page URL with ?note=ID ★
         window.shareNoteLink = function(noteId, topic) {
             const shareUrl = window.location.origin + window.location.pathname + '?note=' + encodeURIComponent(noteId);
             const shareTitle = topic || 'Check out this study note';
@@ -732,7 +739,7 @@
 
         let allNotes = [];
 
-        // ---------- ADMIN FILE UPLOAD (Fast, direct to Firebase Storage) ----------
+        // ---------- SUPABASE FILE UPLOAD (Progress bar via XMLHttpRequest) ----------
         function resetFileUploadUI() {
             fileUploadInput.value = '';
             fileUploadProgressContainer.classList.add('hidden');
@@ -742,15 +749,16 @@
             fileUploadProgressBar.style.width = '0%';
             fileUploadPercent.textContent = '0%';
             fileUploadFilename.textContent = '';
-            if (currentUploadTask) {
-                try { currentUploadTask.cancel(); } catch (e) { /* ignore */ }
-                currentUploadTask = null;
+            if (currentXhr) {
+                currentXhr.abort();
+                currentXhr = null;
             }
+            isUploading = false;
             submitUploadBtn.disabled = false;
             submitUploadBtn.innerHTML = 'Upload to Library';
         }
 
-        function startFileUpload(file) {
+        async function startFileUpload(file) {
             if (!currentUser || !isAdmin) {
                 fileUploadErrorText.textContent = 'Only admins can upload files.';
                 fileUploadError.classList.remove('hidden');
@@ -771,68 +779,100 @@
                 return;
             }
 
+            // Reset UI for new upload
             fileUploadError.classList.add('hidden');
             fileUploadSuccess.classList.add('hidden');
-
             fileUploadProgressContainer.classList.remove('hidden');
             fileUploadFilename.textContent = file.name;
             fileUploadProgressBar.style.width = '0%';
             fileUploadPercent.textContent = '0%';
             fileDropText.textContent = 'Uploading...';
-
             submitUploadBtn.disabled = true;
             submitUploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading file...';
 
+            // Generate unique path
             const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
             const storagePath = `notes/${currentUser.uid}/${Date.now()}_${safeName}`;
-            const fileRef = storageRef(storage, storagePath);
-            const uploadTask = uploadBytesResumable(fileRef, file);
-            currentUploadTask = uploadTask;
 
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            // Supabase REST endpoint for upload (multipart)
+            const supabaseUrl = 'https://faehgxlxwpkszdwmlej.supabase.co';
+            const endpoint = `${supabaseUrl}/storage/v1/object/Documents/${storagePath}`;
+
+            const xhr = new XMLHttpRequest();
+            currentXhr = xhr;
+            isUploading = true;
+
+            xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                    const progress = Math.round((e.loaded / e.total) * 100);
                     fileUploadProgressBar.style.width = progress + '%';
                     fileUploadPercent.textContent = progress + '%';
-                },
-                (error) => {
-                    console.error('File upload error:', error);
-                    fileUploadErrorText.textContent = 'Upload failed: ' + (error.message || 'Unknown error');
+                }
+            });
+
+            xhr.addEventListener('load', () => {
+                currentXhr = null;
+                isUploading = false;
+                if (xhr.status === 200 || xhr.status === 201) {
+                    // Success: construct public URL
+                    const publicUrl = `${supabaseUrl}/storage/v1/object/public/Documents/${storagePath}`;
+                    upLinkInput.value = publicUrl;
+                    fileUploadSuccess.classList.remove('hidden');
+                    fileUploadProgressContainer.classList.add('hidden');
+                    fileDropText.textContent = ' ' + file.name;
+                    fileUploadError.classList.add('hidden');
+                    submitUploadBtn.disabled = false;
+                    submitUploadBtn.innerHTML = 'Upload to Library';
+                    window.showToast(' File uploaded! Link auto‑filled.');
+                } else {
+                    let errorMsg = 'Upload failed.';
+                    try {
+                        const resp = JSON.parse(xhr.responseText);
+                        errorMsg = resp.message || resp.error || errorMsg;
+                    } catch (_) {}
+                    fileUploadErrorText.textContent = errorMsg;
                     fileUploadError.classList.remove('hidden');
                     fileUploadProgressContainer.classList.add('hidden');
                     fileDropText.textContent = 'Click to browse or drag & drop';
                     submitUploadBtn.disabled = false;
                     submitUploadBtn.innerHTML = 'Upload to Library';
-                    currentUploadTask = null;
-                },
-                async () => {
-                    try {
-                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                        upLinkInput.value = downloadURL;
-                        fileUploadSuccess.classList.remove('hidden');
-                        fileUploadProgressContainer.classList.add('hidden');
-                        fileDropText.textContent = ' ' + file.name;
-                        submitUploadBtn.disabled = false;
-                        submitUploadBtn.innerHTML = 'Upload to Library';
-                        currentUploadTask = null;
-                        window.showToast(' File uploaded! Link auto‑filled.');
-                    } catch (urlError) {
-                        console.error('Error getting download URL:', urlError);
-                        fileUploadErrorText.textContent = 'File uploaded but failed to get link.';
-                        fileUploadError.classList.remove('hidden');
-                        fileUploadProgressContainer.classList.add('hidden');
-                        fileDropText.textContent = 'Click to browse or drag & drop';
-                        submitUploadBtn.disabled = false;
-                        submitUploadBtn.innerHTML = 'Upload to Library';
-                        currentUploadTask = null;
-                    }
                 }
-            );
+            });
+
+            xhr.addEventListener('error', () => {
+                currentXhr = null;
+                isUploading = false;
+                fileUploadErrorText.textContent = 'Network error. Please try again.';
+                fileUploadError.classList.remove('hidden');
+                fileUploadProgressContainer.classList.add('hidden');
+                fileDropText.textContent = 'Click to browse or drag & drop';
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            });
+
+            xhr.addEventListener('abort', () => {
+                currentXhr = null;
+                isUploading = false;
+                fileUploadProgressContainer.classList.add('hidden');
+                fileDropText.textContent = 'Click to browse or drag & drop';
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            });
+
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('file', file);
+
+            xhr.open('POST', endpoint);
+            xhr.setRequestHeader('Authorization', `Bearer ${supabase.supabaseKey}`); // anon key
+            xhr.setRequestHeader('apikey', supabase.supabaseKey);
+            xhr.setRequestHeader('x-upsert', 'true'); // optional, avoid conflicts
+            xhr.send(formData);
         }
 
         if (fileDropZone) {
             fileDropZone.addEventListener('click', () => {
-                if (currentUploadTask) return;
+                if (isUploading) return;
                 fileUploadInput.click();
             });
 
@@ -852,7 +892,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 fileDropZone.classList.remove('drag-over');
-                if (currentUploadTask) return;
+                if (isUploading) return;
                 const files = e.dataTransfer.files;
                 if (files.length > 0) {
                     startFileUpload(files[0]);
@@ -876,9 +916,9 @@
                 resetFileUploadUI();
                 upLinkInput.value = '';
             } else {
-                if (currentUploadTask) {
-                    try { currentUploadTask.cancel(); } catch (e) { /* ignore */ }
-                    currentUploadTask = null;
+                if (currentXhr) {
+                    currentXhr.abort();
+                    currentXhr = null;
                 }
                 submitUploadBtn.disabled = false;
                 submitUploadBtn.innerHTML = 'Upload to Library';
@@ -1061,7 +1101,6 @@
                 let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0, 4).toUpperCase();
                 let shortSem = note.semester.replace("Semester", "Sem");
 
-                // ★ UPDATED: Button text now uses "Download" instead of "View" / "Open" ★
                 let linkIcon = 'fa-download';
                 let buttonText = 'Download';
                 if (note.link.includes('drive.google.com')) {
@@ -1070,7 +1109,7 @@
                 } else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) {
                     linkIcon = 'fa-brands fa-youtube';
                     buttonText = 'Watch Video';
-                } else if (note.link.includes('.pdf') || note.link.includes('firebasestorage')) {
+                } else if (note.link.includes('.pdf') || note.link.includes('firebasestorage') || note.link.includes('supabase')) {
                     linkIcon = 'fa-regular fa-file-pdf';
                     buttonText = 'Download';
                 }
@@ -1078,7 +1117,6 @@
                 const escapedTopic = escapeForOnclick(note.topic);
                 const escapedNoteId = escapeForOnclick(note.id);
 
-                // ★ UPDATED: Share button now passes note ID (shares notes.html?note=ID) ★
                 const shareButtonHtml = `
                     <button onclick="shareNoteLink('${escapedNoteId}', '${escapedTopic}')"
                         class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-teal-100 hover:text-teal-600 shadow-sm transition-all hover:scale-110 z-10"
@@ -1087,7 +1125,6 @@
                     </button>
                 `;
 
-                // Admin buttons (edit + delete)
                 const adminButtonsHtml = isAdmin ? `
                     <div class="absolute top-3 right-12 z-10 flex gap-1">
                         <button onclick="openEditModal(${JSON.stringify(note).replace(/"/g, '&quot;')})"
@@ -1139,20 +1176,16 @@
             }
         };
 
-        // ★ UPDATED: Filter function with shared note support ★
+        // Shared note banner & filter
         const filterAndRenderNotes = () => {
-            // Remove any existing shared-note banner
             const existingBanner = document.getElementById('shared-note-banner');
             if (existingBanner) existingBanner.remove();
 
             let notesToRender;
 
             if (urlNoteId) {
-                // Show only the shared note by ID
                 notesToRender = allNotes.filter(note => note.id === urlNoteId);
-
                 if (notesToRender.length === 0 && allNotes.length > 0) {
-                    // Note not found (data loaded but ID doesn't match)
                     notesStatus.innerHTML =
                         `<i class="fa-solid fa-circle-exclamation text-4xl text-yellow-400 mb-4 block"></i><p class="text-gray-500 font-medium">Shared note not found. It may have been removed.</p><button id="show-all-from-banner" class="mt-4 px-4 py-2 bg-teal-500 text-white rounded-lg text-sm font-medium hover:bg-teal-600 transition">Show All Notes</button>`;
                     notesStatus.classList.remove('hidden');
@@ -1167,7 +1200,6 @@
                 }
 
                 if (notesToRender.length === 0 && allNotes.length === 0) {
-                    // Data still loading
                     notesStatus.innerHTML =
                         `<i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i><p>Loading study materials...</p>`;
                     notesStatus.classList.remove('hidden');
@@ -1175,7 +1207,6 @@
                     return;
                 }
 
-                // Insert a "Shared Note" banner above the grid
                 const banner = document.createElement('div');
                 banner.id = 'shared-note-banner';
                 banner.className =
@@ -1196,7 +1227,6 @@
                 });
 
             } else {
-                // Normal filtering
                 const query = searchInput.value.toLowerCase();
                 const branch = filterBranch.value;
                 const semester = filterSemester.value;
@@ -1205,10 +1235,8 @@
                     const matchSearch = note.subject.toLowerCase().includes(query) ||
                         note.topic.toLowerCase().includes(query) ||
                         note.tags.toLowerCase().includes(query);
-
                     const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
                     const matchSem = semester === "" || note.semester === semester;
-
                     return matchSearch && matchBranch && matchSem;
                 });
             }
@@ -1216,7 +1244,7 @@
             renderCards(notesToRender);
         };
 
-        // Event listeners for search and filters – also clear shared note mode on user interaction
+        // Event listeners for search and filters
         searchInput.addEventListener('input', () => {
             if (urlNoteId) {
                 urlNoteId = null;

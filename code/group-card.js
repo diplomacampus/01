@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Your actual group links
     const groups = [
-        { name: "WhatsApp group for 2025-28 session", icon: "fa-whatsapp", url: "https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t", color: "bg-[#25D366] hover:bg-[#20bd5a]" },
+        { name: "WhatsApp group for 2025-28 session", icon: "fa-whatsapp", url: "https://chat.whatsapp.com/Hwkx6sbrZETD427NKzZv8Q?mode=gi_t", color: "bg-[#25D366] hover:bg-[#20bd5a]" },
         { name: "WhatsApp group for 2024-27 session", icon: "fa-whatsapp", url: "https://chat.whatsapp.com/LFGSEy4uJsL4GcOL1rN2ui?mode=gi_t", color: "bg-[#25D366] hover:bg-[#20bd5a]" },
         { name: "WhatsApp channel for latest updates",  icon: "fa-whatsapp",  url: "https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q",  color: "bg-[#25D366] hover:bg-[#20bd5a]" }
     ];

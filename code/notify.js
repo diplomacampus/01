@@ -76,8 +76,8 @@
     <p>Get updates instantly on WhatsApp & Telegram</p>
     
     <div class="notify-btns">
-      <a href="https://wa.me/your-link" target="_blank" class="whatsapp">WhatsApp</a>
-      <a href="https://t.me/your-channel" target="_blank" class="telegram">Telegram</a>
+      <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" target="_blank" class="whatsapp">WhatsApp</a>
+      <a href="https://t.me/diplomacampus" target="_blank" class="telegram">Telegram</a>
     </div>
   `;
 

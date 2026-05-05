@@ -2,1152 +2,1267 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="color-scheme" content="light">
-    
-    <!-- Primary SEO Meta Tags -->
-    <title>Civil Engineering | Diploma Notes | Jharkhand Polytechnic Civil</title>
-    <meta name="title" content="Civil Engineering | Diploma Notes for Jharkhand Polytechnic Civil">
-    <meta name="description" content="Free premium quality Civil Engineering notes for Jharkhand Polytechnic Diploma. Download Civil PDF notes including Building Materials, Surveying, RCC Design, Soil Mechanics & more study materials.">
-    <meta name="keywords" content="Civil Engineering Notes, Jharkhand Polytechnic Civil, Diploma Civil Notes, Building Materials Notes, Surveying Notes, RCC Design Notes, Soil Mechanics Notes, Structural Analysis">
-    <meta name="author" content="Diploma Campus">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://diplomacampus.vercel.app/civil.html">
-    
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://diplomacampus.vercel.app/civil.html">
-    <meta property="og:title" content="Civil Engineering | Diploma Notes for Jharkhand Polytechnic Civil">
-    <meta property="og:description" content="Free premium Civil Engineering notes for Jharkhand Polytechnic Diploma. Download PDF notes for Building Materials, Surveying, RCC Design, Soil Mechanics & more.">
-    <meta property="og:image" content="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png">
-    <meta property="og:image:alt" content="Diploma Campus Civil Engineering Notes">
-    <meta property="og:site_name" content="Diploma Campus">
-    <meta property="og:locale" content="en_IN">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://diplomacampus.vercel.app/civil.html">
-    <meta name="twitter:title" content="Civil Engineering | Diploma Notes for Jharkhand Polytechnic Civil">
-    <meta name="twitter:description" content="Free premium Civil Engineering notes for Jharkhand Polytechnic Diploma. Download PDF notes now!">
-    <meta name="twitter:image" content="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png">
-    
-    <!-- Performance: Preconnect to external domains -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://i.ibb.co">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png">
-    
-    <!-- Mobile Browser Theme -->
-    <meta name="theme-color" content="#3b82f6">
-    <meta name="msapplication-TileColor" content="#3b82f6">
-    
-    <!-- Stylesheets -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="notes.css">
-    
-    <!-- Tailwind Custom Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3b82f6',
-                    }
-                }
-            }
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Civil Notes · Diploma Campus</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
     </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --civil-primary: #ea580c;
+            --civil-primary-light: #f97316;
+            --civil-primary-dark: #c2410c;
+            --civil-bg-from: #fff7ed;
+            --civil-bg-to: #fffbeb;
+            --civil-accent: #fbbf24;
+            --civil-ring: rgba(234, 88, 12, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--civil-bg-from) 0%, var(--civil-bg-to) 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(234, 88, 12, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(234, 88, 12, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            flex: 1;
+        }
+
+        .modal-enter {
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        #toast-message {
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        #file-drop-zone {
+            transition: all 0.25s ease;
+        }
+        #file-drop-zone.drag-over {
+            border-color: var(--civil-primary);
+            background-color: #fff7ed;
+            transform: scale(1.02);
+        }
+
+        /* Civil-specific overrides */
+        .civil-btn-primary {
+            background-color: var(--civil-primary);
+            color: #fff;
+        }
+        .civil-btn-primary:hover {
+            background-color: var(--civil-primary-dark);
+        }
+        .civil-text {
+            color: var(--civil-primary);
+        }
+        .civil-border {
+            border-color: var(--civil-primary-light);
+        }
+        .civil-bg-soft {
+            background-color: #fff7ed;
+        }
+        .civil-ring:focus {
+            ring-color: var(--civil-ring);
+        }
+        .civil-gradient-top {
+            background: linear-gradient(to right, var(--civil-primary), var(--civil-accent));
+        }
+    </style>
 </head>
-<body class="bg-[#f8fafc] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
-    
+<body class="text-gray-800">
 
-<script src="preloader.js"></script>
-    <!-- MAIN HEADER -->
-    <header class="header sticky top-0 z-[110]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <a href="index.html" class="brand-container flex items-center gap-2 sm:gap-3 shrink-0">
-                    <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Institute logo" class="h-9 sm:h-10 lg:h-12 w-auto object-contain drop-shadow-sm" style="height:50px;">
-                    <img src="https://i.ibb.co/tPZNcXPx/IMG-20260328-202621.png" alt="Institute wordmark" class="h-8 sm:h-9 lg:h-11 w-auto object-contain drop-shadow-sm hidden min-[360px]:block" style="height:100px;">
-                </a>
-
-                <nav class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold text-gray-700">
-
-    <a href="index.html" class="nav-link flex items-center gap-2">
-        <i class="fas fa-home text-blue-500"></i><span>Home</span>
-    </a>
-
-    <!-- Branch Dropdown -->
-    <div class="relative group">
-        <button class="flex items-center gap-2">
-            <i class="fas fa-graduation-cap text-blue-500"></i>
-            <span>Branches</span>
-        </button>
-
-        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-xl mt-3 w-56 py-2 z-50">
-            <a href="cse.html" class="block px-4 py-2 hover:bg-gray-100">Computer Engg.</a>
-            <a href="mech.html" class="block px-4 py-2 hover:bg-gray-100">Mechanical Engg.</a>
-            <a href="civil.html" class="block px-4 py-2 hover:bg-gray-100">Civil Engg.</a>
-            <a href="ee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical Engg.</a>
-            <a href="eee.html" class="block px-4 py-2 hover:bg-gray-100">Electrical & Electronics Engg. </a>
-            <a href="auto.html" class="block px-4 py-2 hover:bg-gray-100">Automobile Engg.</a>
-        </div>
+    <!-- Toast container -->
+    <div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50">
+        <i class="fa-regular fa-circle-check mr-2 text-orange-400"></i><span id="toast-text">Link copied!</span>
     </div>
 
-    <a href="index.html#notes" class="nav-link flex items-center gap-2">
-        <i class="fas fa-file-pdf text-blue-500"></i><span>Notes</span>
-    </a>
+    <div class="bg-grid flex flex-col pb-20 relative">
 
-    <a href="index.html#community" class="nav-link flex items-center gap-2">
-        <i class="fas fa-users text-blue-500"></i><span>Community</span>
-    </a>
-
-    <a href="contact_us.html" class="nav-link flex items-center gap-2">
-        <i class="fas fa-envelope text-blue-500"></i><span>Contact</span>
-    </a>
-
-</nav>
-                <button id="hamburger" class="lg:hidden hamburger focus:outline-none ml-auto" aria-label="Toggle Menu">
-                    <span></span><span></span><span></span>
+        <!-- ========== HEADER ========== -->
+        <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+            <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
+                <a href="index.html" class="hover:opacity-80 transition"><span class="text-orange-600 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="admin-upload-btn" style="display: none;" class="text-sm font-bold bg-orange-600 text-white px-4 py-1.5 rounded-full hover:bg-orange-700 transition shadow border border-orange-700 items-center gap-1.5">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 </button>
+                <button id="share-btn" class="text-gray-600 hover:text-orange-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+                <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-orange-500 text-white px-5 py-1.5 rounded-full hover:bg-orange-600 transition shadow-sm">Sign In</button>
+                <img id="header-avatar" src="" alt="Profile" onclick="window.location.href='login.html'" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-orange-400 transition object-cover bg-white">
+                <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
             </div>
-        </div>
-    </header>
+        </header>
 
-     <!-- RIGHT SIDEBAR -->
-    <div id="sidebar" class="sidebar fixed top-16 right-0 h-[calc(100dvh-4rem)] w-[85%] max-w-[320px] bg-white/95 backdrop-blur-xl z-[100] lg:hidden flex flex-col border-l border-gray-200/70 overflow-hidden">
-        <div class="px-6 py-5 border-b border-gray-100 bg-slate-50">
-            <h2 class="text-[13px] font-bold text-gray-800 tracking-widest uppercase">Student Menu</h2>
-            <p class="text-xs text-gray-400 mt-1">Navigate the campus</p>
-        </div>
-        <div class="flex-1 px-4 py-5 overflow-y-auto">
-           <nav class="flex flex-col gap-1.5">
-
-    <a href="index.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-home text-blue-600"></i><span>Home</span>
-    </a>
-
-    <a href="cse.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-laptop-code text-blue-600"></i><span>Computer Engg.</span>
-    </a>
-
-    <a href="mech.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-cogs text-blue-600"></i><span>Mechanical Engg.</span>
-    </a>
-
-    <a href="civil.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-building text-blue-600"></i><span>Civil Engg.</span>
-    </a>
-
-    <a href="ee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-bolt text-blue-600"></i><span>Electrical Engg.</span>
-    </a>
-
-    <a href="eee.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-microchip text-blue-600"></i><span>Electrical & Electronics Engg.</span>
-    </a>
-
-    <a href="ece.html" class="sidebar-link flex item-center gap-4 px-4 py-3.5 rounded-2xl">
-       <i class="fas fa-broadcast-tower text-blue-600"></i><span>Electronics & Communication Engg.</span>
-   </a>
-
-    <a href="auto.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-car text-blue-600"></i><span>Automobile Engg.</span>
-    </a>
-
-    <a href="about_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-info-circle text-blue-600"></i><span>About Us</span>
-    </a>
-
-    <a href="contact_us.html" class="sidebar-link flex items-center gap-4 px-4 py-3.5 rounded-2xl">
-        <i class="fas fa-envelope text-blue-600"></i><span>Contact</span>
-    </a>
-
-</nav>
-        </div>
-    </div>
-    <div id="overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-slate-900/30 backdrop-blur-sm z-[99] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
-<!-- ========================================== -->
-<!-- STYLISH CIVIL ENGINEERING HERO SECTION -->
-<!-- ========================================== -->
-<section class="relative min-h-[70vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden group">
-    
-    <!-- Background Image with Parallax Effect -->
-    <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1600" 
-             
-             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
-        <!-- Dark Gradient Overlay for Readability -->
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/90 backdrop-blur-[2px]"></div>
-    </div>
-
-    <!-- Animated Shapes (Optional Decor) -->
-    <div class="absolute top-20 left-10 w-64 h-64 bg-blue-500/20 blur-[100px] rounded-full animate-pulse"></div>
-    <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s;"></div>
-
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center">
-        
-        <!-- Premium Glass Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-300 text-xs sm:text-sm font-bold tracking-widest uppercase mb-8 shadow-2xl animate-fade-in-down">
-            <span class="flex h-2 w-2 rounded-full bg-blue-400 animate-ping"></span>
-            Department of Engineering
-        </div>
-        
-        <!-- Main Title with Gradient Text -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 drop-shadow-2xl">
-            Civil <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Engineering</span>
-        </h1>
-        
-        <!-- Subtitle with Glass Box -->
-        <div class="max-w-3xl mx-auto p-1 rounded-3xl bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/10 mb-10">
-            <p class="text-lg sm:text-xl text-slate-200 leading-relaxed py-4 px-6 italic">
-                "Building the foundation of the future." Access premium JUT-aligned notes, structural designs, and previous year papers tailored for Jharkhand Polytechnic students.
-            </p>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            <a href="#interactive-notes" class="group relative w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold transition-all duration-300 shadow-xl shadow-blue-500/40 hover:shadow-blue-500/60 hover:-translate-y-1 flex items-center justify-center gap-3">
-                <span>Access Notes</span>
-                <i class="fas fa-download group-hover:animate-bounce"></i>
-            </a>
-            
-            <a href="https://www.dropbox.com/scl/fi/snmivm2wkw06a2nwxy19y/Civil-Branch-Syllabus-by-Diploma-Campus.pdf?rlkey=1weaaek0x98yjr89pqtow8oob&st=c24ttww6&dl=1" class="w-full sm:w-auto px-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-bold transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-3">
-                <i class="fas fa-scroll text-blue-400"></i> View Syllabus
-            </a>
-        </div>
-
-        <!-- Quick Stats Bar -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-white/10">
-            <div class="text-center">
-                <p class="text-2xl sm:text-3xl font-bold text-white">50+</p>
-                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">PDF Notes</p>
+        <!-- ========== SIDEBAR ========== -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
+        <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b">
+                <div class="font-bold text-lg"><span class="text-orange-600"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
+                <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="text-center border-l border-white/10">
-                <p class="text-2xl sm:text-3xl font-bold text-white">10+</p>
-                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">PYQ Sets</p>
-            </div>
-            <div class="text-center border-l border-white/10 hidden md:block">
-                <p class="text-2xl sm:text-3xl font-bold text-white">NEP</p>
-                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">2026 Ready</p>
-            </div>
-            <div class="text-center border-l border-white/10 hidden md:block">
-                <p class="text-2xl sm:text-3xl font-bold text-white">Free</p>
-                <p class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">Life Access</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Decorative Corner Element -->
-    <div class="absolute -bottom-1 -left-1 w-32 h-32 bg-gradient-to-tr from-blue-600 to-transparent opacity-20 rounded-tr-full"></div>
-</section>
-
-<style>
-    @keyframes fade-in-down {
-        0% { opacity: 0; transform: translateY(-20px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in-down {
-        animation: fade-in-down 0.8s ease-out;
-    }
-</style>
-    <!-- ========================================== -->
-    <!-- INTERACTIVE SEMESTER & SUBJECT SECTION -->
-    <!-- ========================================== -->
-    <section id="interactive-notes" class="w-full py-16 sm:py-20 bg-[#f8fafc]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-10">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Select Your Semester</h2>
-                <p class="text-slate-500 mt-2">Choose your current semester to view subject materials.</p>
-            </div>
-
-            <!-- SEMESTER TABS -->
-            <div class="flex overflow-x-auto gap-3 pb-6 hide-scrollbar justify-start lg:justify-center border-b border-gray-200 mb-10 px-2">
-                <button class="sem-tab active px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="1">Semester 1</button>
-                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="2">Semester 2</button>
-                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="3">Semester 3</button>
-                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="4">Semester 4</button>
-                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="5">Semester 5</button>
-                <button class="sem-tab px-6 py-2.5 rounded-full border border-gray-300 bg-white text-slate-600 font-semibold text-sm whitespace-nowrap transition-all" data-sem="6">Semester 6</button>
-            </div>
-
-            <!-- SUBJECT CARDS CONTAINER -->
-            <div id="subjects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[400px]">
-                <!-- Cards will be dynamically injected here via JS -->
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- EXTRA USEFUL NOTES (INTERVIEW/PRACTICAL) -->
-    <!-- ========================================== -->
-    <section id="extra-notes" class="w-full py-20 bg-slate-900 overflow-hidden relative border-t-4 border-blue-500">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-sm font-bold text-blue-400 tracking-widest uppercase mb-3">Beyond Syllabus</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Essential Extra Resources</h3>
-                <p class="text-slate-400 text-lg">Specially curated materials to help you crack technical interviews and build better projects.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Resource 1 -->
-                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-2xl p-6 hover:border-blue-500 transition-colors flex items-center gap-5 group cursor-pointer">
-                    <div class="w-14 h-14 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fab fa-python"></i></div>
-                    <div>
-                        <h4 class="text-white font-bold text-lg mb-1">Python Masterclass</h4>
-                        <p class="text-slate-400 text-sm mb-2">Zero to Hero notes.</p>
-                        <span class="text-blue-400 font-semibold text-xs flex items-center gap-1.5">Download PDF <i class="fas fa-download"></i></span>
-                    </div>
-                </div>
-                <!-- Resource 2 -->
-                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-2xl p-6 hover:border-emerald-500 transition-colors flex items-center gap-5 group cursor-pointer">
-                    <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fab fa-react"></i></div>
-                    <div>
-                        <h4 class="text-white font-bold text-lg mb-1">Web Dev Roadmap</h4>
-                        <p class="text-slate-400 text-sm mb-2">HTML, CSS, JS & React.</p>
-                        <span class="text-emerald-400 font-semibold text-xs flex items-center gap-1.5">Download PDF <i class="fas fa-download"></i></span>
-                    </div>
-                </div>
-                <!-- Resource 3 -->
-                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-2xl p-6 hover:border-purple-500 transition-colors flex items-center gap-5 group cursor-pointer">
-                    <div class="w-14 h-14 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fas fa-briefcase"></i></div>
-                    <div>
-                        <h4 class="text-white font-bold text-lg mb-1">Top 50 Tech Qs</h4>
-                        <p class="text-slate-400 text-sm mb-2">TCS, Wipro, Infosys prep.</p>
-                        <span class="text-purple-400 font-semibold text-xs flex items-center gap-1.5">Download PDF <i class="fas fa-download"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- ========================================== -->
-    <!-- JOIN COMMUNITY SECTION (WHATSAPP & TELEGRAM) -->
-    <!-- ========================================== -->
-    <section id="community" class="w-full py-20 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-sm font-bold text-blue-600 tracking-widest uppercase mb-3">Stay Connected</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Join Our Student Community</h3>
-                <p class="text-slate-600 text-lg">Get instant updates, free study materials, previous year papers, and interact with thousands of other diploma students.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                
-                <!-- WhatsApp 1st sem group Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Group</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp group for SEMESTER 1 to get important alerts, and quick access notes, pyqs, important questions, e-book, etc.</p>
-                    <a href="https://chat.whatsapp.com/BB67PLuAj3vIZs4jbF0SKc?mode=gi_t" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Group <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-                
-                
-                <!-- Telegram Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-blue-50 text-[#0088cc] rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-[#0088cc] group-hover:text-white transition-all duration-300 shadow-lg shadow-blue-500/20">
-                        <i class="fab fa-telegram-plane ml-[-2px]"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Telegram Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Subscribe to our Telegram channel to access a massive library of free PDF notes and previous year papers.</p>
-                    <a href="https://t.me/diplomacampus" class="w-full sm:w-auto px-8 py-3.5 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join Telegram Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-                
- <!-- WhatsApp Channel Card -->
-                <div class="group bg-white border border-gray-200 rounded-[2rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-green-500/20">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">WhatsApp Channel</h4>
-                    <p class="text-slate-600 mb-8 max-w-sm">Join our official WhatsApp Channel for daily campus updates, important alerts, and quick notices.</p>
-                    <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-lg shadow-green-500/30 transition-colors flex items-center justify-center gap-2">
-                        Join WhatsApp Channel <i class="fas fa-external-link-alt text-sm"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    
-    <!-- ========================================== -->
-    <!-- PREMIUM FOOTER -->
-    <!-- ========================================== -->
-    <footer class="bg-slate-900 pt-16 pb-8 border-t-[4px] border-blue-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <!-- Top Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-
-                <!-- Brand Info -->
-                <div class="lg:col-span-1">
-                    <a href="index.html" class="flex items-center gap-3 mb-6">
-                        <img src="https://i.ibb.co/FkPMTt3K/Picsart-26-03-28-17-11-59-786.png" alt="Logo" class="h-10 w-auto brightness-200">
-                        <h2 class="text-2xl font-extrabold text-white tracking-tight">Diploma Campus</h2>
-                    </a>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Empowering the next generation of engineers with world-class education, practical skills, and guaranteed placement assistance.
-                    </p>
-                    <!-- Social Links -->
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white transition-all duration-300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white transition-all duration-300"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-
-            <!-- Quick Links -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Home
-                    </a></li>
-
-                    <li><a href="index.html#branches" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Diploma Branches
-                    </a></li>
-
-                    <li><a href="index.html#notes" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Free Notes
-                    </a></li>
-
-                    <li><a href="index.html#community" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Community
-                    </a></li>
-
-                    <li><a href="about_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> About Us
-                    </a></li>
-
-                    <li><a href="contact_us.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Contact Us
-                    </a></li>
-
+            <nav class="flex-1 overflow-y-auto py-4">
+                <ul class="space-y-1 px-3">
+                    <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
+                    <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> All Notes</a></li>
+                    <li><a href="cse.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-laptop-code w-5 text-center"></i> CSE Notes</a></li>
+                    <li><a href="ee.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-bolt w-5 text-center"></i> EE Notes</a></li>
+                    <li><a href="ece.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-microchip w-5 text-center"></i> ECE Notes</a></li>
+                    <li><a href="civil.html" class="flex items-center gap-3 px-4 py-3 bg-orange-500 text-white rounded-lg font-medium"><i class="fa-solid fa-hard-hat w-5 text-center"></i> Civil Notes</a></li>
+                    <li><a href="syllabus.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book w-5 text-center"></i> Syllabus</a></li>
+                    <li><a href="mock-tests.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-pencil-alt w-5 text-center"></i> Mock Tests</a></li>
+                    <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
+                    <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
+                    <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
+                    <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
+                    <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
+                    <li><hr class="my-2 border-gray-200"></li>
+                    <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
+                    <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy Policy</a></li>
+                    <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
                 </ul>
+            </nav>
+            <div class="p-4 border-t" id="sidebar-auth-section">
             </div>
+        </aside>
 
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="w-full max-w-7xl mx-auto px-4 pt-24 md:pt-32 flex-1 flex flex-col items-center">
 
-            <!-- Branches -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Branches</h4>
-                <ul class="flex flex-col gap-3">
+            <div class="text-center mb-10 w-full">
+                <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-1.5 rounded-full text-sm font-bold mb-3">
+                    <i class="fa-solid fa-hard-hat"></i> Civil Engineering
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
+                    Civil <span class="text-orange-600">Notes Library</span>
+                </h1>
+                <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">All Civil Engineering & Common diploma notes in one place — search, filter by semester, and download instantly.</p>
 
-                    <li><a href="cse.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Computer Engg.
-                    </a></li>
+                <div id="group-card-container"></div>
+                <script src="group-card.js">
+                </script>
+                <br><br>
 
-                    <li><a href="mech.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Mechanical Engg.
-                    </a></li>
+                <!-- SEARCH & FILTERS (No Branch Filter - Civil Only) -->
+                <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-3xl mx-auto flex flex-col sm:flex-row gap-3 md:gap-4">
 
-                    <li><a href="civil.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Civil Engg.
-                    </a></li>
-
-                    <li><a href="ee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Electrical Engg.
-                    </a></li>
-
-                    <li><a href="eee.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> EEE
-                    </a></li>
-
-                    <li><a href="auto.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Automobile Engg.
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Legal -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
-                <ul class="flex flex-col gap-3">
-
-                    <li><a href="privacy.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Privacy Policy
-                    </a></li>
-
-                    <li><a href="terms.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Terms & Conditions
-                    </a></li>
-
-                    <li><a href="disclaimer.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                        <i class="fas fa-chevron-right text-[10px] text-blue-500"></i> Disclaimer
-                    </a></li>
-
-                </ul>
-            </div>
-
-
-            <!-- Contact Info -->
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
-                <ul class="flex flex-col gap-4">
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-phone-alt text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">+91 8578009001</span>
-                    </li>
-
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-blue-500"></i>
-                        <span class="text-slate-400 text-sm">diplomacampus@gmail.com</span>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-
-
-        <!-- Bottom Bar -->
-        <div class="border-t border-slate-800 pt-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-
-            <p class="text-slate-500 text-sm text-center md:text-left">
-                &copy; 2026 <strong>Diploma Campus</strong>. All rights reserved.
-            </p>
-
-            <p class="text-slate-400 text-sm text-center md:text-right font-medium bg-slate-800/50 px-4 py-2 rounded-full">
-                Made with <i class="fas fa-heart text-red-500 mx-1 animate-pulse"></i> by
-                <strong class="text-white tracking-wide">Sumit Kumar Mahato</strong>
-            </p>
-
-        </div>
-
-    </div>
-</footer>
-
-    <script>
-        // --- Sidebar Logic ---
-        const hamburger = document.getElementById('hamburger');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-
-        function toggleSidebar() {
-            const isOpen = sidebar.classList.contains('open');
-            if(isOpen) {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('opacity-100', 'pointer-events-auto');
-                overlay.classList.add('opacity-0', 'pointer-events-none');
-                hamburger.classList.remove('active');
-            } else {
-                sidebar.classList.add('open');
-                overlay.classList.remove('opacity-0', 'pointer-events-none');
-                overlay.classList.add('opacity-100', 'pointer-events-auto');
-                hamburger.classList.add('active');
-            }
-        }
-
-        hamburger.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
-        overlay.addEventListener('click', toggleSidebar);
-
-        // --- Helper: Get topic-specific icon based on name ---
-        function getTopicIcon(topicName) {
-            const lowerName = topicName.toLowerCase();
-            if (lowerName.includes('program') || lowerName.includes('code') || lowerName.includes('c++') || lowerName.includes('java') || lowerName.includes('python')) return 'fa-code';
-            if (lowerName.includes('math') || lowerName.includes('algebra') || lowerName.includes('calculus') || lowerName.includes('integration')) return 'fa-calculator';
-            if (lowerName.includes('physics') || lowerName.includes('electric') || lowerName.includes('magnetism')) return 'fa-flask';
-            if (lowerName.includes('chem') || lowerName.includes('bonding')) return 'fa-atom';
-            if (lowerName.includes('data') || lowerName.includes('database') || lowerName.includes('sql')) return 'fa-database';
-            if (lowerName.includes('network') || lowerName.includes('protocol')) return 'fa-network-wired';
-            if (lowerName.includes('os') || lowerName.includes('operating') || lowerName.includes('scheduling')) return 'fa-desktop';
-            if (lowerName.includes('software') || lowerName.includes('testing')) return 'fa-bug';
-            if (lowerName.includes('web') || lowerName.includes('html') || lowerName.includes('css')) return 'fa-globe';
-            if (lowerName.includes('mobile') || lowerName.includes('android')) return 'fa-mobile-alt';
-            if (lowerName.includes('ai') || lowerName.includes('iot') || lowerName.includes('cloud')) return 'fa-robot';
-            if (lowerName.includes('english') || lowerName.includes('grammar') || lowerName.includes('vocab')) return 'fa-language';
-            if (lowerName.includes('electronics') || lowerName.includes('diode') || lowerName.includes('transistor')) return 'fa-microchip';
-            return 'fa-file-alt';
-        }
-
-        // Database of Subjects (topics array now contains objects with name and pdfUrl)
-                        const subjectsData = {
-    1: [
-    {
-        "code": "SEM11",
-        "title": "Engg. Physics",
-        "desc": "Core physics concepts for engineering: elasticity, heat, optics, etc.",
-        "icon": "fa-flask",
-        "color": "emerald",
-        "topics": [
-            {
-                "name": "Units & Measurement",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/e4iqvjc0cwt2uwl8crivd/Unit-And-Measurement-By-Diploma-Campus.pdf?rlkey=xifq0gnhach62dp2bnkwa9r56&st=3em7edsl&dl=1",
-                "icon": "fa-ruler"
-            },
-            {
-                "name": "Elasticity",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/87ycjqn894r6b1v6nkxf9/Elasticity-by-Diploma-Campus.pdf?rlkey=vnj246c5eilzxfcyv524lmgrz&st=d3aihrif&dl=1",
-                "icon": "fa-hand-peace"
-            },
-            {
-                "name": "Heat",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/ttam9dnznks9j6mtowp2q/Heat-by-Diploma-Campus.pdf?rlkey=2fk742kle8qcylwz2whdoo5rj&st=vm7iu7ev&dl=1",
-                "icon": "fa-temperature-high"
-            },
-            {
-                "name": "Heat 2",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/ym96xsde2hjauzarht92y/HEAT-HANDWRITTEN-NOTES-2-BY-DIPLOMACAMPUS.pdf?rlkey=02aezdffnrin9x2ky4b5c7v8c&st=uc0551wj&dl=0",
-                "icon": "fa-temperature-high"
-            },
-            {
-                "name": "Gas Laws & Specific Heat of Gases",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/ae5257f91mdrgw8uiadoj/Gas-Laws-And-Specific-Heat-Of-Gases-by-Diploma-Campus.pdf?rlkey=4x0yx96per8m6m3u82g2es7lt&st=3cascfvd&dl=1",
-                "icon": "fa-chart-line"
-            },
-            {
-                "name": "Light, Laser & Sound",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/qz3nymitogqdkiv1nnrb5/Light-And-Laser-And-Sound-by-Diploma-Campus.pdf?rlkey=3l28v1mstrr5ltw34tsqwzbbw&st=760vz90e&dl=1",
-                "icon": "fa-lightbulb"
-            },
-            {
-                "name": "Photoelectricity",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/v9a5riatz3gucrgbfv7ad/Photo-electricity-by-Dipoma-Campus.pdf?rlkey=m9w2a30eyb7de8lrgj1pgkts7&st=21huxglj&dl=1",
-                "icon": "fa-sun"
-            },
-            {
-                "name": "Sound",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/me54n6bgyi3d19ftlxh9h/Sound-by-Diploma-Campus.pdf?rlkey=z1leok790ah27ynah9w7sjg7r&st=pjrtk2uh&dl=1",
-                "icon": "fa-music"
-            },
-            {
-                "name": "Viscosity",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/a988u69m1p2droj1o8npc/Viscosity-by-Diploma-Campus.pdf?rlkey=22tradzwasod7euvlquegky6v&st=5eus2dsb&dl=1",
-                "icon": "fa-tint"
-            },
-            {
-                "name": "Viscosity 2",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/kwx0zm8x9os9l8kuj08ny/Viscosity-by-DiplomaCampus.pdf?rlkey=2lvfq8i8z1p2rqusmezel6nc3&st=rs3i4h9a&dl=0",
-                "icon": "fa-tint"
-            },
-            {
-                "name": "Surface Tension",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/3kvdtihs8hu5496c9jgt8/Surface-Tension-by-Diploma-Campus.pdf?rlkey=fz3gz68evfygkhqtciieal5oo&st=znefjgdf&dl=1",
-                "icon": "fa-water"
-            },
-            {
-                "name": "Gravitation",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/gczso5761dz4r7p57ppil/Gravitation-diplomacampus.pdf?rlkey=vgt50huom9x8i7uyzvhdqq8ij&st=dulcqqrd&dl=1",
-                "icon": "fa-globe"
-            },
-            {
-                "name": "Laser",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/6132cld30wjfaj8q40evo/Laser-Handwritten-Notes-diplomacampus.pdf?rlkey=u41fxpengq9oeq4z39h8zx6jl&st=zjh4uvd5&dl=1",
-                "icon": "fa-lightbulb"
-            }
-        ]
-    },
-    {
-        "code": "SEM12",
-        "title": "Engg. Chemistry",
-        "desc": "Fundamentals of chemistry for engineering applications.",
-        "icon": "fa-atom",
-        "color": "blue",
-        "topics": [
-            {
-                "name": "Atomic Structure",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/aqcsjhyfxitn4cobb9d05/Atomic-Structure-by-Diploma-Campus.pdf?rlkey=8b0vyqeuz8a3b524fml2nqmcq&st=7r61fvhf&dl=1",
-                "icon": "fa-atom"
-            },
-            {
-                "name": "Atomic Structure MI questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/atzbab9obiou1ut55fpsr/Atomic-structure-imp-questions-by-Diploma-Campus.pdf?rlkey=18emv4jom3fk8x43emar1e0sc&st=ecastzah&dl=1",
-                "icon": "fa-atom"
-            },
-            {
-                "name": "Electrochemistry",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/91mal0vxqnmrfjuspk0cv/Electrochemistry-by-Diploma-Campus.pdf?rlkey=ug9b299pdi0b1waz8b76v9tzo&st=jf1g8d2l&dl=1",
-                "icon": "fa-battery-full"
-            },
-            {
-                "name": "Electrochemistry MI questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/s0zbh0o1c2yaf0ue24drk/Electrochemistry-Important-Questions-by-Diploma-Campus.pdf?rlkey=89qdexzs8pc11vqiqo08ig3lz&st=w0omz1jz&dl=0",
-                "icon": "fa-battery-full"
-            },
-            {
-                "name": "Metals & Alloys - Part 1",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/33po9shn4sz76zf0iv1ez/Metals-And-Alloys-by-Diploma-Campus.pdf?rlkey=p3knklnvan1zs98io5vxm5ggy&st=vt8l7j76&dl=1",
-                "icon": "fa-cogs"
-            },
-            {
-                "name": "Metals & Alloys MI questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/aspvu4mtqr0f03vhjd630/Metals-And-Alloys-Important-Questions-by-Diploma-Campus.pdf?rlkey=gx9m4baokrnyeqqut2sevrede&st=lwqpaw00&dl=1",
-                "icon": "fa-cogs"
-            },
-            {
-                "name": "Metals & Alloys - Part 2",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/50x7gmxjl09de83k1sjwd/Metals-And-Alloys-2-by-Diploma-Campus.pdf?rlkey=hvahpjqt4cdt9u8pff4p0yrb7&st=fmknx52q&dl=1",
-                "icon": "fa-industry"
-            },
-            {
-                "name": "Non-Metallic Materials",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/o5z5rgm6jo86opoiyftkq/Non-Metallic-by-Diploma-Campus.pdf?rlkey=oh2pdtmcol1275wsejvho87td&st=b8yylz0y&dl=1",
-                "icon": "fa-gem"
-            },
-            {
-                "name": "Non-Metallic Materials MI questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/uokxwqmrjjkn99fo89tf4/Non-Metallic-Materials-Important-Questions-by-Diploma-Campus.pdf?rlkey=unolzylud6kshy552szv3v4tz&st=xx8tqbug&dl=1",
-                "icon": "fa-gem"
-            },
-            {
-                "name": "Environment Effects",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/7hz4bhe66rwvdzah6f5iw/Environment-Effects-by-Diploma-Campus.pdf?rlkey=ctswg3nky8t5e8ahp27w4j3gj&st=xyg1p8bz&dl=1",
-                "icon": "fa-leaf"
-            },
-            {
-                "name": "Environment Effects MI questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/gjc4tm0ooviqgxwsm1ee2/Environment-Effects-Important-Questions-by-Diploma-Campus.pdf?rlkey=shfhusq2xfo788zz3k59zgzao&st=pk3iold5&dl=1",
-                "icon": "fa-leaf"
-            },
-            {
-                "name": "Rubber and Vulcanisation",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/wqs93l5dhabx36kxwa208/Rubber-and-Vulcanisation-of-Rubber-diplomacampus.pdf?rlkey=as0f2nin6z6ibx0mfz1mcot9t&st=ivwou5gw&dl=1",
-                "icon": "fa-cogs"
-            }
-        ]
-    },
-    {
-        "code": "SEM13",
-        "title": "Engg. Mathematics",
-        "desc": "Algebra, Trigonometry, and Geometry.",
-        "icon": "fa-square-root-variable",
-        "color": "purple",
-        "topics": [
-            {
-                "name": "Matrices & Determinants",
-                "pdfUrl": "assets/notes/sem1/maths_algebra.pdf",
-                "icon": "fa-calculator"
-            },
-            {
-                "name": "Matrices and Determinants - MI Questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/3k6ul3q4yat9b3rr1ybaj/matrix-and-determination-most-important-questions.pdf?rlkey=sr8nntrwcottumtvy1xerkgbe&st=am79537i&dl=1",
-                "icon": "fa-calculator"
-            },
-            {
-                "name": "Trigonometry Basics",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/hhj27m3l5d5gs7u1h5qe3/Trigonometry-Handwritten-Notes-by-Diploma-Campus.pdf?rlkey=z48zyvkcl3p3yd9w402hhdbmb&st=oruyrwkc&dl=1",
-                "icon": "fa-chart-pie"
-            },
-            {
-                "name": "Straight Line",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/8uhpmphpuf8mwbics9e6r/Complete-Straight-Line-By-Diploma-Campus.pdf?rlkey=7ktb4nhg2vgd3oymzr208p3t2&st=yp3hku1f&dl=1",
-                "icon": "fa-chart-line"
-            },
-            {
-                "name": "Straight Line - MI Questions",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/7xekod90qriarmg6a0qsd/Straight-line.pdf?rlkey=mld11uhzh22kycxjhhkxnmosp&st=w9kekqkj&dl=1",
-                "icon": "fa-chart-line"
-            }
-        ]
-    },
-    {
-        "code": "SEM14",
-        "title": "Communication Skills",
-        "desc": "Develop effective communication skills for professional and academic success.",
-        "icon": "fa-comments",
-        "color": "teal",
-        "topics": [
-            {
-                "name": "Unit 1",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/uw7bvhzq45uaobotmba6a/COMMUINICATION-01-diplomacampus.pdf?rlkey=shd0sygylm4l6bnzusu7lm2i4&st=i15b1kcx&dl=1",
-                "icon": "fa-comment-dots"
-            },
-            {
-                "name": "Unit 2",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/6egrsez9dojzkdmhpizzf/COMMUINICATION-02-diplomacampus.pdf?rlkey=qmbzg2cbrlgdam0da4polh8f3&st=d001anwt&dl=1",
-                "icon": "fa-comment-dots"
-            },
-            {
-                "name": "Unit 3",
-                "pdfUrl": "https://www.dropbox.com/scl/fi/adkpynvl3tsq1ykku19xy/COMMUINICATION-03-diplomacampus.pdf?rlkey=wr80rvuqkvd9wujlrbnxorqfy&st=20bby5tn&dl=1",
-                "icon": "fa-comment-dots"
-            }
-        ]
-    }
-], 
-  // ========== SEMESTER 2 – CIVIL ENGINEERING ==========
-  2: [
-    {
-      code: "CIV21",
-      title: "Applied Mechanics",
-      desc: "Forces, equilibrium, friction, and centroid.",
-      icon: "fa-cogs",
-      color: "blue",
-      topics: [
-        { name: "Force Systems & Equilibrium", pdfUrl: "assets/notes/sem2/civil_app_mech_force.pdf", icon: "fa-arrows-alt" },
-        { name: "Friction", pdfUrl: "assets/notes/sem2/civil_app_mech_friction.pdf", icon: "fa-hand-rock" },
-        { name: "Centroid & Centre of Gravity", pdfUrl: "assets/notes/sem2/civil_app_mech_centroid.pdf", icon: "fa-balance-scale" },
-        { name: "Moment of Inertia", pdfUrl: "assets/notes/sem2/civil_app_mech_moi.pdf", icon: "fa-sync-alt" }
-      ]
-    },
-    {
-      code: "CIV22",
-      title: "Building Materials",
-      desc: "Stones, bricks, cement, timber, and modern materials.",
-      icon: "fa-brick",
-      color: "orange",
-      topics: [
-        { name: "Stones & Bricks", pdfUrl: "assets/notes/sem2/civil_bm_stones.pdf", icon: "fa-gem" },
-        { name: "Cement & Concrete", pdfUrl: "assets/notes/sem2/civil_bm_cement.pdf", icon: "fa-cubes" },
-        { name: "Timber & Wood Products", pdfUrl: "assets/notes/sem2/civil_bm_timber.pdf", icon: "fa-tree" },
-        { name: "Modern Materials (Steel, Glass, Composites)", pdfUrl: "assets/notes/sem2/civil_bm_modern.pdf", icon: "fa-industry" }
-      ]
-    },
-    {
-      code: "CIV23",
-      title: "Building Construction",
-      desc: "Construction techniques, foundations, masonry, and scaffolding.",
-      icon: "fa-building",
-      color: "purple",
-      topics: [
-        { name: "Site Preparation & Foundations", pdfUrl: "assets/notes/sem2/civil_const_foundation.pdf", icon: "fa-digging" },
-        { name: "Masonry (Stone & Brick)", pdfUrl: "assets/notes/sem2/civil_const_masonry.pdf", icon: "fa-layer-group" },
-        { name: "Doors, Windows & Ventilation", pdfUrl: "assets/notes/sem2/civil_const_doors.pdf", icon: "fa-door-open" },
-        { name: "Scaffolding & Shoring", pdfUrl: "assets/notes/sem2/civil_const_scaffold.pdf", icon: "fa-chart-line" }
-      ]
-    },
-    {
-      code: "CIV24",
-      title: "Engineering Drawing (Civil)",
-      desc: "Plan, elevation, section, and CAD basics.",
-      icon: "fa-drafting-compass",
-      color: "emerald",
-      topics: [
-        { name: "Drawing Instruments & Scales", pdfUrl: "assets/notes/sem2/civil_draw_instr.pdf", icon: "fa-ruler" },
-        { name: "Orthographic Projections", pdfUrl: "assets/notes/sem2/civil_draw_ortho.pdf", icon: "fa-cube" },
-        { name: "Plan & Elevation of Buildings", pdfUrl: "assets/notes/sem2/civil_draw_plan.pdf", icon: "fa-draw-polygon" },
-        { name: "Introduction to AutoCAD", pdfUrl: "assets/notes/sem2/civil_draw_cad.pdf", icon: "fa-laptop" }
-      ]
-    }
-  ],
-
-  // ========== SEMESTER 3 – CIVIL ENGINEERING ==========
-  3: [
-    {
-      code: "CIV31",
-      title: "Strength of Materials",
-      desc: "Stress, strain, bending, and torsion.",
-      icon: "fa-chart-line",
-      color: "blue",
-      topics: [
-        { name: "Simple Stress & Strain", pdfUrl: "assets/notes/sem3/civil_som_stress.pdf", icon: "fa-arrows-alt" },
-        { name: "Shear Force & Bending Moment", pdfUrl: "assets/notes/sem3/civil_som_sfbm.pdf", icon: "fa-chart-bar" },
-        { name: "Bending & Shear Stresses", pdfUrl: "assets/notes/sem3/civil_som_bending.pdf", icon: "fa-torii-gate" },
-        { name: "Torsion & Columns", pdfUrl: "assets/notes/sem3/civil_som_torsion.pdf", icon: "fa-building" }
-      ]
-    },
-    {
-      code: "CIV32",
-      title: "Fluid Mechanics",
-      desc: "Properties, flow measurement, and pipe flow.",
-      icon: "fa-water",
-      color: "cyan",
-      topics: [
-        { name: "Fluid Properties & Pressure", pdfUrl: "assets/notes/sem3/civil_fluid_props.pdf", icon: "fa-tint" },
-        { name: "Flow through Pipes", pdfUrl: "assets/notes/sem3/civil_fluid_pipes.pdf", icon: "fa-long-arrow-alt-right" },
-        { name: "Flow Measurement (Venturi, Orifice)", pdfUrl: "assets/notes/sem3/civil_fluid_measure.pdf", icon: "fa-chart-line" },
-        { name: "Open Channel Flow", pdfUrl: "assets/notes/sem3/civil_fluid_open.pdf", icon: "fa-river" }
-      ]
-    },
-    {
-      code: "CIV33",
-      title: "Surveying",
-      desc: "Chain, compass, leveling, and theodolite.",
-      icon: "fa-map",
-      color: "orange",
-      topics: [
-        { name: "Chain & Tape Surveying", pdfUrl: "assets/notes/sem3/civil_surv_chain.pdf", icon: "fa-link" },
-        { name: "Compass Surveying & Bearing", pdfUrl: "assets/notes/sem3/civil_surv_compass.pdf", icon: "fa-compass" },
-        { name: "Levelling & Contouring", pdfUrl: "assets/notes/sem3/civil_surv_level.pdf", icon: "fa-level-up-alt" },
-        { name: "Theodolite & Traversing", pdfUrl: "assets/notes/sem3/civil_surv_theo.pdf", icon: "fa-binoculars" }
-      ]
-    },
-    {
-      code: "CIV34",
-      title: "Concrete Technology",
-      desc: "Ingredients, mix design, workability, and curing.",
-      icon: "fa-cubes",
-      color: "purple",
-      topics: [
-        { name: "Cement & Aggregates", pdfUrl: "assets/notes/sem3/civil_concrete_cement.pdf", icon: "fa-cube" },
-        { name: "Fresh Concrete & Workability", pdfUrl: "assets/notes/sem3/civil_concrete_fresh.pdf", icon: "fa-tachometer-alt" },
-        { name: "Mix Design (IS Method)", pdfUrl: "assets/notes/sem3/civil_concrete_mix.pdf", icon: "fa-chart-pie" },
-        { name: "Hardened Concrete & Curing", pdfUrl: "assets/notes/sem3/civil_concrete_hard.pdf", icon: "fa-calendar-alt" }
-      ]
-    }
-  ],
-
-  // ========== SEMESTER 4 – CIVIL ENGINEERING ==========
-  4: [
-    {
-      code: "CIV41",
-      title: "Structural Mechanics",
-      desc: "Determinate beams, trusses, and columns.",
-      icon: "fa-bezier-curve",
-      color: "blue",
-      topics: [
-        { name: "Types of Supports & Beams", pdfUrl: "assets/notes/sem4/civil_struct_beams.pdf", icon: "fa-chart-line" },
-        { name: "Analysis of Trusses", pdfUrl: "assets/notes/sem4/civil_struct_truss.pdf", icon: "fa-project-diagram" },
-        { name: "Columns & Struts", pdfUrl: "assets/notes/sem4/civil_struct_columns.pdf", icon: "fa-building" },
-        { name: "Deflection of Beams", pdfUrl: "assets/notes/sem4/civil_struct_deflection.pdf", icon: "fa-waveform" }
-      ]
-    },
-    {
-      code: "CIV42",
-      title: "Soil Mechanics",
-      desc: "Index properties, permeability, shear strength, and compaction.",
-      icon: "fa-mountain",
-      color: "orange",
-      topics: [
-        { name: "Soil Classification", pdfUrl: "assets/notes/sem4/civil_soil_class.pdf", icon: "fa-layer-group" },
-        { name: "Permeability & Seepage", pdfUrl: "assets/notes/sem4/civil_soil_permeability.pdf", icon: "fa-tint" },
-        { name: "Shear Strength of Soil", pdfUrl: "assets/notes/sem4/civil_soil_shear.pdf", icon: "fa-hand-peace" },
-        { name: "Compaction & Consolidation", pdfUrl: "assets/notes/sem4/civil_soil_compaction.pdf", icon: "fa-arrow-down" }
-      ]
-    },
-    {
-      code: "CIV43",
-      title: "Hydraulics",
-      desc: "Flow in pipes, pumps, and turbines.",
-      icon: "fa-water",
-      color: "cyan",
-      topics: [
-        { name: "Flow through Pipes (Losses)", pdfUrl: "assets/notes/sem4/civil_hydra_pipes.pdf", icon: "fa-long-arrow-alt-right" },
-        { name: "Hydraulic Pumps", pdfUrl: "assets/notes/sem4/civil_hydra_pumps.pdf", icon: "fa-water" },
-        { name: "Hydraulic Turbines", pdfUrl: "assets/notes/sem4/civil_hydra_turbines.pdf", icon: "fa-fan" },
-        { name: "Hydraulic Structures (Weirs, Notches)", pdfUrl: "assets/notes/sem4/civil_hydra_weirs.pdf", icon: "fa-dam" }
-      ]
-    },
-    {
-      code: "CIV44",
-      title: "Highway Engineering",
-      desc: "Geometric design, pavement materials, and construction.",
-      icon: "fa-road",
-      color: "emerald",
-      topics: [
-        { name: "Geometric Design of Roads", pdfUrl: "assets/notes/sem4/civil_highway_geo.pdf", icon: "fa-chart-line" },
-        { name: "Pavement Materials (Bitumen, Concrete)", pdfUrl: "assets/notes/sem4/civil_highway_materials.pdf", icon: "fa-cubes" },
-        { name: "Flexible & Rigid Pavements", pdfUrl: "assets/notes/sem4/civil_highway_pavement.pdf", icon: "fa-road" },
-        { name: "Highway Construction & Maintenance", pdfUrl: "assets/notes/sem4/civil_highway_const.pdf", icon: "fa-tools" }
-      ]
-    }
-  ],
-
-  // ========== SEMESTER 5 – CIVIL ENGINEERING ==========
-  5: [
-    {
-      code: "CIV51",
-      title: "Design of Steel Structures",
-      desc: "Connections, tension members, beams, and columns (IS 800).",
-      icon: "fa-industry",
-      color: "blue",
-      topics: [
-        { name: "Bolted & Welded Connections", pdfUrl: "assets/notes/sem5/civil_steel_conn.pdf", icon: "fa-link" },
-        { name: "Tension Members", pdfUrl: "assets/notes/sem5/civil_steel_tension.pdf", icon: "fa-expand-arrows-alt" },
-        { name: "Compression Members (Columns)", pdfUrl: "assets/notes/sem5/civil_steel_columns.pdf", icon: "fa-arrow-down" },
-        { name: "Beams & Plate Girders", pdfUrl: "assets/notes/sem5/civil_steel_beams.pdf", icon: "fa-chart-line" }
-      ]
-    },
-    {
-      code: "CIV52",
-      title: "Design of RCC Structures",
-      desc: "Limit state design, beams, slabs, columns, and footings.",
-      icon: "fa-cubes",
-      color: "orange",
-      topics: [
-        { name: "Limit State Method", pdfUrl: "assets/notes/sem5/civil_rcc_lsm.pdf", icon: "fa-chart-bar" },
-        { name: "Design of Singly & Doubly Beams", pdfUrl: "assets/notes/sem5/civil_rcc_beams.pdf", icon: "fa-chart-line" },
-        { name: "Design of One-way & Two-way Slabs", pdfUrl: "assets/notes/sem5/civil_rcc_slabs.pdf", icon: "fa-layer-group" },
-        { name: "Columns & Isolated Footings", pdfUrl: "assets/notes/sem5/civil_rcc_footings.pdf", icon: "fa-building" }
-      ]
-    },
-    {
-      code: "CIV53",
-      title: "Environmental Engineering",
-      desc: "Water supply, wastewater, and sanitation.",
-      icon: "fa-leaf",
-      color: "purple",
-      topics: [
-        { name: "Water Demand & Sources", pdfUrl: "assets/notes/sem5/civil_env_water.pdf", icon: "fa-tint" },
-        { name: "Water Treatment Processes", pdfUrl: "assets/notes/sem5/civil_env_wtp.pdf", icon: "fa-filter" },
-        { name: "Wastewater Collection (Sewers)", pdfUrl: "assets/notes/sem5/civil_env_sewer.pdf", icon: "fa-pipe" },
-        { name: "Sewage Treatment", pdfUrl: "assets/notes/sem5/civil_env_stp.pdf", icon: "fa-recycle" }
-      ]
-    },
-    {
-      code: "CIV54",
-      title: "Estimation & Costing",
-      desc: "Quantity takeoff, rate analysis, and tenders.",
-      icon: "fa-calculator",
-      color: "cyan",
-      topics: [
-        { name: "Detailed Estimation", pdfUrl: "assets/notes/sem5/civil_est_detailed.pdf", icon: "fa-file-invoice" },
-        { name: "Rate Analysis", pdfUrl: "assets/notes/sem5/civil_est_rate.pdf", icon: "fa-rupee-sign" },
-        { name: "Specifications & Tenders", pdfUrl: "assets/notes/sem5/civil_est_tender.pdf", icon: "fa-file-signature" },
-        { name: "Valuation of Properties", pdfUrl: "assets/notes/sem5/civil_est_valuation.pdf", icon: "fa-chart-line" }
-      ]
-    }
-  ],
-
-  // ========== SEMESTER 6 – CIVIL ENGINEERING ==========
-  6: [
-    {
-      code: "CIV61",
-      title: "Foundation Engineering",
-      desc: "Bearing capacity, settlement, shallow & deep foundations.",
-      icon: "fa-hard-hat",
-      color: "blue",
-      topics: [
-        { name: "Bearing Capacity of Soil", pdfUrl: "assets/notes/sem6/civil_found_bc.pdf", icon: "fa-chart-line" },
-        { name: "Shallow Foundations", pdfUrl: "assets/notes/sem6/civil_found_shallow.pdf", icon: "fa-layer-group" },
-        { name: "Deep Foundations (Piles, Well)", pdfUrl: "assets/notes/sem6/civil_found_deep.pdf", icon: "fa-arrow-down" },
-        { name: "Settlement Analysis", pdfUrl: "assets/notes/sem6/civil_found_settlement.pdf", icon: "fa-waveform" }
-      ]
-    },
-    {
-      code: "CIV62",
-      title: "Transportation Engineering",
-      desc: "Railways, bridges, tunnels, and airports.",
-      icon: "fa-subway",
-      color: "orange",
-      topics: [
-        { name: "Railway Engineering", pdfUrl: "assets/notes/sem6/civil_trans_rail.pdf", icon: "fa-train" },
-        { name: "Bridge Engineering", pdfUrl: "assets/notes/sem6/civil_trans_bridge.pdf", icon: "fa-archway" },
-        { name: "Tunnel Construction", pdfUrl: "assets/notes/sem6/civil_trans_tunnel.pdf", icon: "fa-mountain" },
-        { name: "Airport Planning & Design", pdfUrl: "assets/notes/sem6/civil_trans_airport.pdf", icon: "fa-plane-departure" }
-      ]
-    },
-    {
-      code: "CIV63",
-      title: "Project Management & Quality Control",
-      desc: "CPM/PERT, quality assurance, and safety.",
-      icon: "fa-chart-pie",
-      color: "emerald",
-      topics: [
-        { name: "CPM & PERT Networks", pdfUrl: "assets/notes/sem6/civil_pm_cpm.pdf", icon: "fa-project-diagram" },
-        { name: "Bar Charts & Scheduling", pdfUrl: "assets/notes/sem6/civil_pm_schedule.pdf", icon: "fa-calendar-alt" },
-        { name: "Quality Control in Construction", pdfUrl: "assets/notes/sem6/civil_pm_qc.pdf", icon: "fa-clipboard-list" },
-        { name: "Safety Management", pdfUrl: "assets/notes/sem6/civil_pm_safety.pdf", icon: "fa-shield-alt" }
-      ]
-    }
-  ]
-};
-         // UI Elements
-        const tabs = document.querySelectorAll('.sem-tab');
-        const container = document.getElementById('subjects-container');
-
-        // Color maps
-        const themeColors = {
-    blue: { border: 'border-blue-500', iconBg: 'bg-blue-50', iconText: 'text-blue-600', hoverBg: 'group-hover:bg-blue-600', shadow: 'hover:shadow-blue-500/10', btnBg: 'bg-blue-600', btnHover: 'hover:bg-blue-700', btnShadow: 'shadow-blue-600/20' },
-    purple: { border: 'border-purple-500', iconBg: 'bg-purple-50', iconText: 'text-purple-600', hoverBg: 'group-hover:bg-purple-600', shadow: 'hover:shadow-purple-500/10', btnBg: 'bg-purple-600', btnHover: 'hover:bg-purple-700', btnShadow: 'shadow-purple-600/20' },
-    emerald: { border: 'border-emerald-500', iconBg: 'bg-emerald-50', iconText: 'text-emerald-600', hoverBg: 'group-hover:bg-emerald-600', shadow: 'hover:shadow-emerald-500/10', btnBg: 'bg-emerald-600', btnHover: 'hover:bg-emerald-700', btnShadow: 'shadow-emerald-600/20' },
-    orange: { border: 'border-orange-500', iconBg: 'bg-orange-50', iconText: 'text-orange-600', hoverBg: 'group-hover:bg-orange-600', shadow: 'hover:shadow-orange-500/10', btnBg: 'bg-orange-500', btnHover: 'hover:bg-orange-600', btnShadow: 'shadow-orange-500/20' },
-    rose: { border: 'border-rose-500', iconBg: 'bg-rose-50', iconText: 'text-rose-600', hoverBg: 'group-hover:bg-rose-600', shadow: 'hover:shadow-rose-500/10', btnBg: 'bg-rose-600', btnHover: 'hover:bg-rose-700', btnShadow: 'shadow-rose-600/20' },
-    cyan: { border: 'border-cyan-500', iconBg: 'bg-cyan-50', iconText: 'text-cyan-600', hoverBg: 'group-hover:bg-cyan-600', shadow: 'hover:shadow-cyan-500/10', btnBg: 'bg-cyan-600', btnHover: 'hover:bg-cyan-700', btnShadow: 'shadow-cyan-600/20' },
-    teal: { border: 'border-teal-500', iconBg: 'bg-teal-50', iconText: 'text-teal-600', hoverBg: 'group-hover:bg-teal-600', shadow: 'hover:shadow-teal-500/10', btnBg: 'bg-teal-600', btnHover: 'hover:bg-teal-700', btnShadow: 'shadow-teal-600/20' }
-};
-
-        // Render function with LARGE, clickable topic blocks
-        function renderSubjects(sem) {
-            container.innerHTML = '';
-            const subjects = subjectsData[sem];
-            
-            if(!subjects) return;
-
-            subjects.forEach(sub => {
-                const theme = themeColors[sub.color];
-                
-                // Generate topics list HTML: each topic is a large, clickable block
-                let topicsHTML = '';
-                sub.topics.forEach(topic => {
-                    const topicIcon = topic.icon || getTopicIcon(topic.name);
-                    // Click handler will be added via JavaScript to the whole block
-                    topicsHTML += `
-                        <div class="topic-item group bg-gray-50 hover:bg-white rounded-xl border border-gray-200 hover:border-${sub.color}-400 transition-all duration-200 cursor-pointer mb-3 p-4 flex items-center justify-between" data-pdf-url="${topic.pdfUrl}">
-                            <div class="flex items-center gap-4">
-                                <i class="fas ${topicIcon} text-2xl text-${sub.color}-500 w-8"></i>
-                                <span class="text-lg font-semibold text-slate-800">${topic.name}</span>
-                            </div>
-                            <i class="fas fa-download text-gray-400 group-hover:text-${sub.color}-500 transition-colors text-xl"></i>
+                    <!-- Search Bar -->
+                    <div class="relative flex-1 group">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-orange-500 transition-colors group-focus-within:text-orange-600">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                    `;
-                });
+                        <input type="text" id="search-input" placeholder="Search by subject, topic or tags..."
+                        class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-orange-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
+                    </div>
 
-                // Card HTML
-                const cardHTML = `
-                    <div class="bg-white border-t-[4px] ${theme.border} rounded-[1.5rem] shadow-sm hover:shadow-xl ${theme.shadow} transition-all duration-300 flex flex-col overflow-hidden group">
-                        <div class="p-6 pb-4 border-b border-gray-100">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="w-12 h-12 ${theme.iconBg} ${theme.iconText} rounded-xl flex items-center justify-center text-xl ${theme.hoverBg} group-hover:text-white transition-colors">
-                                    <i class="${sub.icon}"></i>
+                    <!-- Semester Filter Only -->
+                    <div class="relative sm:w-56 group">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-orange-500">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <select id="filter-semester" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-orange-400 focus:bg-white text-sm cursor-pointer text-gray-700 font-medium transition">
+                            <option value="">All Semesters</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <option value="3rd Semester">3rd Semester</option>
+                            <option value="4th Semester">4th Semester</option>
+                            <option value="5th Semester">5th Semester</option>
+                            <option value="6th Semester">6th Semester</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-orange-500">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Shared Note Banner (dynamically inserted) -->
+            <div id="shared-note-banner-container"></div>
+
+            <!-- Notes Loading / Empty State -->
+            <div id="notes-status" class="w-full text-center py-12 text-gray-500">
+                <i class="fa-solid fa-spinner fa-spin text-3xl text-orange-500 mb-3"></i>
+                <p>Loading Civil study materials...</p>
+            </div>
+
+            <!-- Notes Grid -->
+            <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden">
+            </div>
+
+        </main>
+
+        <!-- ========== ADMIN UPLOAD MODAL ========== -->
+        <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
+                <div class="absolute top-0 left-0 w-full h-1 civil-gradient-top rounded-t-2xl"></div>
+                <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                    <h2 class="text-xl font-bold text-gray-800"><i class="fa-solid fa-cloud-arrow-up text-orange-500 mr-2"></i> Upload New Note</h2>
+                    <button id="close-modal-btn" class="text-gray-400 hover:text-red-500 transition text-lg"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="upload-form" class="p-6 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Branch</label>
+                            <select id="up-branch" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm appearance-none">
+                                <option value="" disabled selected>Select Branch</option>
+                                <option value="Common">All Branches Common</option>
+                                <option value="Computer Science Engineering">Computer Science Engineering</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                                <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
+                                <option value="Automobile Engineering">Automobile Engineering</option>
+                                <option value="Chemical Engineering">Chemical Engineering</option>
+                                <option value="Plastic Engineering">Plastic Engineering</option>
+                                <option value="Architecture Assistantship">Architecture Assistantship</option>
+                                <option value="Agriculture Engineering">Agriculture Engineering</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                        </div>
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Semester</label>
+                            <select id="up-semester" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm appearance-none">
+                                <option value="" disabled selected>Select Semester</option>
+                                <option value="1st Semester">1st Semester</option>
+                                <option value="2nd Semester">2nd Semester</option>
+                                <option value="3rd Semester">3rd Semester</option>
+                                <option value="4th Semester">4th Semester</option>
+                                <option value="5th Semester">5th Semester</option>
+                                <option value="6th Semester">6th Semester</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Subject Name</label>
+                        <input type="text" id="up-subject" placeholder="e.g. Strength of Materials" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Topic / Chapter Name</label>
+                        <input type="text" id="up-topic" placeholder="e.g. Bending Stress & Shear Force" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
+                        <input type="text" id="up-tags" placeholder="e.g. SOM, bending-moment, important" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+
+                    <!-- DIRECT PDF/UPLOAD -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">
+                            <i class="fa-solid fa-file-arrow-up text-orange-500 mr-1"></i> Upload File (PDF / Image)
+                        </label>
+                        <div id="file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer hover:border-orange-400 hover:bg-orange-50 transition-all duration-200 group">
+                            <input type="file" id="file-upload-input" accept=".pdf,.jpg,.jpeg,.png,.webp" class="hidden" />
+                            <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-300 group-hover:text-orange-400 transition-colors mb-2 block"></i>
+                            <p id="file-drop-text" class="text-sm text-gray-500 font-medium">Click to browse or drag & drop</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Max 50 MB · PDF, JPG, PNG, WebP</p>
+                        </div>
+                        <div id="file-upload-progress-container" class="hidden mt-3">
+                            <div class="flex items-center gap-3">
+                                <span id="file-upload-filename" class="text-sm font-medium text-gray-700 truncate max-w-[200px]"></span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden max-w-[250px]">
+                                    <div id="file-upload-progress-bar" class="h-full bg-orange-500 rounded-full transition-all duration-300" style="width: 0%"></div>
                                 </div>
-                                <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">Code: ${sub.code}</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-1">${sub.title}</h4>
-                            <p class="text-sm text-slate-500">${sub.desc}</p>
-                        </div>
-                        <div class="p-6 bg-slate-50/50 flex-1 flex flex-col">
-                            <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-3">📚 Topics Covered</h5>
-                            <div class="space-y-2">
-                                ${topicsHTML}
+                                <span id="file-upload-percent" class="text-xs font-semibold text-orange-600 w-10 text-right">0%</span>
                             </div>
                         </div>
+                        <div id="file-upload-success" class="hidden mt-2 text-sm text-orange-600 font-medium">
+                            <i class="fa-solid fa-circle-check mr-1"></i> File uploaded! Link auto‑filled below.
+                        </div>
+                        <div id="file-upload-error" class="hidden mt-2 text-sm text-red-500 font-medium">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="file-upload-error-text">Upload failed.</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link (auto‑filled after upload)</label>
+                        <input type="url" id="up-link" placeholder="https://..." required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
+                        <button type="button" id="cancel-upload" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition">Cancel</button>
+                        <button type="submit" id="submit-upload" class="px-6 py-2.5 text-sm font-bold bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition shadow-md">
+                            Upload to Library
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ========== ADMIN EDIT MODAL ========== -->
+        <div id="edit-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-400 rounded-t-2xl"></div>
+                <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                    <h2 class="text-xl font-bold text-gray-800"><i class="fa-solid fa-pen-to-square text-blue-500 mr-2"></i> Edit Note</h2>
+                    <button id="close-edit-modal-btn" class="text-gray-400 hover:text-red-500 transition text-lg"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="edit-form" class="p-6 space-y-4">
+                    <input type="hidden" id="edit-note-id" value="">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Branch</label>
+                            <select id="edit-branch" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm appearance-none">
+                                <option value="Common">All Branches Common</option>
+                                <option value="Computer Science Engineering">Computer Science Engineering</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                                <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
+                                <option value="Automobile Engineering">Automobile Engineering</option>
+                                <option value="Chemical Engineering">Chemical Engineering</option>
+                                <option value="Plastic Engineering">Plastic Engineering</option>
+                                <option value="Architecture Assistantship">Architecture Assistantship</option>
+                                <option value="Agriculture Engineering">Agriculture Engineering</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                        </div>
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Semester</label>
+                            <select id="edit-semester" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm appearance-none">
+                                <option value="1st Semester">1st Semester</option>
+                                <option value="2nd Semester">2nd Semester</option>
+                                <option value="3rd Semester">3rd Semester</option>
+                                <option value="4th Semester">4th Semester</option>
+                                <option value="5th Semester">5th Semester</option>
+                                <option value="6th Semester">6th Semester</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Subject Name</label>
+                        <input type="text" id="edit-subject" placeholder="e.g. Strength of Materials" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Topic / Chapter Name</label>
+                        <input type="text" id="edit-topic" placeholder="e.g. Bending Stress & Shear Force" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
+                        <input type="text" id="edit-tags" placeholder="e.g. SOM, bending-moment, important" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link</label>
+                        <input type="url" id="edit-link" placeholder="https://..." required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-400 text-sm">
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
+                        <button type="button" id="cancel-edit" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition">Cancel</button>
+                        <button type="submit" id="submit-edit" class="px-6 py-2.5 text-sm font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ========== FOOTER ========== -->
+        <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
+            <div class="absolute top-0 left-0 w-full h-1 civil-gradient-top"></div>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
+                <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
+                    <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-orange-500"></i> Quick search across Civil resources</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">Find Civil notes, videos, or ask the community</p>
+                        </div>
+                        <div class="flex w-full sm:w-auto relative">
+                            <input type="text" id="footer-search" placeholder="Search subjects, topics…" class="w-full sm:w-64 px-4 py-2.5 border border-gray-200 rounded-l-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-400 outline-none text-sm" onkeypress="if(event.key === 'Enter') document.getElementById('footer-search-btn').click();">
+                            <button id="footer-search-btn" onclick="window.location.href='civil.html?search=' + encodeURIComponent(document.getElementById('footer-search').value)" class="bg-orange-500 hover:bg-orange-600 text-white px-5 rounded-r-lg transition font-medium text-sm flex items-center gap-1"><i class="fa-solid fa-arrow-right"></i> Go</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+                <div class="mb-8">
+                    <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
+                    <div class="flex flex-wrap gap-3 sm:gap-4">
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-all hover:scale-105"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-all hover:scale-105"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-all hover:scale-105"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-all hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center hover:bg-orange-200 transition-all hover:scale-105"><i class="fa-brands fa-discord"></i></a>
+                        <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50/80 border border-orange-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
+                    <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-orange-600"></i> Join Our Team</h3>
+                    <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Note%20Writer'" class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2.5 px-5 rounded-lg flex-1 transition shadow-sm">Work With Us</button>
+                        <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-orange-500"></i> Resources</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="index.html" class="hover:text-orange-600 transition">Home</a></li>
+                            <li><a href="notes.html" class="hover:text-orange-600 transition">Browse Notes</a></li>
+                            <li><a href="civil.html" class="hover:text-orange-600 transition font-semibold">Civil Notes</a></li>
+                            <li><a href="video-lectures.html" class="hover:text-orange-600 transition">Video Lectures</a></li>
+                            <li><a href="QnA.html" class="hover:text-orange-600 transition">Q&A Community</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-circle-question text-orange-500"></i> Information</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="about-us.html" class="hover:text-orange-600 transition">About Us</a></li>
+                            <li><a href="contact-us.html" class="hover:text-orange-600 transition">Contact Us</a></li>
+                            <li><a href="login.html" class="hover:text-orange-600 transition">Dashboard / Login</a></li>
+                            <li><a href="disclaimer.html" class="hover:text-orange-600 transition">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-file-lines text-orange-500"></i> Legal</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="terms.html" class="hover:text-orange-600 transition">Terms of Service</a></li>
+                            <li><a href="privacy.html" class="hover:text-orange-600 transition">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-regular fa-compass text-orange-500"></i> Quick Links</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><a href="index.html" class="hover:text-orange-600 transition">Home</a></li>
+                            <li><a href="civil.html" class="hover:text-orange-600 transition font-semibold">Civil Notes</a></li>
+                            <li><a href="video-lectures.html" class="hover:text-orange-600 transition">Videos</a></li>
+                            <li><a href="login.html" class="hover:text-orange-600 transition">Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
+                    <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
+                    <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ========== UI Sidebar & Toast Logic ========== -->
+    <script>
+        (function() {
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-btn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+
+            menuBtn.addEventListener('click', toggleSidebar);
+            closeBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+
+            window.showToast = function(msg) {
+                const toast = document.getElementById('toast-message');
+                const toastText = document.getElementById('toast-text');
+                if (!toast) return;
+                toastText.textContent = msg || 'Link copied!';
+                toast.classList.remove('opacity-0', 'pointer-events-none');
+                toast.classList.add('opacity-100');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'pointer-events-none');
+                    toast.classList.remove('opacity-100');
+                }, 2000);
+            };
+
+            window.shareApp = function() {
+                const data = { title: 'Diploma Campus – Civil Notes Library', url: window.location.href };
+                if (navigator.share) {
+                    navigator.share(data).catch(() => {});
+                } else {
+                    navigator.clipboard?.writeText(window.location.href).then(() => {
+                        showToast('🔗 Link copied to clipboard');
+                    }).catch(() => {
+                        showToast('Press Ctrl+C to copy');
+                    });
+                }
+            };
+
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) shareBtn.addEventListener('click', shareApp);
+
+            window.closeSidebar = closeSidebar;
+            window.toggleSidebar = toggleSidebar;
+        })();
+    </script>
+
+    <!-- ========== Firebase + Supabase Logic ========== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getDatabase, ref, onValue, push, set, remove, update } from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
+            authDomain: "diplomacampus.firebaseapp.com",
+            databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "diplomacampus",
+            storageBucket: "diplomacampus.firebasestorage.app",
+            messagingSenderId: "330061663460",
+            appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        const supabase = createClient(
+            'https://faehgxlxwpkszdwmlej.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhZWhneGxxeHdwa3N6ZHdtbGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODYzNTUsImV4cCI6MjA5MzA2MjM1NX0.3nd4f1Ym9cQ9OoKF2N2C2L4vRjVZ4WrRN7Wh6ToBBSc'
+        );
+
+        const googleProvider = new GoogleAuthProvider();
+
+        // DOM Elements
+        const headerLoginBtn = document.getElementById('header-login-btn');
+        const headerAvatar = document.getElementById('header-avatar');
+        const sidebarAuthSection = document.getElementById('sidebar-auth-section');
+        const adminUploadBtn = document.getElementById('admin-upload-btn');
+        const uploadModal = document.getElementById('upload-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const cancelUploadBtn = document.getElementById('cancel-upload');
+        const uploadForm = document.getElementById('upload-form');
+        const submitUploadBtn = document.getElementById('submit-upload');
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileUploadInput = document.getElementById('file-upload-input');
+        const fileDropText = document.getElementById('file-drop-text');
+        const fileUploadProgressContainer = document.getElementById('file-upload-progress-container');
+        const fileUploadFilename = document.getElementById('file-upload-filename');
+        const fileUploadProgressBar = document.getElementById('file-upload-progress-bar');
+        const fileUploadPercent = document.getElementById('file-upload-percent');
+        const fileUploadSuccess = document.getElementById('file-upload-success');
+        const fileUploadError = document.getElementById('file-upload-error');
+        const fileUploadErrorText = document.getElementById('file-upload-error-text');
+        const upLinkInput = document.getElementById('up-link');
+
+        const editModal = document.getElementById('edit-modal');
+        const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit');
+        const editForm = document.getElementById('edit-form');
+        const submitEditBtn = document.getElementById('submit-edit');
+        const editNoteId = document.getElementById('edit-note-id');
+        const editBranch = document.getElementById('edit-branch');
+        const editSemester = document.getElementById('edit-semester');
+        const editSubject = document.getElementById('edit-subject');
+        const editTopic = document.getElementById('edit-topic');
+        const editTags = document.getElementById('edit-tags');
+        const editLink = document.getElementById('edit-link');
+
+        const notesGrid = document.getElementById('notes-grid');
+        const notesStatus = document.getElementById('notes-status');
+        const searchInput = document.getElementById('search-input');
+        const filterSemester = document.getElementById('filter-semester');
+        const sharedNoteBannerContainer = document.getElementById('shared-note-banner-container');
+
+        let currentUser = null;
+        let isAdmin = false;
+        let isUploading = false;
+        let currentXhr = null;
+
+        // ★ Civil + Common only – no branch filter needed ★
+        const ALLOWED_BRANCHES = ["Civil Engineering", "Common"];
+
+        function getAvatarUrl(user) {
+            if (!user) return '';
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            return user.photoURL ||
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=ea580c&color=fff&size=150`;
+        }
+
+        function escapeForOnclick(str) {
+            if (!str) return '';
+            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
+        }
+
+        window.shareNoteLink = function(noteId, topic) {
+            const shareUrl = window.location.origin + window.location.pathname + '?note=' + encodeURIComponent(noteId);
+            const shareTitle = topic || 'Check out this Civil study note';
+            const shareData = {
+                title: shareTitle,
+                text: shareTitle + ' — Diploma Campus',
+                url: shareUrl
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {
+                    navigator.clipboard?.writeText(shareUrl).then(() => {
+                        window.showToast(' Note link copied!');
+                    }).catch(() => {
+                        window.showToast('🔗 ' + shareUrl);
+                    });
+                });
+            } else {
+                navigator.clipboard?.writeText(shareUrl).then(() => {
+                    window.showToast(' Note link copied to clipboard');
+                }).catch(() => {
+                    window.showToast('🔗 ' + shareUrl);
+                });
+            }
+        };
+
+        function updateAuthUI(user) {
+            currentUser = user;
+            isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
+
+            if (user) {
+                headerLoginBtn.style.display = 'none';
+                headerAvatar.style.display = 'block';
+                const avatarUrl = getAvatarUrl(user);
+                headerAvatar.src = avatarUrl;
+                headerAvatar.onerror = () => {
+                    headerAvatar.src =
+                        `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=ea580c&color=fff`;
+                };
+
+                if (isAdmin) {
+                    adminUploadBtn.style.display = 'flex';
+                } else {
+                    adminUploadBtn.style.display = 'none';
+                }
+
+                const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+                sidebarAuthSection.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=ea580c&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
+                        <div class="overflow-hidden">
+                            <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
+                            <p class="text-xs text-gray-500 truncate">${user.email}</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                            <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                        </button>
                     </div>
                 `;
-                container.innerHTML += cardHTML;
+                document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                    signOut(auth);
+                    closeSidebar();
+                });
+
+            } else {
+                currentUser = null;
+                isAdmin = false;
+                headerLoginBtn.style.display = 'block';
+                headerAvatar.style.display = 'none';
+                adminUploadBtn.style.display = 'none';
+
+                sidebarAuthSection.innerHTML = `
+                    <div class="text-center py-2">
+                        <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
+                        <button id="sidebar-login-btn" class="w-full bg-orange-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-orange-600 shadow-sm transition">
+                            <i class="fa-brands fa-google mr-1"></i> Sign In
+                        </button>
+                    </div>
+                `;
+                document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                    signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+                    closeSidebar();
+                });
+            }
+
+            filterAndRenderNotes();
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            updateAuthUI(user);
+        });
+
+        headerLoginBtn.addEventListener('click', () => {
+            signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+        });
+
+        // Read URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search');
+        const noteIdParam = urlParams.get('note') || urlParams.get('id');
+        let urlNoteId = noteIdParam || null;
+
+        if (searchParam) {
+            searchInput.value = searchParam;
+        }
+
+        let allNotes = [];
+
+        // ---------- SUPABASE FILE UPLOAD ----------
+        function resetFileUploadUI() {
+            fileUploadInput.value = '';
+            fileUploadProgressContainer.classList.add('hidden');
+            fileUploadSuccess.classList.add('hidden');
+            fileUploadError.classList.add('hidden');
+            fileDropText.textContent = 'Click to browse or drag & drop';
+            fileUploadProgressBar.style.width = '0%';
+            fileUploadPercent.textContent = '0%';
+            fileUploadFilename.textContent = '';
+            if (currentXhr) {
+                currentXhr.abort();
+                currentXhr = null;
+            }
+            isUploading = false;
+            submitUploadBtn.disabled = false;
+            submitUploadBtn.innerHTML = 'Upload to Library';
+        }
+
+        async function startFileUpload(file) {
+            if (!currentUser || !isAdmin) {
+                fileUploadErrorText.textContent = 'Only admins can upload files.';
+                fileUploadError.classList.remove('hidden');
+                return;
+            }
+
+            const MAX_SIZE = 50 * 1024 * 1024;
+            if (file.size > MAX_SIZE) {
+                fileUploadErrorText.textContent = 'File is too large. Max 50 MB allowed.';
+                fileUploadError.classList.remove('hidden');
+                return;
+            }
+
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
+            if (!allowedTypes.includes(file.type)) {
+                fileUploadErrorText.textContent = 'Unsupported file type. Please upload PDF, JPG, PNG, or WebP.';
+                fileUploadError.classList.remove('hidden');
+                return;
+            }
+
+            fileUploadError.classList.add('hidden');
+            fileUploadSuccess.classList.add('hidden');
+            fileUploadProgressContainer.classList.remove('hidden');
+            fileUploadFilename.textContent = file.name;
+            fileUploadProgressBar.style.width = '0%';
+            fileUploadPercent.textContent = '0%';
+            fileDropText.textContent = 'Uploading...';
+            submitUploadBtn.disabled = true;
+            submitUploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading file...';
+
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+            const storagePath = `notes/${currentUser.uid}/${Date.now()}_${safeName}`;
+
+            const supabaseUrl = 'https://faehgxlxwpkszdwmlej.supabase.co';
+            const endpoint = `${supabaseUrl}/storage/v1/object/Documents/${storagePath}`;
+
+            const xhr = new XMLHttpRequest();
+            currentXhr = xhr;
+            isUploading = true;
+
+            xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                    const progress = Math.round((e.loaded / e.total) * 100);
+                    fileUploadProgressBar.style.width = progress + '%';
+                    fileUploadPercent.textContent = progress + '%';
+                }
             });
 
-            // Attach click event listeners to each topic block for download
-            document.querySelectorAll('.topic-item').forEach(item => {
-                const pdfUrl = item.getAttribute('data-pdf-url');
-                item.addEventListener('click', (e) => {
-                    // Prevent if the click is on the download icon? No, we want both to download.
-                    e.stopPropagation(); // optional, but safe
-                    window.location.href = pdfUrl;
-                });
+            xhr.addEventListener('load', () => {
+                currentXhr = null;
+                isUploading = false;
+                if (xhr.status === 200 || xhr.status === 201) {
+                    const publicUrl = `${supabaseUrl}/storage/v1/object/public/Documents/${storagePath}`;
+                    upLinkInput.value = publicUrl;
+                    fileUploadSuccess.classList.remove('hidden');
+                    fileUploadProgressContainer.classList.add('hidden');
+                    fileDropText.textContent = ' ' + file.name;
+                    fileUploadError.classList.add('hidden');
+                    submitUploadBtn.disabled = false;
+                    submitUploadBtn.innerHTML = 'Upload to Library';
+                    window.showToast(' File uploaded! Link auto‑filled.');
+                } else {
+                    let errorMsg = 'Upload failed.';
+                    try {
+                        const resp = JSON.parse(xhr.responseText);
+                        errorMsg = resp.message || resp.error || errorMsg;
+                    } catch (_) {}
+                    fileUploadErrorText.textContent = errorMsg;
+                    fileUploadError.classList.remove('hidden');
+                    fileUploadProgressContainer.classList.add('hidden');
+                    fileDropText.textContent = 'Click to browse or drag & drop';
+                    submitUploadBtn.disabled = false;
+                    submitUploadBtn.innerHTML = 'Upload to Library';
+                }
+            });
+
+            xhr.addEventListener('error', () => {
+                currentXhr = null;
+                isUploading = false;
+                fileUploadErrorText.textContent = 'Network error. Please try again.';
+                fileUploadError.classList.remove('hidden');
+                fileUploadProgressContainer.classList.add('hidden');
+                fileDropText.textContent = 'Click to browse or drag & drop';
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            });
+
+            xhr.addEventListener('abort', () => {
+                currentXhr = null;
+                isUploading = false;
+                fileUploadProgressContainer.classList.add('hidden');
+                fileDropText.textContent = 'Click to browse or drag & drop';
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            });
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            xhr.open('POST', endpoint);
+            xhr.setRequestHeader('Authorization', `Bearer ${supabase.supabaseKey}`);
+            xhr.setRequestHeader('apikey', supabase.supabaseKey);
+            xhr.setRequestHeader('x-upsert', 'true');
+            xhr.send(formData);
+        }
+
+        if (fileDropZone) {
+            fileDropZone.addEventListener('click', () => {
+                if (isUploading) return;
+                fileUploadInput.click();
+            });
+
+            fileDropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.classList.add('drag-over');
+            });
+
+            fileDropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.classList.remove('drag-over');
+            });
+
+            fileDropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.classList.remove('drag-over');
+                if (isUploading) return;
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    startFileUpload(files[0]);
+                }
             });
         }
 
-        // Tab click events
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => {
-                    t.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-600');
-                    t.classList.add('bg-white', 'text-slate-600', 'border-gray-300');
-                });
-                
-                tab.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
-                tab.classList.remove('bg-white', 'text-slate-600', 'border-gray-300');
-                
-                renderSubjects(tab.getAttribute('data-sem'));
+        if (fileUploadInput) {
+            fileUploadInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    startFileUpload(e.target.files[0]);
+                }
             });
+        }
+
+        // ---------- ADMIN UPLOAD MODAL ----------
+        const toggleUploadModal = () => {
+            uploadModal.classList.toggle('hidden');
+            if (!uploadModal.classList.contains('hidden')) {
+                uploadForm.reset();
+                resetFileUploadUI();
+                upLinkInput.value = '';
+            } else {
+                if (currentXhr) {
+                    currentXhr.abort();
+                    currentXhr = null;
+                }
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            }
+        };
+        adminUploadBtn.addEventListener('click', toggleUploadModal);
+        closeModalBtn.addEventListener('click', toggleUploadModal);
+        cancelUploadBtn.addEventListener('click', toggleUploadModal);
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const originalBtnHtml = submitUploadBtn.innerHTML;
+            submitUploadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading...`;
+            submitUploadBtn.disabled = true;
+
+            const branch = document.getElementById('up-branch').value;
+            const semester = document.getElementById('up-semester').value;
+            const subject = document.getElementById('up-subject').value.trim();
+            const topic = document.getElementById('up-topic').value.trim();
+            const tags = document.getElementById('up-tags').value.trim();
+            const link = upLinkInput.value.trim();
+
+            if (!link.match(/^https?:\/\/.+/)) {
+                alert("Please enter a valid URL starting with http:// or https://");
+                submitUploadBtn.innerHTML = originalBtnHtml;
+                submitUploadBtn.disabled = false;
+                return;
+            }
+
+            const newNote = {
+                branch,
+                semester,
+                subject,
+                topic,
+                tags,
+                link,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const notesRef = ref(db, 'notes');
+                const newNoteRef = push(notesRef);
+                await set(newNoteRef, newNote);
+                window.showToast(' Note uploaded successfully!');
+                toggleUploadModal();
+            } catch (error) {
+                console.error("Upload failed:", error);
+                alert("Failed to upload. Ensure you are logged in as admin.");
+            } finally {
+                submitUploadBtn.innerHTML = originalBtnHtml;
+                submitUploadBtn.disabled = false;
+            }
         });
 
-        // Load Semester 1 by default
-        const defaultTab = document.querySelector('.sem-tab[data-sem="1"]');
-        defaultTab.click(); 
+        // ---------- EDIT MODAL ----------
+        const toggleEditModal = () => {
+            editModal.classList.toggle('hidden');
+        };
+        closeEditModalBtn.addEventListener('click', toggleEditModal);
+        cancelEditBtn.addEventListener('click', toggleEditModal);
+
+        window.openEditModal = (note) => {
+            if (!isAdmin) return;
+            editNoteId.value = note.id;
+            editBranch.value = note.branch || '';
+            editSemester.value = note.semester || '';
+            editSubject.value = note.subject || '';
+            editTopic.value = note.topic || '';
+            editTags.value = note.tags || '';
+            editLink.value = note.link || '';
+            toggleEditModal();
+        };
+
+        editForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const noteId = editNoteId.value;
+            if (!noteId) return;
+
+            const originalBtnHtml = submitEditBtn.innerHTML;
+            submitEditBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+            submitEditBtn.disabled = true;
+
+            const link = editLink.value.trim();
+            if (!link.match(/^https?:\/\/.+/)) {
+                alert("Please enter a valid URL starting with http:// or https://");
+                submitEditBtn.innerHTML = originalBtnHtml;
+                submitEditBtn.disabled = false;
+                return;
+            }
+
+            const updatedNote = {
+                branch: editBranch.value,
+                semester: editSemester.value,
+                subject: editSubject.value.trim(),
+                topic: editTopic.value.trim(),
+                tags: editTags.value.trim(),
+                link: link,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                await update(ref(db, `notes/${noteId}`), updatedNote);
+                window.showToast(' Note updated successfully!');
+                toggleEditModal();
+            } catch (error) {
+                console.error("Update failed:", error);
+                alert("Failed to update note.");
+            } finally {
+                submitEditBtn.innerHTML = originalBtnHtml;
+                submitEditBtn.disabled = false;
+            }
+        });
+
+        // ---------- FETCH & RENDER NOTES ----------
+        const notesRef = ref(db, 'notes');
+        onValue(notesRef, (snapshot) => {
+            allNotes = [];
+            if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                    const noteData = childSnapshot.val();
+                    // ★ Auto-filter: only include Civil and Common notes ★
+                    if (noteData.branch && ALLOWED_BRANCHES.includes(noteData.branch)) {
+                        allNotes.push({ id: childSnapshot.key, ...noteData });
+                    }
+                });
+                allNotes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                filterAndRenderNotes();
+            } else {
+                notesStatus.innerHTML = `<p class="text-gray-500">No Civil study materials available yet.</p>`;
+                notesStatus.classList.remove('hidden');
+                notesGrid.classList.add('hidden');
+            }
+        });
+
+        const branchAbbreviations = {
+            "Civil Engineering": "CIVIL",
+            "Common": "COMMON"
+        };
+
+        window.deleteNote = async (noteId) => {
+            if (!isAdmin) return;
+            if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
+            try {
+                await remove(ref(db, `notes/${noteId}`));
+                window.showToast(' Note deleted');
+            } catch (error) {
+                console.error("Delete failed:", error);
+                alert("Failed to delete note.");
+            }
+        };
+
+        const renderCards = (notes) => {
+            if (notes.length === 0) {
+                notesStatus.innerHTML =
+                    `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No Civil notes found matching your search.</p>`;
+                notesStatus.classList.remove('hidden');
+                notesGrid.classList.add('hidden');
+                return;
+            }
+
+            notesStatus.classList.add('hidden');
+            notesGrid.classList.remove('hidden');
+            notesGrid.innerHTML = '';
+
+            notes.forEach(note => {
+                const card = document.createElement('div');
+                card.className =
+                    "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-orange-200 transition-all duration-300 group flex flex-col justify-between relative";
+
+                let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0, 4).toUpperCase();
+                let shortSem = note.semester.replace("Semester", "Sem");
+
+                let linkIcon = 'fa-download';
+                let buttonText = 'Download';
+                if (note.link.includes('drive.google.com')) {
+                    linkIcon = 'fa-brands fa-google-drive';
+                    buttonText = 'Download from Drive';
+                } else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) {
+                    linkIcon = 'fa-brands fa-youtube';
+                    buttonText = 'Watch Video';
+                } else if (note.link.includes('.pdf') || note.link.includes('firebasestorage') || note.link.includes(
+                        'supabase')) {
+                    linkIcon = 'fa-regular fa-file-pdf';
+                    buttonText = 'Download';
+                }
+
+                const escapedTopic = escapeForOnclick(note.topic);
+                const escapedNoteId = escapeForOnclick(note.id);
+
+                const shareButtonHtml = `
+                    <button onclick="shareNoteLink('${escapedNoteId}', '${escapedTopic}')"
+                        class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 shadow-sm transition-all hover:scale-110 z-10"
+                        title="Share this note">
+                        <i class="fa-solid fa-share-nodes text-xs"></i>
+                    </button>
+                `;
+
+                const adminButtonsHtml = isAdmin ? `
+                    <div class="absolute top-3 right-12 z-10 flex gap-1">
+                        <button onclick="openEditModal(${JSON.stringify(note).replace(/"/g, '&quot;')})"
+                            class="w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 shadow-md transition-transform hover:scale-110"
+                            title="Edit note">
+                            <i class="fa-solid fa-pencil text-xs"></i>
+                        </button>
+                        <button onclick="deleteNote('${note.id}')"
+                            class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 shadow-md transition-transform hover:scale-110"
+                            title="Delete note">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+                ` : '';
+
+                // Branch badge: Civil gets orange, Common gets teal
+                const branchBadgeClass = note.branch === "Common" ?
+                    "bg-teal-50 text-teal-700 border border-teal-100" :
+                    "bg-orange-50 text-orange-700 border border-orange-100";
+
+                card.innerHTML = `
+                    ${adminButtonsHtml}
+                    ${shareButtonHtml}
+                    <div>
+                        <div class="flex gap-2 mb-4 pr-20">
+                            <span class="${branchBadgeClass} text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortBranch}</span>
+                            <span class="bg-yellow-50 text-yellow-700 border border-yellow-100 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortSem}</span>
+                        </div>
+                        <h3 class="font-bold text-gray-800 text-lg leading-snug mb-1 group-hover:text-orange-600 transition pr-6">${note.topic}</h3>
+                        <p class="text-sm text-gray-500 font-medium mb-3"><i class="fa-solid fa-book text-gray-400 mr-1"></i> ${note.subject}</p>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            ${note.tags.split(',').map(t => `<span class="text-[11px] bg-gray-100 font-medium text-gray-600 px-2 py-0.5 rounded-md">#${t.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+                    <a href="${note.link}" target="_blank" class="w-full block text-center bg-gray-50 border border-gray-200 group-hover:bg-orange-500 group-hover:border-orange-500 text-gray-700 group-hover:text-white font-semibold py-2.5 rounded-xl transition-all duration-300">
+                        <i class="${linkIcon} mr-1"></i> ${buttonText}
+                    </a>
+                `;
+                notesGrid.appendChild(card);
+            });
+
+            if (urlNoteId && notes.length === 1) {
+                setTimeout(() => {
+                    const firstCard = notesGrid.querySelector('.bg-white');
+                    if (firstCard) {
+                        firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstCard.classList.add('ring-2', 'ring-orange-400', 'ring-offset-2');
+                        setTimeout(() => {
+                            firstCard.classList.remove('ring-2', 'ring-orange-400', 'ring-offset-2');
+                        }, 2500);
+                    }
+                }, 300);
+            }
+        };
+
+        // ★ filterAndRenderNotes: auto‑filters for Civil+Common, applies search & semester ★
+        const filterAndRenderNotes = () => {
+            const existingBanner = document.getElementById('shared-note-banner');
+            if (existingBanner) existingBanner.remove();
+
+            let notesToRender;
+
+            if (urlNoteId) {
+                notesToRender = allNotes.filter(note => note.id === urlNoteId);
+                if (notesToRender.length === 0 && allNotes.length > 0) {
+                    notesStatus.innerHTML =
+                        `<i class="fa-solid fa-circle-exclamation text-4xl text-yellow-400 mb-4 block"></i><p class="text-gray-500 font-medium">Shared note not found. It may have been removed.</p><button id="show-all-from-banner" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 transition">Show All Civil Notes</button>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    document.getElementById('show-all-from-banner')?.addEventListener('click', () => {
+                        urlNoteId = null;
+                        const newUrl = window.location.origin + window.location.pathname;
+                        window.history.replaceState({}, '', newUrl);
+                        filterAndRenderNotes();
+                    });
+                    return;
+                }
+
+                if (notesToRender.length === 0 && allNotes.length === 0) {
+                    notesStatus.innerHTML =
+                        `<i class="fa-solid fa-spinner fa-spin text-3xl text-orange-500 mb-3"></i><p>Loading Civil study materials...</p>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    return;
+                }
+
+                const banner = document.createElement('div');
+                banner.id = 'shared-note-banner';
+                banner.className =
+                    'w-full max-w-5xl mx-auto bg-orange-50 border border-orange-200 rounded-xl p-3 mb-4 text-center flex items-center justify-center gap-3 flex-wrap';
+                banner.innerHTML = `
+                    <span class="text-orange-700 text-sm font-medium"><i class="fa-solid fa-share-nodes mr-1"></i> Shared Civil Note</span>
+                    <button id="clear-shared-note-btn" class="text-orange-600 underline text-sm font-medium hover:text-orange-800">Show All Civil Notes</button>
+                `;
+                sharedNoteBannerContainer.appendChild(banner);
+
+                document.getElementById('clear-shared-note-btn')?.addEventListener('click', () => {
+                    urlNoteId = null;
+                    const newUrl = window.location.origin + window.location.pathname;
+                    window.history.replaceState({}, '', newUrl);
+                    const b = document.getElementById('shared-note-banner');
+                    if (b) b.remove();
+                    filterAndRenderNotes();
+                });
+
+            } else {
+                const query = searchInput.value.toLowerCase();
+                const semester = filterSemester.value;
+
+                notesToRender = allNotes.filter(note => {
+                    const matchSearch = note.subject.toLowerCase().includes(query) ||
+                        note.topic.toLowerCase().includes(query) ||
+                        note.tags.toLowerCase().includes(query);
+                    const matchSem = semester === "" || note.semester === semester;
+                    return matchSearch && matchSem;
+                });
+            }
+
+            renderCards(notesToRender);
+        };
+
+        // Event listeners
+        searchInput.addEventListener('input', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
+        filterSemester.addEventListener('change', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
     </script>
-   
+
+    <!-- Firebase compat SDKs (required for likes.js) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js">
+    </script>
+
+    <!-- Site like button -->
+    <script src="likes.js">
+    </script>
+
 </body>
 </html>

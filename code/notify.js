@@ -1,4 +1,4 @@
-<!-- notifiy.js -->
+<!-- notify.js -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>

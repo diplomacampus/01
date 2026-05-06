@@ -509,61 +509,76 @@
         </footer>
     </div>
 
-    <!-- ========== UI Sidebar & Toast Logic ========== -->
-    <script>
-        (function() {
-            const menuBtn = document.getElementById('menu-btn');
-            const closeBtn = document.getElementById('close-btn');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
+   <!-- ========== UI Sidebar & Toast Logic ========== -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
 
-            function toggleSidebar() {
-                sidebar.classList.toggle('-translate-x-full');
-                overlay.classList.toggle('hidden');
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleSidebar);
+        closeBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Branches dropdown toggle (click + touch)
+        const branchesToggleBtn = document.getElementById('branches-toggle-btn');
+        const branchesSubmenu = document.getElementById('branches-submenu');
+        const branchesArrow = document.getElementById('branches-arrow');
+
+        if (branchesToggleBtn && branchesSubmenu && branchesArrow) {
+            branchesToggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();        // keep sidebar open
+                branchesSubmenu.classList.toggle('open');
+                branchesArrow.style.transform = branchesSubmenu.classList.contains('open')
+                    ? 'rotate(180deg)'
+                    : 'rotate(0deg)';
+            });
+        }
+
+        window.showToast = function(msg) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.textContent = msg || 'Link copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2000);
+        };
+
+        window.shareApp = function() {
+            const data = { title: 'Diploma Campus – Notes Library', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(data).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard');
+                }).catch(() => {
+                    showToast('Press Ctrl+C to copy');
+                });
             }
+        };
 
-            function closeSidebar() {
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            }
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', shareApp);
 
-            menuBtn.addEventListener('click', toggleSidebar);
-            closeBtn.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
-
-            window.showToast = function(msg) {
-                const toast = document.getElementById('toast-message');
-                const toastText = document.getElementById('toast-text');
-                if (!toast) return;
-                toastText.textContent = msg || 'Link copied!';
-                toast.classList.remove('opacity-0', 'pointer-events-none');
-                toast.classList.add('opacity-100');
-                setTimeout(() => {
-                    toast.classList.add('opacity-0', 'pointer-events-none');
-                    toast.classList.remove('opacity-100');
-                }, 2000);
-            };
-
-            window.shareApp = function() {
-                const data = { title: 'Diploma Campus – Notes Library', url: window.location.href };
-                if (navigator.share) {
-                    navigator.share(data).catch(() => {});
-                } else {
-                    navigator.clipboard?.writeText(window.location.href).then(() => {
-                        showToast('🔗 Link copied to clipboard');
-                    }).catch(() => {
-                        showToast('Press Ctrl+C to copy');
-                    });
-                }
-            };
-
-            const shareBtn = document.getElementById('share-btn');
-            if (shareBtn) shareBtn.addEventListener('click', shareApp);
-
-            window.closeSidebar = closeSidebar;
-            window.toggleSidebar = toggleSidebar;
-        })();
-    </script>
+        window.closeSidebar = closeSidebar;
+        window.toggleSidebar = toggleSidebar;
+    })();
+</script>
 
     <!-- ========== Firebase + Supabase Logic (Only file upload replaced) ========== -->
     <script type="module">

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Required meta tags and resources -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <meta name="robots" content="index, follow">
@@ -9,360 +8,323 @@
   <link rel="icon" href="https://diplomacampus.vercel.app/logo.png">
   <meta name="google-site-verification" content="1K6g14Zwo9QtnKzrQ-fTXDU9WzCrwgjvJ0SzifWkq9M">
   <meta name="author" content="Diploma Campus">
-
-  <!-- Tailwind CSS + Font Awesome CDN (fix missing styles) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* custom overrides + grid animation, modal */
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    .bg-grid {
-      background-image:
-        linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 128, 128, 0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-    }
-    .modal-enter {
-      animation: modalFadeIn 0.25s ease-out forwards;
-    }
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.96) translateY(-12px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .branch-submenu {
-      display: none;
-      padding-left: 2rem;
-    }
-    .branch-submenu.open {
-      display: block;
-    }
-    #file-drop-zone.drag-over {
-      border-color: #14b8a6;
-      background-color: #f0fdfa;
-      transform: scale(1.01);
-    }
-    .toast-fade {
-      transition: opacity 0.25s ease;
-    }
-  </style>
-
-  <!-- Global Structured Data -->
-  <script type="application/ld+json">{
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Diploma Campus",
-    "url": "https://diplomacampus.vercel.app/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://diplomacampus.vercel.app/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }</script>
-  <script type="application/ld+json">{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Diploma Campus",
-    "url": "https://diplomacampus.vercel.app/",
-    "logo": "https://diplomacampus.vercel.app/logo.png"
-  }</script>
-
-  <title>Diploma Campus | Diploma Notes Library</title>
-  <meta name="description" content="Access verified diploma notes, semester-wise study materials, and subject PDFs for polytechnic students.">
+  <title>Diploma Campus | Notes Library</title>
+  <meta name="description" content="Download free Polytechnic & Diploma notes, assignments, and study materials for all branches and semesters.">
   <link rel="canonical" href="https://diplomacampus.vercel.app/notes.html">
-  <meta property="og:title" content="Diploma Campus - Notes Library">
-  <meta property="og:description" content="Free diploma notes, question banks, and resources.">
+  <meta property="og:title" content="Diploma Campus | Notes Library">
+  <meta property="og:description" content="Download free Polytechnic & Diploma notes, assignments, and study materials for all branches and semesters.">
   <meta property="og:url" content="https://diplomacampus.vercel.app/notes.html">
   <meta property="og:site_name" content="Diploma Campus">
   <meta property="og:image" content="https://diplomacampus.vercel.app/logo.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Diploma Campus Notes">
-  <meta name="twitter:description" content="Study smart with organized notes.">
-  <meta name="twitter:image" content="https://diplomacampus.vercel.app/logo.png">
-  <meta name="keywords" content="polytechnic, notes, jharkhand, diploma, semester, engineering">
+  <meta name="keywords" content="polytechnic, notes, jharkhand, diploma notes">
+
+  <!-- Tailwind + Font Awesome + Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(135deg, #eafffa 0%, #fffff0 100%); }
+    .bg-grid { background-image: linear-gradient(to right, rgba(0,128,128,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,128,128,0.05) 1px, transparent 1px); background-size: 50px 50px; }
+    .branch-submenu { display: none; padding-left: 2.5rem; }
+    .branch-submenu.open { display: block; }
+    .modal-enter { animation: modalFadeIn 0.25s ease-out; }
+    @keyframes modalFadeIn { from { opacity:0; transform:scale(0.96); } to { opacity:1; transform:scale(1); } }
+    .drag-over { border-color: #14b8a6 !important; background-color: #f0fdfa !important; }
+    .card-hover { transition: all 0.2s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1); }
+    #toast-message { transition: opacity 0.25s ease; z-index: 100; }
+  </style>
 </head>
 <body class="text-gray-800">
 
-  <!-- Toast container -->
-  <div id="toast-message" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg text-sm font-medium opacity-0 pointer-events-none transition-opacity z-50 toast-fade">
-    <i class="fa-regular fa-circle-check mr-2 text-teal-400"></i><span id="toast-text">Link copied!</span>
+  <!-- Toast Notification -->
+  <div id="toast-message" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-xl text-sm font-medium opacity-0 pointer-events-none z-50 flex items-center gap-2 transition-opacity duration-300">
+    <i class="fa-regular fa-circle-check text-teal-400"></i><span id="toast-text">Copied!</span>
   </div>
 
-  <div class="bg-grid flex flex-col pb-20 relative min-h-screen">
+  <div class="bg-grid flex flex-col min-h-screen">
 
-    <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
-      <div class="flex items-center gap-1 font-bold text-lg md:text-xl text-black">
-        <a href="index.html" class="hover:opacity-80 transition"><span class="text-teal-500 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/60 flex justify-between items-center px-4 py-3 md:px-8 shadow-sm">
+      <div class="flex items-center gap-1 font-extrabold text-xl text-black">
+        <a href="index.html" class="hover:opacity-80"><span class="text-teal-600"><i class="fa-solid fa-user-graduate"></i></span> DIPLOMA CAMPUS</a>
       </div>
       <div class="flex items-center gap-3">
-        <button id="admin-upload-btn" style="display: none;" class="text-sm font-bold bg-teal-600 text-white px-4 py-1.5 rounded-full hover:bg-teal-700 transition shadow border border-teal-800 items-center gap-1.5">
-          <i class="fa-solid fa-cloud-arrow-up"></i> Upload
-        </button>
-        <button id="share-btn" class="text-gray-600 hover:text-teal-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
-        <button id="header-login-btn" style="display: none;" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 transition shadow-sm">Sign In</button>
-        <img id="header-avatar" src="" alt="Profile" onclick="window.location.href='login.html'" style="display: none;" class="user-avatar w-8 h-8 rounded-full border border-gray-300 cursor-pointer ring-2 ring-teal-400 transition object-cover bg-white">
-        <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
+        <button id="admin-upload-btn" class="hidden text-sm font-bold bg-teal-600 text-white px-4 py-1.5 rounded-full hover:bg-teal-700 transition shadow-md items-center gap-1.5"><i class="fa-solid fa-cloud-arrow-up"></i> Upload</button>
+        <button id="share-btn" class="text-gray-600 hover:text-teal-600 p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
+        <button id="header-login-btn" class="text-sm font-semibold bg-teal-500 text-white px-5 py-1.5 rounded-full hover:bg-teal-600 shadow-sm">Sign In</button>
+        <img id="header-avatar" src="" alt="Profile" class="hidden w-8 h-8 rounded-full border-2 border-teal-400 cursor-pointer object-cover bg-gray-100">
+        <button id="menu-btn" class="text-gray-800 text-xl p-1"><i class="fa-solid fa-bars"></i></button>
       </div>
     </header>
 
-    <!-- SIDEBAR DRAWER -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden transition-opacity"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 w-72 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
-      <div class="flex justify-between items-center p-4 border-b">
-        <div class="font-bold text-lg"><span class="text-teal-500"><i class="fa-solid fa-graduation-cap"></i></span> DiplomaCampus</div>
-        <button id="close-btn" class="text-gray-500 hover:text-gray-800 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-all"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+      <div class="flex justify-between items-center p-5 border-b">
+        <div class="font-bold text-xl text-teal-700"><i class="fa-solid fa-graduation-cap mr-1"></i> DiplomaCampus</div>
+        <button id="close-btn" class="text-gray-500 text-2xl"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <nav class="flex-1 overflow-y-auto py-4">
-        <ul class="space-y-1 px-3">
-          <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book-open w-5 text-center"></i> Home</a></li>
-          <li><a href="notes.html" class="flex items-center gap-3 px-4 py-3 bg-teal-500 text-white rounded-lg font-medium"><i class="fa-solid fa-clipboard-list w-5 text-center"></i> Notes</a></li>
-          <li><a href="syllabus.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-book w-5 text-center"></i> Syllabus</a></li>
+      <nav class="flex-1 overflow-y-auto py-4 px-3">
+        <ul class="space-y-1">
+          <li><a href="index.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-solid fa-book-open w-5"></i> Home</a></li>
+          <li><a href="notes.html" class="flex gap-3 px-4 py-3 bg-teal-500 text-white rounded-xl font-medium"><i class="fa-solid fa-clipboard-list w-5"></i> Notes</a></li>
+          <li><a href="syllabus.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-solid fa-book w-5"></i> Syllabus</a></li>
           <li class="branch-menu-item">
-            <button type="button" id="branches-toggle-btn" class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100 font-medium focus:outline-none">
-              <i class="fa-solid fa-code-branch w-5 text-center"></i> Branches
-              <i class="fa-solid fa-chevron-down ml-auto text-xs text-gray-400 transition-transform" id="branches-arrow"></i>
+            <button id="branches-toggle-btn" class="w-full flex items-center gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100 font-medium">
+              <i class="fa-solid fa-code-branch w-5"></i> Branches
+              <i class="fa-solid fa-chevron-down ml-auto text-xs transition-transform duration-200" id="branches-arrow"></i>
             </button>
-            <ul id="branches-submenu" class="branch-submenu space-y-1 pl-2">
-              <li><a href="cse.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-laptop-code w-4 mr-2 text-blue-500"></i>Computer Science</a></li>
-              <li><a href="notes.html?branch=Information%20Technology" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-network-wired w-4 mr-2 text-indigo-500"></i>Info. Technology</a></li>
-              <li><a href="mech.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-gears w-4 mr-2 text-orange-500"></i>Mechanical Engg</a></li>
-              <li><a href="civil.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-bridge w-4 mr-2 text-stone-500"></i>Civil Engg</a></li>
-              <li><a href="ee.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-bolt w-4 mr-2 text-yellow-500"></i>Electrical Engg</a></li>
-              <li><a href="eee.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-plug w-4 mr-2 text-violet-500"></i>EEE Engg</a></li>
-              <li><a href="ece.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-microchip w-4 mr-2 text-green-500"></i>Electronics (ECE)</a></li>
-              <li><a href="auto.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-car w-4 mr-2 text-red-500"></i>Automobile Engg</a></li>
+            <ul id="branches-submenu" class="branch-submenu mt-1 space-y-1">
+              <li><a href="cse.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50"><i class="fa-solid fa-laptop-code w-4 mr-2 text-blue-500"></i>Computer Science</a></li>
+              <li><a href="notes.html?branch=Information%20Technology" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50"><i class="fa-solid fa-network-wired w-4 mr-2 text-indigo-500"></i>Info. Technology</a></li>
+              <li><a href="mech.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50"><i class="fa-solid fa-gears w-4 mr-2 text-orange-500"></i>Mechanical Engg</a></li>
+              <li><a href="civil.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50"><i class="fa-solid fa-bridge w-4 mr-2 text-stone-500"></i>Civil Engg</a></li>
+              <li><a href="ee.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50"><i class="fa-solid fa-bolt w-4 mr-2 text-yellow-500"></i>Electrical Engg</a></li>
+              <li><a href="ece.html" class="block px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50"><i class="fa-solid fa-microchip w-4 mr-2 text-green-500"></i>Electronics (ECE)</a></li>
             </ul>
           </li>
-          <li><a href="mock-tests.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-pencil-alt w-5 text-center"></i> Mock Tests</a></li>
-          <li><a href="video-lectures.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-brands fa-youtube w-5 text-center"></i> Video lectures</a></li>
-          <li><a href="about-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5 text-center"></i> About us</a></li>
-          <li><a href="QnA.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-comments w-5 text-center"></i> Q&A Community</a></li>
-          <li><a href="contact-us.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-envelope w-5 text-center"></i> Contact Us</a></li>
-          <li><a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5 text-center"></i> Dashboard</a></li>
-          <li><hr class="my-2 border-gray-200"></li>
-          <li><a href="terms.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-regular fa-file-lines w-5 text-center"></i> Terms</a></li>
-          <li><a href="privacy.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-5 text-center"></i> Privacy</a></li>
-          <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
+          <li><a href="mock-tests.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-solid fa-pencil-alt w-5"></i> Mock Tests</a></li>
+          <li><a href="video-lectures.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-brands fa-youtube w-5"></i> Video lectures</a></li>
+          <li><a href="about-us.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-solid fa-circle-info w-5"></i> About us</a></li>
+          <li><a href="QnA.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-regular fa-comments w-5"></i> Q&A Community</a></li>
+          <li><a href="contact-us.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-regular fa-envelope w-5"></i> Contact Us</a></li>
+          <li id="sidebar-dashboard"><a href="login.html" class="flex gap-3 px-4 py-3 text-gray-700 rounded-xl hover:bg-gray-100"><i class="fa-regular fa-id-badge w-5"></i> Dashboard</a></li>
         </ul>
       </nav>
-      <div class="p-4 border-t" id="sidebar-auth-section"></div>
+      <div id="sidebar-auth-section" class="p-4 border-t text-sm text-gray-600"></div>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="w-full max-w-7xl mx-auto px-4 pt-24 md:pt-32 flex-1 flex flex-col items-center">
-      <div class="text-center mb-10 w-full">
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
-          Notes <span class="text-teal-500">Library</span>
-        </h1>
-        <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">Search across hundreds of verified diploma notes, assignments, and study materials.</p>
-
-        <div id="group-card-container"></div>
-        <br><br>
-
-        <!-- SEARCH & FILTERS -->
-        <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-5xl mx-auto flex flex-col lg:flex-row gap-3 md:gap-4">
-          <div class="relative flex-1 group">
-            <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <input type="text" id="search-input" placeholder="Search by subject, topic or tags…" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition text-sm text-gray-700 font-medium">
-          </div>
-          <div class="relative lg:w-72 group">
-            <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500"><i class="fa-solid fa-code-branch"></i></div>
-            <select id="filter-branch" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white text-sm cursor-pointer">
-              <option value="">All Branches</option>
-              <option value="Computer Science Engineering">Computer Science Engineering</option>
-              <option value="Information Technology">Information Technology</option>
-              <option value="Mechanical Engineering">Mechanical Engineering</option>
-              <option value="Civil Engineering">Civil Engineering</option>
-              <option value="Electrical Engineering">Electrical Engineering</option>
-              <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
-              <option value="Electronics & Communication Engineering">Electronics & Comm. (ECE)</option>
-              <option value="Automobile Engineering">Automobile Engineering</option>
-              <option value="Chemical Engineering">Chemical Engineering</option>
-              <option value="Plastic Engineering">Plastic Engineering</option>
-              <option value="Architecture Assistantship">Architecture Assistantship</option>
-              <option value="Agriculture Engineering">Agriculture Engineering</option>
-            </select>
-          </div>
-          <div class="relative lg:w-48 group">
-            <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500"><i class="fa-solid fa-layer-group"></i></div>
-            <select id="filter-semester" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white text-sm cursor-pointer">
-              <option value="">All Semesters</option>
-              <option value="1st Semester">1st Semester</option><option value="2nd Semester">2nd Semester</option><option value="3rd Semester">3rd Semester</option>
-              <option value="4th Semester">4th Semester</option><option value="5th Semester">5th Semester</option><option value="6th Semester">6th Semester</option>
-            </select>
-          </div>
+    <!-- Main Content -->
+    <main class="w-full max-w-7xl mx-auto px-4 pt-28 md:pt-36 pb-16 flex-1">
+      <div class="text-center mb-10">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Notes <span class="text-teal-500">Library</span></h1>
+        <p class="text-gray-500 mt-3 max-w-2xl mx-auto">Search & download verified polytechnic notes, question banks & assignments</p>
+        
+        <!-- Search & Filters -->
+        <div class="mt-8 bg-white p-4 rounded-2xl shadow-lg max-w-5xl mx-auto flex flex-col lg:flex-row gap-4">
+          <div class="relative flex-1"><i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-teal-500"></i><input type="text" id="search-input" placeholder="Search by subject, topic, or tag..." class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-400 outline-none text-sm"></div>
+          <select id="filter-branch" class="w-full lg:w-72 pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-teal-400"><option value="">All Branches</option><option>Computer Science Engineering</option><option>Information Technology</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Electronics & Communication Engineering</option><option>Automobile Engineering</option><option>Chemical Engineering</option><option>Agriculture Engineering</option><option>Common</option></select>
+          <select id="filter-semester" class="w-full lg:w-48 pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-teal-400"><option value="">All Semesters</option><option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option></select>
         </div>
       </div>
 
-      <div id="shared-note-banner-container"></div>
-      <div id="notes-status" class="w-full text-center py-12 text-gray-500"><i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i><p>Loading study materials...</p></div>
-      <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden"></div>
+      <div id="shared-note-banner-container" class="mb-6"></div>
+      <div id="notes-status" class="text-center py-12 text-gray-500"><i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-2 block"></i>Loading study materials...</div>
+      <div id="notes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8 hidden"></div>
     </main>
 
-    <!-- ADMIN UPLOAD MODAL -->
-    <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-yellow-400 rounded-t-2xl"></div>
-        <div class="flex justify-between items-center p-6 border-b"><h2 class="text-xl font-bold"><i class="fa-solid fa-cloud-arrow-up text-teal-500 mr-2"></i> Upload New Note</h2><button id="close-modal-btn" class="text-gray-400 hover:text-red-500"><i class="fa-solid fa-xmark"></i></button></div>
-        <form id="upload-form" class="p-6 space-y-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select id="up-branch" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-lg"><option disabled selected>Select Branch</option><option value="Common">All Branches Common</option><option value="Computer Science Engineering">CSE</option><option value="Information Technology">IT</option><option value="Mechanical Engineering">Mechanical</option><option value="Civil Engineering">Civil</option><option value="Electrical Engineering">Electrical</option><option value="Electrical and Electronics Engineering">EEE</option><option value="Electronics & Communication Engineering">ECE</option><option value="Automobile Engineering">Automobile</option></select>
-            <select id="up-semester" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-lg"><option disabled selected>Semester</option><option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option></select>
-          </div>
-          <input type="text" id="up-subject" placeholder="Subject Name" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-lg">
-          <input type="text" id="up-topic" placeholder="Topic / Chapter" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-lg">
-          <input type="text" id="up-tags" placeholder="Tags (comma separated)" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-lg">
-          <div>
-            <div id="file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer hover:border-teal-400 transition"><input type="file" id="file-upload-input" accept=".pdf,.jpg,.jpeg,.png,.webp" class="hidden" /><i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 mb-2 block"></i><p id="file-drop-text" class="text-sm text-gray-500">Click or drag file (PDF/Image)</p></div>
-            <div id="file-upload-progress-container" class="hidden mt-3"><div class="flex items-center gap-2"><span id="file-upload-filename" class="text-sm truncate"></span><div class="flex-1 h-2 bg-gray-200 rounded-full"><div id="file-upload-progress-bar" class="h-full bg-teal-500 rounded-full w-0"></div></div><span id="file-upload-percent">0%</span></div></div>
-            <div id="file-upload-success" class="hidden text-teal-600 text-sm mt-1"><i class="fa-solid fa-check-circle"></i> File uploaded</div>
-            <div id="file-upload-error" class="hidden text-red-500 text-sm mt-1"></div>
-          </div>
-          <input type="url" id="up-link" placeholder="Resource link (auto-filled)" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-lg">
-          <div class="flex justify-end gap-3"><button type="button" id="cancel-upload" class="px-5 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Cancel</button><button type="submit" class="px-6 py-2 bg-teal-500 text-white rounded-lg shadow">Upload to Library</button></div>
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-auto">
+      <div class="bg-white rounded-2xl w-full max-w-2xl shadow-2xl modal-enter">
+        <div class="flex justify-between items-center p-5 border-b"><h2 class="text-xl font-bold"><i class="fa-solid fa-cloud-arrow-up text-teal-500 mr-2"></i>Upload Note</h2><button id="close-modal-btn" class="text-gray-400 hover:text-red-500"><i class="fa-solid fa-xmark text-2xl"></i></button></div>
+        <form id="upload-form" class="p-5 space-y-4">
+          <div class="grid md:grid-cols-2 gap-4"><div><label class="text-xs font-bold uppercase">Branch</label><select id="up-branch" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"><option value="">Select Branch</option><option>Common</option><option>Computer Science Engineering</option><option>Information Technology</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Electronics & Communication Engineering</option><option>Automobile Engineering</option></select></div><div><label class="text-xs font-bold uppercase">Semester</label><select id="up-semester" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"><option value="">Select Semester</option><option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option></select></div></div>
+          <div><label class="text-xs font-bold uppercase">Subject Name</label><input type="text" id="up-subject" required placeholder="e.g. Engineering Mathematics" class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+          <div><label class="text-xs font-bold uppercase">Topic / Chapter</label><input type="text" id="up-topic" required placeholder="e.g. Differential Calculus" class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+          <div><label class="text-xs font-bold uppercase">Tags (comma separated)</label><input type="text" id="up-tags" required placeholder="math, calculus, imp questions" class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+          <div><label class="text-xs font-bold uppercase">Upload File (PDF/Image)</label><div id="file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center cursor-pointer hover:border-teal-400 transition"><input type="file" id="file-upload-input" accept=".pdf,.jpg,.jpeg,.png" class="hidden"><i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400"></i><p class="text-sm text-gray-500 mt-1">Click or drag & drop (Max 25MB)</p></div><div id="file-upload-progress-container" class="hidden mt-3"><div class="flex items-center gap-2"><span id="file-upload-filename" class="text-sm truncate"></span><div class="flex-1 h-2 bg-gray-200 rounded-full"><div id="file-upload-progress-bar" class="h-full bg-teal-500 rounded-full" style="width:0%"></div></div><span id="file-upload-percent" class="text-xs">0%</span></div></div></div>
+          <div><label class="text-xs font-bold uppercase">Resource Link (auto-filled after upload)</label><input type="url" id="up-link" placeholder="https://..." required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+          <div class="flex justify-end gap-3 pt-3"><button type="button" id="cancel-upload" class="px-5 py-2.5 text-gray-600 bg-gray-100 rounded-lg">Cancel</button><button type="submit" class="px-6 py-2.5 bg-teal-500 text-white rounded-lg font-bold hover:bg-teal-600">Publish Note</button></div>
         </form>
       </div>
     </div>
 
-    <!-- EDIT MODAL -->
-    <div id="edit-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4"><div class="bg-white rounded-2xl w-full max-w-2xl"><div class="p-6 space-y-4"><h2 class="text-xl font-bold"><i class="fa-solid fa-pen-to-square text-blue-500"></i> Edit Note</h2><form id="edit-form"><input type="hidden" id="edit-note-id"><select id="edit-branch" class="w-full p-2 border rounded"></select><select id="edit-semester" class="w-full p-2 border rounded mt-2"></select><input id="edit-subject" placeholder="Subject" class="w-full p-2 border rounded mt-2"><input id="edit-topic" placeholder="Topic" class="w-full p-2 border rounded mt-2"><input id="edit-tags" placeholder="Tags" class="w-full p-2 border rounded mt-2"><input id="edit-link" placeholder="Link" class="w-full p-2 border rounded mt-2"><div class="flex justify-end gap-3 mt-4"><button type="button" id="cancel-edit" class="px-4 py-2 border rounded">Cancel</button><button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Save</button></div></form></div></div></div>
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl w-full max-w-2xl shadow-2xl modal-enter"><div class="flex justify-between items-center p-5 border-b"><h2 class="text-xl font-bold"><i class="fa-solid fa-pen-to-square text-blue-500 mr-2"></i>Edit Note</h2><button id="close-edit-modal-btn" class="text-gray-400 hover:text-red-500"><i class="fa-solid fa-xmark text-2xl"></i></button></div>
+      <form id="edit-form" class="p-5 space-y-4"><input type="hidden" id="edit-note-id">
+        <div class="grid md:grid-cols-2 gap-4"><div><label class="text-xs font-bold uppercase">Branch</label><select id="edit-branch" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"><option>Common</option><option>Computer Science Engineering</option><option>Information Technology</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Electronics & Communication Engineering</option></select></div><div><label class="text-xs font-bold uppercase">Semester</label><select id="edit-semester" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"><option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option></select></div></div>
+        <div><label class="text-xs font-bold uppercase">Subject Name</label><input id="edit-subject" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+        <div><label class="text-xs font-bold uppercase">Topic / Chapter</label><input id="edit-topic" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+        <div><label class="text-xs font-bold uppercase">Tags</label><input id="edit-tags" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+        <div><label class="text-xs font-bold uppercase">Resource Link</label><input id="edit-link" required class="w-full mt-1 px-4 py-2.5 bg-gray-50 border rounded-lg"></div>
+        <div class="flex justify-end gap-3 pt-3"><button type="button" id="cancel-edit" class="px-5 py-2.5 text-gray-600 bg-gray-100 rounded-lg">Cancel</button><button type="submit" class="px-6 py-2.5 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600">Save Changes</button></div>
+      </form></div>
+    </div>
 
-    <footer class="relative border-t mt-auto bg-white/90"><div class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-gray-500">© 2026 Diploma Campus. Made with <i class="fa-solid fa-heart text-red-500"></i> By Sumit Kumar Mahato.</div></footer>
+    <footer class="mt-auto bg-white/80 border-t text-center py-6 text-sm text-gray-500">© 2026 Diploma Campus — Made with <i class="fa-solid fa-heart text-red-500"></i> By Sumit Kumar Mahato</footer>
   </div>
 
-  <!-- Global UI helpers + Sidebar logic (non-module) -->
-  <script>
-    (function() {
-      const menuBtn = document.getElementById('menu-btn'), closeBtn = document.getElementById('close-btn'), sidebar = document.getElementById('sidebar'), overlay = document.getElementById('sidebar-overlay');
-      function toggleSidebar() { sidebar.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); }
-      function closeSidebarFn() { sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); }
-      if(menuBtn) menuBtn.addEventListener('click', toggleSidebar);
-      if(closeBtn) closeBtn.addEventListener('click', toggleSidebar);
-      if(overlay) overlay.addEventListener('click', toggleSidebar);
-      const branchesToggle = document.getElementById('branches-toggle-btn'), submenu = document.getElementById('branches-submenu'), arrow = document.getElementById('branches-arrow');
-      if(branchesToggle && submenu) branchesToggle.addEventListener('click', (e) => { e.stopPropagation(); submenu.classList.toggle('open'); if(arrow) arrow.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'; });
-      window.showToast = function(msg) { let toast = document.getElementById('toast-message'), textSpan = document.getElementById('toast-text'); if(!toast) return; textSpan.innerText = msg || 'Link copied!'; toast.classList.remove('opacity-0','pointer-events-none'); toast.classList.add('opacity-100'); setTimeout(() => { toast.classList.add('opacity-0','pointer-events-none'); toast.classList.remove('opacity-100'); }, 2200); };
-      window.shareApp = function() { if(navigator.share) navigator.share({ title: 'Diploma Campus', url: location.href }).catch(()=>{}); else navigator.clipboard?.writeText(location.href).then(()=>window.showToast('Link copied')).catch(()=>window.showToast('Press Ctrl+C')) };
-      const shareBtn = document.getElementById('share-btn'); if(shareBtn) shareBtn.addEventListener('click', window.shareApp);
-      window.closeSidebarGlobal = closeSidebarFn;
-    })();
+  <script type="importmap">
+    { "imports": { "firebase/app": "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js", "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js", "firebase/database": "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js", "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm" } }
   </script>
 
-  <!-- MAIN MODULE (Firebase + Supabase + Logic) -->
   <script type="module">
-    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-    import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+    import { initializeApp } from "firebase/app";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+    import { getDatabase, ref, onValue, push, set, remove, update } from "firebase/database";
+    import { createClient } from "@supabase/supabase-js";
 
-    const firebaseConfig = { apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig", authDomain: "diplomacampus.firebaseapp.com", databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "diplomacampus", storageBucket: "diplomacampus.firebasestorage.app", messagingSenderId: "330061663460", appId: "1:330061663460:web:9d22eb10f9a821445b30f1" };
-    const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+    const firebaseConfig = { apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig", authDomain: "diplomacampus.firebaseapp.com", databaseURL: "https://diplomacampus-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "diplomacampus", storageBucket: "diplomacampus.firebasestorage.app", appId: "1:330061663460:web:9d22eb10f9a821445b30f1" };
+    const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhZWhneGxxeHdwa3N6ZHdtbGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODYzNTUsImV4cCI6MjA5MzA2MjM1NX0.3nd4f1Ym9cQ9OoKF2N2C2L4vRjVZ4WrRN7Wh6ToBBSc";
-    const supabaseUrl = 'https://faehgxlxwpkszdwmlej.supabase.co';
-    const supabase = createClient(supabaseUrl, SUPABASE_ANON_KEY);
-    const googleProvider = new GoogleAuthProvider();
+    const supabase = createClient('https://faehgxlxwpkszdwmlej.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhZWhneGxxeHdwa3N6ZHdtbGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODYzNTUsImV4cCI6MjA5MzA2MjM1NX0.3nd4f1Ym9cQ9OoKF2N2C2L4vRjVZ4WrRN7Wh6ToBBSc');
+
+    let currentUser = null, isAdmin = false, allNotes = [], editingNoteId = null;
+    let currentUploadXhr = null, isUploadingFile = false;
 
     // DOM elements
-    const headerLoginBtn = document.getElementById('header-login-btn'), headerAvatar = document.getElementById('header-avatar'), sidebarAuth = document.getElementById('sidebar-auth-section');
-    const adminUploadBtn = document.getElementById('admin-upload-btn'), uploadModal = document.getElementById('upload-modal'), closeModal = document.getElementById('close-modal-btn'), cancelUpload = document.getElementById('cancel-upload'), uploadForm = document.getElementById('upload-form');
-    const fileDrop = document.getElementById('file-drop-zone'), fileInput = document.getElementById('file-upload-input'), dropText = document.getElementById('file-drop-text');
+    const headerLoginBtn = document.getElementById('header-login-btn'), headerAvatar = document.getElementById('header-avatar'), adminUploadBtn = document.getElementById('admin-upload-btn');
+    const uploadModal = document.getElementById('upload-modal'), editModal = document.getElementById('edit-modal'), notesGrid = document.getElementById('notes-grid'), notesStatus = document.getElementById('notes-status');
+    const searchInput = document.getElementById('search-input'), filterBranch = document.getElementById('filter-branch'), filterSemester = document.getElementById('filter-semester');
+    const sharedBanner = document.getElementById('shared-note-banner-container');
+    const upLink = document.getElementById('up-link'), fileInput = document.getElementById('file-upload-input'), dropZone = document.getElementById('file-drop-zone');
     const progressContainer = document.getElementById('file-upload-progress-container'), progressBar = document.getElementById('file-upload-progress-bar'), progressPercent = document.getElementById('file-upload-percent'), fileNameSpan = document.getElementById('file-upload-filename');
-    const uploadSuccessDiv = document.getElementById('file-upload-success'), uploadErrorDiv = document.getElementById('file-upload-error'), upLink = document.getElementById('up-link');
-    const notesGrid = document.getElementById('notes-grid'), notesStatus = document.getElementById('notes-status');
-    const searchInput = document.getElementById('search-input'), filterBranch = document.getElementById('filter-branch'), filterSemester = document.getElementById('filter-semester'), sharedBannerContainer = document.getElementById('shared-note-banner-container');
-    let currentUser = null, isAdmin = false, allNotes = [], urlNoteId = new URLSearchParams(location.search).get('note') || null;
-    if(new URLSearchParams(location.search).get('branch')) filterBranch.value = new URLSearchParams(location.search).get('branch') || '';
-    if(new URLSearchParams(location.search).get('search')) searchInput.value = new URLSearchParams(location.search).get('search') || '';
 
-    function getAvatarUrl(u) { let name = u.displayName || u.email?.split('@')[0] || 'User'; return u.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=14b8a6&color=fff`; }
-    window.showToast = window.showToast || ((msg) => alert(msg));
-    function closeSidebar() { if(window.closeSidebarGlobal) window.closeSidebarGlobal(); }
+    let urlNoteId = new URLSearchParams(window.location.search).get('note') || new URLSearchParams(window.location.search).get('id');
 
-    function updateAuthUI(user) {
-      currentUser = user; isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
-      if(user) {
-        headerLoginBtn.style.display = 'none'; headerAvatar.style.display = 'block'; headerAvatar.src = getAvatarUrl(user);
-        adminUploadBtn.style.display = isAdmin ? 'flex' : 'none';
-        sidebarAuth.innerHTML = `<div class="flex items-center gap-3 mb-4"><img src="${getAvatarUrl(user)}" class="w-10 h-10 rounded-full"><div><p class="text-sm font-semibold">${user.displayName || user.email}</p></div></div><button id="sidebar-logout-btn" class="text-red-500 text-sm"><i class="fa-solid fa-sign-out"></i> Sign Out</button>`;
-        document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => { signOut(auth); closeSidebar(); });
-      } else {
-        headerLoginBtn.style.display = 'block'; headerAvatar.style.display = 'none'; adminUploadBtn.style.display = 'none';
-        sidebarAuth.innerHTML = `<button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg"><i class="fa-brands fa-google"></i> Sign In</button>`;
-        document.getElementById('sidebar-login-btn')?.addEventListener('click', () => signInWithPopup(auth, googleProvider));
-      }
-      filterAndRenderNotes();
+    // Helper functions
+    function showToast(msg, isErr = false) { const toast = document.getElementById('toast-message'); document.getElementById('toast-text').innerText = msg; toast.classList.remove('opacity-0', 'pointer-events-none'); toast.classList.add('opacity-100'); setTimeout(() => toast.classList.add('opacity-0', 'pointer-events-none'), 2500); }
+    function escapeHtml(str) { return str?.replace(/[&<>]/g, function(m){if(m==='&')return '&amp;';if(m==='<')return '&lt;';if(m==='>')return '&gt;';return m;}) || ''; }
+    function closeSidebar() { document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('sidebar-overlay').classList.add('hidden'); }
+    window.closeSidebar = closeSidebar;
+    window.showToast = showToast;
+
+    // File upload using Supabase Storage
+    async function uploadFileToSupabase(file) {
+      const ext = file.name.split('.').pop();
+      const filePath = `notes/${Date.now()}_${Math.random().toString(36).substring(2,8)}.${ext}`;
+      const { data, error } = await supabase.storage.from('Documents').upload(filePath, file, { cacheControl: '3600', upsert: false });
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from('Documents').getPublicUrl(filePath);
+      return publicUrl;
     }
-    onAuthStateChanged(auth, updateAuthUI);
-    headerLoginBtn.addEventListener('click', () => signInWithPopup(auth, googleProvider));
 
-    // File upload logic with fixed supabase key
-    let currentXhr = null, isUploadingFile = false;
-    function resetUploadUI() { if(currentXhr) currentXhr.abort(); isUploadingFile=false; progressContainer?.classList.add('hidden'); uploadSuccessDiv?.classList.add('hidden'); uploadErrorDiv?.classList.add('hidden'); if(dropText) dropText.innerText = 'Click to browse or drag & drop'; if(progressBar) progressBar.style.width='0%'; if(progressPercent) progressPercent.innerText='0%'; }
-    async function uploadToSupabase(file) {
-      if(!currentUser || !isAdmin) { uploadErrorDiv.innerText = 'Admin only'; uploadErrorDiv.classList.remove('hidden'); return; }
-      if(file.size > 50*1024*1024) { uploadErrorDiv.innerText = 'Max 50MB'; uploadErrorDiv.classList.remove('hidden'); return; }
-      resetUploadUI(); progressContainer.classList.remove('hidden'); fileNameSpan.innerText = file.name; dropText.innerText = 'Uploading...';
-      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      const storagePath = `notes/${currentUser.uid}/${Date.now()}_${safeName}`;
-      const xhr = new XMLHttpRequest(); currentXhr = xhr; isUploadingFile = true;
-      xhr.upload.addEventListener('progress', e => { if(e.lengthComputable){ let pct = Math.round(e.loaded/e.total*100); progressBar.style.width = pct+'%'; progressPercent.innerText = pct+'%'; } });
-      xhr.addEventListener('load', () => { currentXhr=null; isUploadingFile=false; if(xhr.status===200||xhr.status===201){ let publicUrl = `${supabaseUrl}/storage/v1/object/public/Documents/${storagePath}`; upLink.value = publicUrl; uploadSuccessDiv.classList.remove('hidden'); progressContainer.classList.add('hidden'); dropText.innerText = '✔ Uploaded'; window.showToast('File ready!'); } else { uploadErrorDiv.innerText = 'Upload failed'; uploadErrorDiv.classList.remove('hidden'); progressContainer.classList.add('hidden'); dropText.innerText = 'Retry?'; } });
-      xhr.addEventListener('error', () => { isUploadingFile=false; uploadErrorDiv.innerText = 'Network error'; uploadErrorDiv.classList.remove('hidden'); progressContainer.classList.add('hidden'); dropText.innerText = 'Click to browse'; });
-      const formData = new FormData(); formData.append('file', file);
-      xhr.open('POST', `${supabaseUrl}/storage/v1/object/Documents/${storagePath}`);
-      xhr.setRequestHeader('Authorization', `Bearer ${SUPABASE_ANON_KEY}`); xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
-      xhr.send(formData);
+    async function handleFileUpload(file) {
+      if (!isAdmin) { showToast("Only admins can upload files", true); return false; }
+      const maxSize = 25 * 1024 * 1024;
+      if (file.size > maxSize) { showToast("File too large (max 25MB)", true); return false; }
+      if (!['application/pdf','image/jpeg','image/png','image/jpg'].includes(file.type)) { showToast("Only PDF, JPG, PNG allowed", true); return false; }
+      
+      progressContainer.classList.remove('hidden'); fileNameSpan.innerText = file.name; progressBar.style.width = '0%'; progressPercent.innerText = '0%';
+      try {
+        const url = await uploadFileToSupabase(file);
+        upLink.value = url;
+        showToast("File uploaded! Link auto-filled");
+        return true;
+      } catch (err) { showToast("Upload failed: " + err.message, true); return false; }
+      finally { progressContainer.classList.add('hidden'); }
     }
-    if(fileDrop) fileDrop.addEventListener('click', () => fileInput?.click());
-    if(fileInput) fileInput.addEventListener('change', e => { if(e.target.files[0]) uploadToSupabase(e.target.files[0]); });
-    if(fileDrop) fileDrop.addEventListener('dragover', e => { e.preventDefault(); fileDrop.classList.add('drag-over'); });
-    if(fileDrop) fileDrop.addEventListener('dragleave', () => fileDrop.classList.remove('drag-over'));
-    if(fileDrop) fileDrop.addEventListener('drop', e => { e.preventDefault(); fileDrop.classList.remove('drag-over'); if(e.dataTransfer.files[0]) uploadToSupabase(e.dataTransfer.files[0]); });
 
-    function toggleUploadModal() { uploadModal.classList.toggle('hidden'); if(uploadModal.classList.contains('hidden')) resetUploadUI(); else { document.getElementById('upload-form')?.reset(); upLink.value=''; resetUploadUI(); } }
-    adminUploadBtn?.addEventListener('click', toggleUploadModal); closeModal?.addEventListener('click', toggleUploadModal); cancelUpload?.addEventListener('click', toggleUploadModal);
-    uploadForm?.addEventListener('submit', async (e) => { e.preventDefault(); const noteData = { branch: document.getElementById('up-branch').value, semester: document.getElementById('up-semester').value, subject: document.getElementById('up-subject').value.trim(), topic: document.getElementById('up-topic').value.trim(), tags: document.getElementById('up-tags').value.trim(), link: upLink.value.trim(), timestamp: new Date().toISOString() }; if(!noteData.link.match(/^https?:\/\//)) { alert('Valid URL required'); return; } await push(ref(db, 'notes'), noteData); window.showToast('Note added'); toggleUploadModal(); });
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', async e => { e.preventDefault(); dropZone.classList.remove('drag-over'); if(e.dataTransfer.files[0]) await handleFileUpload(e.dataTransfer.files[0]); });
+    fileInput.addEventListener('change', async e => { if(e.target.files[0]) await handleFileUpload(e.target.files[0]); });
+
+    // Upload modal
+    const toggleUpload = () => uploadModal.classList.toggle('hidden');
+    adminUploadBtn?.addEventListener('click', toggleUpload);
+    document.getElementById('close-modal-btn')?.addEventListener('click', toggleUpload);
+    document.getElementById('cancel-upload')?.addEventListener('click', toggleUpload);
+    document.getElementById('upload-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!isAdmin) { showToast("Unauthorized", true); return; }
+      const branch = document.getElementById('up-branch').value, semester = document.getElementById('up-semester').value, subject = document.getElementById('up-subject').value.trim(), topic = document.getElementById('up-topic').value.trim(), tags = document.getElementById('up-tags').value.trim(), link = upLink.value.trim();
+      if (!branch || !semester || !subject || !topic || !tags || !link) { showToast("All fields required", true); return; }
+      if (!link.startsWith('http')) { showToast("Invalid URL", true); return; }
+      await push(ref(db, 'notes'), { branch, semester, subject, topic, tags, link, timestamp: Date.now(), uid: currentUser?.uid });
+      showToast("Note published!");
+      toggleUpload(); document.getElementById('upload-form').reset(); upLink.value = '';
+    });
 
     // Edit modal logic
-    const editModal = document.getElementById('edit-modal'), closeEdit = document.getElementById('close-edit-modal-btn'), cancelEdit = document.getElementById('cancel-edit'), editFormElem = document.getElementById('edit-form');
-    window.openEditModal = (note) => { if(!isAdmin) return; document.getElementById('edit-note-id').value = note.id; document.getElementById('edit-branch').value = note.branch||''; document.getElementById('edit-semester').value = note.semester||''; document.getElementById('edit-subject').value = note.subject||''; document.getElementById('edit-topic').value = note.topic||''; document.getElementById('edit-tags').value = note.tags||''; document.getElementById('edit-link').value = note.link||''; editModal.classList.remove('hidden'); };
-    closeEdit?.addEventListener('click',()=>editModal.classList.add('hidden')); cancelEdit?.addEventListener('click',()=>editModal.classList.add('hidden'));
-    editFormElem?.addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('edit-note-id').value; const updates = { branch: document.getElementById('edit-branch').value, semester: document.getElementById('edit-semester').value, subject: document.getElementById('edit-subject').value.trim(), topic: document.getElementById('edit-topic').value.trim(), tags: document.getElementById('edit-tags').value.trim(), link: document.getElementById('edit-link').value.trim(), timestamp: new Date().toISOString() }; await update(ref(db, `notes/${id}`), updates); window.showToast('Updated'); editModal.classList.add('hidden'); filterAndRenderNotes(); });
+    const toggleEdit = () => editModal.classList.toggle('hidden');
+    document.getElementById('close-edit-modal-btn')?.addEventListener('click', toggleEdit);
+    document.getElementById('cancel-edit')?.addEventListener('click', toggleEdit);
+    window.openEditModal = (noteId) => {
+      if (!isAdmin) return;
+      const note = allNotes.find(n => n.id === noteId);
+      if (!note) return;
+      editingNoteId = noteId;
+      document.getElementById('edit-branch').value = note.branch || '';
+      document.getElementById('edit-semester').value = note.semester || '';
+      document.getElementById('edit-subject').value = note.subject || '';
+      document.getElementById('edit-topic').value = note.topic || '';
+      document.getElementById('edit-tags').value = note.tags || '';
+      document.getElementById('edit-link').value = note.link || '';
+      toggleEdit();
+    };
+    document.getElementById('edit-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!editingNoteId) return;
+      const updates = { branch: document.getElementById('edit-branch').value, semester: document.getElementById('edit-semester').value, subject: document.getElementById('edit-subject').value.trim(), topic: document.getElementById('edit-topic').value.trim(), tags: document.getElementById('edit-tags').value.trim(), link: document.getElementById('edit-link').value.trim(), timestamp: Date.now() };
+      await update(ref(db, `notes/${editingNoteId}`), updates);
+      showToast("Note updated");
+      toggleEdit();
+    });
 
-    window.deleteNote = async (id) => { if(!isAdmin || !confirm('Delete note?')) return; await remove(ref(db, `notes/${id}`)); window.showToast('Deleted'); };
-    window.shareNoteLink = (noteId, topic) => { let url = location.origin+location.pathname+'?note='+encodeURIComponent(noteId); if(navigator.share) navigator.share({title:topic, url}); else navigator.clipboard?.writeText(url).then(()=>window.showToast('Link copied')); };
+    window.deleteNote = async (id) => { if(confirm("Delete permanent?")) { await remove(ref(db, `notes/${id}`)); showToast("Deleted"); } };
+    window.shareNoteLink = (noteId, topic) => {
+      const url = `${window.location.origin}${window.location.pathname}?note=${encodeURIComponent(noteId)}`;
+      if(navigator.share) navigator.share({ title: topic, url }).catch(()=>navigator.clipboard?.writeText(url));
+      else navigator.clipboard?.writeText(url);
+      showToast("Link copied");
+    };
 
-    const branchAbbr = { "Computer Science Engineering":"CSE","Information Technology":"IT","Mechanical Engineering":"MECH","Civil Engineering":"CIVIL","Electrical Engineering":"EE","Electrical and Electronics Engineering":"EEE","Electronics & Communication Engineering":"ECE","Automobile Engineering":"AUTO","Common":"COMMON" };
-    function renderCards(notesArr) {
-      if(!notesArr.length) { notesStatus.innerHTML = '<i class="fa-regular fa-folder-open text-4xl text-gray-300"></i><p class="mt-2">No notes found</p>'; notesStatus.classList.remove('hidden'); notesGrid.classList.add('hidden'); return; }
+    // Render notes
+    function renderNotes(notes) {
+      if (!notes.length) { notesStatus.classList.remove('hidden'); notesStatus.innerHTML = '<i class="fa-regular fa-folder-open text-4xl text-gray-300 mb-2 block"></i><p>No notes found.</p>'; notesGrid.classList.add('hidden'); return; }
       notesStatus.classList.add('hidden'); notesGrid.classList.remove('hidden'); notesGrid.innerHTML = '';
-      notesArr.forEach(n => { let semShort = (n.semester || '').replace('Semester','Sem'); let tagsList = (n.tags || '').split(',').filter(t=>t.trim()); let linkIcon = n.link.includes('drive.google.com') ? 'fa-brands fa-google-drive' : (n.link.includes('youtube') ? 'fa-brands fa-youtube' : 'fa-regular fa-file-pdf'); let btnText = n.link.includes('youtube') ? 'Watch' : 'Download';
-        const card = document.createElement('div'); card.className = "bg-white p-5 rounded-2xl shadow-sm border hover:shadow-xl transition relative group";
-        card.innerHTML = `${isAdmin ? `<div class="absolute top-2 right-14 flex gap-1 z-10"><button onclick="openEditModal(${JSON.stringify(n).replace(/"/g, '&quot;')})" class="bg-blue-500 text-white p-1 rounded-full w-7 h-7 text-xs"><i class="fa-solid fa-pencil"></i></button><button onclick="deleteNote('${n.id}')" class="bg-red-500 text-white p-1 rounded-full w-7 h-7 text-xs"><i class="fa-solid fa-trash"></i></button></div>` : ''}
-        <button onclick="shareNoteLink('${n.id}','${n.topic?.replace(/'/g, "\\'")}')" class="absolute top-3 right-3 w-8 h-8 bg-gray-100 rounded-full hover:bg-teal-100"><i class="fa-solid fa-share-nodes text-sm"></i></button>
-        <div class="flex gap-2 mb-3"><span class="bg-teal-50 text-teal-700 text-[10px] font-bold px-2 py-0.5 rounded">${branchAbbr[n.branch] || n.branch?.slice(0,4)}</span><span class="bg-yellow-50 text-yellow-700 text-[10px] font-bold px-2 py-0.5 rounded">${semShort}</span></div>
-        <h3 class="font-bold text-lg">${n.topic || 'Untitled'}</h3><p class="text-sm text-gray-500 mt-1"><i class="fa-regular fa-book"></i> ${n.subject}</p>
-        <div class="flex flex-wrap gap-1 my-3">${tagsList.map(t => `<span class="text-[11px] bg-gray-100 px-2 py-0.5 rounded">#${t.trim()}</span>`).join('')}</div>
-        <a href="${n.link}" target="_blank" class="block w-full text-center bg-gray-50 py-2 rounded-xl group-hover:bg-teal-500 group-hover:text-white transition"><i class="${linkIcon} mr-1"></i> ${btnText}</a>`;
+      notes.forEach(note => {
+        const shortBranch = (note.branch === 'Common' ? 'ALL' : (note.branch?.slice(0,4).toUpperCase() || 'GEN'));
+        const shareOnclick = `shareNoteLink('${note.id.replace(/'/g, "\\'")}', '${note.topic.replace(/'/g, "\\'")}')`;
+        const editBtn = isAdmin ? `<button onclick="openEditModal('${note.id}')" class="w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"><i class="fa-solid fa-pencil text-xs"></i></button><button onclick="deleteNote('${note.id}')" class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600"><i class="fa-solid fa-trash-can text-xs"></i></button>` : '';
+        const card = document.createElement('div'); card.className = "bg-white p-5 rounded-2xl shadow-md border border-gray-100 card-hover flex flex-col relative";
+        card.innerHTML = `<div class="absolute top-3 right-3 flex gap-1 z-10">${editBtn}</div><button onclick="${shareOnclick}" class="absolute top-3 right-14 w-7 h-7 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-teal-100 hover:text-teal-600"><i class="fa-solid fa-share-nodes text-xs"></i></button><div class="flex gap-2 mb-4 pr-20"><span class="bg-teal-50 text-teal-700 text-[10px] font-bold px-2 py-1 rounded-md">${escapeHtml(shortBranch)}</span><span class="bg-yellow-50 text-yellow-700 text-[10px] font-bold px-2 py-1 rounded-md">${escapeHtml(note.semester || '')}</span></div><h3 class="font-bold text-lg mb-1 pr-6">${escapeHtml(note.topic)}</h3><p class="text-sm text-gray-500 mb-3"><i class="fa-solid fa-book mr-1"></i> ${escapeHtml(note.subject)}</p><div class="flex flex-wrap gap-1.5 mb-5">${(note.tags||'').split(',').map(t=>`<span class="text-xs bg-gray-100 px-2 py-0.5 rounded-md">#${escapeHtml(t.trim())}</span>`).join('')}</div><a href="${escapeHtml(note.link)}" target="_blank" class="w-full text-center bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2.5 rounded-xl transition">View / Download</a>`;
         notesGrid.appendChild(card);
       });
     }
-    function filterAndRenderNotes() {
-      const banner = document.getElementById('shared-note-banner'); if(banner) banner.remove();
+
+    function filterAndRender() {
       let filtered = [...allNotes];
-      if(urlNoteId) { filtered = filtered.filter(n => n.id === urlNoteId); if(filtered.length && allNotes.length){ let bannerDiv = document.createElement('div'); bannerDiv.id='shared-note-banner'; bannerDiv.className='bg-teal-50 p-3 rounded-xl text-center mb-4'; bannerDiv.innerHTML=`<span class="text-teal-700"><i class="fa-solid fa-link"></i> Shared note</span> <button id="clear-shared" class="underline ml-3 text-sm">Show all notes</button>`; sharedBannerContainer.appendChild(bannerDiv); document.getElementById('clear-shared')?.addEventListener('click',()=>{ urlNoteId=null; history.replaceState({},'',location.pathname); filterAndRenderNotes(); }); } else if(!filtered.length && allNotes.length){ notesStatus.innerHTML = '<p>Note not found</p><button id="show-all-reset" class="bg-teal-500 text-white px-3 py-1 rounded mt-2">Browse all</button>'; notesStatus.classList.remove('hidden'); notesGrid.classList.add('hidden'); document.getElementById('show-all-reset')?.addEventListener('click',()=>{ urlNoteId=null; history.replaceState({},'',location.pathname); filterAndRenderNotes(); }); return; }
-      } else { const query = searchInput.value.toLowerCase(); const branchVal = filterBranch.value; const semVal = filterSemester.value; filtered = allNotes.filter(n => (branchVal===''|| n.branch===branchVal|| n.branch==='Common') && (semVal===''|| n.semester===semVal) && (query===''|| n.subject?.toLowerCase().includes(query)|| n.topic?.toLowerCase().includes(query)|| n.tags?.toLowerCase().includes(query))); }
-      renderCards(filtered);
+      const searchTerm = searchInput.value.toLowerCase();
+      const branchVal = filterBranch.value;
+      const semVal = filterSemester.value;
+      if (urlNoteId) filtered = filtered.filter(n => n.id === urlNoteId);
+      else filtered = filtered.filter(n => (branchVal === "" || n.branch === branchVal || n.branch === "Common") && (semVal === "" || n.semester === semVal) && (searchTerm === "" || n.subject.toLowerCase().includes(searchTerm) || n.topic.toLowerCase().includes(searchTerm) || (n.tags||'').toLowerCase().includes(searchTerm)));
+      renderNotes(filtered);
+      if (urlNoteId && filtered.length === 1) {
+        if (!document.getElementById('shared-note-banner')) {
+          const bannerDiv = document.createElement('div'); bannerDiv.id = 'shared-note-banner'; bannerDiv.className = 'bg-teal-50 border border-teal-200 rounded-xl p-3 mb-4 text-center flex justify-center gap-3'; bannerDiv.innerHTML = `<span><i class="fa-solid fa-share-alt mr-1"></i> Showing shared note</span><button id="clear-shared-note" class="text-teal-600 underline text-sm">Show all notes</button>`;
+          sharedBanner.appendChild(bannerDiv); document.getElementById('clear-shared-note')?.addEventListener('click', () => { urlNoteId = null; window.history.replaceState({}, '', window.location.pathname); sharedBanner.innerHTML = ''; filterAndRender(); });
+        }
+      } else { sharedBanner.innerHTML = ''; }
     }
-    const notesRefDb = ref(db, 'notes');
-    onValue(notesRefDb, snap => { allNotes = []; if(snap.exists()) snap.forEach(c => allNotes.push({ id: c.key, ...c.val() })); allNotes.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp)); filterAndRenderNotes(); });
-    searchInput?.addEventListener('input', () => { if(urlNoteId){ urlNoteId=null; history.replaceState({},'',location.pathname); } filterAndRenderNotes(); });
-    filterBranch?.addEventListener('change',()=>{ if(urlNoteId){ urlNoteId=null; history.replaceState({},'',location.pathname); } filterAndRenderNotes(); });
-    filterSemester?.addEventListener('change',()=>{ if(urlNoteId){ urlNoteId=null; history.replaceState({},'',location.pathname); } filterAndRenderNotes(); });
+
+    // Firebase listener
+    onValue(ref(db, 'notes'), snap => { allNotes = []; snap.forEach(c => allNotes.push({ id: c.key, ...c.val() })); allNotes.sort((a,b)=>(b.timestamp||0)-(a.timestamp||0)); filterAndRender(); });
+    searchInput.addEventListener('input', () => { if(urlNoteId){ urlNoteId=null; window.history.replaceState({},'',window.location.pathname); } filterAndRender(); });
+    filterBranch.addEventListener('change', () => { if(urlNoteId){ urlNoteId=null; window.history.replaceState({},'',window.location.pathname); } filterAndRender(); });
+    filterSemester.addEventListener('change', () => { if(urlNoteId){ urlNoteId=null; window.history.replaceState({},'',window.location.pathname); } filterAndRender(); });
+
+    // Auth
+    onAuthStateChanged(auth, (user) => {
+      currentUser = user;
+      isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
+      if(user) {
+        headerLoginBtn.style.display = 'none'; headerAvatar.style.display = 'block'; headerAvatar.src = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName||user.email)}&background=14b8a6&color=fff`;
+        adminUploadBtn.style.display = isAdmin ? 'flex' : 'none';
+        document.getElementById('sidebar-auth-section').innerHTML = `<div class="flex items-center gap-2"><img src="${headerAvatar.src}" class="w-8 h-8 rounded-full"><span class="text-sm font-medium">${user.displayName || user.email}</span><button id="sidebar-logout" class="text-red-500 text-xs ml-auto"><i class="fa-solid fa-sign-out-alt"></i> Logout</button></div>`;
+        document.getElementById('sidebar-logout')?.addEventListener('click', () => signOut(auth));
+      } else {
+        headerLoginBtn.style.display = 'block'; headerAvatar.style.display = 'none'; adminUploadBtn.style.display = 'none';
+        document.getElementById('sidebar-auth-section').innerHTML = `<button id="sidebar-signin" class="w-full bg-teal-100 text-teal-700 py-2 rounded-lg font-semibold"><i class="fa-brands fa-google"></i> Sign In</button>`;
+        document.getElementById('sidebar-signin')?.addEventListener('click', () => signInWithPopup(auth, new GoogleAuthProvider()));
+      }
+    });
+    headerLoginBtn.onclick = () => signInWithPopup(auth, new GoogleAuthProvider());
+    document.getElementById('share-btn')?.addEventListener('click', () => { navigator.clipboard.writeText(window.location.href); showToast("Page link copied!"); });
+
+    // Sidebar
+    document.getElementById('menu-btn').onclick = () => { document.getElementById('sidebar').classList.remove('-translate-x-full'); document.getElementById('sidebar-overlay').classList.remove('hidden'); };
+    document.getElementById('close-btn').onclick = closeSidebar;
+    document.getElementById('sidebar-overlay').onclick = closeSidebar;
+    document.getElementById('branches-toggle-btn')?.addEventListener('click', () => { document.getElementById('branches-submenu').classList.toggle('open'); document.getElementById('branches-arrow').classList.toggle('rotate-180'); });
   </script>
 </body>
 </html>

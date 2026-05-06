@@ -70,6 +70,20 @@
             background-color: #f0fdfa;
             transform: scale(1.02);
         }
+
+        /* Branch submenu styling */
+        .branch-submenu {
+            display: none;
+            padding-left: 2.5rem;
+        }
+        .branch-submenu.open {
+            display: block;
+        }
+        @media (hover: hover) {
+            .branch-menu-item:hover .branch-submenu {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -96,22 +110,6 @@
                 <button id="menu-btn" class="text-gray-800 text-xl focus:outline-none p-1 ml-1"><i class="fa-solid fa-bars"></i></button>
             </div>
         </header>
-
-     <style>
-  /* Branch submenu – hover on desktop, click on touch */
-  .branch-submenu {
-    display: none;
-    padding-left: 2.5rem;
-  }
-  .branch-submenu.open {
-    display: block;
-  }
-  @media (hover: hover) {
-    .branch-menu-item:hover .branch-submenu {
-      display: block;
-    }
-  }
-</style>
 
 <!-- ========================================== -->
 <!-- SIDEBAR DRAWER                             -->

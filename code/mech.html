@@ -24,6 +24,7 @@
             --mech-accent: #facc15;
             --mech-ring: rgba(2, 132, 199, 0.4);
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--mech-bg-from) 0%, var(--mech-bg-to) 100%);
@@ -32,6 +33,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .bg-grid {
             background-image:
                 linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
@@ -39,22 +41,43 @@
             background-size: 50px 50px;
             flex: 1;
         }
+
         .modal-enter {
             animation: modalFadeIn 0.3s ease-out forwards;
         }
+
         @keyframes modalFadeIn {
             from { opacity: 0; transform: scale(0.95) translateY(-20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
+
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
         }
+
         #toast-message {
             transition: opacity 0.3s ease;
             z-index: 100;
         }
+
+        #file-drop-zone {
+            transition: all 0.25s ease;
+        }
+        #file-drop-zone.drag-over {
+            border-color: var(--mech-primary);
+            background-color: #f0f9ff;
+            transform: scale(1.02);
+        }
+
+        .mech-btn-primary { background-color: var(--mech-primary); color: #fff; }
+        .mech-btn-primary:hover { background-color: var(--mech-primary-dark); }
+        .mech-text { color: var(--mech-primary); }
+        .mech-border { border-color: var(--mech-primary-light); }
+        .mech-bg-soft { background-color: #f0f9ff; }
+        .mech-ring:focus { ring-color: var(--mech-ring); }
+        .mech-gradient-top { background: linear-gradient(to right, var(--mech-primary), var(--mech-accent)); }
     </style>
 </head>
 <body class="text-gray-800">
@@ -72,7 +95,7 @@
                 <a href="index.html" class="hover:opacity-80 transition"><span class="text-sky-600 italic"><i class="fa-solid fa-user-graduate"></i></span> 𝗗𝗜𝗣𝗟𝗢𝗠𝗔 𝗖𝗔𝗠𝗣𝗨𝗦</a>
             </div>
             <div class="flex items-center gap-3">
-                <button id="admin-upload-btn" style="display: none;" class="text-sm font-bold bg-sky-600 text-white px-4 py-1.5 rounded-full hover:bg-sky-700 transition shadow border border-sky-700 items-center gap-1.5">
+                <button id="admin-upload-btn" style="display: none;" class="text-sm font-bold bg-sky-600 text-white px-4 py-1.5 rounded-full hover:bg-sky-700 transition shadow border border-sky-800 items-center gap-1.5">
                     <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 </button>
                 <button id="share-btn" class="text-gray-600 hover:text-sky-600 transition p-2 rounded-full hover:bg-gray-100"><i class="fa-solid fa-share-nodes"></i></button>
@@ -113,7 +136,8 @@
                     <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
                 </ul>
             </nav>
-            <div class="p-4 border-t" id="sidebar-auth-section"></div>
+            <div class="p-4 border-t" id="sidebar-auth-section">
+            </div>
         </aside>
 
         <!-- ========== MAIN CONTENT ========== -->
@@ -126,14 +150,16 @@
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
                     Mech <span class="text-sky-600">Notes Library</span>
                 </h1>
-                <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">All Mechanical Engineering & Common diploma notes — search, filter by semester, and download instantly.</p>
+                <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">All Mechanical Engineering plus Common diploma notes — search, filter by semester, and download instantly.</p>
 
                 <div id="group-card-container"></div>
-                <script defer src="group-card.js"></script>
+                <script src="group-card.js"></script>
                 <br><br>
 
                 <!-- SEARCH & FILTERS (No Branch Filter - Mech Only) -->
                 <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-3xl mx-auto flex flex-col sm:flex-row gap-3 md:gap-4">
+
+                    <!-- Search Bar -->
                     <div class="relative flex-1 group">
                         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-sky-500 transition-colors group-focus-within:text-sky-600">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -141,6 +167,8 @@
                         <input type="text" id="search-input" placeholder="Search by subject, topic or tags..."
                         class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
                     </div>
+
+                    <!-- Semester Filter Only -->
                     <div class="relative sm:w-56 group">
                         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-sky-500">
                             <i class="fa-solid fa-layer-group"></i>
@@ -158,23 +186,29 @@
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </div>
                     </div>
+
                 </div>
             </div>
 
+            <!-- Shared Note Banner (dynamically inserted) -->
             <div id="shared-note-banner-container"></div>
 
+            <!-- Notes Loading / Empty State -->
             <div id="notes-status" class="w-full text-center py-12 text-gray-500">
                 <i class="fa-solid fa-spinner fa-spin text-3xl text-sky-500 mb-3"></i>
                 <p>Loading Mechanical study materials...</p>
             </div>
 
-            <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden"></div>
+            <!-- Notes Grid -->
+            <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden">
+            </div>
+
         </main>
 
-        <!-- ========== ADMIN UPLOAD MODAL (Manual Link only) ========== -->
+        <!-- ========== ADMIN UPLOAD MODAL ========== -->
         <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
             <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-500 to-yellow-400 rounded-t-2xl"></div>
+                <div class="absolute top-0 left-0 w-full h-1 mech-gradient-top rounded-t-2xl"></div>
                 <div class="flex justify-between items-center p-6 border-b border-gray-100">
                     <h2 class="text-xl font-bold text-gray-800"><i class="fa-solid fa-cloud-arrow-up text-sky-500 mr-2"></i> Upload New Note</h2>
                     <button id="close-modal-btn" class="text-gray-400 hover:text-red-500 transition text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -187,7 +221,6 @@
                                 <option value="" disabled selected>Select Branch</option>
                                 <option value="Common">All Branches Common</option>
                                 <option value="Mechanical Engineering">Mechanical Engineering</option>
-                                <!-- Other branches omitted to keep it simple; admin can still choose these when uploading -->
                                 <option value="Computer Science Engineering">Computer Science Engineering</option>
                                 <option value="Information Technology">Information Technology</option>
                                 <option value="Civil Engineering">Civil Engineering</option>
@@ -228,8 +261,37 @@
                         <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
                         <input type="text" id="up-tags" placeholder="e.g. thermo, energy, important" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-sky-400 text-sm">
                     </div>
+
+                    <!-- DIRECT PDF/UPLOAD -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link (Google Drive, YouTube, etc.)</label>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">
+                            <i class="fa-solid fa-file-arrow-up text-sky-500 mr-1"></i> Upload File (PDF / Image)
+                        </label>
+                        <div id="file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group">
+                            <input type="file" id="file-upload-input" accept=".pdf,.jpg,.jpeg,.png,.webp" class="hidden" />
+                            <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-300 group-hover:text-sky-400 transition-colors mb-2 block"></i>
+                            <p id="file-drop-text" class="text-sm text-gray-500 font-medium">Click to browse or drag & drop</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Max 50 MB · PDF, JPG, PNG, WebP</p>
+                        </div>
+                        <div id="file-upload-progress-container" class="hidden mt-3">
+                            <div class="flex items-center gap-3">
+                                <span id="file-upload-filename" class="text-sm font-medium text-gray-700 truncate max-w-[200px]"></span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden max-w-[250px]">
+                                    <div id="file-upload-progress-bar" class="h-full bg-sky-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                                <span id="file-upload-percent" class="text-xs font-semibold text-sky-600 w-10 text-right">0%</span>
+                            </div>
+                        </div>
+                        <div id="file-upload-success" class="hidden mt-2 text-sm text-sky-600 font-medium">
+                            <i class="fa-solid fa-circle-check mr-1"></i> File uploaded! Link auto‑filled below.
+                        </div>
+                        <div id="file-upload-error" class="hidden mt-2 text-sm text-red-500 font-medium">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="file-upload-error-text">Upload failed.</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link (auto‑filled after upload)</label>
                         <input type="url" id="up-link" placeholder="https://..." required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-sky-400 text-sm">
                     </div>
                     <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
@@ -313,7 +375,7 @@
 
         <!-- ========== FOOTER ========== -->
         <footer class="relative footer-bg border-t border-gray-200/60 mt-auto bg-white/90 backdrop-blur-sm" style="margin-bottom:-50%;">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-500 to-yellow-400"></div>
+            <div class="absolute top-0 left-0 w-full h-1 mech-gradient-top"></div>
             <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
                 <div class="relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden mb-8">
                     <div class="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -397,22 +459,64 @@
         </footer>
     </div>
 
-    <!-- ========== Firebase v8 Compat SDKs (deferred) ========== -->
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <!-- ========== UI Sidebar & Toast Logic ========== -->
+    <script>
+        (function() {
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-btn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
 
-    <!-- ========== Group card (external) ========== -->
-    <script defer src="group-card.js"></script>
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+            function closeSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+            menuBtn.addEventListener('click', toggleSidebar);
+            closeBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
 
-    <!-- ========== MAIN LOGIC ========== -->
-    <script defer>
-        // Prevent duplicate Firebase initialization
-        const originalInit = firebase.initializeApp;
-        firebase.initializeApp = function (...args) {
-            if (firebase.apps.length) return firebase.app();
-            return originalInit.apply(this, args);
-        };
+            window.showToast = function(msg) {
+                const toast = document.getElementById('toast-message');
+                const toastText = document.getElementById('toast-text');
+                if (!toast) return;
+                toastText.textContent = msg || 'Link copied!';
+                toast.classList.remove('opacity-0', 'pointer-events-none');
+                toast.classList.add('opacity-100');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'pointer-events-none');
+                    toast.classList.remove('opacity-100');
+                }, 2000);
+            };
+
+            window.shareApp = function() {
+                const data = { title: 'Diploma Campus – Mech Notes Library', url: window.location.href };
+                if (navigator.share) {
+                    navigator.share(data).catch(() => {});
+                } else {
+                    navigator.clipboard?.writeText(window.location.href).then(() => {
+                        showToast('🔗 Link copied to clipboard');
+                    }).catch(() => {
+                        showToast('Press Ctrl+C to copy');
+                    });
+                }
+            };
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) shareBtn.addEventListener('click', shareApp);
+            window.closeSidebar = closeSidebar;
+            window.toggleSidebar = toggleSidebar;
+        })();
+    </script>
+
+    <!-- ========== Firebase + Supabase Logic ========== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
         const firebaseConfig = {
             apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
@@ -424,11 +528,16 @@
             appId: "1:330061663460:web:9d22eb10f9a821445b30f1"
         };
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.database();
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        const supabase = createClient(
+            'https://faehgxlxwpkszdwmlej.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhZWhneGxxeHdwa3N6ZHdtbGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODYzNTUsImV4cCI6MjA5MzA2MjM1NX0.3nd4f1Ym9cQ9OoKF2N2C2L4vRjVZ4WrRN7Wh6ToBBSc'
+        );
+        const googleProvider = new GoogleAuthProvider();
 
-        // ---------- DOM Elements ----------
+        // DOM Elements
         const headerLoginBtn = document.getElementById('header-login-btn');
         const headerAvatar = document.getElementById('header-avatar');
         const sidebarAuthSection = document.getElementById('sidebar-auth-section');
@@ -438,6 +547,17 @@
         const cancelUploadBtn = document.getElementById('cancel-upload');
         const uploadForm = document.getElementById('upload-form');
         const submitUploadBtn = document.getElementById('submit-upload');
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileUploadInput = document.getElementById('file-upload-input');
+        const fileDropText = document.getElementById('file-drop-text');
+        const fileUploadProgressContainer = document.getElementById('file-upload-progress-container');
+        const fileUploadFilename = document.getElementById('file-upload-filename');
+        const fileUploadProgressBar = document.getElementById('file-upload-progress-bar');
+        const fileUploadPercent = document.getElementById('file-upload-percent');
+        const fileUploadSuccess = document.getElementById('file-upload-success');
+        const fileUploadError = document.getElementById('file-upload-error');
+        const fileUploadErrorText = document.getElementById('file-upload-error-text');
         const upLinkInput = document.getElementById('up-link');
 
         const editModal = document.getElementById('edit-modal');
@@ -461,49 +581,35 @@
 
         let currentUser = null;
         let isAdmin = false;
-        let allNotes = [];
+        let isUploading = false;
+        let currentXhr = null;
 
-        // ---------- Toast Helper ----------
-        function showToast(msg) {
-            const toast = document.getElementById('toast-message');
-            const toastText = document.getElementById('toast-text');
-            if (!toast) return;
-            toastText.textContent = msg || 'Link copied!';
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            toast.classList.add('opacity-100');
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'pointer-events-none');
-                toast.classList.remove('opacity-100');
-            }, 2000);
-        }
+        // ★ Mech + Common only ★
+        const ALLOWED_BRANCHES = ["Mechanical Engineering", "Common"];
 
-        // Share the whole app
-        document.getElementById('share-btn').addEventListener('click', () => {
-            const data = { title: 'Diploma Campus – Mech Notes Library', url: window.location.href };
-            if (navigator.share) {
-                navigator.share(data).catch(() => {});
-            } else {
-                navigator.clipboard?.writeText(window.location.href).then(() => showToast('🔗 Link copied'));
-            }
-        });
-
-        // Share a specific note
-        window.shareNoteLink = function (noteId, topic) {
-            const shareUrl = window.location.origin + window.location.pathname + '?note=' + encodeURIComponent(noteId);
-            const shareTitle = topic || 'Check out this Mechanical study note';
-            if (navigator.share) {
-                navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
-            } else {
-                navigator.clipboard?.writeText(shareUrl).then(() => showToast(' Note link copied!'));
-            }
-        };
-
-        // ---------- Auth UI ----------
         function getAvatarUrl(user) {
             if (!user) return '';
-            const name = user.displayName || user.email?.split('@')[0] || 'Student';
-            return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0284c7&color=fff&size=150`;
+            const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
+            return user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=0284c7&color=fff&size=150`;
         }
+
+        function escapeForOnclick(str) {
+            if (!str) return '';
+            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
+        }
+
+        window.shareNoteLink = function(noteId, topic) {
+            const shareUrl = window.location.origin + window.location.pathname + '?note=' + encodeURIComponent(noteId);
+            const shareTitle = topic || 'Check out this Mechanical study note';
+            const shareData = { title: shareTitle, text: shareTitle + ' — Diploma Campus', url: shareUrl };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {
+                    navigator.clipboard?.writeText(shareUrl).then(() => window.showToast(' Note link copied!')).catch(() => window.showToast('🔗 ' + shareUrl));
+                });
+            } else {
+                navigator.clipboard?.writeText(shareUrl).then(() => window.showToast(' Note link copied to clipboard')).catch(() => window.showToast('🔗 ' + shareUrl));
+            }
+        };
 
         function updateAuthUI(user) {
             currentUser = user;
@@ -512,13 +618,15 @@
             if (user) {
                 headerLoginBtn.style.display = 'none';
                 headerAvatar.style.display = 'block';
-                headerAvatar.src = getAvatarUrl(user);
+                const avatarUrl = getAvatarUrl(user);
+                headerAvatar.src = avatarUrl;
+                headerAvatar.onerror = () => { headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=0284c7&color=fff`; };
                 adminUploadBtn.style.display = isAdmin ? 'flex' : 'none';
 
                 const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
                 sidebarAuthSection.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="${getAvatarUrl(user)}" class="w-10 h-10 rounded-full border border-gray-200 object-cover">
+                        <img src="${avatarUrl}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=0284c7&color=fff'" alt="User" class="w-10 h-10 rounded-full border border-gray-200 object-cover bg-white">
                         <div class="overflow-hidden">
                             <p class="text-sm font-semibold text-gray-800 truncate">${displayName}</p>
                             <p class="text-xs text-gray-500 truncate">${user.email}</p>
@@ -528,54 +636,160 @@
                         <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
                     </button>
                 `;
-                document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
-                    auth.signOut();
-                    document.getElementById('sidebar')?.classList.add('-translate-x-full');
-                    document.getElementById('sidebar-overlay')?.classList.add('hidden');
-                });
+                document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => { signOut(auth); closeSidebar(); });
             } else {
-                headerLoginBtn.style.display = 'block';
-                headerAvatar.style.display = 'none';
-                adminUploadBtn.style.display = 'none';
-
+                currentUser = null; isAdmin = false;
+                headerLoginBtn.style.display = 'block'; headerAvatar.style.display = 'none'; adminUploadBtn.style.display = 'none';
                 sidebarAuthSection.innerHTML = `
                     <div class="text-center py-2">
                         <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
-                        <button id="sidebar-login-btn" class="w-full bg-sky-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-sky-600 shadow-sm transition">
-                            <i class="fa-brands fa-google mr-1"></i> Sign In
-                        </button>
+                        <button id="sidebar-login-btn" class="w-full bg-sky-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-sky-600 shadow-sm transition"><i class="fa-brands fa-google mr-1"></i> Sign In</button>
                     </div>
                 `;
-                document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
-                    auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(err => console.warn(err));
-                    document.getElementById('sidebar')?.classList.add('-translate-x-full');
-                    document.getElementById('sidebar-overlay')?.classList.add('hidden');
-                });
+                document.getElementById('sidebar-login-btn')?.addEventListener('click', () => { signInWithPopup(auth, googleProvider).catch(err => console.warn(err)); closeSidebar(); });
             }
             filterAndRenderNotes();
         }
 
-        auth.onAuthStateChanged(updateAuthUI);
-        headerLoginBtn.addEventListener('click', () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()));
+        onAuthStateChanged(auth, (user) => updateAuthUI(user));
+        headerLoginBtn.addEventListener('click', () => signInWithPopup(auth, googleProvider).catch(err => console.warn(err)));
 
-        // Sidebar toggle
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.toggle('hidden');
-        });
-        document.getElementById('close-btn').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
-        });
-        document.getElementById('sidebar-overlay').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
-        });
+        // Read URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search');
+        const noteIdParam = urlParams.get('note') || urlParams.get('id');
+        let urlNoteId = noteIdParam || null;
+        if (searchParam) searchInput.value = searchParam;
 
-        // ---------- Admin Upload Modal (Manual Link) ----------
+        let allNotes = [];
+
+        // ---------- SUPABASE FILE UPLOAD ----------
+        function resetFileUploadUI() {
+            fileUploadInput.value = '';
+            fileUploadProgressContainer.classList.add('hidden');
+            fileUploadSuccess.classList.add('hidden');
+            fileUploadError.classList.add('hidden');
+            fileDropText.textContent = 'Click to browse or drag & drop';
+            fileUploadProgressBar.style.width = '0%';
+            fileUploadPercent.textContent = '0%';
+            fileUploadFilename.textContent = '';
+            if (currentXhr) { currentXhr.abort(); currentXhr = null; }
+            isUploading = false;
+            submitUploadBtn.disabled = false;
+            submitUploadBtn.innerHTML = 'Upload to Library';
+        }
+
+        async function startFileUpload(file) {
+            if (!currentUser || !isAdmin) {
+                fileUploadErrorText.textContent = 'Only admins can upload files.';
+                fileUploadError.classList.remove('hidden');
+                return;
+            }
+            const MAX_SIZE = 50 * 1024 * 1024;
+            if (file.size > MAX_SIZE) {
+                fileUploadErrorText.textContent = 'File is too large. Max 50 MB allowed.';
+                fileUploadError.classList.remove('hidden');
+                return;
+            }
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
+            if (!allowedTypes.includes(file.type)) {
+                fileUploadErrorText.textContent = 'Unsupported file type. Please upload PDF, JPG, PNG, or WebP.';
+                fileUploadError.classList.remove('hidden');
+                return;
+            }
+            fileUploadError.classList.add('hidden');
+            fileUploadSuccess.classList.add('hidden');
+            fileUploadProgressContainer.classList.remove('hidden');
+            fileUploadFilename.textContent = file.name;
+            fileUploadProgressBar.style.width = '0%';
+            fileUploadPercent.textContent = '0%';
+            fileDropText.textContent = 'Uploading...';
+            submitUploadBtn.disabled = true;
+            submitUploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading file...';
+
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+            const storagePath = `notes/${currentUser.uid}/${Date.now()}_${safeName}`;
+            const supabaseUrl = 'https://faehgxlxwpkszdwmlej.supabase.co';
+            const endpoint = `${supabaseUrl}/storage/v1/object/Documents/${storagePath}`;
+
+            const xhr = new XMLHttpRequest();
+            currentXhr = xhr;
+            isUploading = true;
+            xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                    const progress = Math.round((e.loaded / e.total) * 100);
+                    fileUploadProgressBar.style.width = progress + '%';
+                    fileUploadPercent.textContent = progress + '%';
+                }
+            });
+            xhr.addEventListener('load', () => {
+                currentXhr = null; isUploading = false;
+                if (xhr.status === 200 || xhr.status === 201) {
+                    const publicUrl = `${supabaseUrl}/storage/v1/object/public/Documents/${storagePath}`;
+                    upLinkInput.value = publicUrl;
+                    fileUploadSuccess.classList.remove('hidden');
+                    fileUploadProgressContainer.classList.add('hidden');
+                    fileDropText.textContent = ' ' + file.name;
+                    fileUploadError.classList.add('hidden');
+                    submitUploadBtn.disabled = false;
+                    submitUploadBtn.innerHTML = 'Upload to Library';
+                    window.showToast(' File uploaded! Link auto‑filled.');
+                } else {
+                    let errorMsg = 'Upload failed.';
+                    try { const resp = JSON.parse(xhr.responseText); errorMsg = resp.message || resp.error || errorMsg; } catch (_) {}
+                    fileUploadErrorText.textContent = errorMsg;
+                    fileUploadError.classList.remove('hidden');
+                    fileUploadProgressContainer.classList.add('hidden');
+                    fileDropText.textContent = 'Click to browse or drag & drop';
+                    submitUploadBtn.disabled = false;
+                    submitUploadBtn.innerHTML = 'Upload to Library';
+                }
+            });
+            xhr.addEventListener('error', () => {
+                currentXhr = null; isUploading = false;
+                fileUploadErrorText.textContent = 'Network error. Please try again.';
+                fileUploadError.classList.remove('hidden');
+                fileUploadProgressContainer.classList.add('hidden');
+                fileDropText.textContent = 'Click to browse or drag & drop';
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            });
+            xhr.addEventListener('abort', () => {
+                currentXhr = null; isUploading = false;
+                fileUploadProgressContainer.classList.add('hidden');
+                fileDropText.textContent = 'Click to browse or drag & drop';
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            });
+            const formData = new FormData();
+            formData.append('file', file);
+            xhr.open('POST', endpoint);
+            xhr.setRequestHeader('Authorization', `Bearer ${supabase.supabaseKey}`);
+            xhr.setRequestHeader('apikey', supabase.supabaseKey);
+            xhr.setRequestHeader('x-upsert', 'true');
+            xhr.send(formData);
+        }
+
+        if (fileDropZone) {
+            fileDropZone.addEventListener('click', () => { if (!isUploading) fileUploadInput.click(); });
+            fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); e.stopPropagation(); fileDropZone.classList.add('drag-over'); });
+            fileDropZone.addEventListener('dragleave', (e) => { e.preventDefault(); e.stopPropagation(); fileDropZone.classList.remove('drag-over'); });
+            fileDropZone.addEventListener('drop', (e) => {
+                e.preventDefault(); e.stopPropagation(); fileDropZone.classList.remove('drag-over');
+                if (isUploading) return;
+                const files = e.dataTransfer.files;
+                if (files.length > 0) startFileUpload(files[0]);
+            });
+        }
+        if (fileUploadInput) {
+            fileUploadInput.addEventListener('change', (e) => { if (e.target.files.length > 0) startFileUpload(e.target.files[0]); });
+        }
+
+        // ---------- ADMIN UPLOAD MODAL ----------
         const toggleUploadModal = () => {
             uploadModal.classList.toggle('hidden');
-            if (!uploadModal.classList.contains('hidden')) uploadForm.reset();
+            if (!uploadModal.classList.contains('hidden')) { uploadForm.reset(); resetFileUploadUI(); upLinkInput.value = ''; }
+            else { if (currentXhr) { currentXhr.abort(); currentXhr = null; } submitUploadBtn.disabled = false; submitUploadBtn.innerHTML = 'Upload to Library'; }
         };
         adminUploadBtn.addEventListener('click', toggleUploadModal);
         closeModalBtn.addEventListener('click', toggleUploadModal);
@@ -583,42 +797,38 @@
 
         uploadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            submitUploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+            const originalBtnHtml = submitUploadBtn.innerHTML;
+            submitUploadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading...`;
             submitUploadBtn.disabled = true;
-
             const branch = document.getElementById('up-branch').value;
             const semester = document.getElementById('up-semester').value;
             const subject = document.getElementById('up-subject').value.trim();
             const topic = document.getElementById('up-topic').value.trim();
             const tags = document.getElementById('up-tags').value.trim();
             const link = upLinkInput.value.trim();
-
             if (!link.match(/^https?:\/\/.+/)) {
                 alert("Please enter a valid URL starting with http:// or https://");
-                submitUploadBtn.innerHTML = 'Upload to Library';
+                submitUploadBtn.innerHTML = originalBtnHtml;
                 submitUploadBtn.disabled = false;
                 return;
             }
-
-            const newNote = {
-                branch, semester, subject, topic, tags, link,
-                timestamp: new Date().toISOString()
-            };
-
+            const newNote = { branch, semester, subject, topic, tags, link, timestamp: new Date().toISOString() };
             try {
-                await db.ref('notes').push().set(newNote);
-                showToast(' Note uploaded successfully!');
+                const notesRef = ref(db, 'notes');
+                const newNoteRef = push(notesRef);
+                await set(newNoteRef, newNote);
+                window.showToast(' Note uploaded successfully!');
                 toggleUploadModal();
             } catch (error) {
                 console.error("Upload failed:", error);
                 alert("Failed to upload. Ensure you are logged in as admin.");
             } finally {
-                submitUploadBtn.innerHTML = 'Upload to Library';
+                submitUploadBtn.innerHTML = originalBtnHtml;
                 submitUploadBtn.disabled = false;
             }
         });
 
-        // ---------- Admin Edit Modal ----------
+        // ---------- EDIT MODAL ----------
         const toggleEditModal = () => editModal.classList.toggle('hidden');
         closeEditModalBtn.addEventListener('click', toggleEditModal);
         cancelEditBtn.addEventListener('click', toggleEditModal);
@@ -626,76 +836,91 @@
         window.openEditModal = (note) => {
             if (!isAdmin) return;
             editNoteId.value = note.id;
-            editBranch.value = note.branch;
-            editSemester.value = note.semester;
-            editSubject.value = note.subject;
-            editTopic.value = note.topic;
-            editTags.value = note.tags;
-            editLink.value = note.link;
+            editBranch.value = note.branch || '';
+            editSemester.value = note.semester || '';
+            editSubject.value = note.subject || '';
+            editTopic.value = note.topic || '';
+            editTags.value = note.tags || '';
+            editLink.value = note.link || '';
             toggleEditModal();
         };
 
         editForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            submitEditBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+            const noteId = editNoteId.value;
+            if (!noteId) return;
+            const originalBtnHtml = submitEditBtn.innerHTML;
+            submitEditBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
             submitEditBtn.disabled = true;
-
             const link = editLink.value.trim();
             if (!link.match(/^https?:\/\/.+/)) {
                 alert("Please enter a valid URL starting with http:// or https://");
-                submitEditBtn.innerHTML = 'Save Changes';
+                submitEditBtn.innerHTML = originalBtnHtml;
                 submitEditBtn.disabled = false;
                 return;
             }
-
-            const updates = {
+            const updatedNote = {
                 branch: editBranch.value,
                 semester: editSemester.value,
                 subject: editSubject.value.trim(),
                 topic: editTopic.value.trim(),
                 tags: editTags.value.trim(),
-                link,
+                link: link,
                 timestamp: new Date().toISOString()
             };
-
             try {
-                await db.ref(`notes/${editNoteId.value}`).update(updates);
-                showToast(' Note updated successfully!');
+                await update(ref(db, `notes/${noteId}`), updatedNote);
+                window.showToast(' Note updated successfully!');
                 toggleEditModal();
             } catch (error) {
                 console.error("Update failed:", error);
                 alert("Failed to update note.");
             } finally {
-                submitEditBtn.innerHTML = 'Save Changes';
+                submitEditBtn.innerHTML = originalBtnHtml;
                 submitEditBtn.disabled = false;
             }
         });
 
+        // ---------- FETCH & RENDER NOTES ----------
+        const notesRef = ref(db, 'notes');
+        onValue(notesRef, (snapshot) => {
+            allNotes = [];
+            if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                    const noteData = childSnapshot.val();
+                    if (noteData.branch && ALLOWED_BRANCHES.includes(noteData.branch)) {
+                        allNotes.push({ id: childSnapshot.key, ...noteData });
+                    }
+                });
+                allNotes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                filterAndRenderNotes();
+            } else {
+                notesStatus.innerHTML = `<p class="text-gray-500">No Mech study materials available yet.</p>`;
+                notesStatus.classList.remove('hidden');
+                notesGrid.classList.add('hidden');
+            }
+        });
+
+        const branchAbbreviations = {
+            "Mechanical Engineering": "MECH",
+            "Common": "COMMON"
+        };
+
         window.deleteNote = async (noteId) => {
             if (!isAdmin) return;
-            if (!confirm('Are you sure you want to delete this note?')) return;
+            if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
             try {
-                await db.ref(`notes/${noteId}`).remove();
-                showToast(' Note deleted');
+                await remove(ref(db, `notes/${noteId}`));
+                window.showToast(' Note deleted');
             } catch (error) {
                 console.error("Delete failed:", error);
                 alert("Failed to delete note.");
             }
         };
 
-        // ---------- Notes Rendering ----------
-        const branchAbbr = {
-            "Computer Science Engineering": "CSE", "Information Technology": "IT",
-            "Mechanical Engineering": "MECH", "Civil Engineering": "CIVIL",
-            "Electrical Engineering": "EE", "Electrical and Electronics Engineering": "EEE",
-            "Electronics & Communication Engineering": "ECE", "Automobile Engineering": "AUTO",
-            "Chemical Engineering": "CHEM", "Plastic Engineering": "PLASTIC",
-            "Architecture Assistantship": "ARCH", "Agriculture Engineering": "AGRI", "Common": "COMMON"
-        };
-
-        function renderCards(notes) {
-            if (!notes.length) {
-                notesStatus.innerHTML = '<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No Mechanical notes found.</p>';
+        const renderCards = (notes) => {
+            if (notes.length === 0) {
+                notesStatus.innerHTML = `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No Mech notes found matching your search.</p>`;
                 notesStatus.classList.remove('hidden');
                 notesGrid.classList.add('hidden');
                 return;
@@ -703,20 +928,20 @@
             notesStatus.classList.add('hidden');
             notesGrid.classList.remove('hidden');
             notesGrid.innerHTML = '';
-
             notes.forEach(note => {
                 const card = document.createElement('div');
                 card.className = "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-sky-200 transition-all duration-300 group flex flex-col justify-between relative";
 
-                const shortBranch = branchAbbr[note.branch] || note.branch.substring(0, 4).toUpperCase();
-                const shortSem = note.semester.replace("Semester", "Sem");
-                let linkIcon = 'fa-download', btnText = 'Download';
-                if (note.link.includes('drive.google.com')) { linkIcon = 'fa-brands fa-google-drive'; btnText = 'Download from Drive'; }
-                else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) { linkIcon = 'fa-brands fa-youtube'; btnText = 'Watch Video'; }
-                else if (note.link.includes('.pdf')) { linkIcon = 'fa-regular fa-file-pdf'; }
+                let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0,4).toUpperCase();
+                let shortSem = note.semester.replace("Semester", "Sem");
+                let linkIcon = 'fa-download', buttonText = 'Download';
+                if (note.link.includes('drive.google.com')) { linkIcon = 'fa-brands fa-google-drive'; buttonText = 'Download from Drive'; }
+                else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) { linkIcon = 'fa-brands fa-youtube'; buttonText = 'Watch Video'; }
+                else if (note.link.includes('.pdf') || note.link.includes('firebasestorage') || note.link.includes('supabase')) { linkIcon = 'fa-regular fa-file-pdf'; buttonText = 'Download'; }
 
-                const escapedTopic = note.topic.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                const escapedNoteId = note.id.replace(/'/g, "\\'");
+                const escapedTopic = escapeForOnclick(note.topic);
+                const escapedNoteId = escapeForOnclick(note.id);
+                const branchBadgeClass = note.branch === "Common" ? "bg-teal-50 text-teal-700 border border-teal-100" : "bg-sky-50 text-sky-700 border border-sky-100";
 
                 card.innerHTML = `
                     ${isAdmin ? `<div class="absolute top-3 right-12 z-10 flex gap-1">
@@ -726,23 +951,19 @@
                     <button onclick="shareNoteLink('${escapedNoteId}', '${escapedTopic}')" class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-sky-100 hover:text-sky-600 shadow-sm transition-all hover:scale-110 z-10" title="Share this note"><i class="fa-solid fa-share-nodes text-xs"></i></button>
                     <div>
                         <div class="flex gap-2 mb-4 pr-20">
-                            <span class="bg-sky-50 text-sky-700 border border-sky-100 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortBranch}</span>
+                            <span class="${branchBadgeClass} text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortBranch}</span>
                             <span class="bg-yellow-50 text-yellow-700 border border-yellow-100 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">${shortSem}</span>
                         </div>
                         <h3 class="font-bold text-gray-800 text-lg leading-snug mb-1 group-hover:text-sky-600 transition pr-6">${note.topic}</h3>
                         <p class="text-sm text-gray-500 font-medium mb-3"><i class="fa-solid fa-book text-gray-400 mr-1"></i> ${note.subject}</p>
-                        <div class="flex flex-wrap gap-1.5 mb-5">
-                            ${note.tags.split(',').map(t => `<span class="text-[11px] bg-gray-100 font-medium text-gray-600 px-2 py-0.5 rounded-md">#${t.trim()}</span>`).join('')}
-                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">${note.tags.split(',').map(t => `<span class="text-[11px] bg-gray-100 font-medium text-gray-600 px-2 py-0.5 rounded-md">#${t.trim()}</span>`).join('')}</div>
                     </div>
                     <a href="${note.link}" target="_blank" class="w-full block text-center bg-gray-50 border border-gray-200 group-hover:bg-sky-500 group-hover:border-sky-500 text-gray-700 group-hover:text-white font-semibold py-2.5 rounded-xl transition-all duration-300">
-                        <i class="${linkIcon} mr-1"></i> ${btnText}
+                        <i class="${linkIcon} mr-1"></i> ${buttonText}
                     </a>
                 `;
                 notesGrid.appendChild(card);
             });
-
-            // Scroll to shared note if loaded via URL
             if (urlNoteId && notes.length === 1) {
                 setTimeout(() => {
                     const firstCard = notesGrid.querySelector('.bg-white');
@@ -753,110 +974,55 @@
                     }
                 }, 300);
             }
-        }
+        };
 
-        // ---------- URL Params & Filtering ----------
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchParam = urlParams.get('search');
-        const noteIdParam = urlParams.get('note') || urlParams.get('id');
-        let urlNoteId = noteIdParam || null;
-
-        if (searchParam) searchInput.value = searchParam;
-
-        // Filter only Mechanical Engineering and Common notes
-        const ALLOWED_BRANCHES = ["Mechanical Engineering", "Common"];
-
-        function filterAndRenderNotes() {
+        const filterAndRenderNotes = () => {
             const existingBanner = document.getElementById('shared-note-banner');
             if (existingBanner) existingBanner.remove();
-
             let notesToRender;
-
             if (urlNoteId) {
                 notesToRender = allNotes.filter(note => note.id === urlNoteId);
-                if (!notesToRender.length && allNotes.length) {
-                    notesStatus.innerHTML = '<i class="fa-solid fa-circle-exclamation text-4xl text-yellow-400 mb-4 block"></i><p class="text-gray-500 font-medium">Shared note not found.</p><button id="show-all-from-banner" class="mt-4 px-4 py-2 bg-sky-500 text-white rounded-lg">Show All Mech Notes</button>';
+                if (notesToRender.length === 0 && allNotes.length > 0) {
+                    notesStatus.innerHTML = `<i class="fa-solid fa-circle-exclamation text-4xl text-yellow-400 mb-4 block"></i><p class="text-gray-500 font-medium">Shared note not found. It may have been removed.</p><button id="show-all-from-banner" class="mt-4 px-4 py-2 bg-sky-500 text-white rounded-lg text-sm font-medium hover:bg-sky-600 transition">Show All Mech Notes</button>`;
                     notesStatus.classList.remove('hidden');
                     notesGrid.classList.add('hidden');
-                    document.getElementById('show-all-from-banner')?.addEventListener('click', () => {
-                        urlNoteId = null;
-                        window.history.replaceState({}, '', window.location.origin + window.location.pathname);
-                        filterAndRenderNotes();
-                    });
+                    document.getElementById('show-all-from-banner')?.addEventListener('click', () => { urlNoteId = null; const newUrl = window.location.origin + window.location.pathname; window.history.replaceState({}, '', newUrl); filterAndRenderNotes(); });
                     return;
                 }
-                if (!notesToRender.length && !allNotes.length) return;
-
+                if (notesToRender.length === 0 && allNotes.length === 0) {
+                    notesStatus.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-3xl text-sky-500 mb-3"></i><p>Loading Mech study materials...</p>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    return;
+                }
                 const banner = document.createElement('div');
                 banner.id = 'shared-note-banner';
-                banner.className = 'w-full max-w-5xl mx-auto bg-sky-50 border border-sky-200 rounded-xl p-3 mb-4 text-center';
-                banner.innerHTML = '<span class="text-sky-700 text-sm font-medium"><i class="fa-solid fa-share-nodes mr-1"></i> Shared Note</span> <button id="clear-shared-note-btn" class="text-sky-600 underline text-sm">Show All Mech Notes</button>';
+                banner.className = 'w-full max-w-5xl mx-auto bg-sky-50 border border-sky-200 rounded-xl p-3 mb-4 text-center flex items-center justify-center gap-3 flex-wrap';
+                banner.innerHTML = `<span class="text-sky-700 text-sm font-medium"><i class="fa-solid fa-share-nodes mr-1"></i> Shared Mech Note</span><button id="clear-shared-note-btn" class="text-sky-600 underline text-sm font-medium hover:text-sky-800">Show All Mech Notes</button>`;
                 sharedNoteBannerContainer.appendChild(banner);
-                document.getElementById('clear-shared-note-btn')?.addEventListener('click', () => {
-                    urlNoteId = null;
-                    window.history.replaceState({}, '', window.location.origin + window.location.pathname);
-                    filterAndRenderNotes();
-                });
+                document.getElementById('clear-shared-note-btn')?.addEventListener('click', () => { urlNoteId = null; const newUrl = window.location.origin + window.location.pathname; window.history.replaceState({}, '', newUrl); const b = document.getElementById('shared-note-banner'); if (b) b.remove(); filterAndRenderNotes(); });
             } else {
                 const query = searchInput.value.toLowerCase();
                 const semester = filterSemester.value;
-
                 notesToRender = allNotes.filter(note => {
-                    const matchSearch = note.subject.toLowerCase().includes(query) ||
-                                      note.topic.toLowerCase().includes(query) ||
-                                      note.tags.toLowerCase().includes(query);
+                    const matchSearch = note.subject.toLowerCase().includes(query) || note.topic.toLowerCase().includes(query) || note.tags.toLowerCase().includes(query);
                     const matchSem = semester === "" || note.semester === semester;
-                    const matchBranch = ALLOWED_BRANCHES.includes(note.branch);
-                    return matchSearch && matchSem && matchBranch;
+                    return matchSearch && matchSem;
                 });
             }
-
             renderCards(notesToRender);
-        }
+        };
 
-        searchInput.addEventListener('input', () => { if (urlNoteId) clearSharedNoteParam(); filterAndRenderNotes(); });
-        filterSemester.addEventListener('change', () => { if (urlNoteId) clearSharedNoteParam(); filterAndRenderNotes(); });
-
-        function clearSharedNoteParam() {
-            urlNoteId = null;
-            window.history.replaceState({}, '', window.location.origin + window.location.pathname);
-            const b = document.getElementById('shared-note-banner');
-            if (b) b.remove();
-        }
-
-        // ---------- Realtime Database Listener ----------
-        const notesRef = db.ref('notes');
-        let initialLoadTimeout = setTimeout(() => {
-            if (notesStatus.innerText.includes('Loading')) {
-                notesStatus.innerHTML = '<i class="fa-solid fa-clock text-3xl text-yellow-500 mb-3"></i><p class="text-gray-600 font-medium">Taking longer than expected…</p><p class="text-sm text-gray-500 mt-1">Make sure you are signed in and data exists.</p>';
-            }
-        }, 8000);
-
-        notesRef.on('value',
-            (snap) => {
-                clearTimeout(initialLoadTimeout);
-                allNotes = [];
-                if (snap.exists()) {
-                    snap.forEach(child => allNotes.push({ id: child.key, ...child.val() }));
-                    allNotes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                }
-                filterAndRenderNotes();
-            },
-            (error) => {
-                clearTimeout(initialLoadTimeout);
-                console.error('Firebase read error:', error);
-                notesStatus.innerHTML = `<i class="fa-solid fa-circle-exclamation text-3xl text-red-400 mb-3"></i><p class="text-red-600 font-medium">⚠️ Could not load notes.</p><p class="text-sm text-gray-500 mt-1">${error.message}</p>`;
-                notesStatus.classList.remove('hidden');
-                notesGrid.classList.add('hidden');
-            }
-        );
-
-        console.log('Mech Notes page ready. Firebase connected check:');
-        db.ref('.info/connected').on('value', snap => console.log('Firebase connected:', snap.val()));
+        searchInput.addEventListener('input', () => { if (urlNoteId) { urlNoteId = null; const newUrl = window.location.origin + window.location.pathname; window.history.replaceState({}, '', newUrl); const b = document.getElementById('shared-note-banner'); if (b) b.remove(); } filterAndRenderNotes(); });
+        filterSemester.addEventListener('change', () => { if (urlNoteId) { urlNoteId = null; const newUrl = window.location.origin + window.location.pathname; window.history.replaceState({}, '', newUrl); const b = document.getElementById('shared-note-banner'); if (b) b.remove(); } filterAndRenderNotes(); });
     </script>
 
-    <!-- ========== Likes (deferred) ========== -->
-    <script defer src="likes.js"></script>
+    <!-- Firebase compat SDKs (required for likes.js) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
+    <!-- Site like button -->
+    <script src="likes.js"></script>
 </body>
-</html> 
+</html>

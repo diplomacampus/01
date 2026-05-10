@@ -15,6 +15,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- html2canvas for sharing note card as image -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
+    </script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -594,45 +598,71 @@
         let currentUser = null;
         let isAdmin = false;
         let currentUploadTask = null;
+        window.allNotes = []; // global for share image fallback
 
         // Helper: Get avatar URL with fallback
         function getAvatarUrl(user) {
-            if (!user) return '';
+            if (!user) return 'https://ui-avatars.com/api/?name=Admin&background=14b8a6&color=fff';
             const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
             return user.photoURL ||
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
         }
 
-        // Helper: Escape string for safe use in onclick attribute
-        function escapeForOnclick(str) {
-            if (!str) return '';
-            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
-        }
+        // ★ Share note card as image ★
+        window.shareNoteCard = async function(noteId) {
+            const card = document.getElementById('note-card-' + noteId);
+            if (!card) {
+                // fallback to link share
+                const note = window.allNotes.find(n => n.id === noteId);
+                if (note) fallbackShareLink(note.link, note.topic);
+                return;
+            }
+            try {
+                // Capture card as high‑quality image
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: '#ffffff'
+                });
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                const file = new File([blob], 'note-card.png', { type: 'image/png' });
 
-        // ★ Share a specific note link ★
-        window.shareNoteLink = function(link, topic) {
-            const shareTitle = topic || 'Check out this study note';
-            const shareData = {
-                title: shareTitle,
-                text: shareTitle + ' — Diploma Campus',
-                url: link
-            };
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => {
-                    navigator.clipboard?.writeText(link).then(() => {
-                        window.showToast('📋 Note link copied!');
-                    }).catch(() => {
-                        window.showToast('🔗 ' + link);
+                // Prefer sharing the image file via Web Share API
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: 'Study Note',
+                        files: [file]
                     });
-                });
-            } else {
-                navigator.clipboard?.writeText(link).then(() => {
-                    window.showToast('📋 Note link copied to clipboard');
-                }).catch(() => {
-                    window.showToast('🔗 ' + link);
-                });
+                } else {
+                    // Fallback: share the link instead
+                    const note = window.allNotes.find(n => n.id === noteId);
+                    if (note) {
+                        if (navigator.share) {
+                            await navigator.share({ title: note.topic, url: note.link });
+                        } else {
+                            navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
+                        }
+                    }
+                }
+            } catch (error) {
+                console.warn('Image share failed, falling back to link:', error);
+                const note = window.allNotes.find(n => n.id === noteId);
+                if (note) {
+                    navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
+                }
             }
         };
+
+        function fallbackShareLink(link, topic) {
+            if (navigator.share) {
+                navigator.share({ title: topic, url: link }).catch(() => {
+                    navigator.clipboard?.writeText(link).then(() => window.showToast('📋 Note link copied!'));
+                });
+            } else {
+                navigator.clipboard?.writeText(link).then(() => window.showToast('📋 Note link copied!'));
+            }
+        }
 
         // Update UI based on auth state (Header + Sidebar)
         function updateAuthUI(user) {
@@ -722,8 +752,6 @@
         if (searchParam) {
             searchInput.value = searchParam;
         }
-
-        let allNotes = [];
 
         // ---------- ADMIN FILE UPLOAD (Fast, direct to Firebase Storage) ----------
         function resetFileUploadUI() {
@@ -901,6 +929,14 @@
                 return;
             }
 
+            // Capture uploader info
+            let uploadedBy = 'Admin';
+            let uploadedByPhoto = getAvatarUrl(null);
+            if (currentUser) {
+                uploadedBy = currentUser.displayName || currentUser.email?.split('@')[0] || 'Admin';
+                uploadedByPhoto = getAvatarUrl(currentUser);
+            }
+
             const newNote = {
                 branch,
                 semester,
@@ -908,6 +944,8 @@
                 topic,
                 tags,
                 link,
+                uploadedBy,
+                uploadedByPhoto,
                 timestamp: new Date().toISOString()
             };
 
@@ -969,6 +1007,8 @@
                 topic: editTopic.value.trim(),
                 tags: editTags.value.trim(),
                 link: link,
+                uploadedBy: undefined,  // keep original uploader info if not changed
+                uploadedByPhoto: undefined,
                 timestamp: new Date().toISOString()
             };
 
@@ -988,18 +1028,16 @@
         // ---------- FETCH & RENDER NOTES ----------
         const notesRef = ref(db, 'notes');
         onValue(notesRef, (snapshot) => {
-            allNotes = [];
+            const notes = [];
             if (snapshot.exists()) {
                 snapshot.forEach((childSnapshot) => {
-                    allNotes.push({ id: childSnapshot.key, ...childSnapshot.val() });
+                    notes.push({ id: childSnapshot.key, ...childSnapshot.val() });
                 });
-                allNotes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                filterAndRenderNotes();
-            } else {
-                notesStatus.innerHTML = `<p class="text-gray-500">No study materials available yet.</p>`;
-                notesStatus.classList.remove('hidden');
-                notesGrid.classList.add('hidden');
+                notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             }
+            window.allNotes = notes; // expose globally for share fallback
+            allNotes = notes;
+            filterAndRenderNotes();
         });
 
         // Branch abbreviations
@@ -1050,6 +1088,7 @@
                 const card = document.createElement('div');
                 card.className =
                     "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
+                card.id = `note-card-${note.id}`;
 
                 let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0, 4).toUpperCase();
                 let shortSem = note.semester.replace("Semester", "Sem");
@@ -1067,12 +1106,14 @@
                     buttonText = 'Download / View';
                 }
 
-                const escapedTopic = escapeForOnclick(note.topic);
-                const escapedLink = escapeForOnclick(note.link);
+                // Format upload date
+                const uploadDate = note.timestamp ?
+                    new Date(note.timestamp).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) :
+                    '';
 
-                // Share button (always visible)
+                // Share button (now calls image share)
                 const shareButtonHtml = `
-                    <button onclick="shareNoteLink('${escapedLink}', '${escapedTopic}')"
+                    <button onclick="shareNoteCard('${note.id}')"
                         class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-teal-100 hover:text-teal-600 shadow-sm transition-all hover:scale-110 z-10"
                         title="Share this note">
                         <i class="fa-solid fa-share-nodes text-xs"></i>
@@ -1095,6 +1136,18 @@
                     </div>
                 ` : '';
 
+                // Uploader avatar & name + date
+                const uploaderHtml = `
+                    <div class="flex items-center gap-2 mt-4 mb-3">
+                        <img src="${note.uploadedByPhoto || 'https://ui-avatars.com/api/?name=Admin&background=14b8a6&color=fff'}"
+                             class="w-6 h-6 rounded-full object-cover border border-gray-200"
+                             crossorigin="anonymous"
+                             onerror="this.src='https://ui-avatars.com/api/?name=User&background=14b8a6&color=fff'">
+                        <span class="text-xs font-medium text-gray-600 truncate max-w-[120px]">${note.uploadedBy || 'Admin'}</span>
+                        <span class="text-xs text-gray-400 ml-auto">${uploadDate}</span>
+                    </div>
+                `;
+
                 card.innerHTML = `
                     ${adminButtonsHtml}
                     ${shareButtonHtml}
@@ -1105,9 +1158,10 @@
                         </div>
                         <h3 class="font-bold text-gray-800 text-lg leading-snug mb-1 group-hover:text-teal-600 transition pr-6">${note.topic}</h3>
                         <p class="text-sm text-gray-500 font-medium mb-3"><i class="fa-solid fa-book text-gray-400 mr-1"></i> ${note.subject}</p>
-                        <div class="flex flex-wrap gap-1.5 mb-5">
+                        <div class="flex flex-wrap gap-1.5 mb-2">
                             ${note.tags.split(',').map(t => `<span class="text-[11px] bg-gray-100 font-medium text-gray-600 px-2 py-0.5 rounded-md">#${t.trim()}</span>`).join('')}
                         </div>
+                        ${uploaderHtml}
                     </div>
                     <a href="${note.link}" target="_blank" class="w-full block text-center bg-gray-50 border border-gray-200 group-hover:bg-teal-500 group-hover:border-teal-500 text-gray-700 group-hover:text-white font-semibold py-2.5 rounded-xl transition-all duration-300">
                         <i class="${linkIcon} mr-1"></i> ${buttonText}

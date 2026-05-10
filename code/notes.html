@@ -15,10 +15,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- html2canvas for sharing note card as image -->
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
-    </script>
-
+    <!-- html2canvas removed – sharing now uses a plain URL -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -199,8 +196,10 @@
                     </div>
 
                 </div>
-
             </div>
+
+            <!-- Shared Note Banner (dynamically inserted) -->
+            <div id="shared-note-banner-container"></div>
 
             <!-- Notes Loading / Empty State -->
             <div id="notes-status" class="w-full text-center py-12 text-gray-500">
@@ -594,11 +593,12 @@
         const searchInput = document.getElementById('search-input');
         const filterBranch = document.getElementById('filter-branch');
         const filterSemester = document.getElementById('filter-semester');
+        const sharedNoteBannerContainer = document.getElementById('shared-note-banner-container');
 
         let currentUser = null;
         let isAdmin = false;
         let currentUploadTask = null;
-        window.allNotes = []; // global for share image fallback
+        window.allNotes = []; // global for share fallback (not used for image, but kept for compatibility)
 
         // Helper: Get avatar URL with fallback
         function getAvatarUrl(user) {
@@ -608,61 +608,37 @@
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
         }
 
-        // ★ Share note card as image ★
-        window.shareNoteCard = async function(noteId) {
-            const card = document.getElementById('note-card-' + noteId);
-            if (!card) {
-                // fallback to link share
-                const note = window.allNotes.find(n => n.id === noteId);
-                if (note) fallbackShareLink(note.link, note.topic);
-                return;
-            }
-            try {
-                // Capture card as high‑quality image
-                const canvas = await html2canvas(card, {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: false,
-                    backgroundColor: '#ffffff'
-                });
-                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-                const file = new File([blob], 'note-card.png', { type: 'image/png' });
+        // Escape helper for inline onclick attributes
+        function escapeForOnclick(str) {
+            if (!str) return '';
+            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
+        }
 
-                // Prefer sharing the image file via Web Share API
-                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({
-                        title: 'Study Note',
-                        files: [file]
-                    });
-                } else {
-                    // Fallback: share the link instead
-                    const note = window.allNotes.find(n => n.id === noteId);
-                    if (note) {
-                        if (navigator.share) {
-                            await navigator.share({ title: note.topic, url: note.link });
-                        } else {
-                            navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
-                        }
-                    }
-                }
-            } catch (error) {
-                console.warn('Image share failed, falling back to link:', error);
-                const note = window.allNotes.find(n => n.id === noteId);
-                if (note) {
-                    navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
-                }
-            }
-        };
-
-        function fallbackShareLink(link, topic) {
+        // ★ Share note via URL (replaces image‑based sharing)
+        window.shareNoteLink = function(noteId, topic) {
+            const shareUrl = window.location.origin + window.location.pathname + '?note=' + encodeURIComponent(noteId);
+            const shareTitle = topic || 'Check out this study note';
+            const shareData = {
+                title: shareTitle,
+                text: shareTitle + ' — Diploma Campus',
+                url: shareUrl
+            };
             if (navigator.share) {
-                navigator.share({ title: topic, url: link }).catch(() => {
-                    navigator.clipboard?.writeText(link).then(() => window.showToast('📋 Note link copied!'));
+                navigator.share(shareData).catch(() => {
+                    navigator.clipboard?.writeText(shareUrl).then(() => {
+                        window.showToast(' Note link copied!');
+                    }).catch(() => {
+                        window.showToast('🔗 ' + shareUrl);
+                    });
                 });
             } else {
-                navigator.clipboard?.writeText(link).then(() => window.showToast('📋 Note link copied!'));
+                navigator.clipboard?.writeText(shareUrl).then(() => {
+                    window.showToast(' Note link copied to clipboard');
+                }).catch(() => {
+                    window.showToast('🔗 ' + shareUrl);
+                });
             }
-        }
+        };
 
         // Update UI based on auth state (Header + Sidebar)
         function updateAuthUI(user) {
@@ -742,6 +718,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const branchParam = urlParams.get('branch');
         const searchParam = urlParams.get('search');
+        const noteIdParam = urlParams.get('note') || urlParams.get('id');
+        let urlNoteId = noteIdParam || null;
 
         if (branchParam) {
             const optionExists = Array.from(filterBranch.options).some(opt => opt.value === branchParam);
@@ -1028,7 +1006,7 @@
                 });
                 notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             }
-            window.allNotes = notes; // expose globally for share fallback
+            window.allNotes = notes; // expose globally for any remaining fallback
             allNotes = notes;
             filterAndRenderNotes();
         });
@@ -1063,7 +1041,7 @@
             }
         };
 
-        // Render Cards
+        // Render Cards (updated share button + shared note highlight)
         const renderCards = (notes) => {
             if (notes.length === 0) {
                 notesStatus.innerHTML =
@@ -1104,9 +1082,11 @@
                     new Date(note.timestamp).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) :
                     '';
 
-                // Share button (now calls image share)
+                // Share button (now uses shareNoteLink)
+                const escapedTopic = escapeForOnclick(note.topic);
+                const escapedNoteId = escapeForOnclick(note.id);
                 const shareButtonHtml = `
-                    <button onclick="shareNoteCard('${note.id}')"
+                    <button onclick="shareNoteLink('${escapedNoteId}', '${escapedTopic}')"
                         class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-teal-100 hover:text-teal-600 shadow-sm transition-all hover:scale-110 z-10"
                         title="Share this note">
                         <i class="fa-solid fa-share-nodes text-xs"></i>
@@ -1129,7 +1109,7 @@
                     </div>
                 ` : '';
 
-                // ★ REMOVED AVATAR (DP) and replaced with fixed "DiplomaCampus" name
+                // Uploader info (fixed DiplomaCampus)
                 const uploaderHtml = `
                     <div class="flex items-center justify-between mt-4 mb-3">
                         <span class="text-xs font-medium text-gray-600">DiplomaCampus</span>
@@ -1158,32 +1138,127 @@
                 `;
                 notesGrid.appendChild(card);
             });
+
+            // Highlight and scroll to the shared note if URL param is set
+            if (urlNoteId && notes.length === 1) {
+                setTimeout(() => {
+                    const firstCard = notesGrid.querySelector('.bg-white');
+                    if (firstCard) {
+                        firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstCard.classList.add('ring-2', 'ring-teal-400', 'ring-offset-2');
+                        setTimeout(() => {
+                            firstCard.classList.remove('ring-2', 'ring-teal-400', 'ring-offset-2');
+                        }, 2500);
+                    }
+                }, 300);
+            }
         };
 
-        // Filter function
+        // Filter function (with shared note support)
         const filterAndRenderNotes = () => {
-            const query = searchInput.value.toLowerCase();
-            const branch = filterBranch.value;
-            const semester = filterSemester.value;
+            // Remove existing banner if any
+            const existingBanner = document.getElementById('shared-note-banner');
+            if (existingBanner) existingBanner.remove();
 
-            const filteredNotes = allNotes.filter(note => {
-                const matchSearch = note.subject.toLowerCase().includes(query) ||
-                    note.topic.toLowerCase().includes(query) ||
-                    note.tags.toLowerCase().includes(query);
+            let notesToRender;
 
-                const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
-                const matchSem = semester === "" || note.semester === semester;
+            if (urlNoteId) {
+                // Show only the note with this ID
+                notesToRender = allNotes.filter(note => note.id === urlNoteId);
+                if (notesToRender.length === 0 && allNotes.length > 0) {
+                    notesStatus.innerHTML =
+                        `<i class="fa-solid fa-circle-exclamation text-4xl text-yellow-400 mb-4 block"></i><p class="text-gray-500 font-medium">Shared note not found. It may have been removed.</p><button id="show-all-from-banner" class="mt-4 px-4 py-2 bg-teal-500 text-white rounded-lg text-sm font-medium hover:bg-teal-600 transition">Show All Notes</button>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    document.getElementById('show-all-from-banner')?.addEventListener('click', () => {
+                        urlNoteId = null;
+                        const newUrl = window.location.origin + window.location.pathname;
+                        window.history.replaceState({}, '', newUrl);
+                        filterAndRenderNotes();
+                    });
+                    return;
+                }
 
-                return matchSearch && matchBranch && matchSem;
-            });
+                if (notesToRender.length === 0 && allNotes.length === 0) {
+                    notesStatus.innerHTML =
+                        `<i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i><p>Loading study materials...</p>`;
+                    notesStatus.classList.remove('hidden');
+                    notesGrid.classList.add('hidden');
+                    return;
+                }
 
-            renderCards(filteredNotes);
+                // Show banner
+                const banner = document.createElement('div');
+                banner.id = 'shared-note-banner';
+                banner.className =
+                    'w-full max-w-5xl mx-auto bg-teal-50 border border-teal-200 rounded-xl p-3 mb-4 text-center flex items-center justify-center gap-3 flex-wrap';
+                banner.innerHTML = `
+                    <span class="text-teal-700 text-sm font-medium"><i class="fa-solid fa-share-nodes mr-1"></i> Shared Note</span>
+                    <button id="clear-shared-note-btn" class="text-teal-600 underline text-sm font-medium hover:text-teal-800">Show All Notes</button>
+                `;
+                sharedNoteBannerContainer.appendChild(banner);
+
+                document.getElementById('clear-shared-note-btn')?.addEventListener('click', () => {
+                    urlNoteId = null;
+                    const newUrl = window.location.origin + window.location.pathname;
+                    window.history.replaceState({}, '', newUrl);
+                    const b = document.getElementById('shared-note-banner');
+                    if (b) b.remove();
+                    filterAndRenderNotes();
+                });
+
+            } else {
+                // Normal filtering
+                const query = searchInput.value.toLowerCase();
+                const branch = filterBranch.value;
+                const semester = filterSemester.value;
+
+                notesToRender = allNotes.filter(note => {
+                    const matchSearch = note.subject.toLowerCase().includes(query) ||
+                        note.topic.toLowerCase().includes(query) ||
+                        note.tags.toLowerCase().includes(query);
+
+                    const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
+                    const matchSem = semester === "" || note.semester === semester;
+
+                    return matchSearch && matchBranch && matchSem;
+                });
+            }
+
+            renderCards(notesToRender);
         };
 
         // Event listeners
-        searchInput.addEventListener('input', filterAndRenderNotes);
-        filterBranch.addEventListener('change', filterAndRenderNotes);
-        filterSemester.addEventListener('change', filterAndRenderNotes);
+        searchInput.addEventListener('input', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
+        filterBranch.addEventListener('change', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
+        filterSemester.addEventListener('change', () => {
+            if (urlNoteId) {
+                urlNoteId = null;
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+                const b = document.getElementById('shared-note-banner');
+                if (b) b.remove();
+            }
+            filterAndRenderNotes();
+        });
     </script>
 
     <!-- Firebase compat SDKs (required for likes.js) -->

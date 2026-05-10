@@ -28,6 +28,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .bg-grid {
             background-image:
                 linear-gradient(to right, rgba(0, 128, 128, 0.05) 1px, transparent 1px),
@@ -35,22 +36,34 @@
             background-size: 50px 50px;
             flex: 1;
         }
+
         .modal-enter {
             animation: modalFadeIn 0.3s ease-out forwards;
         }
+
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
+
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
         }
+
         #toast-message {
             transition: opacity 0.3s ease;
             z-index: 100;
         }
+
+        /* Admin file drop zone styles */
         #file-drop-zone {
             transition: all 0.25s ease;
         }
@@ -110,26 +123,42 @@
                     <li><a href="disclaimer.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-triangle-exclamation w-5 text-center"></i> Disclaimer</a></li>
                 </ul>
             </nav>
-            <div class="p-4 border-t" id="sidebar-auth-section"></div>
+            <div class="p-4 border-t" id="sidebar-auth-section">
+                <!-- Dynamically filled by JS -->
+            </div>
         </aside>
 
         <!-- ========== MAIN CONTENT ========== -->
         <main class="w-full max-w-7xl mx-auto px-4 pt-24 md:pt-32 flex-1 flex flex-col items-center">
+
             <div class="text-center mb-10 w-full">
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-gray-800">
                     Notes <span class="text-teal-500">Library</span>
                 </h1>
                 <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm md:text-base">Search across hundreds of verified diploma notes, assignments, and study materials.</p>
+
                 <div id="group-card-container"></div>
-                <script src="group-card.js"></script>
+                <script src="group-card.js">
+                </script>
                 <br><br>
+
+                <!-- SEARCH & FILTERS -->
                 <div class="bg-white p-3 md:p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 max-w-5xl mx-auto flex flex-col lg:flex-row gap-3 md:gap-4">
+
+                    <!-- Search Bar -->
                     <div class="relative flex-1 group">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500 transition-colors group-focus-within:text-teal-600"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        <input type="text" id="search-input" placeholder="Search by subject, topic or tags..." class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500 transition-colors group-focus-within:text-teal-600">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="text" id="search-input" placeholder="Search by subject, topic or tags..."
+                        class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition text-sm text-gray-700 font-medium placeholder-gray-400">
                     </div>
+
+                    <!-- Branch Filter -->
                     <div class="relative lg:w-72 group">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500"><i class="fa-solid fa-code-branch"></i></div>
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500">
+                            <i class="fa-solid fa-code-branch"></i>
+                        </div>
                         <select id="filter-branch" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white text-sm cursor-pointer text-gray-700 font-medium transition">
                             <option value="">All Branches</option>
                             <option value="Computer Science Engineering">Computer Science Engineering</option>
@@ -145,10 +174,16 @@
                             <option value="Architecture Assistantship">Architecture Assistantship</option>
                             <option value="Agriculture Engineering">Agriculture Engineering</option>
                         </select>
-                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
                     </div>
+
+                    <!-- Semester Filter -->
                     <div class="relative lg:w-48 group">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-teal-500">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
                         <select id="filter-semester" class="w-full pl-11 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white text-sm cursor-pointer text-gray-700 font-medium transition">
                             <option value="">All Semesters</option>
                             <option value="1st Semester">1st Semester</option>
@@ -158,18 +193,29 @@
                             <option value="5th Semester">5th Semester</option>
                             <option value="6th Semester">6th Semester</option>
                         </select>
-                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-teal-500">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
+
+            <!-- Notes Loading / Empty State -->
             <div id="notes-status" class="w-full text-center py-12 text-gray-500">
                 <i class="fa-solid fa-spinner fa-spin text-3xl text-teal-500 mb-3"></i>
                 <p>Loading study materials...</p>
             </div>
-            <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden"></div>
+
+            <!-- Notes Grid -->
+            <div id="notes-grid" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12 hidden">
+                <!-- Cards injected here by JS -->
+            </div>
+
         </main>
 
-        <!-- ========== ADMIN UPLOAD MODAL ========== -->
+        <!-- ========== ADMIN UPLOAD MODAL (PDF direct upload + auto‑link) ========== -->
         <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex justify-center items-center px-4 overflow-y-auto">
             <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative modal-enter">
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-yellow-400 rounded-t-2xl"></div>
@@ -225,14 +271,19 @@
                         <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tags (Comma separated)</label>
                         <input type="text" id="up-tags" placeholder="e.g. math, matrix, important questions" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
                     </div>
+
+                    <!-- ★ DIRECT PDF/UPLOAD (Admin only) – fastest possible via Firebase Storage ★ -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1"><i class="fa-solid fa-file-arrow-up text-teal-500 mr-1"></i> Upload File (PDF / Image)</label>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">
+                            <i class="fa-solid fa-file-arrow-up text-teal-500 mr-1"></i> Upload File (PDF / Image)
+                        </label>
                         <div id="file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer hover:border-teal-400 hover:bg-teal-50/50 transition-all duration-200 group">
                             <input type="file" id="file-upload-input" accept=".pdf,.jpg,.jpeg,.png,.webp" class="hidden" />
                             <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-300 group-hover:text-teal-400 transition-colors mb-2 block"></i>
                             <p id="file-drop-text" class="text-sm text-gray-500 font-medium">Click to browse or drag & drop</p>
                             <p class="text-xs text-gray-400 mt-0.5">Max 50 MB · PDF, JPG, PNG, WebP</p>
                         </div>
+                        <!-- Progress bar -->
                         <div id="file-upload-progress-container" class="hidden mt-3">
                             <div class="flex items-center gap-3">
                                 <span id="file-upload-filename" class="text-sm font-medium text-gray-700 truncate max-w-[200px]"></span>
@@ -242,16 +293,23 @@
                                 <span id="file-upload-percent" class="text-xs font-semibold text-teal-600 w-10 text-right">0%</span>
                             </div>
                         </div>
-                        <div id="file-upload-success" class="hidden mt-2 text-sm text-teal-600 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> File uploaded! Link auto‑filled below.</div>
-                        <div id="file-upload-error" class="hidden mt-2 text-sm text-red-500 font-medium"><i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="file-upload-error-text">Upload failed.</span></div>
+                        <div id="file-upload-success" class="hidden mt-2 text-sm text-teal-600 font-medium">
+                            <i class="fa-solid fa-circle-check mr-1"></i> File uploaded! Link auto‑filled below.
+                        </div>
+                        <div id="file-upload-error" class="hidden mt-2 text-sm text-red-500 font-medium">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="file-upload-error-text">Upload failed.</span>
+                        </div>
                     </div>
+
                     <div>
                         <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Resource Link (auto‑filled after upload)</label>
                         <input type="url" id="up-link" placeholder="https://..." required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-400 text-sm">
                     </div>
                     <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
                         <button type="button" id="cancel-upload" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition">Cancel</button>
-                        <button type="submit" id="submit-upload" class="px-6 py-2.5 text-sm font-bold bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition shadow-md">Upload to Library</button>
+                        <button type="submit" id="submit-upload" class="px-6 py-2.5 text-sm font-bold bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition shadow-md">
+                            Upload to Library
+                        </button>
                     </div>
                 </form>
             </div>
@@ -318,7 +376,9 @@
                     </div>
                     <div class="pt-4 border-t border-gray-100 flex justify-end gap-3 mt-4">
                         <button type="button" id="cancel-edit" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition">Cancel</button>
-                        <button type="submit" id="submit-edit" class="px-6 py-2.5 text-sm font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md">Save Changes</button>
+                        <button type="submit" id="submit-edit" class="px-6 py-2.5 text-sm font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md">
+                            Save Changes
+                        </button>
                     </div>
                 </form>
             </div>
@@ -341,6 +401,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
                 <div class="mb-8">
                     <h4 class="font-bold text-gray-800 mb-4 text-base sm:text-lg">Connect With Us</h4>
@@ -353,6 +414,7 @@
                         <a href="mailto:diplomacampus@gmail.com" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-all hover:scale-105"><i class="fa-solid fa-envelope"></i></a>
                     </div>
                 </div>
+
                 <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-5 sm:p-6 mb-10 backdrop-blur-sm">
                     <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2 mb-2"><i class="fa-solid fa-users text-teal-600"></i> Join Our Team</h3>
                     <p class="text-sm text-gray-600 mb-5 max-w-xl">Interested in creating content? Join us as a video creator, note writer, or editor!</p>
@@ -361,6 +423,7 @@
                         <button onclick="window.location.href='mailto:diplomacampus@gmail.com?subject=Joining%20as%20a%20Video%20Creator'" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-5 rounded-lg flex-1 flex items-center justify-center gap-2 transition shadow-sm"><i class="fa-solid fa-video"></i> Teach With Us</button>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
                     <div>
                         <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-book-open text-teal-500"></i> Resources</h4>
@@ -397,6 +460,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="border-t border-gray-200/80 pt-6 pb-4 text-center text-sm text-gray-500">
                     <p class="mb-2">© 2026 Diploma Campus. All rights reserved.</p>
                     <p class="mb-4">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> By<strong> Sumit Kumar Mahato</strong>.</p>
@@ -405,23 +469,28 @@
         </footer>
     </div>
 
+    <!-- ========== UI Sidebar & Toast Logic ========== -->
     <script>
         (function() {
             const menuBtn = document.getElementById('menu-btn');
             const closeBtn = document.getElementById('close-btn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
+
             function toggleSidebar() {
                 sidebar.classList.toggle('-translate-x-full');
                 overlay.classList.toggle('hidden');
             }
+
             function closeSidebar() {
                 sidebar.classList.add('-translate-x-full');
                 overlay.classList.add('hidden');
             }
+
             menuBtn.addEventListener('click', toggleSidebar);
             closeBtn.addEventListener('click', toggleSidebar);
             overlay.addEventListener('click', toggleSidebar);
+
             window.showToast = function(msg) {
                 const toast = document.getElementById('toast-message');
                 const toastText = document.getElementById('toast-text');
@@ -434,6 +503,7 @@
                     toast.classList.remove('opacity-100');
                 }, 2000);
             };
+
             window.shareApp = function() {
                 const data = { title: 'Diploma Campus – Notes Library', url: window.location.href };
                 if (navigator.share) {
@@ -446,19 +516,24 @@
                     });
                 }
             };
+
             const shareBtn = document.getElementById('share-btn');
             if (shareBtn) shareBtn.addEventListener('click', shareApp);
+
             window.closeSidebar = closeSidebar;
             window.toggleSidebar = toggleSidebar;
         })();
     </script>
 
-    <!-- ========== Firebase Logic ========== -->
+    <!-- ========== Firebase Logic (Admin‑only Upload + Storage) ========== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getDatabase, ref, onValue, push, set, remove, update } from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAaAbo8Q0fhXpMF1tgypr8dkvhBGyQQWig",
@@ -486,6 +561,8 @@
         const cancelUploadBtn = document.getElementById('cancel-upload');
         const uploadForm = document.getElementById('upload-form');
         const submitUploadBtn = document.getElementById('submit-upload');
+
+        // File upload DOM elements
         const fileDropZone = document.getElementById('file-drop-zone');
         const fileUploadInput = document.getElementById('file-upload-input');
         const fileDropText = document.getElementById('file-drop-text');
@@ -497,6 +574,8 @@
         const fileUploadError = document.getElementById('file-upload-error');
         const fileUploadErrorText = document.getElementById('file-upload-error-text');
         const upLinkInput = document.getElementById('up-link');
+
+        // Edit modal elements
         const editModal = document.getElementById('edit-modal');
         const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
         const cancelEditBtn = document.getElementById('cancel-edit');
@@ -509,6 +588,7 @@
         const editTopic = document.getElementById('edit-topic');
         const editTags = document.getElementById('edit-tags');
         const editLink = document.getElementById('edit-link');
+
         const notesGrid = document.getElementById('notes-grid');
         const notesStatus = document.getElementById('notes-status');
         const searchInput = document.getElementById('search-input');
@@ -518,29 +598,27 @@
         let currentUser = null;
         let isAdmin = false;
         let currentUploadTask = null;
-        window.allNotes = [];
+        window.allNotes = []; // global for share image fallback
 
-        // Fixed uploader info: website logo and name
-        const UPLOADER_NAME = 'DiplomaCampus';
-        const UPLOADER_PHOTO = window.location.origin + '/favicon.ico'; // or your actual logo path
-
-        // Helper: get avatar URL for header (only used for user sign-in)
+        // Helper: Get avatar URL with fallback
         function getAvatarUrl(user) {
-            if (!user) return UPLOADER_PHOTO;
+            if (!user) return 'https://ui-avatars.com/api/?name=Admin&background=14b8a6&color=fff';
             const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
             return user.photoURL ||
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
         }
 
-        // Share note card as image
+        // ★ Share note card as image ★
         window.shareNoteCard = async function(noteId) {
             const card = document.getElementById('note-card-' + noteId);
             if (!card) {
+                // fallback to link share
                 const note = window.allNotes.find(n => n.id === noteId);
                 if (note) fallbackShareLink(note.link, note.topic);
                 return;
             }
             try {
+                // Capture card as high‑quality image
                 const canvas = await html2canvas(card, {
                     scale: 2,
                     useCORS: true,
@@ -549,15 +627,30 @@
                 });
                 const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
                 const file = new File([blob], 'note-card.png', { type: 'image/png' });
+
+                // Prefer sharing the image file via Web Share API
                 if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({ title: 'Study Note', files: [file] });
+                    await navigator.share({
+                        title: 'Study Note',
+                        files: [file]
+                    });
                 } else {
+                    // Fallback: share the link instead
                     const note = window.allNotes.find(n => n.id === noteId);
-                    if (note) fallbackShareLink(note.link, note.topic);
+                    if (note) {
+                        if (navigator.share) {
+                            await navigator.share({ title: note.topic, url: note.link });
+                        } else {
+                            navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
+                        }
+                    }
                 }
             } catch (error) {
+                console.warn('Image share failed, falling back to link:', error);
                 const note = window.allNotes.find(n => n.id === noteId);
-                if (note) fallbackShareLink(note.link, note.topic);
+                if (note) {
+                    navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
+                }
             }
         };
 
@@ -571,18 +664,27 @@
             }
         }
 
+        // Update UI based on auth state (Header + Sidebar)
         function updateAuthUI(user) {
             currentUser = user;
             isAdmin = user?.email?.toLowerCase() === 'diplomacampus@gmail.com';
+
             if (user) {
                 headerLoginBtn.style.display = 'none';
                 headerAvatar.style.display = 'block';
                 const avatarUrl = getAvatarUrl(user);
                 headerAvatar.src = avatarUrl;
                 headerAvatar.onerror = () => {
-                    headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`;
+                    headerAvatar.src =
+                        `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email?.split('@')[0] || 'User')}&background=14b8a6&color=fff`;
                 };
-                adminUploadBtn.style.display = isAdmin ? 'flex' : 'none';
+
+                if (isAdmin) {
+                    adminUploadBtn.style.display = 'flex';
+                } else {
+                    adminUploadBtn.style.display = 'none';
+                }
+
                 const displayName = user.displayName || user.email?.split('@')[0] || 'Student';
                 sidebarAuthSection.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
@@ -593,37 +695,65 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition"><i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out</button>
+                        <button id="sidebar-logout-btn" class="text-left text-sm text-red-500 hover:text-red-700 font-medium transition">
+                            <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+                        </button>
                     </div>
                 `;
-                document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => { signOut(auth); closeSidebar(); });
+                document.getElementById('sidebar-logout-btn')?.addEventListener('click', () => {
+                    signOut(auth);
+                    closeSidebar();
+                });
+
             } else {
                 currentUser = null;
                 isAdmin = false;
                 headerLoginBtn.style.display = 'block';
                 headerAvatar.style.display = 'none';
                 adminUploadBtn.style.display = 'none';
+
                 sidebarAuthSection.innerHTML = `
                     <div class="text-center py-2">
                         <p class="text-sm text-gray-600 mb-3">Sign in to save your progress</p>
-                        <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition"><i class="fa-brands fa-google mr-1"></i> Sign In</button>
+                        <button id="sidebar-login-btn" class="w-full bg-teal-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-600 shadow-sm transition">
+                            <i class="fa-brands fa-google mr-1"></i> Sign In
+                        </button>
                     </div>
                 `;
-                document.getElementById('sidebar-login-btn')?.addEventListener('click', () => { signInWithPopup(auth, googleProvider).catch(err => console.warn(err)); closeSidebar(); });
+                document.getElementById('sidebar-login-btn')?.addEventListener('click', () => {
+                    signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+                    closeSidebar();
+                });
             }
+
+            // Re‑render to show/hide delete/edit buttons
             filterAndRenderNotes();
         }
 
-        onAuthStateChanged(auth, (user) => updateAuthUI(user));
-        headerLoginBtn.addEventListener('click', () => signInWithPopup(auth, googleProvider).catch(err => console.warn(err)));
+        onAuthStateChanged(auth, (user) => {
+            updateAuthUI(user);
+        });
 
+        headerLoginBtn.addEventListener('click', () => {
+            signInWithPopup(auth, googleProvider).catch(err => console.warn(err));
+        });
+
+        // Read URL parameters
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('branch')) {
-            const opt = Array.from(filterBranch.options).some(o => o.value === urlParams.get('branch'));
-            if (opt) filterBranch.value = urlParams.get('branch');
-        }
-        if (urlParams.get('search')) searchInput.value = urlParams.get('search');
+        const branchParam = urlParams.get('branch');
+        const searchParam = urlParams.get('search');
 
+        if (branchParam) {
+            const optionExists = Array.from(filterBranch.options).some(opt => opt.value === branchParam);
+            if (optionExists) {
+                filterBranch.value = branchParam;
+            }
+        }
+        if (searchParam) {
+            searchInput.value = searchParam;
+        }
+
+        // ---------- ADMIN FILE UPLOAD (Fast, direct to Firebase Storage) ----------
         function resetFileUploadUI() {
             fileUploadInput.value = '';
             fileUploadProgressContainer.classList.add('hidden');
@@ -633,7 +763,10 @@
             fileUploadProgressBar.style.width = '0%';
             fileUploadPercent.textContent = '0%';
             fileUploadFilename.textContent = '';
-            if (currentUploadTask) { try { currentUploadTask.cancel(); } catch (e) {} currentUploadTask = null; }
+            if (currentUploadTask) {
+                try { currentUploadTask.cancel(); } catch (e) { /* ignore */ }
+                currentUploadTask = null;
+            }
             submitUploadBtn.disabled = false;
             submitUploadBtn.innerHTML = 'Upload to Library';
         }
@@ -644,31 +777,39 @@
                 fileUploadError.classList.remove('hidden');
                 return;
             }
-            if (file.size > 50 * 1024 * 1024) {
+
+            const MAX_SIZE = 50 * 1024 * 1024; // 50 MB
+            if (file.size > MAX_SIZE) {
                 fileUploadErrorText.textContent = 'File is too large. Max 50 MB allowed.';
                 fileUploadError.classList.remove('hidden');
                 return;
             }
+
             const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
             if (!allowedTypes.includes(file.type)) {
                 fileUploadErrorText.textContent = 'Unsupported file type. Please upload PDF, JPG, PNG, or WebP.';
                 fileUploadError.classList.remove('hidden');
                 return;
             }
+
             fileUploadError.classList.add('hidden');
             fileUploadSuccess.classList.add('hidden');
+
             fileUploadProgressContainer.classList.remove('hidden');
             fileUploadFilename.textContent = file.name;
             fileUploadProgressBar.style.width = '0%';
             fileUploadPercent.textContent = '0%';
             fileDropText.textContent = 'Uploading...';
+
             submitUploadBtn.disabled = true;
             submitUploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading file...';
+
             const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
             const storagePath = `notes/${currentUser.uid}/${Date.now()}_${safeName}`;
             const fileRef = storageRef(storage, storagePath);
             const uploadTask = uploadBytesResumable(fileRef, file);
             currentUploadTask = uploadTask;
+
             uploadTask.on('state_changed',
                 (snapshot) => {
                     const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -710,19 +851,59 @@
             );
         }
 
-        fileDropZone?.addEventListener('click', () => { if (!currentUploadTask) fileUploadInput.click(); });
-        fileDropZone?.addEventListener('dragover', (e) => { e.preventDefault(); e.stopPropagation(); fileDropZone.classList.add('drag-over'); });
-        fileDropZone?.addEventListener('dragleave', (e) => { e.preventDefault(); e.stopPropagation(); fileDropZone.classList.remove('drag-over'); });
-        fileDropZone?.addEventListener('drop', (e) => {
-            e.preventDefault(); e.stopPropagation(); fileDropZone.classList.remove('drag-over');
-            if (!currentUploadTask && e.dataTransfer.files.length > 0) startFileUpload(e.dataTransfer.files[0]);
-        });
-        fileUploadInput?.addEventListener('change', (e) => { if (e.target.files.length > 0) startFileUpload(e.target.files[0]); });
+        if (fileDropZone) {
+            fileDropZone.addEventListener('click', () => {
+                if (currentUploadTask) return;
+                fileUploadInput.click();
+            });
 
+            fileDropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.classList.add('drag-over');
+            });
+
+            fileDropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.classList.remove('drag-over');
+            });
+
+            fileDropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.classList.remove('drag-over');
+                if (currentUploadTask) return;
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    startFileUpload(files[0]);
+                }
+            });
+        }
+
+        if (fileUploadInput) {
+            fileUploadInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    startFileUpload(e.target.files[0]);
+                }
+            });
+        }
+
+        // ---------- ADMIN UPLOAD MODAL ----------
         const toggleUploadModal = () => {
             uploadModal.classList.toggle('hidden');
-            if (!uploadModal.classList.contains('hidden')) { uploadForm.reset(); resetFileUploadUI(); upLinkInput.value = ''; }
-            else { if (currentUploadTask) { try { currentUploadTask.cancel(); } catch(e) {} currentUploadTask = null; } submitUploadBtn.disabled = false; submitUploadBtn.innerHTML = 'Upload to Library'; }
+            if (!uploadModal.classList.contains('hidden')) {
+                uploadForm.reset();
+                resetFileUploadUI();
+                upLinkInput.value = '';
+            } else {
+                if (currentUploadTask) {
+                    try { currentUploadTask.cancel(); } catch (e) { /* ignore */ }
+                    currentUploadTask = null;
+                }
+                submitUploadBtn.disabled = false;
+                submitUploadBtn.innerHTML = 'Upload to Library';
+            }
         };
         adminUploadBtn.addEventListener('click', toggleUploadModal);
         closeModalBtn.addEventListener('click', toggleUploadModal);
@@ -733,18 +914,22 @@
             const originalBtnHtml = submitUploadBtn.innerHTML;
             submitUploadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading...`;
             submitUploadBtn.disabled = true;
+
             const branch = document.getElementById('up-branch').value;
             const semester = document.getElementById('up-semester').value;
             const subject = document.getElementById('up-subject').value.trim();
             const topic = document.getElementById('up-topic').value.trim();
             const tags = document.getElementById('up-tags').value.trim();
             const link = upLinkInput.value.trim();
+
             if (!link.match(/^https?:\/\/.+/)) {
                 alert("Please enter a valid URL starting with http:// or https://");
                 submitUploadBtn.innerHTML = originalBtnHtml;
                 submitUploadBtn.disabled = false;
                 return;
             }
+
+            // All admin uploads will be branded as DiplomaCampus
             const newNote = {
                 branch,
                 semester,
@@ -752,10 +937,11 @@
                 topic,
                 tags,
                 link,
-                uploadedBy: UPLOADER_NAME,
-                uploadedByPhoto: UPLOADER_PHOTO,
+                uploadedBy: 'DiplomaCampus',
+                uploadedByPhoto: getAvatarUrl(null), // not used in card but kept for data
                 timestamp: new Date().toISOString()
             };
+
             try {
                 const notesRef = ref(db, 'notes');
                 const newNoteRef = push(notesRef);
@@ -771,7 +957,10 @@
             }
         });
 
-        const toggleEditModal = () => { editModal.classList.toggle('hidden'); };
+        // ---------- EDIT MODAL ----------
+        const toggleEditModal = () => {
+            editModal.classList.toggle('hidden');
+        };
         closeEditModalBtn.addEventListener('click', toggleEditModal);
         cancelEditBtn.addEventListener('click', toggleEditModal);
 
@@ -791,9 +980,11 @@
             e.preventDefault();
             const noteId = editNoteId.value;
             if (!noteId) return;
+
             const originalBtnHtml = submitEditBtn.innerHTML;
             submitEditBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
             submitEditBtn.disabled = true;
+
             const link = editLink.value.trim();
             if (!link.match(/^https?:\/\/.+/)) {
                 alert("Please enter a valid URL starting with http:// or https://");
@@ -801,6 +992,7 @@
                 submitEditBtn.disabled = false;
                 return;
             }
+
             const updatedNote = {
                 branch: editBranch.value,
                 semester: editSemester.value,
@@ -808,8 +1000,11 @@
                 topic: editTopic.value.trim(),
                 tags: editTags.value.trim(),
                 link: link,
+                uploadedBy: undefined,  // keep original uploader info if not changed
+                uploadedByPhoto: undefined,
                 timestamp: new Date().toISOString()
             };
+
             try {
                 await update(ref(db, `notes/${noteId}`), updatedNote);
                 window.showToast('✏️ Note updated successfully!');
@@ -823,18 +1018,22 @@
             }
         });
 
-        window.deleteNote = async (noteId) => {
-            if (!isAdmin) return;
-            if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
-            try {
-                await remove(ref(db, `notes/${noteId}`));
-                window.showToast('🗑️ Note deleted');
-            } catch (error) {
-                console.error("Delete failed:", error);
-                alert("Failed to delete note.");
+        // ---------- FETCH & RENDER NOTES ----------
+        const notesRef = ref(db, 'notes');
+        onValue(notesRef, (snapshot) => {
+            const notes = [];
+            if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                    notes.push({ id: childSnapshot.key, ...childSnapshot.val() });
+                });
+                notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             }
-        };
+            window.allNotes = notes; // expose globally for share fallback
+            allNotes = notes;
+            filterAndRenderNotes();
+        });
 
+        // Branch abbreviations
         const branchAbbreviations = {
             "Computer Science Engineering": "CSE",
             "Information Technology": "IT",
@@ -851,42 +1050,61 @@
             "Common": "COMMON"
         };
 
-        let allNotes = [];
-        const notesRef = ref(db, 'notes');
-        onValue(notesRef, (snapshot) => {
-            const notes = [];
-            if (snapshot.exists()) {
-                snapshot.forEach((child) => notes.push({ id: child.key, ...child.val() }));
-                notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        // Delete note (admin only)
+        window.deleteNote = async (noteId) => {
+            if (!isAdmin) return;
+            if (!confirm('Are you sure you want to delete this note? This action cannot be undone.')) return;
+            try {
+                await remove(ref(db, `notes/${noteId}`));
+                window.showToast('🗑️ Note deleted');
+            } catch (error) {
+                console.error("Delete failed:", error);
+                alert("Failed to delete note.");
             }
-            window.allNotes = notes;
-            allNotes = notes;
-            filterAndRenderNotes();
-        });
+        };
 
+        // Render Cards
         const renderCards = (notes) => {
             if (notes.length === 0) {
-                notesStatus.innerHTML = `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No notes found matching your search.</p>`;
+                notesStatus.innerHTML =
+                    `<i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-4 block"></i><p class="text-gray-500 font-medium">No notes found matching your search.</p>`;
                 notesStatus.classList.remove('hidden');
                 notesGrid.classList.add('hidden');
                 return;
             }
+
             notesStatus.classList.add('hidden');
             notesGrid.classList.remove('hidden');
             notesGrid.innerHTML = '';
+
             notes.forEach(note => {
                 const card = document.createElement('div');
-                card.className = "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
+                card.className =
+                    "bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 hover:border-teal-200 transition-all duration-300 group flex flex-col justify-between relative";
                 card.id = `note-card-${note.id}`;
+
                 let shortBranch = branchAbbreviations[note.branch] || note.branch.substring(0, 4).toUpperCase();
                 let shortSem = note.semester.replace("Semester", "Sem");
-                let linkIcon = 'fa-link', buttonText = 'Open Resource';
-                if (note.link.includes('drive.google.com')) { linkIcon = 'fa-brands fa-google-drive'; buttonText = 'View on Drive'; }
-                else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) { linkIcon = 'fa-brands fa-youtube'; buttonText = 'Watch Video'; }
-                else if (note.link.includes('.pdf') || note.link.includes('firebasestorage')) { linkIcon = 'fa-regular fa-file-pdf'; buttonText = 'Download / View'; }
-                const uploadDate = note.timestamp ? new Date(note.timestamp).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
-                const uploaderPhoto = note.uploadedByPhoto || UPLOADER_PHOTO;
-                const uploaderName = note.uploadedBy || UPLOADER_NAME;
+
+                let linkIcon = 'fa-link';
+                let buttonText = 'Open Resource';
+                if (note.link.includes('drive.google.com')) {
+                    linkIcon = 'fa-brands fa-google-drive';
+                    buttonText = 'View on Drive';
+                } else if (note.link.includes('youtube.com') || note.link.includes('youtu.be')) {
+                    linkIcon = 'fa-brands fa-youtube';
+                    buttonText = 'Watch Video';
+                } else if (note.link.includes('.pdf') || note.link.includes('firebasestorage')) {
+                    linkIcon = 'fa-regular fa-file-pdf';
+                    buttonText = 'Download / View';
+                }
+
+                // Format upload date
+                const uploadDate = note.timestamp ?
+                    new Date(note.timestamp).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) :
+                    '';
+
+                // Share button (now calls image share)
                 const shareButtonHtml = `
                     <button onclick="shareNoteCard('${note.id}')"
                         class="absolute top-3 right-3 w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center hover:bg-teal-100 hover:text-teal-600 shadow-sm transition-all hover:scale-110 z-10"
@@ -894,23 +1112,31 @@
                         <i class="fa-solid fa-share-nodes text-xs"></i>
                     </button>
                 `;
+
+                // Admin buttons (edit + delete)
                 const adminButtonsHtml = isAdmin ? `
                     <div class="absolute top-3 right-12 z-10 flex gap-1">
                         <button onclick="openEditModal(${JSON.stringify(note).replace(/"/g, '&quot;')})"
                             class="w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 shadow-md transition-transform hover:scale-110"
-                            title="Edit note"><i class="fa-solid fa-pencil text-xs"></i></button>
+                            title="Edit note">
+                            <i class="fa-solid fa-pencil text-xs"></i>
+                        </button>
                         <button onclick="deleteNote('${note.id}')"
                             class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 shadow-md transition-transform hover:scale-110"
-                            title="Delete note"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                            title="Delete note">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
                     </div>
                 ` : '';
+
+                // ★ REMOVED AVATAR (DP) and replaced with fixed "DiplomaCampus" name
                 const uploaderHtml = `
-                    <div class="flex items-center gap-2 mt-4 mb-3">
-                        <img src="${uploaderPhoto}" class="w-6 h-6 rounded-full object-cover border border-gray-200" crossorigin="anonymous" onerror="this.src='${UPLOADER_PHOTO}'">
-                        <span class="text-xs font-medium text-gray-600 truncate max-w-[120px]">${uploaderName}</span>
-                        <span class="text-xs text-gray-400 ml-auto">${uploadDate}</span>
+                    <div class="flex items-center justify-between mt-4 mb-3">
+                        <span class="text-xs font-medium text-gray-600">DiplomaCampus</span>
+                        <span class="text-xs text-gray-400">${uploadDate}</span>
                     </div>
                 `;
+
                 card.innerHTML = `
                     ${adminButtonsHtml}
                     ${shareButtonHtml}
@@ -934,28 +1160,43 @@
             });
         };
 
+        // Filter function
         const filterAndRenderNotes = () => {
             const query = searchInput.value.toLowerCase();
             const branch = filterBranch.value;
             const semester = filterSemester.value;
-            const filtered = allNotes.filter(note => {
-                const matchSearch = note.subject.toLowerCase().includes(query) || note.topic.toLowerCase().includes(query) || note.tags.toLowerCase().includes(query);
+
+            const filteredNotes = allNotes.filter(note => {
+                const matchSearch = note.subject.toLowerCase().includes(query) ||
+                    note.topic.toLowerCase().includes(query) ||
+                    note.tags.toLowerCase().includes(query);
+
                 const matchBranch = branch === "" || note.branch === branch || note.branch === "Common";
                 const matchSem = semester === "" || note.semester === semester;
+
                 return matchSearch && matchBranch && matchSem;
             });
-            renderCards(filtered);
+
+            renderCards(filteredNotes);
         };
 
+        // Event listeners
         searchInput.addEventListener('input', filterAndRenderNotes);
         filterBranch.addEventListener('change', filterAndRenderNotes);
         filterSemester.addEventListener('change', filterAndRenderNotes);
     </script>
 
     <!-- Firebase compat SDKs (required for likes.js) -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="likes.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js">
+    </script>
+
+    <!-- Site like button (bottom‑right corner) -->
+    <script src="likes.js">
+    </script>
+
 </body>
 </html>

@@ -241,7 +241,6 @@
                                 <option value="Chemical Engineering">Chemical Engineering</option>
                                 <option value="Plastic Engineering">Plastic Engineering</option>
                                 <option value="Architecture Assistantship">Architecture Assistantship</option>
-                                <option value="Agriculture Engineering">Agriculture Engineering</option>
                             </select>
                             <i class="fa-solid fa-chevron-down absolute right-4 top-9 text-xs text-gray-400 pointer-events-none"></i>
                         </div>
@@ -608,61 +607,100 @@
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=14b8a6&color=fff&size=150`;
         }
 
-        // ★ Share note card as image ★
+        // ★ Share note card as image with the resource link clearly embedded ★
         window.shareNoteCard = async function(noteId) {
-            const card = document.getElementById('note-card-' + noteId);
-            if (!card) {
-                // fallback to link share
-                const note = window.allNotes.find(n => n.id === noteId);
-                if (note) fallbackShareLink(note.link, note.topic);
+            const note = window.allNotes.find(n => n.id === noteId);
+            if (!note) {
+                window.showToast('Note not found');
                 return;
             }
-            try {
-                // Capture card as high‑quality image
-                const canvas = await html2canvas(card, {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: false,
-                    backgroundColor: '#ffffff'
-                });
-                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-                const file = new File([blob], 'note-card.png', { type: 'image/png' });
 
-                // Prefer sharing the image file via Web Share API
+            let cardCanvas;
+            const cardElement = document.getElementById('note-card-' + noteId);
+
+            try {
+                if (cardElement) {
+                    // Capture the existing card
+                    cardCanvas = await html2canvas(cardElement, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        backgroundColor: '#ffffff'
+                    });
+                } else {
+                    // Fallback: create a simple card image from note data
+                    cardCanvas = document.createElement('canvas');
+                    cardCanvas.width = 600;
+                    cardCanvas.height = 300;
+                    const ctx = cardCanvas.getContext('2d');
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height);
+                    ctx.font = 'bold 24px Inter, sans-serif';
+                    ctx.fillStyle = '#1f2937';
+                    ctx.fillText(note.topic, 20, 40);
+                    ctx.font = '16px Inter, sans-serif';
+                    ctx.fillStyle = '#6b7280';
+                    ctx.fillText(note.subject, 20, 70);
+                    ctx.font = '14px Inter, sans-serif';
+                    ctx.fillStyle = '#9ca3af';
+                    ctx.fillText(note.branch + ' | ' + note.semester, 20, 100);
+                }
+
+                // Create final canvas with extra space for the link
+                const finalCanvas = document.createElement('canvas');
+                const paddingBottom = 60; // px for the link footer
+                finalCanvas.width = cardCanvas.width;
+                finalCanvas.height = cardCanvas.height + paddingBottom;
+                const ctx = finalCanvas.getContext('2d');
+
+                // Fill white background
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
+
+                // Draw the captured card on top
+                ctx.drawImage(cardCanvas, 0, 0);
+
+                // Draw a semi‑transparent background for the link
+                ctx.fillStyle = 'rgba(0, 128, 128, 0.1)';
+                ctx.fillRect(0, cardCanvas.height, finalCanvas.width, paddingBottom);
+
+                // Draw the resource link text
+                const linkText = '🔗 ' + note.link;
+                ctx.font = '14px "Inter", sans-serif';
+                ctx.fillStyle = '#0f766e'; // teal-700
+                ctx.textAlign = 'center';
+                ctx.fillText(linkText, finalCanvas.width / 2, cardCanvas.height + 38);
+
+                // Convert to blob
+                const blob = await new Promise(resolve => finalCanvas.toBlob(resolve, 'image/png'));
+                const file = new File([blob], `note-${noteId}.png`, { type: 'image/png' });
+
+                // Try sharing the image with the Web Share API
                 if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
                     await navigator.share({
-                        title: 'Study Note',
+                        title: note.topic,
                         files: [file]
                     });
                 } else {
-                    // Fallback: share the link instead
-                    const note = window.allNotes.find(n => n.id === noteId);
-                    if (note) {
-                        if (navigator.share) {
-                            await navigator.share({ title: note.topic, url: note.link });
-                        } else {
-                            navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
-                        }
+                    // Fallback: share the link directly
+                    if (navigator.share) {
+                        await navigator.share({ title: note.topic, url: note.link });
+                    } else {
+                        navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
                     }
                 }
             } catch (error) {
                 console.warn('Image share failed, falling back to link:', error);
-                const note = window.allNotes.find(n => n.id === noteId);
-                if (note) {
+                // Fallback: just copy or share the link
+                if (navigator.share) {
+                    navigator.share({ title: note.topic, url: note.link }).catch(() => {
+                        navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
+                    });
+                } else {
                     navigator.clipboard?.writeText(note.link).then(() => window.showToast('📋 Note link copied!'));
                 }
             }
         };
-
-        function fallbackShareLink(link, topic) {
-            if (navigator.share) {
-                navigator.share({ title: topic, url: link }).catch(() => {
-                    navigator.clipboard?.writeText(link).then(() => window.showToast('📋 Note link copied!'));
-                });
-            } else {
-                navigator.clipboard?.writeText(link).then(() => window.showToast('📋 Note link copied!'));
-            }
-        }
 
         // Update UI based on auth state (Header + Sidebar)
         function updateAuthUI(user) {
@@ -1129,7 +1167,7 @@
                     </div>
                 ` : '';
 
-                // ★ REMOVED AVATAR (DP) and replaced with fixed "DiplomaCampus" name
+                // Uploader info – removed avatar, fixed name
                 const uploaderHtml = `
                     <div class="flex items-center justify-between mt-4 mb-3">
                         <span class="text-xs font-medium text-gray-600">DiplomaCampus</span>

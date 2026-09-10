@@ -499,7 +499,13 @@
                 const savedBadge = document.getElementById('saved-badge-count');
                 if (savedBadge) savedBadge.textContent = savedResources.length;
 
-                const combined = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('resources') : (window.DC_RESOURCES || []);
+               const managedResources = window.DC_DATA_MANAGER
+    ? window.DC_DATA_MANAGER.getAll('resources')
+    : [];
+
+const combined = managedResources.length > 0
+    ? managedResources
+    : (window.DC_RESOURCES || []);
                 
                 const filtered = combined.filter(item => {
                     const matchesSem = activeSem === 'all' || String(item.semester) === String(activeSem);

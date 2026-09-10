@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Profile & Admission Details | Diploma Campus</title>
+    <meta name="description" content="Detailed college information including courses, branch wise seat intake, previous year cutoff ranks, fee structure, e-Kalyan scholarship eligibility, facilities, and placement records.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2026, JCECEB, Polytechnic Question Papers, Diploma Notes, Jharkhand Polytechnic College Profile, JUT Affiliated Colleges, PECE Seat Matrix, Diploma Admission Fees">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/college-detail.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="College Profile & Admission Details | Diploma Campus">
+    <meta property="og:description" content="Detailed college information including courses, branch wise seat intake, previous year cutoff ranks, fee structure, e-Kalyan scholarship eligibility, facilities, and placement records.">
+    <meta property="og:url" content="https://diplomacampus.in/college-detail.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="college-detail-container">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Home</a>
+                <span>/</span>
+                <a href="colleges.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Colleges</a>
+                <span>/</span>
+                <span id="breadcrumb-college-name" class="text-slate-800 dark:text-slate-200 font-medium">College Details</span>
+            </nav>
+
+            <!-- Hero Profile Header with Visual Campus Photo -->
+            <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8 overflow-hidden">
+                <div class="relative h-48 sm:h-64 lg:h-72 w-full bg-slate-900">
+                    <img id="college-hero-img" src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80" alt="College Campus Banner" class="w-full h-full object-cover opacity-80" onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                    
+                    <div class="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+                        <span id="college-badge-type" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow">Government</span>
+                        <span id="college-badge-district" class="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 text-white backdrop-blur-sm shadow"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> Ranchi</span>
+                        <span id="college-badge-est" class="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 text-white backdrop-blur-sm shadow">Est. 1955</span>
+                    </div>
+
+                    <div class="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-6">
+                        <h1 id="college-title" class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white tracking-tight leading-tight drop-shadow-md">Government Polytechnic, Ranchi</h1>
+                        <p id="college-meta" class="text-xs sm:text-sm text-slate-200 mt-1 flex flex-wrap items-center gap-y-1 gap-x-3 drop-shadow">
+                            <span><i class="fa-solid fa-building-columns text-sky-400 mr-1"></i> Affiliated to JUT Ranchi</span>
+                            <span>•</span>
+                            <span><i class="fa-solid fa-certificate text-emerald-400 mr-1"></i> AICTE Approved</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3">
+                        <span id="college-badge-rating" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center gap-1.5 border border-amber-300 dark:border-amber-800">
+                            <i class="fa-solid fa-star text-amber-500"></i> 4.8 Rating (140+ Reviews)
+                        </span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">
+                            <i class="fa-solid fa-shield-check text-emerald-500 mr-1"></i> Verified JCECEB Institute
+                        </span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2.5">
+                        <a id="college-website-btn" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-700 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i> Official Website
+                        </a>
+                        <a href="contact-us.html" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-md shadow-sky-600/20 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-headset"></i> Admission Guidance
+                        </a>
+                        <a href="tools.html#college-predictor" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-bold border border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-pie"></i> Predict My Chance
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabbed / Structured Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Main 2-column info -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- Institute Overview Box -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+                        <h2 class="text-lg sm:text-xl font-heading font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info text-sky-500"></i> Institute Overview
+                        </h2>
+                        <p id="college-overview-text" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            One of the premier technical institutions established under the Department of Higher and Technical Education, Government of Jharkhand. It provides top-quality practical technical training and laboratory infrastructure to prepare diploma engineers.
+                        </p>
+                    </div>
+
+                    <!-- Campus & Infrastructure Photos Gallery -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-lg sm:text-xl font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-images text-sky-500"></i> Campus & Workshop Gallery
+                            </h2>
+                            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Authentic Campus Highlights</span>
+                        </div>
+                        <div id="college-gallery-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Campus Facilities Section -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+                        <h2 class="text-lg sm:text-xl font-heading font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-emerald-500"></i> Campus Facilities & Infrastructure
+                        </h2>
+                        <div id="college-facilities-list" class="flex flex-wrap gap-2">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Courses & Branch Intake Table -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                            <h2 class="text-lg sm:text-xl font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-graduation-cap text-indigo-500"></i> Courses, Seats & Cutoff Ranks
+                            </h2>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Previous Year CML Benchmarks</span>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
+                                        <th class="pb-3 font-semibold">Engineering Branch</th>
+                                        <th class="pb-3 font-semibold">Approved Intake</th>
+                                        <th class="pb-3 font-semibold">Gen. Cutoff (CML)</th>
+                                        <th class="pb-3 font-semibold">Cat. Cutoff</th>
+                                        <th class="pb-3 font-semibold text-right">Study Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="college-branches-tbody" class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                                    <!-- Populated via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Admission & Cutoff Insights -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+                        <h2 class="text-lg sm:text-xl font-heading font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-filter text-sky-500"></i> Admission Process & Counselling
+                        </h2>
+                        <ul class="text-xs sm:text-sm space-y-3 text-slate-600 dark:text-slate-300">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>Regular Entry (1st Year):</strong> Admission is based on Combined Merit List (CML) rank in the Jharkhand Polytechnic Entrance Competitive Examination (PECE) conducted by JCECEB.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>Lateral Entry (2nd Year / 3rd Sem):</strong> 10% supernumerary seats for 12th Science / Vocational / 2-Year ITI passouts through JCECEB Lateral Entry exam.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>JCECEB Counselling:</strong> Conducted online in multiple rounds (Round 1, Round 2, and Open / Mop-up round) with choice filling and seat allotment letter generation.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>Documents Required:</strong> 10th Admit Card/Marksheet, PECE Admit Card & Rank Card, Residential & Caste Certificate (Jharkhand CO/SDO issued), and Income Certificate for TFW / e-Kalyan.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Campus Location Details -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+                        <h2 class="text-lg sm:text-xl font-heading font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot text-rose-500"></i> Campus Location
+                        </h2>
+                        <p id="college-location-text" class="text-sm text-slate-600 dark:text-slate-300">
+                            Loading location address...
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Right Sidebar Details -->
+                <div class="space-y-6">
+                    
+                    <!-- Quick Facts Card -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+                        <h3 class="text-base font-heading font-bold text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <span>Key Institute Facts</span>
+                            <i class="fa-solid fa-clipboard-check text-sky-500"></i>
+                        </h3>
+                        
+                        <div class="space-y-3.5 text-xs">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                                <span class="text-slate-500 dark:text-slate-400">Total Approved Intake:</span>
+                                <span id="fact-seats" class="font-bold text-slate-900 dark:text-white">360 Seats</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                                <span class="text-slate-500 dark:text-slate-400">Approx. Annual Tuition:</span>
+                                <span id="fact-fees" class="font-bold text-emerald-600 dark:text-emerald-400">₹ 2,050 / Year</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                                <span class="text-slate-500 dark:text-slate-400">e-Kalyan Scholarship:</span>
+                                <span class="font-bold text-sky-600 dark:text-sky-400">100% Eligible (ST/SC/BC)</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                                <span class="text-slate-500 dark:text-slate-400">Hostel Accommodation:</span>
+                                <span id="fact-hostel" class="font-bold text-slate-900 dark:text-white">Available</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                                <span class="text-slate-500 dark:text-slate-400">Affiliating University:</span>
+                                <span id="fact-affiliation" class="font-bold text-slate-900 dark:text-white">JUT Ranchi</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500 dark:text-slate-400">District:</span>
+                                <span id="fact-district" class="font-bold text-slate-900 dark:text-white">Ranchi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Free Material Download Box -->
+                    <div class="rounded-3xl bg-gradient-to-tr from-sky-600 to-indigo-700 text-white p-6 shadow-lg shadow-sky-500/10 space-y-3">
+                        <div class="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <h3 class="text-base font-heading font-bold">Prepare for College Exams</h3>
+                        <p class="text-xs text-sky-100 leading-relaxed">Download previous year question papers, syllabus, and complete handwritten notes for all semesters.</p>
+                        <a href="resources.html" class="block w-full py-2.5 rounded-xl bg-white text-slate-900 font-bold text-xs text-center hover:bg-slate-100 transition-colors shadow">
+                            Explore Semester Notes & PYQs
+                        </a>
+                    </div>
+
+                    <!-- WhatsApp Admission Helpdesk -->
+                    <div class="rounded-3xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 p-6 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-base">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-emerald-950 dark:text-emerald-200">Need Guidance?</h4>
+                                <p class="text-[11px] text-emerald-700 dark:text-emerald-400">Connect on student community</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">Join 10,000+ diploma aspirants for cutoff alerts, branch selection advice & live counseling guidance.</p>
+                        <a href="https://whatsapp.com/channel/0029Vb7izReKAwEfwz7Ixl1q" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs text-center transition-colors shadow-sm">
+                            Join Official WhatsApp Channel
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const collegeId = urlParams.get('id') || 'gp-ranchi';
+
+            const colleges = window.DC_COLLEGES || window.DC_DATA?.colleges || [];
+            const college = colleges.find(c => c.id === collegeId) || colleges[0];
+
+            if (college) {
+                // Page titles & SEO
+                document.title = `${college.name} - Cutoff, Intake, Fees & Notes | Diploma Campus`;
+                
+                // Elements binding
+                const breadcrumbEl = document.getElementById('breadcrumb-college-name');
+                const titleEl = document.getElementById('college-title');
+                const badgeTypeEl = document.getElementById('college-badge-type');
+                const badgeDistrictEl = document.getElementById('college-badge-district');
+                const badgeEstEl = document.getElementById('college-badge-est');
+                const badgeRatingEl = document.getElementById('college-badge-rating');
+                const metaEl = document.getElementById('college-meta');
+                const websiteBtn = document.getElementById('college-website-btn');
+                const overviewEl = document.getElementById('college-overview-text');
+                const facilitiesList = document.getElementById('college-facilities-list');
+                const locationEl = document.getElementById('college-location-text');
+                
+                // Facts bindings
+                const factSeats = document.getElementById('fact-seats');
+                const factFees = document.getElementById('fact-fees');
+                const factHostel = document.getElementById('fact-hostel');
+                const factAffiliation = document.getElementById('fact-affiliation');
+                const factDistrict = document.getElementById('fact-district');
+
+                if (breadcrumbEl) breadcrumbEl.textContent = college.shortName || college.name;
+                if (titleEl) titleEl.textContent = college.name;
+                
+                if (badgeTypeEl) {
+                    badgeTypeEl.textContent = `${college.type} Institute`;
+                    if (college.type.includes('PPP')) {
+                        badgeTypeEl.className = 'px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300';
+                    } else if (college.type.includes('Private')) {
+                        badgeTypeEl.className = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300';
+                    }
+                }
+
+                if (badgeDistrictEl) {
+                    badgeDistrictEl.innerHTML = `<i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> ${college.district}`;
+                }
+
+                if (badgeEstEl) {
+                    badgeEstEl.textContent = `Est. ${college.established}`;
+                }
+
+                if (badgeRatingEl && college.rating) {
+                    badgeRatingEl.innerHTML = `<i class="fa-solid fa-star text-amber-500 text-[10px]"></i> ${college.rating} Rating (${college.reviewsCount || 50}+)`;
+                }
+
+                if (metaEl) {
+                    metaEl.innerHTML = `
+                        <span><i class="fa-solid fa-building-columns text-sky-500 mr-1"></i> Affiliated to ${college.affiliation || 'JUT Ranchi'}</span>
+                        <span>•</span>
+                        <span><i class="fa-solid fa-certificate text-emerald-500 mr-1"></i> ${college.approval || 'AICTE Approved'}</span>
+                    `;
+                }
+
+                if (websiteBtn) {
+                    if (college.website) {
+                        websiteBtn.href = college.website;
+                        websiteBtn.classList.remove('hidden');
+                    } else {
+                        websiteBtn.classList.add('hidden');
+                    }
+                }
+
+                if (overviewEl && college.overview) {
+                    overviewEl.textContent = college.overview;
+                }
+
+                const heroImg = document.getElementById('college-hero-img');
+                if (college.image && heroImg) {
+                    heroImg.src = college.image;
+                }
+
+                // Gallery rendering with respective titles & icons
+                const galleryContainer = document.getElementById('college-gallery-container');
+                if (galleryContainer) {
+                    if (college.gallery && college.gallery.length > 0) {
+                        galleryContainer.innerHTML = college.gallery.map(g => `
+                            <div class="rounded-2xl overflow-hidden relative group h-48 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <img src="${g.image}" alt="${g.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 right-3 text-xs sm:text-sm font-bold text-white flex items-center gap-2 drop-shadow">
+                                    <i class="fa-solid ${g.icon || 'fa-building'} text-sky-400 text-sm shrink-0"></i>
+                                    <span class="truncate">${g.title}</span>
+                                </span>
+                            </div>
+                        `).join('');
+                    } else {
+                        const defaultImg = college.image || 'assets/images/colleges/gp-ranchi.jpg';
+                        galleryContainer.innerHTML = `
+                            <div class="rounded-2xl overflow-hidden relative group h-48 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <img src="${defaultImg}" alt="Main Academic Block" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 right-3 text-xs sm:text-sm font-bold text-white flex items-center gap-2 drop-shadow">
+                                    <i class="fa-solid fa-building text-sky-400"></i>
+                                    <span>Main Academic & Administrative Block</span>
+                                </span>
+                            </div>
+                            <div class="rounded-2xl overflow-hidden relative group h-48 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <img src="${defaultImg}" alt="Engineering Workshops & Labs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 right-3 text-xs sm:text-sm font-bold text-white flex items-center gap-2 drop-shadow">
+                                    <i class="fa-solid fa-gears text-amber-400"></i>
+                                    <span>Modern Engineering Workshops & Labs</span>
+                                </span>
+                            </div>
+                        `;
+                    }
+                }
+
+                if (locationEl && college.location) {
+                    locationEl.innerHTML = `<i class="fa-solid fa-map-pin text-rose-500 mr-1.5"></i> ${college.location}`;
+                }
+
+                // Facts
+                if (factSeats) factSeats.textContent = `${college.totalIntake} Seats`;
+                if (factFees) factFees.textContent = college.feesAnnual || '₹ 2,050 / Year';
+                if (factHostel) factHostel.textContent = college.hostel || 'Available';
+                if (factAffiliation) factAffiliation.textContent = college.affiliation || 'JUT Ranchi';
+                if (factDistrict) factDistrict.textContent = college.district;
+
+                // Facilities rendering
+                if (facilitiesList) {
+                    const facilities = college.facilities || ["Central Library", "Computer Center", "Workshops", "Hostel with Mess", "Sports Ground"];
+                    facilitiesList.innerHTML = facilities.map(f => `
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-circle-check text-emerald-500 text-[11px]"></i>
+                            ${f}
+                        </span>
+                    `).join('');
+                }
+
+                // Branch Table
+                const tbody = document.getElementById('college-branches-tbody');
+                if (tbody && college.branches) {
+                    tbody.innerHTML = college.branches.map(b => {
+                        const branchName = typeof b === 'object' ? b.name : b;
+                        const seats = typeof b === 'object' && b.seats ? `${b.seats} Seats` : '60 Seats';
+                        const cutoffGen = typeof b === 'object' && b.cutoffGeneral ? `AIR ~${b.cutoffGeneral}` : 'AIR ~1000';
+                        const cutoffCat = typeof b === 'object' && b.cutoffCategory ? `Cat ~${b.cutoffCategory}` : 'Cat ~2500';
+
+                        return `
+                        <tr class="py-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                            <td class="py-3.5 font-medium text-slate-900 dark:text-slate-100">${branchName}</td>
+                            <td class="py-3.5 font-semibold text-slate-700 dark:text-slate-300">${seats}</td>
+                            <td class="py-3.5 font-semibold text-sky-600 dark:text-sky-400">${cutoffGen}</td>
+                            <td class="py-3.5 text-slate-500 dark:text-slate-400">${cutoffCat}</td>
+                            <td class="py-3.5 text-right">
+                                <a href="resources.html" class="inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 font-bold hover:underline">
+                                    <span>Notes</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        `;
+                    }).join('');
+                }
+            }
+        });
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

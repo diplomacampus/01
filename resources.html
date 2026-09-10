@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Polytechnic Notes, Syllabus & Study Resources (Sem 1-6) | Diploma Campus</title>
+    <meta name="description" content="Download free Jharkhand University of Technology (JUT) Diploma handwritten notes, syllabus PDFs, reference books, and lab manuals for all branches.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2025, JCECEB, Polytechnic Question Papers, Diploma Notes, JUT Ranchi Notes, Jharkhand Polytechnic Semester Notes, Diploma 1st Sem Notes, CSE Diploma Notes, Civil Diploma Notes, Mechanical Diploma Notes">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/resources.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jharkhand Polytechnic Notes, Syllabus & Study Resources (Sem 1-6) | Diploma Campus">
+    <meta property="og:description" content="Download free Jharkhand University of Technology (JUT) Diploma handwritten notes, syllabus PDFs, reference books, and lab manuals for all branches.">
+    <meta property="og:url" content="https://diplomacampus.in/resources.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
+                <span>/</span>
+                <span class="text-slate-800 dark:text-slate-200 font-medium">Study Resources</span>
+            </nav>
+
+            <!-- Page Header & Admin Upload Action -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-100 dark:bg-sky-950 px-3.5 py-1 rounded-full border border-sky-200 dark:border-sky-800">
+                        <i class="fa-solid fa-graduation-cap mr-1"></i> Academic Resource Center
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mt-3 tracking-tight">
+                        Jharkhand Polytechnic Study Material & Resources
+                    </h1>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1.5 max-w-3xl">
+                        Explore handwritten semester notes, previous year question papers (PYQs), high-yield important questions (MIQ), model sample papers, and official JUT syllabus for Semesters 1 to 6.
+                    </p>
+                </div>
+
+                <div id="admin-upload-container" class="hidden shrink-0">
+                    <button id="open-upload-modal-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Upload New Material (Admin)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resource Type Category Switcher Bar -->
+            <div class="p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-6 flex flex-wrap gap-1.5" id="resource-category-tabs">
+                <button class="cat-tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-sky-600 text-white shadow-md shadow-sky-500/20 flex items-center gap-2 transition-all" data-type="all">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>All Resources</span>
+                </button>
+                <button class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-all" data-type="Notes">
+                    <i class="fa-solid fa-book-open text-sky-500"></i>
+                    <span>Notes</span>
+                </button>
+                <button class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-all" data-type="PYQs">
+                    <i class="fa-solid fa-file-lines text-purple-500"></i>
+                    <span>PYQs</span>
+                </button>
+                <button class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-all" data-type="Important Questions">
+                    <i class="fa-solid fa-star text-amber-500"></i>
+                    <span>Important Questions (MIQ)</span>
+                </button>
+                <button class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-all" data-type="Sample Papers">
+                    <i class="fa-solid fa-file-circle-check text-emerald-500"></i>
+                    <span>Sample Papers</span>
+                </button>
+                <button class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-all" data-type="Syllabus">
+                    <i class="fa-solid fa-graduation-cap text-indigo-500"></i>
+                    <span>Syllabus</span>
+                </button>
+                <button class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/60 border border-rose-200 dark:border-rose-900 flex items-center gap-2 transition-all" data-type="saved">
+                    <i class="fa-solid fa-bookmark text-rose-500"></i>
+                    <span>Bookmarked (<span id="saved-badge-count">0</span>)</span>
+                </button>
+            </div>
+
+            <!-- Filter Controls Matrix -->
+            <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8 space-y-5">
+                
+                <!-- Search & Filters Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Search Input -->
+                    <div class="relative lg:col-span-2">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="resource-search" placeholder="Search by subject, topic or year (e.g. Physics, Electrochemistry, 2024)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+
+                    <!-- Branch Selector Dropdown -->
+                    <div>
+                        <select id="resource-branch-filter" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="all">All Engineering Branches</option>
+                            <option value="Common">Common (1st & 2nd Sem)</option>
+                            <option value="Computer Science">Computer Science & Engg</option>
+                            <option value="Civil">Civil Engineering</option>
+                            <option value="Mechanical">Mechanical Engineering</option>
+                            <option value="Electrical">Electrical Engineering</option>
+                            <option value="ECE">Electronics & Comm Engg</option>
+                            <option value="Automobile">Automobile Engineering</option>
+                            <option value="Mining">Mining Engineering</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Filter Dropdown (Synced with Tabs) -->
+                    <div>
+                        <select id="resource-type-filter" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="all">All Categories</option>
+                            <option value="Notes">Notes (Handwritten & Theory)</option>
+                            <option value="PYQs">PYQs (Question Papers)</option>
+                            <option value="Important Questions">Important Questions (MIQ / VVI)</option>
+                            <option value="Sample Papers">Sample Papers (Model Tests)</option>
+                            <option value="Syllabus">Official Syllabus</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Semester Pill Tabs -->
+                <div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">Filter by Semester:</div>
+                    <div class="flex flex-wrap gap-2" id="semester-pills">
+                        <button class="sem-btn active px-4 py-1.5 rounded-xl text-xs font-semibold bg-sky-600 text-white shadow-sm transition-all" data-sem="all">All Semesters</button>
+                        <button class="sem-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-sem="1">Semester 1</button>
+                        <button class="sem-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-sem="2">Semester 2</button>
+                        <button class="sem-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-sem="3">Semester 3</button>
+                        <button class="sem-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-sem="4">Semester 4</button>
+                        <button class="sem-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-sem="5">Semester 5</button>
+                        <button class="sem-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-sem="6">Semester 6</button>
+                    </div>
+                </div>
+
+                <!-- Active status count -->
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                    <div>Showing <span id="resources-count" class="font-bold text-sky-600 dark:text-sky-400">0</span> study materials</div>
+                    <span class="text-[11px]"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> JUT Ranchi Curriculum Verified</span>
+                </div>
+            </div>
+
+            <!-- Resources Cards Grid -->
+            <div id="resources-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JS & RTDB -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="resources-empty" class="hidden text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8">
+                <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto text-2xl mb-4">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h3 class="text-lg font-heading font-bold text-slate-800 dark:text-slate-200">No Study Materials Found</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto">Try selecting another semester or branch, or ask the community to upload these notes.</p>
+                <a href="qna.html" class="mt-4 inline-block px-4 py-2 rounded-xl bg-sky-600 text-white text-xs font-semibold">Request Notes in Community</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Admin Material Upload Modal -->
+    <div id="upload-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 max-w-lg w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-cloud-arrow-up text-emerald-500"></i> Upload Study Material
+                </h3>
+                <button id="close-upload-modal-btn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <form id="admin-upload-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Subject / Material Title *</label>
+                    <input type="text" id="upload-title" required placeholder="e.g. Engineering Physics-I Complete Handwritten Notes" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Semester *</label>
+                        <select id="upload-sem" required class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Type *</label>
+                        <select id="upload-type" required class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="Notes">Notes (Handwritten & Theory)</option>
+                            <option value="PYQs">PYQs (Question Papers)</option>
+                            <option value="Important Questions">Important Questions (MIQ / VVI)</option>
+                            <option value="Sample Papers">Sample Papers (Model Tests)</option>
+                            <option value="Syllabus">Official Syllabus</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Branch *</label>
+                    <select id="upload-branch" required class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                        <option value="Common">Common to All</option>
+                        <option value="Computer Science">Computer Science & Engg</option>
+                        <option value="Civil">Civil Engineering</option>
+                        <option value="Mechanical">Mechanical Engineering</option>
+                        <option value="Electrical">Electrical Engineering</option>
+                        <option value="ECE">Electronics & Comm Engg</option>
+                        <option value="Automobile">Automobile Engineering</option>
+                        <option value="Mining">Mining Engineering</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Download / Google Drive Link (PDF) *</label>
+                    <input type="url" id="upload-url" required placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+                    <button type="button" id="cancel-upload-btn" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md">Publish Material</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-resource-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl p-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Edit Study Material</h3>
+                <button id="close-edit-modal-btn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="edit-resource-form" class="space-y-4 mt-4 text-xs">
+                <input type="hidden" id="edit-id">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Title</label>
+                    <input type="text" id="edit-title" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Subject</label>
+                        <input type="text" id="edit-subject" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Semester</label>
+                        <select id="edit-sem" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Branch</label>
+                        <input type="text" id="edit-branch" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Material Type</label>
+                        <select id="edit-type" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                            <option value="Notes">Notes (Handwritten & Theory)</option>
+                            <option value="PYQs">PYQs (Question Papers)</option>
+                            <option value="Important Questions">Important Questions (MIQ / VVI)</option>
+                            <option value="Sample Papers">Sample Papers (Model Tests)</option>
+                            <option value="Syllabus">Official Syllabus</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Download / PDF URL</label>
+                    <input type="url" id="edit-url" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
+                    <button type="button" id="cancel-edit-btn" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold shadow-md">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- In-App Quick PDF Reader Modal -->
+    <div id="pdf-reader-modal" class="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4">
+        <div id="pdf-modal-container" class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden transition-all duration-300">
+            <!-- PDF Viewer Header -->
+            <div class="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-850 flex items-center justify-between gap-3 shrink-0">
+                <div class="flex items-center gap-3 overflow-hidden">
+                    <span id="pdf-viewer-type-badge" class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 shrink-0">Notes</span>
+                    <h3 id="pdf-viewer-title" class="text-sm sm:text-base font-heading font-extrabold text-slate-900 dark:text-white truncate">
+                        Document Preview
+                    </h3>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                    <button id="pdf-fullscreen-btn" title="Toggle Fullscreen" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs transition">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+                    <a id="pdf-direct-download-btn" href="#" target="_blank" rel="noopener" title="Direct Download" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-download text-xs"></i>
+                        <span class="hidden sm:inline">Download</span>
+                    </a>
+                    <button id="pdf-close-btn" title="Close Preview" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/60 hover:text-rose-600 text-slate-600 dark:text-slate-300 flex items-center justify-center text-sm transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PDF Viewer Iframe Body -->
+            <div class="flex-grow bg-slate-100 dark:bg-slate-950 relative overflow-hidden flex items-center justify-center">
+                <iframe id="pdf-frame" src="" class="w-full h-full border-0" title="PDF Document Viewer"></iframe>
+                <div id="pdf-loading-indicator" class="absolute inset-0 bg-slate-900/40 backdrop-blur-xs flex flex-col items-center justify-center text-white hidden">
+                    <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-2 text-sky-400"></i>
+                    <p class="text-xs font-bold">Loading PDF Document...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('resource-search');
+            const branchFilter = document.getElementById('resource-branch-filter');
+            const typeFilter = document.getElementById('resource-type-filter');
+            const semPills = document.querySelectorAll('.sem-btn');
+            const catTabs = document.querySelectorAll('.cat-tab-btn');
+            const countEl = document.getElementById('resources-count');
+            const gridEl = document.getElementById('resources-grid');
+            const emptyEl = document.getElementById('resources-empty');
+            
+            const adminContainer = document.getElementById('admin-upload-container');
+            const uploadModal = document.getElementById('upload-modal');
+            const openModalBtn = document.getElementById('open-upload-modal-btn');
+            const closeModalBtn = document.getElementById('close-upload-modal-btn');
+            const cancelBtn = document.getElementById('cancel-upload-btn');
+            const uploadForm = document.getElementById('admin-upload-form');
+
+            const editModal = document.getElementById('edit-resource-modal');
+            const closeEditBtn = document.getElementById('close-edit-modal-btn');
+            const cancelEditBtn = document.getElementById('cancel-edit-btn');
+            const editForm = document.getElementById('edit-resource-form');
+
+            let activeSem = 'all';
+            let activeType = 'all';
+            let isUserAdmin = false;
+
+            // Check URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            const semParam = urlParams.get('sem');
+            const typeParam = urlParams.get('type');
+            const branchParam = urlParams.get('branch');
+
+            if (branchParam && branchFilter) {
+                branchFilter.value = branchParam;
+            }
+
+            if (semParam) {
+                activeSem = semParam;
+                semPills.forEach(p => {
+                    if (p.dataset.sem === semParam) {
+                        p.classList.add('bg-sky-600', 'text-white');
+                        p.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                    } else {
+                        p.classList.remove('bg-sky-600', 'text-white');
+                        p.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                    }
+                });
+            }
+
+            if (typeParam) {
+                activeType = typeParam;
+                if (typeFilter) typeFilter.value = typeParam;
+                updateCatTabs(typeParam);
+            }
+
+            function updateCatTabs(typeVal) {
+                catTabs.forEach(tab => {
+                    const match = (tab.dataset.type || '').toLowerCase() === (typeVal || '').toLowerCase();
+                    if (match || (!typeVal && tab.dataset.type === 'all') || (typeVal === 'all' && tab.dataset.type === 'all')) {
+                        tab.classList.add('active', 'bg-sky-600', 'text-white', 'shadow-md', 'shadow-sky-500/20', 'font-bold');
+                        tab.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-semibold');
+                    } else {
+                        tab.classList.remove('active', 'bg-sky-600', 'text-white', 'shadow-md', 'shadow-sky-500/20', 'font-bold');
+                        tab.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-semibold');
+                    }
+                });
+            }
+
+            function updateAdminUI(isAdmin) {
+                isUserAdmin = isAdmin;
+                if (isAdmin) {
+                    adminContainer?.classList.remove('hidden');
+                } else {
+                    adminContainer?.classList.add('hidden');
+                }
+                renderResources();
+            }
+
+            window.addEventListener('dc-auth-change', (e) => {
+                updateAdminUI(e.detail.isAdmin);
+            });
+
+            if (window.DC_AUTH) {
+                updateAdminUI(window.DC_AUTH.isAdmin);
+            }
+
+            window.addEventListener('dc-data-updated', () => {
+                renderResources();
+            });
+
+            function getCategoryBadge(type) {
+                const t = (type || '').toLowerCase();
+                if (t.includes('note')) {
+                    return `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 flex items-center gap-1"><i class="fa-solid fa-book-open"></i> Notes</span>`;
+                }
+                if (t.includes('pyq') || t.includes('question paper')) {
+                    return `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 flex items-center gap-1"><i class="fa-solid fa-file-lines"></i> PYQ</span>`;
+                }
+                if (t.includes('important') || t.includes('miq') || t.includes('vvi')) {
+                    return `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1"><i class="fa-solid fa-star"></i> Important Questions</span>`;
+                }
+                if (t.includes('sample') || t.includes('model') || t.includes('practice')) {
+                    return `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-1"><i class="fa-solid fa-file-circle-check"></i> Sample Paper</span>`;
+                }
+                if (t.includes('syllabus') || t.includes('curriculum')) {
+                    return `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 flex items-center gap-1"><i class="fa-solid fa-graduation-cap"></i> Syllabus</span>`;
+                }
+                return `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center gap-1"><i class="fa-solid fa-folder-open"></i> ${type || 'Resource'}</span>`;
+            }
+
+            function renderResources() {
+                const query = (searchInput.value || '').toLowerCase().trim();
+                const branch = branchFilter.value;
+                const type = activeType;
+
+                let savedResources = [];
+                try {
+                    savedResources = JSON.parse(localStorage.getItem('dc_saved_notes') || '[]');
+                } catch(e) { savedResources = []; }
+
+                const savedBadge = document.getElementById('saved-badge-count');
+                if (savedBadge) savedBadge.textContent = savedResources.length;
+
+                const combined = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('resources') : (window.DC_RESOURCES || []);
+                
+                const filtered = combined.filter(item => {
+                    const matchesSem = activeSem === 'all' || String(item.semester) === String(activeSem);
+                    const matchesBranch = branch === 'all' || 
+                        (item.branch || '').toLowerCase().includes(branch.toLowerCase()) || 
+                        (branch === 'Common' && item.semester <= 2);
+                    
+                    const itemTypeLower = (item.type || '').toLowerCase();
+                    const activeTypeLower = (type || '').toLowerCase();
+                    let matchesType = false;
+
+                    if (activeTypeLower === 'saved') {
+                        matchesType = savedResources.includes(item.id);
+                    } else if (activeType === 'all') {
+                        matchesType = true;
+                    } else if (itemTypeLower === activeTypeLower) {
+                        matchesType = true;
+                    } else if (activeTypeLower === 'pyqs' && (itemTypeLower.includes('pyq') || itemTypeLower.includes('question paper'))) {
+                        matchesType = true;
+                    } else if (activeTypeLower === 'notes' && itemTypeLower.includes('note')) {
+                        matchesType = true;
+                    } else if (activeTypeLower.includes('important') && (itemTypeLower.includes('important') || itemTypeLower.includes('miq'))) {
+                        matchesType = true;
+                    } else if (activeTypeLower.includes('sample') && itemTypeLower.includes('sample')) {
+                        matchesType = true;
+                    } else if (activeTypeLower.includes('syllabus') && itemTypeLower.includes('syllabus')) {
+                        matchesType = true;
+                    }
+
+                    const matchesQuery = !query || 
+                        (item.title || '').toLowerCase().includes(query) || 
+                        (item.subject || '').toLowerCase().includes(query) || 
+                        (item.branch || '').toLowerCase().includes(query) ||
+                        (item.type || '').toLowerCase().includes(query);
+
+                    return matchesSem && matchesBranch && matchesType && matchesQuery;
+                });
+
+                countEl.textContent = filtered.length;
+
+                if (filtered.length === 0) {
+                    gridEl.innerHTML = '';
+                    emptyEl.classList.remove('hidden');
+                    return;
+                }
+
+                emptyEl.classList.add('hidden');
+                gridEl.innerHTML = filtered.map(item => {
+                    const isSaved = savedResources.includes(item.id);
+                    const docUrl = item.url || item.downloadUrl || '#';
+                    return `
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all relative group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                ${getCategoryBadge(item.type)}
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="window.toggleBookmark('${item.id}')" title="${isSaved ? 'Remove from Saved Notes' : 'Save note for quick access'}" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/50 flex items-center justify-center text-xs transition">
+                                        <i class="fa-solid fa-bookmark ${isSaved ? 'text-rose-500' : 'text-slate-400 hover:text-rose-400'}"></i>
+                                    </button>
+                                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Sem ${item.semester}</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-base font-heading font-bold text-slate-900 dark:text-white leading-snug">
+                                ${item.title}
+                            </h3>
+
+                            <div class="mt-3 space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
+                                <div><i class="fa-solid fa-code-branch mr-1.5 text-sky-500"></i> ${item.branch}</div>
+                                <div><i class="fa-solid fa-book mr-1.5 text-indigo-500"></i> Subject: <span class="font-medium text-slate-700 dark:text-slate-300">${item.subject}</span></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            ${isUserAdmin ? `
+                            <div class="mt-4 pt-3 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2">
+                                <button onclick="window.editResourceInline('${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 text-xs font-bold hover:bg-sky-100 transition border border-sky-200 dark:border-sky-800">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </button>
+                                <button onclick="window.deleteResourceInline('${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-100 transition border border-rose-200 dark:border-rose-800">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </div>
+                            ` : ''}
+
+                            <div class="pt-4 mt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+                                <button onclick="window.openPdfViewer('${encodeURIComponent(item.title)}', '${docUrl}', '${item.type || 'Notes'}')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-950/60 text-slate-700 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 text-xs font-bold transition flex items-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>Preview</span>
+                                </button>
+
+                                <a href="${docUrl}" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+                                    <i class="fa-solid fa-file-arrow-down"></i>
+                                    <span>Get PDF</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            // Global Bookmark Toggle Function
+            window.toggleBookmark = function(id) {
+                let saved = [];
+                try {
+                    saved = JSON.parse(localStorage.getItem('dc_saved_notes') || '[]');
+                } catch(e) { saved = []; }
+
+                if (saved.includes(id)) {
+                    saved = saved.filter(x => x !== id);
+                    if (window.showToast) window.showToast('Removed from bookmarks', 'info');
+                } else {
+                    saved.push(id);
+                    if (window.showToast) window.showToast('Note bookmarked for fast access!', 'success');
+                }
+                localStorage.setItem('dc_saved_notes', JSON.stringify(saved));
+                renderResources();
+            };
+
+            // Global In-App PDF Viewer
+            const pdfModal = document.getElementById('pdf-reader-modal');
+            const pdfContainer = document.getElementById('pdf-modal-container');
+            const pdfFrame = document.getElementById('pdf-frame');
+            const pdfTitle = document.getElementById('pdf-viewer-title');
+            const pdfTypeBadge = document.getElementById('pdf-viewer-type-badge');
+            const pdfDownloadBtn = document.getElementById('pdf-direct-download-btn');
+            const pdfCloseBtn = document.getElementById('pdf-close-btn');
+            const pdfFullscreenBtn = document.getElementById('pdf-fullscreen-btn');
+
+            window.openPdfViewer = function(titleEnc, url, type) {
+                const title = decodeURIComponent(titleEnc);
+                if (pdfTitle) pdfTitle.textContent = title;
+                if (pdfTypeBadge) pdfTypeBadge.textContent = type || 'Notes';
+                if (pdfDownloadBtn) pdfDownloadBtn.href = url;
+
+                if (pdfFrame) {
+                    if (url && url !== '#') {
+                        pdfFrame.src = url;
+                    } else {
+                        pdfFrame.src = 'about:blank';
+                    }
+                }
+
+                if (pdfModal) {
+                    pdfModal.classList.remove('hidden');
+                    pdfModal.classList.add('flex');
+                }
+            };
+
+            if (pdfCloseBtn) {
+                pdfCloseBtn.addEventListener('click', () => {
+                    if (pdfModal) {
+                        pdfModal.classList.add('hidden');
+                        pdfModal.classList.remove('flex');
+                        if (pdfFrame) pdfFrame.src = '';
+                    }
+                });
+            }
+
+            if (pdfFullscreenBtn && pdfContainer) {
+                pdfFullscreenBtn.addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        pdfContainer.requestFullscreen?.().catch(() => {});
+                    } else {
+                        document.exitFullscreen?.().catch(() => {});
+                    }
+                });
+            }
+
+            // Close on backdrop click
+            if (pdfModal) {
+                pdfModal.addEventListener('click', (e) => {
+                    if (e.target === pdfModal) {
+                        pdfModal.classList.add('hidden');
+                        pdfModal.classList.remove('flex');
+                        if (pdfFrame) pdfFrame.src = '';
+                    }
+                });
+            }
+            }
+
+            // Global inline Edit / Delete triggers
+            window.editResourceInline = function(id) {
+                const item = window.DC_DATA_MANAGER.getById('resources', id);
+                if (!item) return;
+                document.getElementById('edit-id').value = item.id;
+                document.getElementById('edit-title').value = item.title || '';
+                document.getElementById('edit-subject').value = item.subject || '';
+                document.getElementById('edit-sem').value = item.semester || 1;
+                document.getElementById('edit-branch').value = item.branch || '';
+                document.getElementById('edit-type').value = item.type || 'Notes';
+                document.getElementById('edit-url').value = item.url || item.downloadUrl || '';
+
+                editModal.classList.remove('hidden');
+                editModal.classList.add('flex');
+            };
+
+            window.deleteResourceInline = async function(id) {
+                if (confirm("Are you sure you want to permanently delete this resource?")) {
+                    await window.DC_DATA_MANAGER.delete('resources', id);
+                    if (window.showToast) window.showToast("Resource deleted!", "info");
+                }
+            };
+
+            // Category Tab click handler
+            catTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const typeVal = tab.dataset.type;
+                    activeType = typeVal;
+                    if (typeFilter) typeFilter.value = typeVal;
+                    updateCatTabs(typeVal);
+                    renderResources();
+                });
+            });
+
+            // Semester pill click handler
+            semPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    semPills.forEach(p => {
+                        p.classList.remove('bg-sky-600', 'text-white');
+                        p.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                    });
+                    pill.classList.add('bg-sky-600', 'text-white');
+                    pill.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                    activeSem = pill.dataset.sem;
+                    renderResources();
+                });
+            });
+
+            searchInput.addEventListener('input', renderResources);
+            branchFilter.addEventListener('change', renderResources);
+            
+            if (typeFilter) {
+                typeFilter.addEventListener('change', () => {
+                    activeType = typeFilter.value;
+                    updateCatTabs(activeType);
+                    renderResources();
+                });
+            }
+
+            // Modal handlers
+            if (openModalBtn) openModalBtn.addEventListener('click', () => { uploadModal.classList.remove('hidden'); uploadModal.classList.add('flex'); });
+            if (closeModalBtn) closeModalBtn.addEventListener('click', () => { uploadModal.classList.add('hidden'); uploadModal.classList.remove('flex'); });
+            if (cancelBtn) cancelBtn.addEventListener('click', () => { uploadModal.classList.add('hidden'); uploadModal.classList.remove('flex'); });
+
+            if (closeEditBtn) closeEditBtn.addEventListener('click', () => { editModal.classList.add('hidden'); editModal.classList.remove('flex'); });
+            if (cancelEditBtn) cancelEditBtn.addEventListener('click', () => { editModal.classList.add('hidden'); editModal.classList.remove('flex'); });
+
+            // Submit Admin Upload Form
+            uploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const title = document.getElementById('upload-title').value;
+                const semester = parseInt(document.getElementById('upload-sem').value);
+                const type = document.getElementById('upload-type').value;
+                const branch = document.getElementById('upload-branch').value;
+                const url = document.getElementById('upload-url').value;
+
+                try {
+                    await window.DC_DATA_MANAGER.add('resources', {
+                        title,
+                        semester,
+                        type,
+                        branch,
+                        subject: title,
+                        url,
+                        downloads: 1
+                    });
+                    if (window.showToast) window.showToast("Study material uploaded successfully!", "success");
+                    uploadForm.reset();
+                    uploadModal.classList.add('hidden');
+                    uploadModal.classList.remove('flex');
+                } catch (err) {
+                    if (window.showToast) window.showToast("Failed to upload: " + err.message, "error");
+                }
+            });
+
+            // Submit Admin Edit Form
+            editForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const id = document.getElementById('edit-id').value;
+                const title = document.getElementById('edit-title').value;
+                const semester = parseInt(document.getElementById('edit-sem').value);
+                const type = document.getElementById('edit-type').value;
+                const branch = document.getElementById('edit-branch').value;
+                const url = document.getElementById('edit-url').value;
+                const subject = document.getElementById('edit-subject').value;
+
+                try {
+                    await window.DC_DATA_MANAGER.update('resources', id, {
+                        title,
+                        semester,
+                        type,
+                        branch,
+                        subject,
+                        url
+                    });
+                    if (window.showToast) window.showToast("Resource updated successfully!", "success");
+                    editModal.classList.add('hidden');
+                    editModal.classList.remove('flex');
+                } catch (err) {
+                    if (window.showToast) window.showToast("Failed to update: " + err.message, "error");
+                }
+            });
+
+            renderResources();
+        });
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

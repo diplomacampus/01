@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diploma Campus — Everything Diploma Students Need in One Place</title>
+    <meta name="description" content="Jharkhand's #1 educational platform for Diploma & Polytechnic students. Access JUT semester notes, previous year question papers, PECE entrance prep, BIT Sindri D2D lateral entry guides, and mock tests.">
+    <meta name="keywords" content="Diploma Campus, Jharkhand Polytechnic, JUT Ranchi Notes, D2D Lateral Entry, BIT Sindri Lateral, PECE 2026, Polytechnic Question Papers, Diploma Syllabus, Engineering Mock Tests">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Open Graph Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diploma Campus — Everything Diploma Students Need in One Place">
+    <meta property="og:description" content="All-in-one portal for Diploma/Polytechnic notes, previous year question papers, JUT semester syllabus, D2D lateral entry, and college directory.">
+    <meta property="og:url" content="https://diplomacampus.in/">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Core Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Global Header Mount Point -->
+    <div id="dc-header-mount"></div>
+
+    <main class="flex-grow">
+        
+        <!-- Live Announcement & Exam Alert Ticker -->
+        <aside class="bg-gradient-to-r from-sky-700 via-blue-700 to-indigo-700 text-white py-2 px-3 text-xs sm:text-sm font-semibold shadow-inner overflow-hidden relative z-20 border-b border-sky-850" aria-label="Latest exam notifications">
+            <div class="max-w-7xl mx-auto flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 bg-rose-500 text-white uppercase text-[10px] font-black px-2.5 py-0.5 rounded-full tracking-wider shrink-0 shadow-xs animate-pulse">
+                    <i class="fa-solid fa-bolt"></i> Live Alerts
+                </span>
+                <div class="overflow-hidden whitespace-nowrap flex-grow relative">
+                    <div id="live-announcements-marquee" class="inline-flex items-center gap-8 animate-marquee">
+                        <a href="d2d.html" class="hover:underline flex items-center gap-1.5"><span class="text-amber-300">●</span> <strong>BIT Sindri D2D 2026:</strong> Lateral Entry Eligibility & Seat Matrix Updated</a>
+                        <a href="exam-detail.html?id=jharkhand-polytechnic" class="hover:underline flex items-center gap-1.5"><span class="text-emerald-300">●</span> <strong>JCECEB PECE 2026:</strong> Polytechnic Entrance Routine & Mock Test Series Live</a>
+                        <a href="tools.html#attendance-calc" class="hover:underline flex items-center gap-1.5"><span class="text-sky-300">●</span> <strong>JUT Ranchi:</strong> Check 75% Attendance Requirement & Admit Card Status</a>
+                        <a href="resources.html" class="hover:underline flex items-center gap-1.5"><span class="text-purple-300">●</span> <strong>Semester Notes:</strong> 56+ Curated PYQs and handwritten notes ready for download</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========================================================
+             SECTION 1: HERO
+             ======================================================== -->
+        <section class="relative z-20 pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 bg-gradient-to-b from-sky-50/80 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 border-b border-slate-200/80 dark:border-slate-800 bg-grid-subtle">
+            <!-- Ambient Glows Container with isolated overflow -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute top-1/2 right-10 w-72 h-72 bg-indigo-400/15 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-4xl mx-auto space-y-6">
+                    
+                    <!-- Top Notification Pill -->
+                    <div>
+                        <a href="exam-detail.html?id=jharkhand-polytechnic" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950/80 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-300 text-xs sm:text-sm font-bold shadow-xs hover:scale-105 transition-transform">
+                            <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span>Jharkhand Polytechnic 2026 Portal Live</span>
+                            <i class="fa-solid fa-arrow-right text-xs ml-1 text-sky-500"></i>
+                        </a>
+                    </div>
+
+                    <!-- Main Hero Heading -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-slate-900 dark:text-white leading-[1.18] sm:leading-[1.15]">
+                        Everything Diploma Students Need in <span class="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600">One Place</span>
+                    </h1>
+
+                    <!-- Supporting Text -->
+                    <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                        Jharkhand's dedicated educational platform offering semester-wise notes, previous year question papers, polytechnic entrance preparation, BIT Sindri D2D lateral entry guides, and computer-based mock test series.
+                    </p>
+
+                    <!-- Global Hero Search Bar with Live Suggestions Dropdown -->
+                    <div class="pt-2 max-w-2xl mx-auto relative z-50" id="hero-search-wrapper">
+                        <div class="relative flex items-center bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-sky-500/10 border border-slate-200 dark:border-slate-700 p-2 focus-within:ring-2 focus-within:ring-sky-500 transition-all">
+                            <i class="fa-solid fa-magnifying-glass text-slate-400 dark:text-slate-500 text-lg ml-3 mr-2"></i>
+                            <input type="text" id="hero-search-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search colleges, subjects, notes, question papers, exams..." 
+                                class="w-full bg-transparent text-slate-800 dark:text-white text-sm sm:text-base font-medium outline-none placeholder:text-slate-400 dark:placeholder:text-slate-500 py-1.5 px-2">
+                            <button id="hero-search-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white text-sm font-bold shadow-md shrink-0 transition">
+                                Search
+                            </button>
+                        </div>
+
+                        <!-- Hero Live Suggestions & Results Dropdown -->
+                        <div id="hero-search-dropdown" class="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden hidden z-50 text-left max-h-[380px] sm:max-h-[460px] overflow-y-auto ring-1 ring-slate-900/10 dark:ring-white/10">
+                            <!-- Populated dynamically via JS while typing -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-4">
+                        <!-- Explore Resources Button -->
+                        <a href="resources.html" class="relative group px-5 sm:px-6 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 hover:from-sky-400 hover:via-blue-500 hover:to-indigo-500 text-white font-bold shadow-lg shadow-sky-500/25 hover:shadow-xl hover:shadow-sky-500/40 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 border border-white/20">
+                            <span class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                                <i class="fa-solid fa-book-open text-sm"></i>
+                            </span>
+                            <div class="text-left">
+                                <span class="block text-sm font-extrabold tracking-tight leading-tight">Explore Resources</span>
+                                <span class="block text-[10px] font-medium text-sky-100/90 leading-tight">Notes, PYQs & Syllabus</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-xs opacity-70 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300 ml-1"></i>
+                        </a>
+
+                        <!-- Find Colleges Button -->
+                        <a href="colleges.html" class="relative group px-5 sm:px-6 py-3.5 rounded-2xl bg-white/95 dark:bg-slate-800/90 backdrop-blur-md hover:bg-white dark:hover:bg-slate-750 text-slate-800 dark:text-white font-bold border border-slate-200/90 dark:border-slate-700/90 hover:border-sky-500/60 dark:hover:border-sky-400/60 shadow-lg shadow-slate-900/5 hover:shadow-xl hover:shadow-sky-500/15 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-50 to-indigo-50 dark:from-sky-950/80 dark:to-indigo-950/80 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-100 dark:border-sky-800/50 shadow-inner group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
+                                <i class="fa-solid fa-building-columns text-sm"></i>
+                            </span>
+                            <div class="text-left">
+                                <span class="block text-sm font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">Find Colleges</span>
+                                <span class="block text-[10px] font-medium text-slate-500 dark:text-slate-400 leading-tight">Govt & Top Institutes</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-sky-500 group-hover:translate-x-1 transition-all duration-300 ml-1"></i>
+                        </a>
+
+                        <!-- D2D Portal Button -->
+                        <a href="d2d.html" class="relative group px-5 sm:px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:via-orange-500 hover:to-rose-500 text-white font-bold shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 border border-white/20">
+                            <span class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                                <i class="fa-solid fa-graduation-cap text-sm"></i>
+                            </span>
+                            <div class="text-left">
+                                <div class="flex items-center gap-1.5 leading-tight">
+                                    <span class="block text-sm font-extrabold tracking-tight">D2D Portal</span>
+                                    <span class="px-1.5 py-0.2 rounded-md bg-white/25 backdrop-blur-sm text-[9px] font-black uppercase tracking-wider text-white">2025</span>
+                                </div>
+                                <span class="block text-[10px] font-medium text-amber-100/90 leading-tight">Lateral Entry B.Tech</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-xs opacity-70 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300 ml-1"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 2: QUICK ACCESS CARDS
+             ======================================================== -->
+        <section class="py-12 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Quick Access Portals</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Direct pathways to Jharkhand Diploma tools and academic repositories</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    
+                    <a href="question-papers.html" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-sky-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all text-center flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">Question Papers</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Previous Year PYQs</p>
+                    </a>
+
+                    <a href="resources.html" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-sky-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all text-center flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">Study Materials</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Handwritten Notes</p>
+                    </a>
+
+                    <a href="colleges.html" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-sky-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all text-center flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">Colleges</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Govt & Private List</p>
+                    </a>
+
+                    <a href="exam-preparation.html" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-sky-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all text-center flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">Exam Prep</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">PECE & D2D Hub</p>
+                    </a>
+
+                    <a href="d2d.html" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-sky-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all text-center flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">D2D Portal</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">BIT Sindri Lateral</p>
+                    </a>
+
+                    <a href="test-series.html" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-sky-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all text-center flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">Test Series</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Live CBT Mock Tests</p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION: DAILY PRACTICE & FORMULA REVISION ZONE
+             ======================================================== -->
+        <section class="py-14 bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+                    <div>
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-brain"></i> Interactive Daily Brain Booster
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Daily Practice & Quick Formulas</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="quiz-streak-badge" class="px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/70 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-xs font-extrabold flex items-center gap-1.5 shadow-xs">
+                            <i class="fa-solid fa-fire text-amber-500 animate-bounce"></i> <span id="quiz-streak-count">1 Day</span> Streak
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Card 1: Question of the Day -->
+                    <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                                <span id="qotd-subject-badge" class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+                                    Engineering Mathematics
+                                </span>
+                                <span class="text-xs text-slate-400 font-medium flex items-center gap-1">
+                                    <i class="fa-regular fa-clock"></i> Question of the Day
+                                </span>
+                            </div>
+
+                            <h3 id="qotd-question-text" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug mb-5">
+                                If matrix A is orthogonal, what is the determinant |A| equal to?
+                            </h3>
+
+                            <div id="qotd-options-container" class="space-y-2.5 mb-5">
+                                <!-- Options dynamically rendered -->
+                            </div>
+
+                            <!-- Explanation Feedback Box -->
+                            <div id="qotd-feedback" class="hidden p-4 rounded-2xl text-xs font-semibold mb-4 transition-all">
+                                <!-- Feedback text -->
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <button id="qotd-next-btn" class="text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-shuffle"></i> <span>Try Next Question</span>
+                            </button>
+                            <a href="test-series.html" class="text-xs font-bold text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1">
+                                <span>Full Mock Test Series</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Formula Revision Flashcard -->
+                    <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                                <span id="formula-category-badge" class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">
+                                    Applied Physics & Mechanics
+                                </span>
+                                <span class="text-xs text-slate-400 font-medium flex items-center gap-1">
+                                    <i class="fa-solid fa-bolt text-amber-500"></i> Quick Flashcard
+                                </span>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-center mb-5">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Concept / Law</span>
+                                <h3 id="formula-title" class="text-lg sm:text-xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+                                    Bernoulli's Theorem
+                                </h3>
+
+                                <div id="formula-equation" class="py-3 px-4 rounded-xl bg-white dark:bg-slate-900 border border-purple-200/60 dark:border-purple-900/60 font-mono text-base sm:text-lg font-black text-purple-600 dark:text-purple-400 shadow-inner inline-block my-2">
+                                    P + ½ρv² + ρgh = Constant
+                                </div>
+
+                                <p id="formula-description" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto mt-2">
+                                    For an incompressible, non-viscous fluid in streamline flow, the sum of pressure energy, kinetic energy, and potential energy per unit volume remains constant.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <button id="btn-prev-formula" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs transition">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <span id="formula-index-indicator" class="text-xs font-bold text-slate-500">1 / 5</span>
+                                <button id="btn-next-formula" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs transition">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <button id="btn-copy-formula" class="text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy Formula</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 3: LATEST UPDATES & NOTIFICATIONS
+             ======================================================== -->
+        <section class="py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Real-time Bulletin</span>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Latest Updates & Notices</h2>
+                    </div>
+                    
+                    <!-- Filter Tags -->
+                    <div class="flex flex-wrap gap-1.5 bg-white dark:bg-slate-900 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800" id="update-filter-container">
+                        <button class="update-filter-btn px-3 py-1 text-xs font-bold rounded-lg bg-sky-600 text-white transition" data-category="all">All</button>
+                        <button class="update-filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-sky-600 transition" data-category="Exam">Exam</button>
+                        <button class="update-filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-sky-600 transition" data-category="Admission">Admission</button>
+                        <button class="update-filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-sky-600 transition" data-category="Result">Result</button>
+                        <button class="update-filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-sky-600 transition" data-category="College">College</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="updates-grid-container">
+                    <!-- Dynamic rendered by JS from DC_DATA.updates -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 4: SEMESTER RESOURCES (SEMESTER 1 TO 6)
+             ======================================================== -->
+        <section class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Organized by Curriculum</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Semester-Wise Study Resources</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Comprehensive subject notes, syllabus blueprints, and important question collections mapped strictly to JUT board pattern.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Sem 1 -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-sky-50/50 to-white dark:from-slate-800/50 dark:to-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">Semester 01</span>
+                                <span class="text-xs text-slate-400 font-semibold">Common to All</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition">1st Semester Foundation</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Applied Physics 1, Applied Chemistry, Engineering Mathematics 1, Engineering Graphics, Communication Skills.</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="resources.html?sem=1" class="w-full py-2.5 px-4 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <span>Access Sem 1 Notes & PYQs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sem 2 -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-indigo-50/50 to-white dark:from-slate-800/50 dark:to-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">Semester 02</span>
+                                <span class="text-xs text-slate-400 font-semibold">Common to All</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition">2nd Semester Foundation</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Applied Physics 2, Engineering Mathematics 2, Fundamentals of Electrical & Electronics, IT Skills & Workshop.</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="resources.html?sem=2" class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <span>Access Sem 2 Notes & PYQs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sem 3 -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-emerald-50/50 to-white dark:from-slate-800/50 dark:to-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Semester 03</span>
+                                <span class="text-xs text-slate-400 font-semibold">Core Branch</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition">3rd Semester Core Engineering</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Data Structures (CSE), SOM (Mech), Surveying 1 (Civil), Circuit Theory (EE), Digital Electronics (ECE).</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="resources.html?sem=3" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <span>Access Sem 3 Notes & PYQs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sem 4 -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-amber-50/50 to-white dark:from-slate-800/50 dark:to-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">Semester 04</span>
+                                <span class="text-xs text-slate-400 font-semibold">Core Branch</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition">4th Semester Technical Core</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">DBMS, Operating Systems, Theory of Machines, Hydraulics & Fluid Mechanics, Electrical Machines 1.</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="resources.html?sem=4" class="w-full py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <span>Access Sem 4 Notes & PYQs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sem 5 -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-purple-50/50 to-white dark:from-slate-800/50 dark:to-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">Semester 05</span>
+                                <span class="text-xs text-slate-400 font-semibold">Advanced Specialization</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition">5th Semester Advanced Engineering</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Software Engineering, Heat Transfer, Soil Mechanics, Power Electronics, Microcontrollers & Industrial Training.</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="resources.html?sem=5" class="w-full py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <span>Access Sem 5 Notes & PYQs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sem 6 -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-rose-50/50 to-white dark:from-slate-800/50 dark:to-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">Semester 06</span>
+                                <span class="text-xs text-slate-400 font-semibold">Final Year & Projects</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition">6th Semester Capstone & Placement</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Major Project Work, Industrial Management, Renewable Energy, Network Security & Board PYQ archives.</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="resources.html?sem=6" class="w-full py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <span>Access Sem 6 Notes & PYQs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 5: POPULAR QUESTION PAPERS
+             ======================================================== -->
+        <section class="py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Verified Examination Archives</span>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Popular Previous Year Question Papers</h2>
+                    </div>
+                    <a href="question-papers.html" class="inline-flex items-center gap-2 text-sm font-bold text-sky-600 dark:text-sky-400 hover:text-sky-700 transition">
+                        <span>View All 200+ Papers</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="popular-pyqs-container">
+                    <!-- Populated dynamically from DC_DATA.questionPapers -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 6: ENGINEERING BRANCHES
+             ======================================================== -->
+        <section class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Polytechnic Disciplines</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Explore Engineering Branches</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Specialized curriculum repositories, syllabus modules, and subject collections for all diploma branches.</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5" id="branches-grid-container">
+                    <!-- Populated dynamically from DC_DATA.branches -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 7: TOP POLYTECHNIC COLLEGES
+             ======================================================== -->
+        <section class="py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">College Directory</span>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Premier Polytechnic Institutes</h2>
+                    </div>
+                    <a href="colleges.html" class="inline-flex items-center gap-2 text-sm font-bold text-sky-600 dark:text-sky-400 hover:text-sky-700 transition">
+                        <span>Browse All Colleges</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="top-colleges-container">
+                    <!-- Populated dynamically from DC_DATA.colleges -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 8: EXAM PREPARATION PORTAL
+             ======================================================== -->
+        <section class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Targeted Exam Success</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Comprehensive Exam Preparation</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Structured syllabus, exam patterns, marks distributions, and previous year trends for entrance and semester assessments.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="exams-hub-container">
+                    <!-- Populated dynamically from DC_DATA.exams -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 9: D2D / LATERAL ENTRY SHOWCASE
+             ======================================================== -->
+        <section class="py-16 bg-gradient-to-r from-sky-900 via-indigo-950 to-slate-900 text-white relative overflow-hidden">
+            <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-400/30">
+                            <i class="fa-solid fa-graduation-cap"></i> BIT Sindri Lateral Entry (D2D)
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-white leading-tight">
+                            Direct 2nd Year B.Tech Admission for Diploma Engineers
+                        </h2>
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                            Target top government engineering colleges like BIT Sindri, UCET Hazaribagh, and CIT Ranchi. Access branch-wise cutoff archives, official entrance question papers, mathematics & physics modules, and dedicated mock tests.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 text-xs font-semibold text-slate-200">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 10% Reserved Seats</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> BIT Sindri Focus</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full PYQ Papers</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> CBT Mock Engine</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Verified Cutoffs</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Counselling Guide</div>
+                        </div>
+
+                        <div class="pt-4 flex flex-wrap items-center gap-4">
+                            <a href="d2d.html" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold shadow-lg shadow-amber-500/20 flex items-center gap-2 hover:-translate-y-0.5 transition-all">
+                                <span>Explore D2D Portal</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="college-detail.html?id=bit-sindri-d2d" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold border border-white/20 transition">
+                                <span>View BIT Sindri Seats</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 space-y-4">
+                        <h3 class="text-base font-bold text-white flex items-center justify-between">
+                            <span>D2D Quick Facts</span>
+                            <span class="text-xs text-amber-400 font-semibold">JCECEB Board</span>
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-300">
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+                                <span>Conducting Agency:</span>
+                                <strong class="text-white">JCECEB, Ranchi</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+                                <span>Exam Pattern:</span>
+                                <strong class="text-white">100 MCQs (Maths 50, Phy 25, Chem 25)</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+                                <span>Negative Marking:</span>
+                                <strong class="text-white">-0.25 Marks per wrong answer</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+                                <span>BIT Sindri General Cutoff:</span>
+                                <strong class="text-amber-400">Rank 1 to 45 (Branch dependent)</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 10: TEST SERIES (CBT ENGINE)
+             ======================================================== -->
+        <section class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Computer Based Tests</span>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Live Online Mock Test Series</h2>
+                    </div>
+                    <a href="test-series.html" class="inline-flex items-center gap-2 text-sm font-bold text-sky-600 dark:text-sky-400 hover:text-sky-700 transition">
+                        <span>All Test Series</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="test-series-container">
+                    <!-- Populated dynamically from DC_DATA.mockTests -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 11: WHY DIPLOMA CAMPUS?
+             ======================================================== -->
+        <section class="py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Core Values</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Why Choose Diploma Campus?</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Engineered to eliminate clutter and provide polytechnic students with verified, accessible learning resources.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-folder-tree"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Organized Resources</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Categorized strictly by semester, branch, and subject according to the latest Jharkhand University of Technology (JUT) model syllabus.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-file-shield"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Previous Question Papers</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Authentic board question papers with clear PDF view and download links without broken redirects or spam ads.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-building-circle-check"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">College Information</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Verified details of government, semi-govt, and private polytechnic colleges across Jharkhand including intake, cutoffs, and hostel facilities.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Exam Preparation</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Dedicated portals for PECE entrance, JUT semester examinations, and BIT Sindri Lateral Entry (D2D).</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">CBT Test Series</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Real examination timer, question palette, negative marking, instant score calculation, and question explanations.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Student-Friendly Platform</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">100% responsive, lightning fast loading, accessible on all mobile devices, tablets, and desktop browsers.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 12: FREQUENTLY ASKED QUESTIONS (FAQ)
+             ======================================================== -->
+        <section class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Help Center</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Frequently Asked Questions</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Answers to common queries regarding Jharkhand polytechnic exams, notes, and D2D admission.</p>
+                </div>
+
+                <div class="space-y-4" id="faq-accordion-container">
+                    
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden faq-item">
+                        <button class="w-full text-left p-5 flex items-center justify-between font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800 hover:bg-slate-100/60 transition faq-toggle">
+                            <span>Are all semester notes and question papers free on Diploma Campus?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 hidden leading-relaxed border-t border-slate-100 dark:border-slate-800">
+                            Yes, all semester notes, syllabus PDFs, and previous year question papers hosted on Diploma Campus are freely accessible for all diploma and polytechnic students.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden faq-item">
+                        <button class="w-full text-left p-5 flex items-center justify-between font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800 hover:bg-slate-100/60 transition faq-toggle">
+                            <span>What is the eligibility for Jharkhand D2D (Diploma to Degree) Lateral Entry?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 hidden leading-relaxed border-t border-slate-100 dark:border-slate-800">
+                            Students who have completed or are appearing in their final semester of a 3-year AICTE-approved Diploma in Engineering with a minimum of 45% aggregate marks (40% for reserved categories) are eligible for Jharkhand D2D entrance conducted by JCECEB.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden faq-item">
+                        <button class="w-full text-left p-5 flex items-center justify-between font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800 hover:bg-slate-100/60 transition faq-toggle">
+                            <span>How many seats are available in BIT Sindri through Lateral Entry?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 hidden leading-relaxed border-t border-slate-100 dark:border-slate-800">
+                            BIT Sindri reserves approximately 10% supernumerary seats across all 10 engineering branches (around 68 seats in total) specifically for top rankers of the Jharkhand D2D examination.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden faq-item">
+                        <button class="w-full text-left p-5 flex items-center justify-between font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800 hover:bg-slate-100/60 transition faq-toggle">
+                            <span>How is JUT Semester CGPA converted to percentage?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 hidden leading-relaxed border-t border-slate-100 dark:border-slate-800">
+                            Under Jharkhand University of Technology (JUT) guidelines, Percentage is calculated as: <strong>Percentage (%) = CGPA × 9.5</strong>. You can use our dedicated <a href="tools.html#cgpa" class="text-sky-600 font-bold underline">CGPA Calculator</a> for instant conversion.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden faq-item">
+                        <button class="w-full text-left p-5 flex items-center justify-between font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800 hover:bg-slate-100/60 transition faq-toggle">
+                            <span>How does the Computer Based Mock Test work?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 hidden leading-relaxed border-t border-slate-100 dark:border-slate-800">
+                            Our mock test engine simulates real PECE and D2D test conditions with a live timer, interactive question palette, option marking, instant submit verification, detailed performance analytics, and question explanations.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 13: FINAL CTA BANNER
+             ======================================================== -->
+        <section class="py-16 bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-700 text-white relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+                <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-white">
+                    Ready to Boost Your Diploma Exam Preparation?
+                </h2>
+                <p class="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed">
+                    Join thousands of polytechnic students accessing verified notes, previous papers, and mock tests across Jharkhand.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="resources.html" class="px-8 py-3.5 rounded-xl bg-white text-sky-900 hover:bg-sky-50 font-bold shadow-xl transition-all hover:scale-105">
+                        Start Learning Now
+                    </a>
+                    <a href="test-series.html" class="px-8 py-3.5 rounded-xl bg-sky-950/40 hover:bg-sky-950/60 text-white font-bold border border-white/20 transition-all">
+                        Take a Free Mock Test
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Footer Mount Point -->
+    <div id="dc-footer-mount"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+
+    <!-- Homepage Dynamic Render Script -->
+    <script>
+        (function() {
+            function initHomePage() {
+                const data = window.DC_DATA || {};
+
+                // 1. Render Updates
+                const updatesContainer = document.getElementById('updates-grid-container');
+                if (updatesContainer && data.updates) {
+                    renderUpdates(data.updates);
+                }
+
+                // Filter button logic
+                document.querySelectorAll('.update-filter-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.update-filter-btn').forEach(b => {
+                            b.className = 'update-filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-sky-600 transition';
+                        });
+                        btn.className = 'update-filter-btn px-3 py-1 text-xs font-bold rounded-lg bg-sky-600 text-white transition';
+                        
+                        const cat = btn.getAttribute('data-category');
+                        if (cat === 'all') {
+                            renderUpdates(data.updates);
+                        } else {
+                            const filtered = data.updates.filter(u => u.category === cat);
+                            renderUpdates(filtered);
+                        }
+                    });
+                });
+
+                function renderUpdates(items) {
+                    if (!updatesContainer) return;
+                    let html = '';
+                    (items || []).forEach(u => {
+                        html += `
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-3">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+                                        ${u.category}
+                                    </span>
+                                    <span class="text-xs text-slate-400 font-medium">${u.date}</span>
+                                </div>
+                                <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition leading-snug">${u.title}</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">${u.excerpt}</p>
+                            </div>
+                            <div class="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800">
+                                <a href="${u.link}" class="text-xs font-bold text-sky-600 dark:text-sky-400 hover:text-sky-700 inline-flex items-center gap-1">
+                                    <span>Read Full Notice</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                        `;
+                    });
+                    updatesContainer.innerHTML = html;
+                }
+
+                // 2. Render Popular PYQs
+                const pyqsContainer = document.getElementById('popular-pyqs-container');
+                if (pyqsContainer && data.questionPapers) {
+                    let html = '';
+                    data.questionPapers.slice(0, 6).forEach(p => {
+                        html += `
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sky-500/40 hover:shadow-md transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">${p.semester}</span>
+                                    <span class="text-xs text-slate-400 font-semibold">Year ${p.year}</span>
+                                </div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition">${p.title}</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">${p.branch} • ${p.examType}</p>
+                            </div>
+                            <div class="pt-4 mt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-[11px] text-slate-400"><i class="fa-solid fa-file-lines mr-1 text-sky-500"></i> ${p.size}</span>
+                                <a href="${p.downloadUrl}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-sky-50 dark:bg-slate-800 text-sky-700 dark:text-sky-300 hover:bg-sky-600 hover:text-white text-xs font-bold transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-file-arrow-down"></i>
+                                    <span>Download PDF</span>
+                                </a>
+                            </div>
+                        </div>
+                        `;
+                    });
+                    pyqsContainer.innerHTML = html;
+                }
+
+                // 3. Render Branches
+                const branchesContainer = document.getElementById('branches-grid-container');
+                if (branchesContainer && data.branches) {
+                    let html = '';
+                    data.branches.forEach(b => {
+                        html += `
+                        <a href="${b.page || 'resources.html'}" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 hover:bg-white dark:hover:bg-slate-800 hover:border-sky-500/50 hover:shadow-md transition-all group flex flex-col justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                                    <i class="fa-solid ${b.icon}"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 transition">${b.short}</h3>
+                                    <p class="text-[10px] text-slate-400">${b.count}+ Resources</p>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2 line-clamp-1">${b.name}</p>
+                        </a>
+                        `;
+                    });
+                    branchesContainer.innerHTML = html;
+                }
+
+                // 4. Render Colleges
+                const collegesContainer = document.getElementById('top-colleges-container');
+                if (collegesContainer && data.colleges) {
+                    let html = '';
+                    data.colleges.slice(0, 6).forEach(c => {
+                        html += `
+                        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                            <div class="relative h-44 overflow-hidden bg-slate-200">
+                                <img src="${c.image}" alt="${c.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-white backdrop-blur-sm shadow">
+                                    ${c.type}
+                                </span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white flex items-center gap-1 shadow">
+                                    <i class="fa-solid fa-star text-[9px]"></i> ${c.rating}
+                                </span>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition leading-snug">${c.name}</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-rose-500"></i> ${c.location}
+                                    </p>
+                                    <div class="mt-3 flex flex-wrap gap-1.5">
+                                        <span class="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-medium">Intake: ${c.totalIntake}</span>
+                                        <span class="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-medium">${c.hostel}</span>
+                                    </div>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+                                    <a href="college-detail.html?id=${c.id}" class="w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-600 hover:text-white text-slate-700 dark:text-slate-200 text-xs font-bold transition flex items-center justify-center gap-2">
+                                        <span>View College Details</span>
+                                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    });
+                    collegesContainer.innerHTML = html;
+                }
+
+                // ========================================================
+                // 7. Hero Search Engine (Real-Time Suggestions & Direct Execution)
+                // ========================================================
+                const heroWrapper = document.getElementById('hero-search-wrapper');
+                const heroInput = document.getElementById('hero-search-input');
+                const heroBtn = document.getElementById('hero-search-btn');
+                const heroDropdown = document.getElementById('hero-search-dropdown');
+
+                const heroTrendingQueries = [
+                    { label: "Notes", query: "Notes" },
+                    { label: "PYQs (Papers)", query: "PYQs" },
+                    { label: "Important Questions", query: "Important Questions" },
+                    { label: "Sample Papers", query: "Sample Papers" },
+                    { label: "Syllabus", query: "Syllabus" },
+                    { label: "GP Ranchi", query: "GP Ranchi" },
+                    { label: "BIT Sindri D2D", query: "D2D" },
+                    { label: "Attendance Calculator", query: "Attendance" },
+                    { label: "CGPA Converter", query: "CGPA" },
+                    { label: "Applied Physics", query: "Physics" },
+                    { label: "Engineering Mathematics", query: "Mathematics" }
+                ];
+
+                function highlightHeroMatch(text, query) {
+                    if (!text || !query) return text || '';
+                    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    return String(text).replace(regex, '<span class="text-sky-600 dark:text-sky-400 font-extrabold underline decoration-sky-400/40">$1</span>');
+                }
+
+                function renderHeroSuggestions() {
+                    if (!heroInput || !heroDropdown) return;
+                    const query = (heroInput.value || '').trim().toLowerCase();
+
+                    if (!query) {
+                        heroDropdown.innerHTML = `
+                        <div class="p-4 space-y-3">
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex items-center gap-1.5">
+                                <i class="fa-solid fa-fire text-amber-500"></i>
+                                <span>Trending & Quick Suggestions</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${heroTrendingQueries.map(t => `
+                                    <button type="button" class="hero-tag-btn px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-950 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 text-xs font-semibold transition border border-slate-200/60 dark:border-slate-700" data-query="${t.query}">
+                                        ${t.label}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs">
+                                <a href="resources.html?type=Notes" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-850 hover:bg-sky-50 dark:hover:bg-sky-950 text-slate-700 dark:text-slate-300 hover:text-sky-600 flex items-center gap-2 transition">
+                                    <i class="fa-solid fa-book-open text-sky-500"></i> Notes
+                                </a>
+                                <a href="resources.html?type=PYQs" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-850 hover:bg-purple-50 dark:hover:bg-purple-950 text-slate-700 dark:text-slate-300 hover:text-purple-600 flex items-center gap-2 transition">
+                                    <i class="fa-solid fa-file-lines text-purple-500"></i> PYQs
+                                </a>
+                                <a href="tools.html#attendance-calc" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-850 hover:bg-teal-50 dark:hover:bg-teal-950 text-slate-700 dark:text-slate-300 hover:text-teal-600 flex items-center gap-2 transition">
+                                    <i class="fa-solid fa-user-check text-teal-500"></i> 75% Attendance
+                                </a>
+                            </div>
+                        </div>
+                        `;
+                        bindHeroTagButtons();
+                        heroDropdown.classList.remove('hidden');
+                        return;
+                    }
+
+                    const studyMaterials = (window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('resources') : null) || window.DC_DATA?.studyMaterials || window.DC_RESOURCES || [];
+                    const colleges = window.DC_COLLEGES || window.DC_DATA?.colleges || [];
+                    const branches = window.DC_DATA?.branches || [];
+                    const exams = window.DC_DATA?.exams || [];
+                    const mockTests = window.DC_DATA?.mockTests || [];
+
+                    const results = [];
+                    const livePills = new Set();
+
+                    // Search in study materials
+                    studyMaterials.forEach(sm => {
+                        const title = sm.title || '';
+                        const subject = sm.subject || '';
+                        const type = sm.type || 'Notes';
+                        const branch = sm.branch || '';
+                        const sem = sm.semester ? `Sem ${sm.semester}` : '';
+
+                        if (title.toLowerCase().includes(query) || subject.toLowerCase().includes(query) || type.toLowerCase().includes(query) || branch.toLowerCase().includes(query)) {
+                            let badgeColor = 'bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800';
+                            let icon = 'fa-book-open';
+                            
+                            if (type.toLowerCase().includes('pyq')) {
+                                badgeColor = 'bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800';
+                                icon = 'fa-file-lines';
+                            } else if (type.toLowerCase().includes('important')) {
+                                badgeColor = 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800';
+                                icon = 'fa-star';
+                            } else if (type.toLowerCase().includes('sample')) {
+                                badgeColor = 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
+                                icon = 'fa-file-circle-check';
+                            } else if (type.toLowerCase().includes('syllabus')) {
+                                badgeColor = 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800';
+                                icon = 'fa-graduation-cap';
+                            }
+
+                            results.push({
+                                type,
+                                icon,
+                                badgeColor,
+                                title,
+                                subtitle: `${branch} • ${sem} • ${subject}`,
+                                link: sm.url || sm.downloadUrl || `resources.html?type=${encodeURIComponent(type)}`
+                            });
+
+                            if (subject && subject.toLowerCase().includes(query)) livePills.add(subject);
+                        }
+                    });
+
+                    // Search colleges
+                    colleges.forEach(c => {
+                        if ((c.name || '').toLowerCase().includes(query) || (c.district || '').toLowerCase().includes(query) || (c.shortName || '').toLowerCase().includes(query)) {
+                            results.push({
+                                type: 'College',
+                                icon: 'fa-building-columns',
+                                badgeColor: 'bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+                                title: c.name,
+                                subtitle: `${c.district} • ${c.type} • Intake: ${c.totalIntake || '300+'}`,
+                                link: `college-detail.html?id=${c.id}`
+                            });
+                            livePills.add(c.name);
+                        }
+                    });
+
+                    // Search branches
+                    branches.forEach(b => {
+                        if ((b.name || '').toLowerCase().includes(query) || (b.short || '').toLowerCase().includes(query)) {
+                            results.push({
+                                type: 'Branch',
+                                icon: 'fa-code-branch',
+                                badgeColor: 'bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800',
+                                title: `${b.name} (${b.short})`,
+                                subtitle: b.desc,
+                                link: `${b.id}.html`
+                            });
+                            livePills.add(b.name);
+                        }
+                    });
+
+                    // Search tools
+                    if ('attendance calculator 75 bunk'.includes(query)) {
+                        results.push({
+                            type: 'Tool',
+                            icon: 'fa-user-check',
+                            badgeColor: 'bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800',
+                            title: 'JUT 75% Attendance & Bunk Planner',
+                            subtitle: 'Calculate exact classes needed for JUT exam admit card',
+                            link: 'tools.html#attendance-calc'
+                        });
+                    }
+                    if ('cgpa percentage marks converter'.includes(query)) {
+                        results.push({
+                            type: 'Tool',
+                            icon: 'fa-calculator',
+                            badgeColor: 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
+                            title: 'JUT CGPA to Percentage Calculator',
+                            subtitle: 'Official formula (CGPA - 0.75) × 10 & 6-Sem Cumulative Planner',
+                            link: 'tools.html#cgpa-calc'
+                        });
+                    }
+                    if ('predictor bit sindri d2d pece'.includes(query)) {
+                        results.push({
+                            type: 'Tool',
+                            icon: 'fa-wand-magic-sparkles',
+                            badgeColor: 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+                            title: 'BIT Sindri D2D & PECE College Predictor 2026',
+                            subtitle: 'Predict admission chances for 30+ Govt Polytechnics',
+                            link: 'tools.html#college-predictor'
+                        });
+                    }
+
+                    // Search mock tests
+                    mockTests.forEach(m => {
+                        if ((m.title || '').toLowerCase().includes(query) || (m.category || '').toLowerCase().includes(query)) {
+                            results.push({
+                                type: 'Mock Test',
+                                icon: 'fa-list-check',
+                                badgeColor: 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+                                title: m.title,
+                                subtitle: `${m.category} • ${m.timeLimit || 60} Mins`,
+                                link: 'test-series.html'
+                            });
+                            livePills.add(m.title);
+                        }
+                    });
+
+                    if (results.length === 0) {
+                        heroDropdown.innerHTML = `
+                        <div class="p-6 text-center text-slate-400">
+                            <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-lg mx-auto mb-2 text-slate-400">
+                                <i class="fa-regular fa-folder-open"></i>
+                            </div>
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300">No results found for "${query}"</p>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Try searching "Physics", "Civil", "PYQs", "Syllabus", or "GP Ranchi"</p>
+                        </div>
+                        `;
+                        heroDropdown.classList.remove('hidden');
+                        return;
+                    }
+
+                    const pillList = Array.from(livePills).slice(0, 4);
+                    let pillsHtml = '';
+                    if (pillList.length > 0) {
+                        pillsHtml = `
+                        <div class="px-4 py-2.5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-850/50 flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-bolt text-amber-500 text-xs"></i> Suggestions:</span>
+                            ${pillList.map(p => `
+                                <button type="button" class="hero-tag-btn px-2.5 py-0.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:bg-sky-100 text-sky-700 dark:text-sky-300 text-xs font-semibold transition border border-sky-200/50 dark:border-sky-900" data-query="${p}">
+                                    ${p}
+                                </button>
+                            `).join('')}
+                        </div>
+                        `;
+                    }
+
+                    const countHeader = `
+                    <div class="px-4 py-2 text-[11px] font-semibold text-slate-400 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span>Showing <strong class="text-sky-600 dark:text-sky-400">${results.length}</strong> matching results</span>
+                        <span>Live Suggestions</span>
+                    </div>
+                    `;
+
+                    const itemsHtml = results.slice(0, 15).map(item => `
+                    <a href="${item.link}" class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition group border-b border-slate-100 dark:border-slate-800/60 last:border-0">
+                        <div class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 group-hover:bg-sky-600 group-hover:text-white flex items-center justify-center text-xs shrink-0 transition shadow-xs">
+                            <i class="fa-solid ${item.icon}"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-0.5">
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${item.badgeColor} uppercase tracking-wider">${item.type}</span>
+                                <h5 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition">${highlightHeroMatch(item.title, query)}</h5>
+                            </div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate">${highlightHeroMatch(item.subtitle, query)}</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-xs text-slate-300 dark:text-slate-600 group-hover:text-sky-600 group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
+                    `).join('');
+
+                    heroDropdown.innerHTML = `
+                    <div>
+                        ${pillsHtml}
+                        ${countHeader}
+                        <div class="divide-y divide-slate-100 dark:divide-slate-800">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                    `;
+
+                    bindHeroTagButtons();
+                    heroDropdown.classList.remove('hidden');
+                }
+
+                function bindHeroTagButtons() {
+                    if (!heroDropdown) return;
+                    heroDropdown.querySelectorAll('.hero-tag-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            heroInput.value = btn.getAttribute('data-query') || '';
+                            heroInput.focus();
+                            renderHeroSuggestions();
+                        });
+                    });
+                }
+
+                if (heroInput) {
+                    heroInput.addEventListener('input', renderHeroSuggestions);
+                    heroInput.addEventListener('keyup', renderHeroSuggestions);
+                    heroInput.addEventListener('focus', renderHeroSuggestions);
+                    heroInput.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        renderHeroSuggestions();
+                    });
+                    heroInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            const firstLink = heroDropdown?.querySelector('a');
+                            if (firstLink) {
+                                window.location.href = firstLink.getAttribute('href');
+                            }
+                        } else if (e.key === 'Escape') {
+                            heroDropdown?.classList.add('hidden');
+                        }
+                    });
+                }
+
+                if (heroBtn && heroInput) {
+                    heroBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const firstLink = heroDropdown?.querySelector('a');
+                        if (firstLink && heroInput.value.trim()) {
+                            window.location.href = firstLink.getAttribute('href');
+                        } else {
+                            renderHeroSuggestions();
+                        }
+                    });
+                }
+
+                // Click outside to close hero suggestions
+                document.addEventListener('click', (e) => {
+                    if (heroWrapper && !heroWrapper.contains(e.target)) {
+                        heroDropdown?.classList.add('hidden');
+                    }
+                });
+
+                // 8. FAQ Accordion Toggle
+                document.querySelectorAll('.faq-toggle').forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const content = toggle.nextElementSibling;
+                        const icon = toggle.querySelector('i');
+                        const isHidden = content.classList.contains('hidden');
+                        
+                        document.querySelectorAll('.faq-item div').forEach(d => {
+                            if (!d.classList.contains('faq-toggle')) d.classList.add('hidden');
+                        });
+                        document.querySelectorAll('.faq-toggle i').forEach(i => i.classList.remove('rotate-180'));
+
+                        if (isHidden) {
+                            content.classList.remove('hidden');
+                            icon.classList.add('rotate-180');
+                        }
+                    });
+                });
+
+                // ========================================================
+                // 9. Interactive Question of the Day & Quiz Engine
+                // ========================================================
+                const dailyQuestions = [
+                    {
+                        subject: 'Engineering Mathematics',
+                        question: 'If a square matrix A is orthogonal (A · Aᵀ = I), what is the value of its determinant |A|?',
+                        options: ['0', '±1', 'Infinity', 'Always +1'],
+                        correct: 1,
+                        explanation: 'For an orthogonal matrix A · Aᵀ = I, taking determinant yields |A| · |Aᵀ| = |A|² = 1. Hence |A| = ±1.'
+                    },
+                    {
+                        subject: 'Applied Physics',
+                        question: 'Which law forms the theoretical basis for Bernoulli\'s principle in fluid dynamics?',
+                        options: ['Conservation of Mass', 'Conservation of Momentum', 'Conservation of Energy', 'Pascal\'s Law'],
+                        correct: 2,
+                        explanation: 'Bernoulli\'s equation is a statement of the Law of Conservation of Energy applied to flowing fluids.'
+                    },
+                    {
+                        subject: 'Electrical & Electronics',
+                        question: 'In an ideal Operational Amplifier (Op-Amp), what is the input impedance and output impedance respectively?',
+                        options: ['0 and Infinity', 'Infinity and 0', '50 Ω and 50 Ω', '1 kΩ and 100 Ω'],
+                        correct: 1,
+                        explanation: 'An ideal op-amp features infinite input impedance (draws zero input current) and zero output impedance.'
+                    },
+                    {
+                        subject: 'Engineering Mechanics',
+                        question: 'According to Lami\'s theorem, if three coplanar concurrent forces keep a body in equilibrium, each force is proportional to:',
+                        options: ['Cosine of angle between other two forces', 'Sine of angle between other two forces', 'Tangent of the opposite angle', 'Square of the resultant force'],
+                        correct: 1,
+                        explanation: 'Lami\'s Theorem states: P/sin(α) = Q/sin(β) = R/sin(γ), where α, β, γ are the angles between the respective other two forces.'
+                    },
+                    {
+                        subject: 'Computer Science & IT',
+                        question: 'What is the worst-case time complexity of standard QuickSort algorithm with naive pivot selection?',
+                        options: ['O(N log N)', 'O(N²)', 'O(log N)', 'O(N)'],
+                        correct: 1,
+                        explanation: 'When the array is already sorted or reverse sorted and the first/last element is picked as pivot, QuickSort degrades to O(N²).'
+                    }
+                ];
+
+                let curQIndex = 0;
+                const qSubject = document.getElementById('qotd-subject-badge');
+                const qText = document.getElementById('qotd-question-text');
+                const qOptions = document.getElementById('qotd-options-container');
+                const qFeedback = document.getElementById('qotd-feedback');
+                const qNextBtn = document.getElementById('qotd-next-btn');
+                const streakCountEl = document.getElementById('quiz-streak-count');
+
+                let userStreak = 1;
+                try {
+                    userStreak = parseInt(localStorage.getItem('dc_daily_streak') || '1');
+                } catch(e) { userStreak = 1; }
+                if (streakCountEl) streakCountEl.textContent = `${userStreak} Day${userStreak > 1 ? 's' : ''}`;
+
+                function renderDailyQuestion(idx) {
+                    const q = dailyQuestions[idx % dailyQuestions.length];
+                    if (!q || !qText || !qOptions) return;
+
+                    if (qSubject) qSubject.textContent = q.subject;
+                    qText.textContent = q.question;
+                    qFeedback?.classList.add('hidden');
+
+                    qOptions.innerHTML = q.options.map((opt, oIdx) => `
+                        <button class="qotd-opt-btn w-full p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/60 hover:border-sky-500 hover:bg-sky-50/50 dark:hover:bg-slate-800 text-left text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 transition flex items-center justify-between group" data-index="${oIdx}">
+                            <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                            <span class="w-5 h-5 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-sky-500 group-hover:text-sky-500 transition">
+                                <i class="fa-solid fa-check opacity-0 group-hover:opacity-40"></i>
+                            </span>
+                        </button>
+                    `).join('');
+
+                    qOptions.querySelectorAll('.qotd-opt-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const selectedIdx = parseInt(btn.getAttribute('data-index'));
+                            handleQuizAnswer(selectedIdx, q);
+                        });
+                    });
+                }
+
+                function handleQuizAnswer(selectedIdx, q) {
+                    if (!qFeedback) return;
+                    const buttons = qOptions.querySelectorAll('.qotd-opt-btn');
+                    buttons.forEach(b => b.disabled = true);
+
+                    if (selectedIdx === q.correct) {
+                        buttons[selectedIdx].classList.remove('bg-slate-50/70', 'dark:bg-slate-800/60');
+                        buttons[selectedIdx].classList.add('bg-emerald-100', 'dark:bg-emerald-950/70', 'border-emerald-500', 'text-emerald-800', 'dark:text-emerald-200');
+                        
+                        qFeedback.className = 'p-4 rounded-2xl text-xs font-semibold mb-4 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300';
+                        qFeedback.innerHTML = `<div class="font-extrabold flex items-center gap-1.5 mb-1"><i class="fa-solid fa-circle-check"></i> Correct Answer! Streak +1</div>${q.explanation}`;
+                        qFeedback.classList.remove('hidden');
+
+                        try {
+                            userStreak = (parseInt(localStorage.getItem('dc_daily_streak') || '1')) + 1;
+                            localStorage.setItem('dc_daily_streak', userStreak.toString());
+                            if (streakCountEl) streakCountEl.textContent = `${userStreak} Days`;
+                        } catch(e) {}
+                        if (window.showToast) window.showToast('Spot on! Correct answer.', 'success');
+                    } else {
+                        buttons[selectedIdx].classList.remove('bg-slate-50/70', 'dark:bg-slate-800/60');
+                        buttons[selectedIdx].classList.add('bg-rose-100', 'dark:bg-rose-950/70', 'border-rose-500', 'text-rose-800', 'dark:text-rose-200');
+                        
+                        // Highlight correct
+                        buttons[q.correct].classList.add('bg-emerald-100', 'dark:bg-emerald-950/70', 'border-emerald-500', 'text-emerald-800', 'dark:text-emerald-200');
+
+                        qFeedback.className = 'p-4 rounded-2xl text-xs font-semibold mb-4 bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300';
+                        qFeedback.innerHTML = `<div class="font-extrabold flex items-center gap-1.5 mb-1"><i class="fa-solid fa-circle-xmark text-rose-500"></i> Nice try! Option ${String.fromCharCode(65 + q.correct)} is correct</div>${q.explanation}`;
+                        qFeedback.classList.remove('hidden');
+                    }
+                }
+
+                renderDailyQuestion(curQIndex);
+
+                if (qNextBtn) {
+                    qNextBtn.addEventListener('click', () => {
+                        curQIndex = (curQIndex + 1) % dailyQuestions.length;
+                        renderDailyQuestion(curQIndex);
+                    });
+                }
+
+                // ========================================================
+                // 10. Interactive Formula Flashcards Engine
+                // ========================================================
+                const formulaDeck = [
+                    {
+                        category: 'Applied Physics & Fluid Dynamics',
+                        title: 'Bernoulli\'s Equation',
+                        equation: 'P + ½ρv² + ρgh = Constant',
+                        description: 'The sum of static pressure, dynamic pressure, and hydrostatic pressure remains constant along any streamline of an incompressible, ideal fluid.'
+                    },
+                    {
+                        category: 'Engineering Mathematics',
+                        title: 'Euler\'s Formula for Polyhedra',
+                        equation: 'V - E + F = 2',
+                        description: 'Relates vertices (V), edges (E), and faces (F) for any convex polyhedron in 3D geometry.'
+                    },
+                    {
+                        category: 'Electrical & Circuit Theory',
+                        title: 'Kirchhoff\'s Voltage Law (KVL)',
+                        equation: '∑ V = 0  (Around any closed loop)',
+                        description: 'The algebraic sum of all electrical potential differences around any closed network or mesh equals zero (Conservation of Energy).'
+                    },
+                    {
+                        category: 'Strength of Materials / Mechanics',
+                        title: 'Hooke\'s Law & Young\'s Modulus',
+                        equation: 'σ = E × ε  (Stress = Modulus × Strain)',
+                        description: 'Within the elastic limit of a material, tensile or compressive stress is directly proportional to the strain produced.'
+                    },
+                    {
+                        category: 'Engineering Mathematics - Calculus',
+                        title: 'Integration by Parts',
+                        equation: '∫ u dv = u·v - ∫ v du',
+                        description: 'Fundamental calculus integration formula for decomposing the product of two continuous differentiable functions (ILATE rule).'
+                    }
+                ];
+
+                let formulaIdx = 0;
+                const fCategory = document.getElementById('formula-category-badge');
+                const fTitle = document.getElementById('formula-title');
+                const fEquation = document.getElementById('formula-equation');
+                const fDesc = document.getElementById('formula-description');
+                const fIndexInd = document.getElementById('formula-index-indicator');
+                const btnPrevF = document.getElementById('btn-prev-formula');
+                const btnNextF = document.getElementById('btn-next-formula');
+                const btnCopyF = document.getElementById('btn-copy-formula');
+
+                function renderFormula(idx) {
+                    const item = formulaDeck[idx];
+                    if (!item || !fTitle) return;
+                    if (fCategory) fCategory.textContent = item.category;
+                    fTitle.textContent = item.title;
+                    if (fEquation) fEquation.textContent = item.equation;
+                    if (fDesc) fDesc.textContent = item.description;
+                    if (fIndexInd) fIndexInd.textContent = `${idx + 1} / ${formulaDeck.length}`;
+                }
+
+                renderFormula(formulaIdx);
+
+                if (btnPrevF) {
+                    btnPrevF.addEventListener('click', () => {
+                        formulaIdx = (formulaIdx - 1 + formulaDeck.length) % formulaDeck.length;
+                        renderFormula(formulaIdx);
+                    });
+                }
+
+                if (btnNextF) {
+                    btnNextF.addEventListener('click', () => {
+                        formulaIdx = (formulaIdx + 1) % formulaDeck.length;
+                        renderFormula(formulaIdx);
+                    });
+                }
+
+                if (btnCopyF) {
+                    btnCopyF.addEventListener('click', () => {
+                        const eq = formulaDeck[formulaIdx]?.equation || '';
+                        if (navigator.clipboard && eq) {
+                            navigator.clipboard.writeText(eq).then(() => {
+                                if (window.showToast) window.showToast('Formula copied to clipboard!', 'success');
+                                else alert('Formula copied!');
+                            });
+                        }
+                    });
+                }
+
+                // ========================================================
+                // 11. Dynamic Live Announcements Ticker
+                // ========================================================
+                function renderLiveAnnouncements() {
+                    const marquee = document.getElementById('live-announcements-marquee');
+                    if (!marquee) return;
+
+                    let items = [];
+                    if (window.DC_DATA_MANAGER && typeof window.DC_DATA_MANAGER.getAll === 'function') {
+                        items = window.DC_DATA_MANAGER.getAll('announcements');
+                    }
+                    if (!items || items.length === 0) {
+                        items = window.DC_ANNOUNCEMENTS || [];
+                    }
+
+                    const activeItems = (items || []).filter(item => item && item.active !== false);
+
+                    if (activeItems.length === 0) {
+                        marquee.innerHTML = `
+                            <a href="resources.html" class="hover:underline flex items-center gap-1.5"><span class="text-sky-300">●</span> <strong>Diploma Campus:</strong> Welcome to Jharkhand Polytechnic Student Resource Hub</a>
+                        `;
+                        return;
+                    }
+
+                    marquee.innerHTML = activeItems.map(item => `
+                        <a href="${item.link || '#'}" class="hover:underline flex items-center gap-1.5 transition">
+                            <span class="${item.badgeColor || 'text-amber-300'}">●</span>
+                            <strong>${item.badge ? item.badge + ':' : ''}</strong> ${item.text}
+                        </a>
+                    `).join('');
+                }
+
+                renderLiveAnnouncements();
+
+                window.addEventListener('dc-data-updated', (e) => {
+                    if (!e.detail || e.detail.collection === 'announcements' || !e.detail.collection) {
+                        renderLiveAnnouncements();
+                    }
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initHomePage);
+            } else {
+                initHomePage();
+            }
+        })();
+    </script>
+</body>
+</html>

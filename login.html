@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login & Dashboard - Diploma Campus | Diploma Campus</title>
+    <meta name="description" content="Access your student profile, saved notes, mock test scorecards, and participate in community discussions.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2025, JCECEB, Polytechnic Question Papers, Diploma Notes, Diploma Campus Login, Student Dashboard Jharkhand, Polytechnic Login">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/login.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Student Login & Dashboard - Diploma Campus | Diploma Campus">
+    <meta property="og:description" content="Access your student profile, saved notes, mock test scorecards, and participate in community discussions.">
+    <meta property="og:url" content="https://diplomacampus.in/login.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
+        <div class="max-w-md w-full mx-4">
+            
+            <!-- Auth Container (Visible when logged out) -->
+            <div id="auth-box" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+                <div class="text-center space-y-2">
+                    <img src="assets/images/logo.png" alt="Diploma Campus" class="w-16 h-16 rounded-2xl object-contain bg-white p-1 shadow-md mx-auto border border-slate-200 dark:border-slate-800">
+                    <h1 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white" id="auth-title">Welcome to Diploma Campus</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400" id="auth-subtitle">Sign in with your Google account or email</p>
+                </div>
+
+                <!-- Google 1-Click Sign-In Button -->
+                <button id="btn-google-login" class="w-full py-3 px-4 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 font-semibold text-xs flex items-center justify-center gap-3 transition-all shadow-sm">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 14.8s.7 5.1 1.9 7.5l3.7-2.9z"/><path fill="#34A853" d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16.5C3.7 20.2 7.5 23.5 12 23.5z"/></svg>
+                    <span>Continue with Google</span>
+                </button>
+
+                <div class="flex items-center gap-3">
+                    <div class="h-px bg-slate-200 dark:bg-slate-800 flex-grow"></div>
+                    <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Or Email</span>
+                    <div class="h-px bg-slate-200 dark:border-slate-800 flex-grow"></div>
+                </div>
+
+                <!-- Email / Password Form -->
+                <form id="email-auth-form" class="space-y-4">
+                    <div id="name-field-group" class="hidden">
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Full Name</label>
+                        <input type="text" id="auth-name" placeholder="Aman Kumar" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+                        <input type="email" id="auth-email" required placeholder="name@domain.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Password</label>
+                            <button type="button" id="btn-forgot-pwd" class="text-[11px] text-sky-600 dark:text-sky-400 hover:underline">Forgot?</button>
+                        </div>
+                        <input type="password" id="auth-password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    </div>
+
+                    <button type="submit" id="btn-submit-auth" class="w-full py-3 rounded-2xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs shadow-md transition-colors">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Toggle Mode -->
+                <div class="text-center text-xs text-slate-500 dark:text-slate-400">
+                    <span id="auth-toggle-prompt">Don't have an account?</span>
+                    <button type="button" id="btn-toggle-auth-mode" class="text-sky-600 dark:text-sky-400 font-bold hover:underline ml-1">Create Account</button>
+                </div>
+            </div>
+
+            <!-- Profile Dashboard (Visible when logged in) -->
+            <div id="profile-box" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6 hidden">
+                <div class="text-center space-y-3">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-md" id="dash-avatar">
+                        U
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white" id="dash-name">Student Member</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400" id="dash-email">email@domain.com</p>
+                    </div>
+                    <span id="dash-badge" class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Verified Member</span>
+                </div>
+
+                <!-- Dashboard Quick Links -->
+                <div class="space-y-2 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+                    <div id="admin-dash-cta" class="hidden">
+                        <a href="admin.html" class="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-rose-600 to-amber-600 text-white font-bold shadow-md hover:scale-[1.02] transition-transform">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-white text-base"></i> Master Admin Control Center</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                    <a href="test-series.html" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-750 font-medium text-slate-800 dark:text-slate-200 transition-colors">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-laptop-code text-amber-500"></i> My Mock Tests & CBT</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                    </a>
+                    <a href="qna.html" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-750 font-medium text-slate-800 dark:text-slate-200 transition-colors">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-comments text-sky-500"></i> My Community Questions</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                    </a>
+                    <a href="resources.html" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-750 font-medium text-slate-800 dark:text-slate-200 transition-colors">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-book-open text-emerald-500"></i> Download Notes & Syllabus</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                    </a>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <button id="btn-logout" class="w-full py-2.5 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 font-bold text-xs hover:bg-rose-100 transition-colors">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module">
+        import { auth, loginWithGoogle, logoutUser, isAdmin } from './assets/js/firebase-app.js';
+        import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBox = document.getElementById('auth-box');
+            const profileBox = document.getElementById('profile-box');
+            const googleBtn = document.getElementById('btn-google-login');
+            const authForm = document.getElementById('email-auth-form');
+            const authTitle = document.getElementById('auth-title');
+            const authSubtitle = document.getElementById('auth-subtitle');
+            const nameFieldGroup = document.getElementById('name-field-group');
+            const submitBtn = document.getElementById('btn-submit-auth');
+            const toggleModeBtn = document.getElementById('btn-toggle-auth-mode');
+            const togglePrompt = document.getElementById('auth-toggle-prompt');
+            const forgotPwdBtn = document.getElementById('btn-forgot-pwd');
+            const logoutBtn = document.getElementById('btn-logout');
+            const adminDashCta = document.getElementById('admin-dash-cta');
+
+            let isSignUp = false;
+
+            // Auth State Listener
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    authBox.classList.add('hidden');
+                    profileBox.classList.remove('hidden');
+
+                    const displayName = user.displayName || user.email.split('@')[0];
+                    document.getElementById('dash-name').textContent = displayName;
+                    document.getElementById('dash-email').textContent = user.email;
+                    document.getElementById('dash-avatar').textContent = displayName.charAt(0).toUpperCase();
+
+                    if (isAdmin(user)) {
+                        document.getElementById('dash-badge').textContent = 'Site Administrator 🛡️';
+                        document.getElementById('dash-badge').className = 'inline-block px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300';
+                        adminDashCta.classList.remove('hidden');
+                    } else {
+                        document.getElementById('dash-badge').textContent = 'Diploma Student Member';
+                        adminDashCta.classList.add('hidden');
+                    }
+                } else {
+                    authBox.classList.remove('hidden');
+                    profileBox.classList.add('hidden');
+                }
+            });
+
+            // Google Login
+            googleBtn.addEventListener('click', async () => {
+                try {
+                    await loginWithGoogle();
+                    if (window.showToast) window.showToast("Signed in successfully!", "success");
+                } catch (err) {
+                    if (window.showToast) window.showToast("Sign in failed: " + err.message, "error");
+                }
+            });
+
+            // Toggle Mode
+            toggleModeBtn.addEventListener('click', () => {
+                isSignUp = !isSignUp;
+                if (isSignUp) {
+                    authTitle.textContent = "Create Student Account";
+                    authSubtitle.textContent = "Join Jharkhand's largest polytechnic network";
+                    nameFieldGroup.classList.remove('hidden');
+                    submitBtn.textContent = "Create Account";
+                    togglePrompt.textContent = "Already have an account?";
+                    toggleModeBtn.textContent = "Sign In";
+                } else {
+                    authTitle.textContent = "Welcome to Diploma Campus";
+                    authSubtitle.textContent = "Sign in with your Google account or email";
+                    nameFieldGroup.classList.add('hidden');
+                    submitBtn.textContent = "Sign In";
+                    togglePrompt.textContent = "Don't have an account?";
+                    toggleModeBtn.textContent = "Create Account";
+                }
+            });
+
+            // Form Submit (Email)
+            authForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('auth-email').value;
+                const password = document.getElementById('auth-password').value;
+
+                try {
+                    if (isSignUp) {
+                        const name = document.getElementById('auth-name').value;
+                        const cred = await createUserWithEmailAndPassword(auth, email, password);
+                        if (name) {
+                            await updateProfile(cred.user, { displayName: name });
+                        }
+                        if (window.showToast) window.showToast("Account created successfully!", "success");
+                    } else {
+                        await signInWithEmailAndPassword(auth, email, password);
+                        if (window.showToast) window.showToast("Signed in successfully!", "success");
+                    }
+                } catch (err) {
+                    if (window.showToast) window.showToast(err.message, "error");
+                }
+            });
+
+            // Forgot Password
+            forgotPwdBtn.addEventListener('click', async () => {
+                const email = prompt("Enter your registered email address to receive password reset link:");
+                if (email) {
+                    try {
+                        await sendPasswordResetEmail(auth, email);
+                        if (window.showToast) window.showToast("Password reset email sent!", "info");
+                    } catch (err) {
+                        if (window.showToast) window.showToast(err.message, "error");
+                    }
+                }
+            });
+
+            // Logout
+            logoutBtn.addEventListener('click', async () => {
+                await logoutUser();
+                if (window.showToast) window.showToast("Signed out", "info");
+            });
+        });
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

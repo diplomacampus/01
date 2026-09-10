@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Syllabus, Pattern & Details | Diploma Campus</title>
+    <meta name="description" content="Comprehensive syllabus, subject-wise weightage, book recommendations, and exam pattern for Jharkhand technical examinations.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2025, JCECEB, Polytechnic Question Papers, Diploma Notes, PECE Syllabus PDF, JUT Semester Exam Pattern, D2D Syllabus Jharkhand, JCECEB Lateral Entry Book List">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/exam-detail.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Exam Syllabus, Pattern & Details | Diploma Campus">
+    <meta property="og:description" content="Comprehensive syllabus, subject-wise weightage, book recommendations, and exam pattern for Jharkhand technical examinations.">
+    <meta property="og:url" content="https://diplomacampus.in/exam-detail.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
+                <span>/</span>
+                <a href="exam-preparation.html" class="hover:text-sky-600 dark:hover:text-sky-400">Exams</a>
+                <span>/</span>
+                <span id="exam-breadcrumb" class="text-slate-800 dark:text-slate-200 font-medium">Entrance Exam Guide</span>
+            </nav>
+
+            <!-- Dual Exam Interactive Switcher Bar -->
+            <div class="mb-8 p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row gap-1.5">
+                <button id="tab-btn-pece" class="flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all bg-sky-600 text-white shadow-md shadow-sky-500/20">
+                    <i class="fa-solid fa-school"></i>
+                    <span>Jharkhand Polytechnic (PECE)</span>
+                    <span class="text-[10px] py-0.5 px-2 rounded-full bg-white/20 font-normal hidden md:inline">10th to 1st Year</span>
+                </button>
+                <button id="tab-btn-d2d" class="flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-graduation-cap text-amber-500"></i>
+                    <span>D2D B.Tech Lateral Entry</span>
+                    <span class="text-[10px] py-0.5 px-2 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold hidden md:inline">BIT Sindri 2nd Year</span>
+                </button>
+            </div>
+
+            <!-- Main Exam Content Container (Populated via JS dynamically) -->
+            <div id="exam-content-container" class="space-y-8">
+                <!-- Dynamically Rendered via loadExamData() -->
+            </div>
+
+        </div>
+    </main>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+
+    <!-- Dynamic Exam Details Page Script -->
+    <script>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let activeExamId = urlParams.get('exam') || urlParams.get('id') || 'pece';
+
+            // Normalize alias
+            if (activeExamId === 'jharkhand-polytechnic' || activeExamId === 'polytechnic') activeExamId = 'pece';
+            if (activeExamId === 'jharkhand-d2d' || activeExamId === 'lateral-entry' || activeExamId === 'dece-le') activeExamId = 'd2d';
+
+            const peceBtn = document.getElementById('tab-btn-pece');
+            const d2dBtn = document.getElementById('tab-btn-d2d');
+            const container = document.getElementById('exam-content-container');
+            const breadcrumb = document.getElementById('exam-breadcrumb');
+
+            function getExamData(id) {
+                const exams = window.DC_DATA?.exams || [];
+                return exams.find(e => e.id === id || (e.alias && e.alias.includes(id))) || exams[0];
+            }
+
+            function switchExam(id) {
+                activeExamId = id;
+                window.history.replaceState(null, '', `?exam=${id}`);
+                updateTabs();
+                renderExam(getExamData(id));
+            }
+
+            function updateTabs() {
+                if (activeExamId === 'pece') {
+                    peceBtn.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all bg-sky-600 text-white shadow-md shadow-sky-500/20';
+                    d2dBtn.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800';
+                } else {
+                    d2dBtn.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md shadow-orange-500/20';
+                    peceBtn.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800';
+                }
+            }
+
+            function renderExam(data) {
+                if (!data) return;
+
+                breadcrumb.textContent = data.title;
+                document.title = `${data.title} - Complete Details, Pattern, Syllabus & Cutoffs | Diploma Campus`;
+
+                const isD2D = data.id === 'd2d';
+                const themeColor = isD2D ? 'amber' : 'sky';
+                const mockUrl = `test-series.html?exam=${data.id}`;
+                const pyqUrl = isD2D ? `d2d.html` : `question-papers.html`;
+
+                let html = `
+                <!-- 1. Hero Header & Overview -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-80 h-80 bg-${themeColor}-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="space-y-2 max-w-3xl">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold ${isD2D ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300' : 'bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300'}">
+                                    ${data.badge}
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                    <i class="fa-solid fa-building-columns mr-1 text-${themeColor}-500"></i> ${data.conductingBody}
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">
+                                    ${data.frequency}
+                                </span>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 dark:text-white leading-tight">
+                                ${data.title}
+                            </h1>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                ${data.overview}
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap md:flex-col gap-3 shrink-0">
+                            <a href="${mockUrl}" class="px-5 py-3 rounded-2xl ${isD2D ? 'bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 shadow-amber-500/25' : 'bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 shadow-sky-500/25'} text-white font-bold text-xs text-center shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span>Start CBT Mock Test</span>
+                            </a>
+                            <a href="${pyqUrl}" class="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 font-bold text-xs text-center border border-slate-200 dark:border-slate-700 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-file-arrow-down text-${themeColor}-500"></i>
+                                <span>Download 10-Yr PYQs</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Quick Highlight Metrics Matrix (6 Cards) -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase">Total Marks</span>
+                        <p class="text-xl font-heading font-black text-slate-900 dark:text-white mt-1">${data.totalMarks}</p>
+                        <span class="text-[10px] text-slate-400">1 mark per Q</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase">Total Questions</span>
+                        <p class="text-xl font-heading font-black text-slate-900 dark:text-white mt-1">${data.totalQuestions}</p>
+                        <span class="text-[10px] text-slate-400">Objective MCQs</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase">Duration</span>
+                        <p class="text-lg sm:text-xl font-heading font-black text-slate-900 dark:text-white mt-1">${data.duration}</p>
+                        <span class="text-[10px] text-slate-400">Single session</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase">Negative Mark</span>
+                        <p class="text-xl font-heading font-black text-rose-500 mt-1">-0.25</p>
+                        <span class="text-[10px] text-slate-400">1/4th deduction</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase">Exam Mode</span>
+                        <p class="text-sm font-heading font-black text-slate-900 dark:text-white mt-2">${data.examMode}</p>
+                        <span class="text-[10px] text-slate-400">OMR Offline</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase">Language</span>
+                        <p class="text-sm font-heading font-black text-emerald-600 dark:text-emerald-400 mt-2">${data.language}</p>
+                        <span class="text-[10px] text-slate-400">English & Hindi</span>
+                    </div>
+                </div>
+
+                <!-- 3. Exam Pattern Table -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <h2 class="text-lg sm:text-xl font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-table-list text-${themeColor}-500"></i> Official Examination Pattern & Marking Scheme
+                        </h2>
+                        <span class="text-xs font-semibold text-slate-400">100% Verified JCECEB Format</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs sm:text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-400 text-xs uppercase tracking-wider">
+                                    <th class="pb-3 font-bold">Subject Section</th>
+                                    <th class="pb-3 font-bold">Questions</th>
+                                    <th class="pb-3 font-bold">Total Marks</th>
+                                    <th class="pb-3 font-bold">Standard Difficulty / Level</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                                ${data.subjectBreakdown.map(s => `
+                                    <tr>
+                                        <td class="py-3.5 font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                            <i class="fa-solid fa-circle-dot text-[8px] text-${themeColor}-500"></i>
+                                            <span>${s.subject}</span>
+                                        </td>
+                                        <td class="py-3.5 text-slate-700 dark:text-slate-200">${s.questions} MCQs</td>
+                                        <td class="py-3.5 font-bold text-slate-900 dark:text-white">${s.marks} Marks</td>
+                                        <td class="py-3.5 text-slate-500 dark:text-slate-400">${s.level}</td>
+                                    </tr>
+                                `).join('')}
+                                <tr class="bg-slate-50 dark:bg-slate-850 font-bold">
+                                    <td class="py-3.5 px-2 text-slate-900 dark:text-white">Total Summary</td>
+                                    <td class="py-3.5 text-slate-900 dark:text-white">${data.totalQuestions} Questions</td>
+                                    <td class="py-3.5 text-slate-900 dark:text-white">${data.totalMarks} Marks</td>
+                                    <td class="py-3.5 text-emerald-600 dark:text-emerald-400">+1 Correct • -0.25 Negative</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 4. Comprehensive Chapter-Wise Syllabus -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <div>
+                            <h2 class="text-lg sm:text-xl font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-book-bookmark text-indigo-500"></i> High-Yield Syllabus Breakdown & Topics
+                            </h2>
+                            <p class="text-xs text-slate-400 mt-0.5">Complete chapter checklist based on past 10-year question frequency</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        ${data.syllabus.map((s, idx) => `
+                            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-100 dark:border-slate-800 space-y-3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-200/60 dark:border-slate-700/60">
+                                        <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">${s.subject}</h3>
+                                        <span class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-[10px] font-bold">${idx + 1}</span>
+                                    </div>
+                                    <ul class="space-y-2 pt-3 text-xs text-slate-600 dark:text-slate-300">
+                                        ${s.topics.map(t => `
+                                            <li class="flex items-start gap-2 leading-relaxed">
+                                                <i class="fa-solid fa-check text-emerald-500 text-[10px] mt-1 shrink-0"></i>
+                                                <span>${t}</span>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- 5. Cutoffs & Target Colleges Matrix -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <div>
+                            <h2 class="text-lg sm:text-xl font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-emerald-500"></i> Expected State Closing Ranks & Cutoffs
+                            </h2>
+                            <p class="text-xs text-slate-400 mt-0.5">${isD2D ? 'BIT Sindri Lateral Entry Branch-wise Cutoffs' : 'Top Government Polytechnic Colleges Closing Rank Guide'}</p>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs sm:text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-400 text-xs uppercase tracking-wider">
+                                    <th class="pb-3 font-bold">College / Target Seat</th>
+                                    <th class="pb-3 font-bold">CSE / IT</th>
+                                    <th class="pb-3 font-bold">Electrical (EE)</th>
+                                    <th class="pb-3 font-bold">Mechanical (ME)</th>
+                                    <th class="pb-3 font-bold">Civil (CE)</th>
+                                    <th class="pb-3 font-bold">Other / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                                ${data.cutoffs.map(c => `
+                                    <tr>
+                                        <td class="py-3.5 font-bold text-slate-900 dark:text-white">${c.college}</td>
+                                        <td class="py-3.5 text-sky-600 dark:text-sky-400 font-bold">${c.cse || 'N/A'}</td>
+                                        <td class="py-3.5 text-slate-700 dark:text-slate-300">${c.ee || 'N/A'}</td>
+                                        <td class="py-3.5 text-slate-700 dark:text-slate-300">${c.me || 'N/A'}</td>
+                                        <td class="py-3.5 text-slate-700 dark:text-slate-300">${c.ce || 'N/A'}</td>
+                                        <td class="py-3.5 text-slate-500 text-xs">${c.notes || c.ece || 'Govt Seat'}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 6. Eligibility, Domicile & Important Dates Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Eligibility & Rules -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-id-card-clip text-sky-500"></i> Eligibility & Domicile Criteria
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-850">
+                                <strong class="text-slate-900 dark:text-white block mb-0.5">Educational Qualification:</strong>
+                                ${data.eligibility}
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-850">
+                                <strong class="text-slate-900 dark:text-white block mb-0.5">Age Criteria:</strong>
+                                ${data.ageLimit}
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-850">
+                                <strong class="text-slate-900 dark:text-white block mb-0.5">Jharkhand Residential Domicile:</strong>
+                                ${data.domicile}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Important Timeline Dates -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-days text-amber-500"></i> Key Exam Cycle Timeline (2025)
+                        </h3>
+                        <div class="space-y-2 text-xs">
+                            ${data.importantDates.map(d => `
+                                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-850 border border-slate-100 dark:border-slate-800">
+                                    <span class="text-slate-700 dark:text-slate-300 font-medium">${d.event}</span>
+                                    <span class="font-bold text-${themeColor}-600 dark:text-${themeColor}-400">${d.date}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Preparation Strategy & Recommended Books -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 4-Phase Strategy -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i> State Toppers' 4-Phase Study Plan
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                            ${data.strategy.map(st => `
+                                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-100 dark:border-slate-800">
+                                    <strong class="text-slate-900 dark:text-white block mb-1 text-xs font-bold">${st.phase}</strong>
+                                    <p>${st.desc}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Recommended Books -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-book text-rose-500"></i> Recommended Standard Books & Mock Tests
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                            ${data.books.map(b => `
+                                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-100 dark:border-slate-800">
+                                    <strong class="text-slate-900 dark:text-white block mb-1 text-xs font-bold">${b.name}</strong>
+                                    <p>${b.desc}</p>
+                                </div>
+                            `).join('')}
+                            <div class="pt-2">
+                                <a href="${mockUrl}" class="block w-full py-3 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-bold text-center text-xs shadow-md">
+                                    Start Full CBT Practice on Diploma Campus &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+
+                container.innerHTML = html;
+            }
+
+            // Bind Event Listeners
+            peceBtn.addEventListener('click', () => switchExam('pece'));
+            d2dBtn.addEventListener('click', () => switchExam('d2d'));
+
+            // Initial Load
+            updateTabs();
+            renderExam(getExamData(activeExamId));
+        })();
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

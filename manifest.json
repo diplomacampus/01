@@ -1,0 +1,20 @@
+﻿{
+  "name": "Diploma Campus - Jharkhand Polytechnic & D2D Hub",
+  "short_name": "DiplomaCampus",
+  "description": "The Ultimate Academic & Admission Platform for Jharkhand Polytechnic, JUT Ranchi & D2D Lateral Entry Aspirants.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/images/DClogo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "books", "productivity"]
+}

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A Community Forum - Ask Questions & Get Help | Diploma Campus</title>
+    <meta name="description" content="Jharkhand Polytechnic student discussion and Q&A forum. Ask questions about JUT semester exams, PECE syllabus, D2D lateral entry, cutoffs, and placements.">
+    <link rel="canonical" href="https://diplomacampus.in/qna.html">
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+                            400: '#38bdf8', 500: '#0284c7', 600: '#0369a1', 700: '#075985',
+                            800: '#0c4a6e', 900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Manager -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
+                <span>/</span>
+                <span class="text-slate-800 dark:text-slate-200 font-medium">Q&A Community Forum</span>
+            </nav>
+
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 bg-teal-100 dark:bg-teal-950 px-3.5 py-1 rounded-full">Community Hub</span>
+                    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mt-3">Jharkhand Polytechnic Q&A Forum</h1>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
+                        Ask questions, discuss subject doubts with peers, and receive verified solutions from administrators and top seniors.
+                    </p>
+                </div>
+                <button id="open-ask-modal-btn" class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Ask a Question</span>
+                </button>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8">
+                <div class="flex flex-wrap gap-1.5" id="qna-cat-filters">
+                    <button class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-teal-600 text-white transition" data-cat="all">All Topics</button>
+                    <button class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition" data-cat="JUT Exams">JUT Exams</button>
+                    <button class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition" data-cat="PECE Entrance">PECE Entrance</button>
+                    <button class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition" data-cat="D2D Lateral">D2D Lateral</button>
+                    <button class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition" data-cat="Placements">Placements & Jobs</button>
+                </div>
+
+                <div class="relative w-full sm:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="qna-search" placeholder="Search discussions..." class="w-full pl-9 pr-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500">
+                </div>
+            </div>
+
+            <!-- Questions Stream Container -->
+            <div id="qna-posts-container" class="space-y-4">
+                <!-- Populated dynamically -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Ask / Edit Question Modal -->
+    <div id="qna-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 id="qna-modal-title" class="font-heading font-bold text-lg text-slate-900 dark:text-white">Ask the Community</h3>
+                <button id="close-qna-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="qna-form" class="space-y-4 mt-4 text-xs">
+                <input type="hidden" id="q-id">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Your Name</label>
+                    <input type="text" id="q-author" required placeholder="Aman Kumar (or leave as Admin)" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Category</label>
+                    <select id="q-category" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                        <option value="JUT Exams">JUT Exams & Routine</option>
+                        <option value="PECE Entrance">PECE Polytechnic Entrance</option>
+                        <option value="D2D Lateral">D2D Lateral Entry (BIT Sindri)</option>
+                        <option value="Placements">Placements & Jobs</option>
+                        <option value="General">General Doubts</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Question Title</label>
+                    <input type="text" id="q-title" required placeholder="e.g. When will JUT Odd Semester 2026 exam forms open?" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Detailed Explanation (Optional)</label>
+                    <textarea id="q-details" rows="3" placeholder="Provide extra details or subject specifics..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs"></textarea>
+                </div>
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
+                    <button type="button" id="cancel-qna-btn" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold shadow-md">Post Question</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reply Modal -->
+    <div id="reply-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl p-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">Post an Answer / Reply</h3>
+                <button id="close-reply-modal" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="reply-form" class="space-y-3 mt-4 text-xs">
+                <input type="hidden" id="reply-post-id">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Your Name</label>
+                    <input type="text" id="reply-author" required placeholder="Name or Admin" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Your Answer</label>
+                    <textarea id="reply-text" rows="3" required placeholder="Write your verified answer..." class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs"></textarea>
+                </div>
+                <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
+                    <button type="button" id="cancel-reply-btn" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">Cancel</button>
+                    <button type="submit" class="px-4 py-1.5 rounded-xl bg-teal-600 text-white font-bold shadow-md">Post Answer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('qna-posts-container');
+            const searchInput = document.getElementById('qna-search');
+            const catPills = document.querySelectorAll('#qna-cat-filters .cat-pill');
+            
+            const askBtn = document.getElementById('open-ask-modal-btn');
+            const qnaModal = document.getElementById('qna-modal');
+            const qnaModalTitle = document.getElementById('qna-modal-title');
+            const closeQnaModal = document.getElementById('close-qna-modal');
+            const cancelQnaBtn = document.getElementById('cancel-qna-btn');
+            const qnaForm = document.getElementById('qna-form');
+
+            const replyModal = document.getElementById('reply-modal');
+            const closeReplyModal = document.getElementById('close-reply-modal');
+            const cancelReplyBtn = document.getElementById('cancel-reply-btn');
+            const replyForm = document.getElementById('reply-form');
+
+            let activeCat = 'all';
+            let isUserAdmin = false;
+
+            // Seed default community questions if empty
+            if (window.DC_DATA_MANAGER && window.DC_DATA_MANAGER.getAll('qna').length === 0) {
+                const sampleQna = [
+                    {
+                        id: 'qna-01',
+                        title: 'How to prepare for Applied Mathematics 2 in JUT Diploma?',
+                        details: 'I need important questions and chapter-wise weightage for 2nd semester differential calculus and matrices.',
+                        author: 'Rahul Sharma',
+                        category: 'JUT Exams',
+                        pinned: true,
+                        createdAt: Date.now() - 86400000 * 2,
+                        replies: [
+                            {
+                                author: 'Diploma Campus Admin',
+                                text: 'Focus on Integration by Parts, Matrices Rank calculation, and Differential Equations. Check our free Notes section for complete formulas.',
+                                isAdmin: true,
+                                createdAt: Date.now() - 86400000
+                            }
+                        ]
+                    },
+                    {
+                        id: 'qna-02',
+                        title: 'What is the cutoff rank for BIT Sindri Mechanical via D2D Lateral Entry?',
+                        details: 'I am a general category mechanical diploma student. What rank is safe for 3rd semester direct admission?',
+                        author: 'Pooja Kumari',
+                        category: 'D2D Lateral',
+                        pinned: false,
+                        createdAt: Date.now() - 86400000 * 3,
+                        replies: [
+                            {
+                                author: 'Diploma Campus Admin',
+                                text: 'For General category in BIT Sindri Mechanical, a state CML rank under 80 is safe.',
+                                isAdmin: true,
+                                createdAt: Date.now() - 86400000 * 2
+                            }
+                        ]
+                    }
+                ];
+                sampleQna.forEach(q => window.DC_DATA_MANAGER.add('qna', q));
+            }
+
+            function updateAdminUI(isAdmin) {
+                isUserAdmin = isAdmin;
+                renderQnA();
+            }
+
+            window.addEventListener('dc-auth-change', (e) => {
+                updateAdminUI(e.detail.isAdmin);
+            });
+
+            if (window.DC_AUTH) {
+                updateAdminUI(window.DC_AUTH.isAdmin);
+            }
+
+            window.addEventListener('dc-data-updated', () => {
+                renderQnA();
+            });
+
+            catPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    catPills.forEach(p => {
+                        p.classList.remove('bg-teal-600', 'text-white');
+                        p.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                    });
+                    pill.classList.add('bg-teal-600', 'text-white');
+                    pill.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                    activeCat = pill.dataset.cat;
+                    renderQnA();
+                });
+            });
+
+            searchInput.addEventListener('input', renderQnA);
+
+            function renderQnA() {
+                const query = (searchInput.value || '').toLowerCase().trim();
+                const posts = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('qna') : [];
+
+                const filtered = posts.filter(p => {
+                    const matchesCat = activeCat === 'all' || p.category === activeCat;
+                    const matchesQuery = !query || 
+                        (p.title || '').toLowerCase().includes(query) || 
+                        (p.details || '').toLowerCase().includes(query) || 
+                        (p.author || '').toLowerCase().includes(query);
+                    return matchesCat && matchesQuery;
+                });
+
+                if (filtered.length === 0) {
+                    container.innerHTML = `
+                    <div class="p-12 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center text-slate-500">
+                        <i class="fa-regular fa-comments text-4xl mb-3 text-slate-400"></i>
+                        <p class="font-semibold text-sm">No discussions found matching your query.</p>
+                        <button onclick="document.getElementById('open-ask-modal-btn').click()" class="mt-3 px-4 py-2 rounded-xl bg-teal-600 text-white text-xs font-bold">Ask this question now</button>
+                    </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = filtered.map(p => {
+                    const replies = Array.isArray(p.replies) ? p.replies : [];
+                    return `
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-teal-500/40 transition">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-xs">
+                                    ${(p.author || 'U').charAt(0).toUpperCase()}
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-slate-900 dark:text-white">${p.author || 'Student'}</span>
+                                    <span class="text-[10px] text-slate-400 ml-1.5">• ${new Date(p.createdAt || Date.now()).toLocaleDateString()}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                ${p.pinned ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300"><i class="fa-solid fa-thumbtack mr-1"></i>Pinned</span>` : ''}
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${p.category || 'General'}</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-base font-heading font-bold text-slate-900 dark:text-white">${p.title}</h3>
+                            ${p.details ? `<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">${p.details}</p>` : ''}
+                        </div>
+
+                        ${replies.length > 0 ? `
+                        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                            ${replies.map(r => `
+                                <div class="p-3.5 rounded-2xl ${r.isAdmin ? 'bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-900' : 'bg-slate-50 dark:bg-slate-800/50'} text-xs space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-bold ${r.isAdmin ? 'text-teal-700 dark:text-teal-300' : 'text-slate-800 dark:text-slate-200'}">
+                                            ${r.author} ${r.isAdmin ? '🛡️ (Official Admin Solution)' : ''}
+                                        </span>
+                                    </div>
+                                    <p class="text-slate-700 dark:text-slate-300">${r.text}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                        ` : ''}
+
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <button onclick="window.openReplyModal('${p.id}')" class="px-3 py-1.5 rounded-xl bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-300 font-bold hover:bg-teal-100 transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-reply"></i>
+                                <span>Answer (${replies.length})</span>
+                            </button>
+
+                            ${isUserAdmin ? `
+                            <div class="flex items-center gap-2">
+                                <button onclick="window.togglePinPost('${p.id}')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-semibold transition">
+                                    <i class="fa-solid fa-thumbtack"></i> ${p.pinned ? 'Unpin' : 'Pin'}
+                                </button>
+                                <button onclick="window.editPostInline('${p.id}')" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 hover:bg-sky-100 font-semibold transition">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </button>
+                                <button onclick="window.deletePostInline('${p.id}')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 hover:bg-rose-100 font-semibold transition">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            // Inline actions
+            window.openReplyModal = function(postId) {
+                document.getElementById('reply-post-id').value = postId;
+                document.getElementById('reply-author').value = isUserAdmin ? 'Diploma Campus Admin' : (window.DC_AUTH?.currentUser?.displayName || '');
+                replyForm.reset();
+                document.getElementById('reply-post-id').value = postId;
+                if (isUserAdmin) document.getElementById('reply-author').value = 'Diploma Campus Admin';
+                replyModal.classList.remove('hidden');
+                replyModal.classList.add('flex');
+            };
+
+            window.togglePinPost = async function(id) {
+                const item = window.DC_DATA_MANAGER.getById('qna', id);
+                if (!item) return;
+                await window.DC_DATA_MANAGER.update('qna', id, { pinned: !item.pinned });
+            };
+
+            window.editPostInline = function(id) {
+                const item = window.DC_DATA_MANAGER.getById('qna', id);
+                if (!item) return;
+                document.getElementById('q-id').value = item.id;
+                document.getElementById('q-author').value = item.author || '';
+                document.getElementById('q-category').value = item.category || 'General';
+                document.getElementById('q-title').value = item.title || '';
+                document.getElementById('q-details').value = item.details || '';
+
+                qnaModalTitle.textContent = "Edit Community Question";
+                qnaModal.classList.remove('hidden');
+                qnaModal.classList.add('flex');
+            };
+
+            window.deletePostInline = async function(id) {
+                if (confirm("Permanently delete this discussion post?")) {
+                    await window.DC_DATA_MANAGER.delete('qna', id);
+                    if (window.showToast) window.showToast("Post deleted!", "info");
+                }
+            };
+
+            askBtn?.addEventListener('click', () => {
+                document.getElementById('q-id').value = '';
+                qnaForm.reset();
+                if (isUserAdmin) document.getElementById('q-author').value = 'Diploma Campus Admin 🛡️';
+                qnaModalTitle.textContent = "Ask the Community";
+                qnaModal.classList.remove('hidden');
+                qnaModal.classList.add('flex');
+            });
+
+            closeQnaModal?.addEventListener('click', () => { qnaModal.classList.add('hidden'); qnaModal.classList.remove('flex'); });
+            cancelQnaBtn?.addEventListener('click', () => { qnaModal.classList.add('hidden'); qnaModal.classList.remove('flex'); });
+
+            closeReplyModal?.addEventListener('click', () => { replyModal.classList.add('hidden'); replyModal.classList.remove('flex'); });
+            cancelReplyBtn?.addEventListener('click', () => { replyModal.classList.add('hidden'); replyModal.classList.remove('flex'); });
+
+            // Post Form
+            qnaForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const id = document.getElementById('q-id').value;
+                const author = document.getElementById('q-author').value;
+                const category = document.getElementById('q-category').value;
+                const title = document.getElementById('q-title').value;
+                const details = document.getElementById('q-details').value;
+
+                try {
+                    if (id) {
+                        await window.DC_DATA_MANAGER.update('qna', id, { author, category, title, details });
+                        if (window.showToast) window.showToast("Question updated!", "success");
+                    } else {
+                        await window.DC_DATA_MANAGER.add('qna', {
+                            author, category, title, details, pinned: false, replies: []
+                        });
+                        if (window.showToast) window.showToast("Question posted to community!", "success");
+                    }
+                    qnaModal.classList.add('hidden');
+                    qnaModal.classList.remove('flex');
+                } catch(err) {
+                    if (window.showToast) window.showToast("Error: " + err.message, "error");
+                }
+            });
+
+            // Reply Form
+            replyForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const postId = document.getElementById('reply-post-id').value;
+                const author = document.getElementById('reply-author').value;
+                const text = document.getElementById('reply-text').value;
+
+                const item = window.DC_DATA_MANAGER.getById('qna', postId);
+                if (!item) return;
+
+                const replies = Array.isArray(item.replies) ? [...item.replies] : [];
+                replies.push({
+                    author,
+                    text,
+                    isAdmin: isUserAdmin || author.includes('Admin'),
+                    createdAt: Date.now()
+                });
+
+                try {
+                    await window.DC_DATA_MANAGER.update('qna', postId, { replies });
+                    if (window.showToast) window.showToast("Answer submitted!", "success");
+                    replyModal.classList.add('hidden');
+                    replyModal.classList.remove('flex');
+                } catch(err) {
+                    if (window.showToast) window.showToast("Failed to reply: " + err.message, "error");
+                }
+            });
+
+            renderQnA();
+        });
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Center - Manage Everything | Diploma Campus</title>
+    <meta name="description" content="Diploma Campus Admin Control Center. Add, edit, delete study resources, colleges, PYQs, exams, mock tests, and announcements.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://diplomacampus.in/admin.html">
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+                            400: '#38bdf8', 500: '#0284c7', 600: '#0369a1', 700: '#075985',
+                            800: '#0c4a6e', 900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data, Manager & Toast -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-rose-500 selection:text-white">
+
+    <!-- Top Admin Header -->
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-xl">
+        <div class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-2.5 group">
+                <img src="assets/images/logo.png" alt="Diploma Campus" class="w-10 h-10 rounded-xl object-contain bg-white p-0.5 shadow-md shadow-rose-500/20 group-hover:scale-105 transition-transform border border-slate-700">
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-lg tracking-tight text-white leading-tight flex items-center gap-2">
+                        DIPLOMA <span class="text-rose-500">ADMIN</span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 uppercase tracking-wider">Super Admin</span>
+                    </span>
+                    <span class="text-[10px] font-semibold text-slate-400 tracking-wider uppercase">Master Control Center</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <a href="index.html" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition border border-slate-700">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> View Live Website
+            </a>
+            <div id="admin-user-info" class="flex items-center gap-2">
+                <span id="admin-email-badge" class="text-xs text-slate-400 hidden sm:inline">diplomacampus@gmail.com</span>
+                <button id="btn-admin-logout" class="px-3 py-1.5 rounded-xl bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-bold transition shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nav Spacer -->
+    <div class="h-16 sm:h-20 w-full shrink-0" aria-hidden="true"></div>
+
+    <!-- Main Container -->
+    <main class="flex-grow pt-6 sm:pt-8 p-4 sm:p-8 max-w-7xl mx-auto w-full">
+        
+        <!-- Auth Wall (Shown when not authenticated as admin) -->
+        <div id="admin-auth-wall" class="hidden max-w-md mx-auto my-16 p-8 rounded-3xl bg-slate-950 border border-slate-800 shadow-2xl text-center space-y-6">
+            <div class="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-heading font-extrabold text-white">Admin Authentication</h2>
+                <p class="text-xs text-slate-400 mt-2">Sign in with an authorized administrator Google or email account (<code class="text-rose-400 font-mono">diplomacampus@gmail.com</code>) to manage the application.</p>
+            </div>
+
+            <button id="btn-admin-login-google" class="w-full py-3 px-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs flex items-center justify-center gap-3 transition shadow-lg">
+                <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 14.8s.7 5.1 1.9 7.5l3.7-2.9z"/><path fill="#34A853" d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16.5C3.7 20.2 7.5 23.5 12 23.5z"/></svg>
+                <span>Sign In with Admin Google Account</span>
+            </button>
+            
+            <div class="pt-4 border-t border-slate-800 text-left space-y-3">
+                <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">Or Admin Passcode / Quick Unlock:</span>
+                <div class="flex gap-2">
+                    <input type="password" id="admin-passcode-input" placeholder="Enter admin key..." class="flex-grow px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-rose-500">
+                    <button id="btn-admin-passcode" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold transition">Unlock</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Workspace (Shown when authenticated) -->
+        <div id="admin-workspace" class="space-y-8">
+            
+            <!-- Quick Stats Metrics Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 shadow-md">
+                    <div class="text-[11px] font-semibold text-sky-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>Resources</span>
+                        <i class="fa-solid fa-book-bookmark text-sky-500/50"></i>
+                    </div>
+                    <div id="stat-resources" class="text-2xl font-bold font-heading text-white mt-1">0</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 shadow-md">
+                    <div class="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>Colleges</span>
+                        <i class="fa-solid fa-building-columns text-emerald-500/50"></i>
+                    </div>
+                    <div id="stat-colleges" class="text-2xl font-bold font-heading text-white mt-1">0</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 shadow-md">
+                    <div class="text-[11px] font-semibold text-rose-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>PYQ Papers</span>
+                        <i class="fa-solid fa-file-pdf text-rose-500/50"></i>
+                    </div>
+                    <div id="stat-pyqs" class="text-2xl font-bold font-heading text-white mt-1">0</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 shadow-md">
+                    <div class="text-[11px] font-semibold text-amber-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>Mock Tests</span>
+                        <i class="fa-solid fa-list-check text-amber-500/50"></i>
+                    </div>
+                    <div id="stat-mocktests" class="text-2xl font-bold font-heading text-white mt-1">0</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 shadow-md">
+                    <div class="text-[11px] font-semibold text-purple-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>Exams</span>
+                        <i class="fa-solid fa-bullseye text-purple-500/50"></i>
+                    </div>
+                    <div id="stat-exams" class="text-2xl font-bold font-heading text-white mt-1">0</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 shadow-md">
+                    <div class="text-[11px] font-semibold text-teal-400 uppercase tracking-wider flex items-center justify-between">
+                        <span>Q&A Posts</span>
+                        <i class="fa-regular fa-comments text-teal-500/50"></i>
+                    </div>
+                    <div id="stat-qna" class="text-2xl font-bold font-heading text-white mt-1">0</div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation & Action Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-2 rounded-2xl bg-slate-950 border border-slate-800">
+                <nav class="flex flex-wrap gap-1.5" id="admin-tabs">
+                    <button class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-rose-600 text-white shadow-md" data-tab="resources">
+                        <i class="fa-solid fa-book"></i> Resources
+                    </button>
+                    <button class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800" data-tab="colleges">
+                        <i class="fa-solid fa-building-columns"></i> Colleges
+                    </button>
+                    <button class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800" data-tab="pyqs">
+                        <i class="fa-solid fa-file-pdf"></i> Question Papers
+                    </button>
+                    <button class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800" data-tab="mockTests">
+                        <i class="fa-solid fa-list-check"></i> Mock Tests
+                    </button>
+                    <button class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800" data-tab="exams">
+                        <i class="fa-solid fa-bullseye"></i> Exams
+                    </button>
+                    <button class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800" data-tab="announcements">
+                        <i class="fa-solid fa-bullhorn"></i> Announcements
+                    </button>
+                </nav>
+
+                <div class="flex items-center gap-2">
+                    <button id="btn-add-entity" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span id="btn-add-text">Add New Resource</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search & Filters Container -->
+            <div class="flex items-center gap-3 p-4 rounded-2xl bg-slate-950 border border-slate-800">
+                <i class="fa-solid fa-magnifying-glass text-slate-500 text-sm"></i>
+                <input type="text" id="admin-search-input" placeholder="Search in active table by title, name, branch, semester..." class="w-full bg-transparent text-xs text-white placeholder-slate-500 outline-none">
+            </div>
+
+            <!-- Active Content View Area -->
+            <div id="admin-table-container" class="rounded-3xl bg-slate-950 border border-slate-800 overflow-hidden shadow-2xl">
+                <!-- Dynamically populated table/grid -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Generic Admin Modal for Add / Edit -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-sm font-bold">
+                        <i id="modal-icon" class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div>
+                        <h3 id="modal-title" class="font-heading font-bold text-base text-white">Edit Item</h3>
+                        <p id="modal-subtitle" class="text-[11px] text-slate-400">Update information in the database</p>
+                    </div>
+                </div>
+                <button id="modal-close-btn" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="modal-form" class="p-6 overflow-y-auto flex-1 space-y-4 text-xs">
+                <div id="modal-dynamic-fields" class="space-y-4">
+                    <!-- Populated dynamically based on collection -->
+                </div>
+
+                <div class="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+                    <button type="button" id="modal-cancel-btn" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition">Cancel</button>
+                    <button type="submit" id="modal-submit-btn" class="px-6 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold transition shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Save Changes</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Core Admin Client Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const authWall = document.getElementById('admin-auth-wall');
+            const workspace = document.getElementById('admin-workspace');
+            const googleLoginBtn = document.getElementById('btn-admin-login-google');
+            const passcodeBtn = document.getElementById('btn-admin-passcode');
+            const passcodeInput = document.getElementById('admin-passcode-input');
+            const logoutBtn = document.getElementById('btn-admin-logout');
+            const emailBadge = document.getElementById('admin-email-badge');
+            
+            const tabs = document.querySelectorAll('#admin-tabs .tab-btn');
+            const addBtn = document.getElementById('btn-add-entity');
+            const addBtnText = document.getElementById('btn-add-text');
+            const searchInput = document.getElementById('admin-search-input');
+            const tableContainer = document.getElementById('admin-table-container');
+
+            // Modal elements
+            const modal = document.getElementById('admin-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const modalFields = document.getElementById('modal-dynamic-fields');
+            const modalForm = document.getElementById('modal-form');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalCancelBtn = document.getElementById('modal-cancel-btn');
+
+            let activeTab = 'resources';
+            let editingItemId = null;
+
+            // Auth verification
+            function checkAdminAuth(user, isAdmin) {
+                const isOverridden = localStorage.getItem('dc_admin_override') === 'true';
+                if (isAdmin || isOverridden) {
+                    authWall.classList.add('hidden');
+                    workspace.classList.remove('hidden');
+                    emailBadge.textContent = user?.email || 'admin (active session)';
+                    renderStats();
+                    renderActiveTab();
+                } else {
+                    authWall.classList.remove('hidden');
+                    workspace.classList.add('hidden');
+                }
+            }
+
+            window.addEventListener('dc-auth-change', (e) => {
+                const { user, isAdmin } = e.detail;
+                checkAdminAuth(user, isAdmin);
+            });
+
+            // Initial auth check
+            if (window.DC_AUTH) {
+                checkAdminAuth(window.DC_AUTH.currentUser, window.DC_AUTH.isAdmin);
+            }
+
+            // Google Login
+            googleLoginBtn.addEventListener('click', async () => {
+                if (window.DC_AUTH) {
+                    try {
+                        await window.DC_AUTH.loginWithGoogle();
+                    } catch(e) {
+                        if (window.showToast) window.showToast("Google sign in failed: " + e.message, "error");
+                    }
+                }
+            });
+
+            // Passcode unlock (backup for offline/demo)
+            passcodeBtn.addEventListener('click', () => {
+                const val = passcodeInput.value.trim();
+                if (val === 'diplomacampus2026' || val === 'admin123' || val === 'mukesh') {
+                    localStorage.setItem('dc_admin_override', 'true');
+                    if (window.DC_AUTH) window.DC_AUTH.isAdmin = true;
+                    checkAdminAuth({ email: 'diplomacampus@gmail.com' }, true);
+                    if (window.showToast) window.showToast("Admin session unlocked!", "success");
+                } else {
+                    if (window.showToast) window.showToast("Invalid admin key!", "error");
+                }
+            });
+
+            // Logout
+            logoutBtn.addEventListener('click', async () => {
+                localStorage.removeItem('dc_admin_override');
+                if (window.DC_AUTH) {
+                    await window.DC_AUTH.logout();
+                }
+                checkAdminAuth(null, false);
+                if (window.showToast) window.showToast("Logged out from admin center", "info");
+            });
+
+            // Listen for data updates
+            window.addEventListener('dc-data-updated', () => {
+                renderStats();
+                renderActiveTab();
+            });
+
+            // Tab Switcher
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabs.forEach(t => {
+                        t.classList.remove('bg-rose-600', 'text-white', 'shadow-md');
+                        t.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800');
+                    });
+                    btn.classList.add('bg-rose-600', 'text-white', 'shadow-md');
+                    btn.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800');
+
+                    activeTab = btn.dataset.tab;
+                    updateAddButtonText();
+                    renderActiveTab();
+                });
+            });
+
+            function updateAddButtonText() {
+                const titles = {
+                    resources: 'Add New Resource',
+                    colleges: 'Add New College',
+                    pyqs: 'Add New PYQ Paper',
+                    mockTests: 'Create Mock Test',
+                    exams: 'Add New Exam Notice',
+                    announcements: 'New Announcement'
+                };
+                addBtnText.textContent = titles[activeTab] || 'Add New Item';
+            }
+
+            // Stats Counter
+            function renderStats() {
+                if (!window.DC_DATA_MANAGER) return;
+                document.getElementById('stat-resources').textContent = window.DC_DATA_MANAGER.getAll('resources').length;
+                document.getElementById('stat-colleges').textContent = window.DC_DATA_MANAGER.getAll('colleges').length;
+                document.getElementById('stat-pyqs').textContent = window.DC_DATA_MANAGER.getAll('pyqs').length;
+                document.getElementById('stat-mocktests').textContent = window.DC_DATA_MANAGER.getAll('mockTests').length;
+                document.getElementById('stat-exams').textContent = window.DC_DATA_MANAGER.getAll('exams').length;
+                document.getElementById('stat-qna').textContent = window.DC_DATA_MANAGER.getAll('qna').length;
+            }
+
+            // Search input listener
+            searchInput.addEventListener('input', () => {
+                renderActiveTab();
+            });
+
+            // Render Active Tab Content
+            function renderActiveTab() {
+                if (!window.DC_DATA_MANAGER) return;
+                const items = window.DC_DATA_MANAGER.getAll(activeTab);
+                const query = (searchInput.value || '').toLowerCase().trim();
+
+                const filtered = items.filter(item => {
+                    if (!query) return true;
+                    const str = JSON.stringify(item).toLowerCase();
+                    return str.includes(query);
+                });
+
+                if (filtered.length === 0) {
+                    tableContainer.innerHTML = `
+                    <div class="text-center py-16 text-slate-500">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-600"></i>
+                        <p class="text-sm font-semibold">No records found for "${query || activeTab}"</p>
+                        <button onclick="document.getElementById('btn-add-entity').click()" class="mt-4 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold transition">
+                            <i class="fa-solid fa-plus mr-1"></i> Add Record Now
+                        </button>
+                    </div>
+                    `;
+                    return;
+                }
+
+                if (activeTab === 'resources') renderResourcesTable(filtered);
+                else if (activeTab === 'colleges') renderCollegesTable(filtered);
+                else if (activeTab === 'pyqs') renderPyqsTable(filtered);
+                else if (activeTab === 'mockTests') renderMockTestsTable(filtered);
+                else if (activeTab === 'exams') renderExamsTable(filtered);
+                else if (activeTab === 'announcements') renderAnnouncementsTable(filtered);
+            }
+
+            // 1. Resources Table
+            function renderResourcesTable(items) {
+                tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Title / Material</th>
+                                <th class="p-4">Subject</th>
+                                <th class="p-4">Branch</th>
+                                <th class="p-4">Sem</th>
+                                <th class="p-4">Type</th>
+                                <th class="p-4">URL / PDF</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            ${items.map(item => `
+                                <tr class="hover:bg-slate-900/50 transition">
+                                    <td class="p-4 font-semibold text-white max-w-xs truncate">${item.title}</td>
+                                    <td class="p-4 text-slate-300">${item.subject || '-'}</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800 text-[11px]">${item.branch}</span></td>
+                                    <td class="p-4 font-bold">Sem ${item.semester}</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px]">${item.type || 'Notes'}</span></td>
+                                    <td class="p-4">
+                                        <a href="${item.url || item.downloadUrl || '#'}" target="_blank" class="text-sky-400 hover:underline flex items-center gap-1 truncate max-w-[120px]">
+                                            <i class="fa-solid fa-link text-[10px]"></i> Link
+                                        </a>
+                                    </td>
+                                    <td class="p-4 text-right space-x-2 whitespace-nowrap">
+                                        <button onclick="window.DC_ADMIN_ACTIONS.editItem('resources', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-semibold transition border border-sky-500/30">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button onclick="window.DC_ADMIN_ACTIONS.deleteItem('resources', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold transition border border-rose-500/30">
+                                            <i class="fa-solid fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                `;
+            }
+
+            // 2. Colleges Table
+            function renderCollegesTable(items) {
+                tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">College Name</th>
+                                <th class="p-4">Type</th>
+                                <th class="p-4">District</th>
+                                <th class="p-4">Intake</th>
+                                <th class="p-4">Branches</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            ${items.map(item => `
+                                <tr class="hover:bg-slate-900/50 transition">
+                                    <td class="p-4 font-semibold text-white">
+                                        <div>${item.name}</div>
+                                        <div class="text-[11px] text-slate-500">${item.affiliation || item.affiliatedTo || 'JUT'} • Est. ${item.established || '-'}</div>
+                                    </td>
+                                    <td class="p-4">
+                                        <span class="px-2 py-0.5 rounded text-[11px] font-bold ${
+                                            item.type === 'Government' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' :
+                                            item.type === 'PPP' ? 'bg-indigo-950 text-indigo-400 border border-indigo-800' :
+                                            'bg-amber-950 text-amber-400 border border-amber-800'
+                                        }">${item.type}</span>
+                                    </td>
+                                    <td class="p-4">${item.district}</td>
+                                    <td class="p-4 font-bold text-white">${item.totalIntake || '-'} Seats</td>
+                                    <td class="p-4 max-w-xs">
+                                        <div class="flex flex-wrap gap-1">
+                                            ${(Array.isArray(item.branches) ? item.branches : []).slice(0, 3).map(b => `<span class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300">${typeof b === 'object' ? b.name : b}</span>`).join('')}
+                                            ${(item.branches || []).length > 3 ? `<span class="text-[10px] text-slate-500">+${item.branches.length - 3} more</span>` : ''}
+                                        </div>
+                                    </td>
+                                    <td class="p-4 text-right space-x-2 whitespace-nowrap">
+                                        <button onclick="window.DC_ADMIN_ACTIONS.editItem('colleges', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-semibold transition border border-sky-500/30">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button onclick="window.DC_ADMIN_ACTIONS.deleteItem('colleges', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold transition border border-rose-500/30">
+                                            <i class="fa-solid fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                `;
+            }
+
+            // 3. PYQs Table
+            function renderPyqsTable(items) {
+                tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Title / Question Paper</th>
+                                <th class="p-4">Subject</th>
+                                <th class="p-4">Branch</th>
+                                <th class="p-4">Sem / Exam</th>
+                                <th class="p-4">Year</th>
+                                <th class="p-4">Download</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            ${items.map(item => `
+                                <tr class="hover:bg-slate-900/50 transition">
+                                    <td class="p-4 font-semibold text-white max-w-xs truncate">${item.title}</td>
+                                    <td class="p-4 text-slate-300">${item.subject}</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800 text-[11px]">${item.branch}</span></td>
+                                    <td class="p-4 font-bold">${item.semester}</td>
+                                    <td class="p-4 font-bold text-amber-400">${item.year}</td>
+                                    <td class="p-4">
+                                        <a href="${item.downloadUrl || '#'}" target="_blank" class="text-rose-400 hover:underline flex items-center gap-1">
+                                            <i class="fa-solid fa-file-pdf"></i> PDF
+                                        </a>
+                                    </td>
+                                    <td class="p-4 text-right space-x-2 whitespace-nowrap">
+                                        <button onclick="window.DC_ADMIN_ACTIONS.editItem('pyqs', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-semibold transition border border-sky-500/30">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button onclick="window.DC_ADMIN_ACTIONS.deleteItem('pyqs', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold transition border border-rose-500/30">
+                                            <i class="fa-solid fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                `;
+            }
+
+            // 4. Mock Tests Table
+            function renderMockTestsTable(items) {
+                tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Test Title</th>
+                                <th class="p-4">Category</th>
+                                <th class="p-4">Questions</th>
+                                <th class="p-4">Time Limit</th>
+                                <th class="p-4">Marks</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            ${items.map(item => `
+                                <tr class="hover:bg-slate-900/50 transition">
+                                    <td class="p-4 font-semibold text-white">
+                                        <div>${item.title}</div>
+                                        <div class="text-[11px] text-slate-500">Difficulty: ${item.difficulty || 'Medium'}</div>
+                                    </td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800 text-[11px] font-bold">${item.category}</span></td>
+                                    <td class="p-4 font-bold text-white">${(item.questions || []).length || item.questionCount || 0} MCQs</td>
+                                    <td class="p-4">${item.timeLimit || 60} Mins</td>
+                                    <td class="p-4 font-bold text-emerald-400">${item.totalMarks || 100} Marks</td>
+                                    <td class="p-4 text-right space-x-2 whitespace-nowrap">
+                                        <button onclick="window.DC_ADMIN_ACTIONS.editItem('mockTests', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-semibold transition border border-sky-500/30">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button onclick="window.DC_ADMIN_ACTIONS.deleteItem('mockTests', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold transition border border-rose-500/30">
+                                            <i class="fa-solid fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                `;
+            }
+
+            // 5. Exams Table
+            function renderExamsTable(items) {
+                tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Exam Name</th>
+                                <th class="p-4">Badge</th>
+                                <th class="p-4">Conducting Body</th>
+                                <th class="p-4">Frequency</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            ${items.map(item => `
+                                <tr class="hover:bg-slate-900/50 transition">
+                                    <td class="p-4 font-semibold text-white">${item.title}</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800 text-[11px]">${item.badge || 'Exam'}</span></td>
+                                    <td class="p-4 text-slate-300">${item.conductingBody || 'JCECEB / JUT'}</td>
+                                    <td class="p-4">${item.frequency || 'Annual'}</td>
+                                    <td class="p-4 text-right space-x-2 whitespace-nowrap">
+                                        <button onclick="window.DC_ADMIN_ACTIONS.editItem('exams', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-semibold transition border border-sky-500/30">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button onclick="window.DC_ADMIN_ACTIONS.deleteItem('exams', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold transition border border-rose-500/30">
+                                            <i class="fa-solid fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                `;
+            }
+
+            // 6. Announcements / Notices Table
+            function renderAnnouncementsTable(items) {
+                tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Badge / Topic</th>
+                                <th class="p-4">Notice Text</th>
+                                <th class="p-4">Target Link</th>
+                                <th class="p-4">Status</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            ${items.map(item => `
+                                <tr class="hover:bg-slate-900/50 transition">
+                                    <td class="p-4 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 border border-slate-700 ${item.badgeColor || 'text-sky-300'}">
+                                            ● ${item.badge || 'Announcement'}
+                                        </span>
+                                    </td>
+                                    <td class="p-4 font-semibold text-white max-w-md">${item.text}</td>
+                                    <td class="p-4 text-sky-400">
+                                        <a href="${item.link || '#'}" target="_blank" class="hover:underline flex items-center gap-1">
+                                            <span>${item.link || '-'}</span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                        </a>
+                                    </td>
+                                    <td class="p-4">
+                                        <span class="px-2 py-0.5 rounded text-[11px] font-bold ${item.active !== false ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-800 text-slate-400'}">
+                                            ${item.active !== false ? 'Active 🟢' : 'Hidden ⚪'}
+                                        </span>
+                                    </td>
+                                    <td class="p-4 text-right space-x-2 whitespace-nowrap">
+                                        <button onclick="window.DC_ADMIN_ACTIONS.editItem('announcements', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-semibold transition border border-sky-500/30">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button onclick="window.DC_ADMIN_ACTIONS.deleteItem('announcements', '${item.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold transition border border-rose-500/30">
+                                            <i class="fa-solid fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                `;
+            }
+
+            // Modal Handlers
+            function openModal(title, subtitle, fieldsHTML, onSubmit) {
+                modalTitle.textContent = title;
+                modalSubtitle.textContent = subtitle;
+                modalFields.innerHTML = fieldsHTML;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+
+                modalForm.onsubmit = async (e) => {
+                    e.preventDefault();
+                    await onSubmit();
+                    closeModal();
+                };
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                editingItemId = null;
+            }
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalCancelBtn.addEventListener('click', closeModal);
+
+            // Add Entity Trigger
+            addBtn.addEventListener('click', () => {
+                editingItemId = null;
+                if (activeTab === 'resources') {
+                    openModal('Add Study Resource', 'Upload new notes, syllabus or book', `
+                        <div><label class="block text-slate-400 mb-1">Title</label><input type="text" id="f-title" required placeholder="e.g. Applied Physics 1 Complete Handwritten Notes" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Subject</label><input type="text" id="f-subject" required placeholder="e.g. Applied Physics" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Semester</label><select id="f-sem" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="1">Semester 1</option><option value="2">Semester 2</option><option value="3">Semester 3</option><option value="4">Semester 4</option><option value="5">Semester 5</option><option value="6">Semester 6</option></select></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Branch</label><select id="f-branch" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="Common to All Branches">Common (1st Year)</option><option value="Computer Science & Engineering">CSE</option><option value="Mechanical Engineering">MECH</option><option value="Civil Engineering">CIVIL</option><option value="Electrical Engineering">EE</option><option value="Electronics & Comm. Engg">ECE</option><option value="Automobile Engineering">AUTO</option><option value="Mining Engineering">MINING</option></select></div>
+                            <div><label class="block text-slate-400 mb-1">Type</label><select id="f-type" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="Notes">Handwritten Notes</option><option value="Book">Textbook PDF</option><option value="Syllabus">Official Syllabus</option><option value="Lab Manual">Lab Manual</option></select></div>
+                        </div>
+                        <div><label class="block text-slate-400 mb-1">Download / Preview URL</label><input type="url" id="f-url" required placeholder="https://..." class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                    `, async () => {
+                        await window.DC_DATA_MANAGER.add('resources', {
+                            title: document.getElementById('f-title').value,
+                            subject: document.getElementById('f-subject').value,
+                            semester: parseInt(document.getElementById('f-sem').value),
+                            branch: document.getElementById('f-branch').value,
+                            type: document.getElementById('f-type').value,
+                            url: document.getElementById('f-url').value,
+                            downloads: 1
+                        });
+                        if (window.showToast) window.showToast("Resource added successfully!", "success");
+                    });
+                } else if (activeTab === 'colleges') {
+                    openModal('Add Polytechnic College', 'Register new institute in directory', `
+                        <div><label class="block text-slate-400 mb-1">College Name</label><input type="text" id="f-name" required placeholder="e.g. Government Polytechnic, Ranchi" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Institute Type</label><select id="f-type" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="Government">Government</option><option value="PPP">PPP Model</option><option value="Private">Private</option></select></div>
+                            <div><label class="block text-slate-400 mb-1">District</label><input type="text" id="f-district" required placeholder="e.g. Ranchi" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Total Intake (Seats)</label><input type="number" id="f-intake" required placeholder="360" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Established Year</label><input type="number" id="f-est" required placeholder="1955" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        </div>
+                        <div><label class="block text-slate-400 mb-1">Engineering Branches (Comma Separated)</label><input type="text" id="f-branches" placeholder="CSE, Electrical, Mechanical, Civil" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        <div><label class="block text-slate-400 mb-1">Overview Description</label><textarea id="f-overview" rows="2" placeholder="Premier polytechnic in..." class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></textarea></div>
+                    `, async () => {
+                        const branchesRaw = document.getElementById('f-branches').value.split(',').map(s => s.trim()).filter(Boolean);
+                        await window.DC_DATA_MANAGER.add('colleges', {
+                            name: document.getElementById('f-name').value,
+                            type: document.getElementById('f-type').value,
+                            district: document.getElementById('f-district').value,
+                            totalIntake: parseInt(document.getElementById('f-intake').value) || 300,
+                            established: parseInt(document.getElementById('f-est').value) || 2000,
+                            branches: branchesRaw,
+                            overview: document.getElementById('f-overview').value,
+                            affiliatedTo: 'JUT, Ranchi'
+                        });
+                        if (window.showToast) window.showToast("College registered successfully!", "success");
+                    });
+                } else if (activeTab === 'pyqs') {
+                    openModal('Add Question Paper (PYQ)', 'Add previous year question paper', `
+                        <div><label class="block text-slate-400 mb-1">Paper Title</label><input type="text" id="f-title" required placeholder="e.g. Engineering Mathematics 1 (2024)" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Subject</label><input type="text" id="f-subject" required placeholder="Mathematics 1" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Year</label><input type="text" id="f-year" required placeholder="2024" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Semester</label><input type="text" id="f-sem" required placeholder="1st Semester" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Branch</label><input type="text" id="f-branch" required placeholder="Common / All Branches" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        </div>
+                        <div><label class="block text-slate-400 mb-1">Download PDF URL</label><input type="url" id="f-url" required placeholder="https://..." class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                    `, async () => {
+                        await window.DC_DATA_MANAGER.add('pyqs', {
+                            title: document.getElementById('f-title').value,
+                            subject: document.getElementById('f-subject').value,
+                            year: document.getElementById('f-year').value,
+                            semester: document.getElementById('f-sem').value,
+                            branch: document.getElementById('f-branch').value,
+                            downloadUrl: document.getElementById('f-url').value,
+                            rating: 5.0
+                        });
+                        if (window.showToast) window.showToast("PYQ added successfully!", "success");
+                    });
+                } else if (activeTab === 'mockTests') {
+                    openModal('Create Mock Test', 'Create a new CBT interactive mock test', `
+                        <div><label class="block text-slate-400 mb-1">Mock Test Title</label><input type="text" id="f-title" required placeholder="e.g. Jharkhand PECE Full Mock Test 2" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Category</label><input type="text" id="f-cat" required placeholder="Polytechnic Entrance / D2D" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Difficulty</label><select id="f-diff" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="block text-slate-400 mb-1">Time Limit (Minutes)</label><input type="number" id="f-time" required placeholder="120" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Total Marks</label><input type="number" id="f-marks" required placeholder="100" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        </div>
+                        <div><label class="block text-slate-400 mb-1">Sample 1st Question</label><input type="text" id="f-q1" required placeholder="Question text..." class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="f-opt1" required placeholder="Option A" class="p-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                            <input type="text" id="f-opt2" required placeholder="Option B" class="p-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                            <input type="text" id="f-opt3" required placeholder="Option C" class="p-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                            <input type="text" id="f-opt4" required placeholder="Option D" class="p-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                        </div>
+                        <div><label class="block text-slate-400 mb-1">Correct Answer (Exact text matching one option)</label><input type="text" id="f-correct" required placeholder="Matching option text" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                    `, async () => {
+                        await window.DC_DATA_MANAGER.add('mockTests', {
+                            title: document.getElementById('f-title').value,
+                            category: document.getElementById('f-cat').value,
+                            difficulty: document.getElementById('f-diff').value,
+                            timeLimit: parseInt(document.getElementById('f-time').value) || 60,
+                            totalMarks: parseInt(document.getElementById('f-marks').value) || 100,
+                            questionCount: 1,
+                            questions: [
+                                {
+                                    q: document.getElementById('f-q1').value,
+                                    options: [
+                                        document.getElementById('f-opt1').value,
+                                        document.getElementById('f-opt2').value,
+                                        document.getElementById('f-opt3').value,
+                                        document.getElementById('f-opt4').value
+                                    ],
+                                    correct: document.getElementById('f-correct').value,
+                                    explanation: "Official standard answer."
+                                }
+                            ]
+                        });
+                        if (window.showToast) window.showToast("Mock test created successfully!", "success");
+                    });
+                } else if (activeTab === 'announcements') {
+                    openModal('Add Live Notice / Announcement', 'Broadcast site-wide announcement ticker', `
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-slate-400 mb-1">Topic / Badge Tag</label>
+                                <input type="text" id="f-badge" required placeholder="e.g. JUT Exam 2026 / BIT Sindri D2D" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Badge Color Theme</label>
+                                <select id="f-color" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                                    <option value="text-amber-300">Amber (Yellow)</option>
+                                    <option value="text-emerald-300">Emerald (Green)</option>
+                                    <option value="text-sky-300" selected>Sky (Blue)</option>
+                                    <option value="text-rose-300">Rose (Red)</option>
+                                    <option value="text-purple-300">Purple</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Notice / Announcement Description</label>
+                            <textarea id="f-text" rows="3" required placeholder="e.g. 5th Semester routine published. Download timetable & model question papers..." class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Target Link URL (Optional)</label>
+                            <input type="text" id="f-link" placeholder="e.g. resources.html or exam-detail.html?id=jharkhand-polytechnic" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                        </div>
+                        <div class="flex items-center gap-2 pt-2">
+                            <input type="checkbox" id="f-active" checked class="rounded bg-slate-950 text-emerald-500 focus:ring-0">
+                            <label for="f-active" class="text-slate-300 font-semibold cursor-pointer">Display in live ticker immediately</label>
+                        </div>
+                    `, async () => {
+                        await window.DC_DATA_MANAGER.add('announcements', {
+                            badge: document.getElementById('f-badge').value.trim(),
+                            badgeColor: document.getElementById('f-color').value,
+                            text: document.getElementById('f-text').value.trim(),
+                            link: document.getElementById('f-link').value.trim() || '#',
+                            active: document.getElementById('f-active').checked
+                        });
+                        if (window.showToast) window.showToast("Notice / Announcement published to Live Ticker!", "success");
+                    });
+                }
+            });
+
+            // Global Actions attached for Edit & Delete
+            window.DC_ADMIN_ACTIONS = {
+                async editItem(collection, id) {
+                    const item = window.DC_DATA_MANAGER.getById(collection, id);
+                    if (!item) return;
+
+                    if (collection === 'resources') {
+                        openModal('Edit Study Resource', `Editing: ${item.title}`, `
+                            <div><label class="block text-slate-400 mb-1">Title</label><input type="text" id="f-title" value="${item.title || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Subject</label><input type="text" id="f-subject" value="${item.subject || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Semester</label><input type="number" id="f-sem" value="${item.semester || 1}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Branch</label><input type="text" id="f-branch" value="${item.branch || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Type</label><input type="text" id="f-type" value="${item.type || 'Notes'}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                            <div><label class="block text-slate-400 mb-1">URL</label><input type="url" id="f-url" value="${item.url || item.downloadUrl || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        `, async () => {
+                            await window.DC_DATA_MANAGER.update('resources', id, {
+                                title: document.getElementById('f-title').value,
+                                subject: document.getElementById('f-subject').value,
+                                semester: parseInt(document.getElementById('f-sem').value),
+                                branch: document.getElementById('f-branch').value,
+                                type: document.getElementById('f-type').value,
+                                url: document.getElementById('f-url').value
+                            });
+                            if (window.showToast) window.showToast("Resource updated successfully!", "success");
+                        });
+                    } else if (collection === 'colleges') {
+                        openModal('Edit College', `Editing: ${item.name}`, `
+                            <div><label class="block text-slate-400 mb-1">College Name</label><input type="text" id="f-name" value="${item.name || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Type</label><select id="f-type" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="Government" ${item.type==='Government'?'selected':''}>Government</option><option value="PPP" ${item.type==='PPP'?'selected':''}>PPP</option><option value="Private" ${item.type==='Private'?'selected':''}>Private</option></select></div>
+                                <div><label class="block text-slate-400 mb-1">District</label><input type="text" id="f-district" value="${item.district || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Total Intake</label><input type="number" id="f-intake" value="${item.totalIntake || 300}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Established Year</label><input type="number" id="f-est" value="${item.established || 1960}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                            <div><label class="block text-slate-400 mb-1">Branches (Comma Separated)</label><input type="text" id="f-branches" value="${(Array.isArray(item.branches)?item.branches.map(b=>typeof b==='object'?b.name:b):[]).join(', ')}" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div><label class="block text-slate-400 mb-1">Overview</label><textarea id="f-overview" rows="3" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">${item.overview || ''}</textarea></div>
+                        `, async () => {
+                            const branchesRaw = document.getElementById('f-branches').value.split(',').map(s => s.trim()).filter(Boolean);
+                            await window.DC_DATA_MANAGER.update('colleges', id, {
+                                name: document.getElementById('f-name').value,
+                                type: document.getElementById('f-type').value,
+                                district: document.getElementById('f-district').value,
+                                totalIntake: parseInt(document.getElementById('f-intake').value) || 300,
+                                established: parseInt(document.getElementById('f-est').value) || 1960,
+                                branches: branchesRaw,
+                                overview: document.getElementById('f-overview').value
+                            });
+                            if (window.showToast) window.showToast("College updated successfully!", "success");
+                        });
+                    } else if (collection === 'pyqs') {
+                        openModal('Edit Question Paper', `Editing: ${item.title}`, `
+                            <div><label class="block text-slate-400 mb-1">Paper Title</label><input type="text" id="f-title" value="${item.title || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Subject</label><input type="text" id="f-subject" value="${item.subject || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Year</label><input type="text" id="f-year" value="${item.year || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Semester</label><input type="text" id="f-sem" value="${item.semester || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Branch</label><input type="text" id="f-branch" value="${item.branch || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                            <div><label class="block text-slate-400 mb-1">Download PDF URL</label><input type="url" id="f-url" value="${item.downloadUrl || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                        `, async () => {
+                            await window.DC_DATA_MANAGER.update('pyqs', id, {
+                                title: document.getElementById('f-title').value,
+                                subject: document.getElementById('f-subject').value,
+                                year: document.getElementById('f-year').value,
+                                semester: document.getElementById('f-sem').value,
+                                branch: document.getElementById('f-branch').value,
+                                downloadUrl: document.getElementById('f-url').value
+                            });
+                            if (window.showToast) window.showToast("PYQ updated successfully!", "success");
+                        });
+                    } else if (collection === 'mockTests') {
+                        openModal('Edit Mock Test', `Editing: ${item.title}`, `
+                            <div><label class="block text-slate-400 mb-1">Test Title</label><input type="text" id="f-title" value="${item.title || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Category</label><input type="text" id="f-cat" value="${item.category || ''}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Difficulty</label><select id="f-diff" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"><option value="Easy" ${item.difficulty==='Easy'?'selected':''}>Easy</option><option value="Medium" ${item.difficulty==='Medium'?'selected':''}>Medium</option><option value="Hard" ${item.difficulty==='Hard'?'selected':''}>Hard</option></select></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-slate-400 mb-1">Time Limit (Mins)</label><input type="number" id="f-time" value="${item.timeLimit || 60}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                                <div><label class="block text-slate-400 mb-1">Total Marks</label><input type="number" id="f-marks" value="${item.totalMarks || 100}" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white"></div>
+                            </div>
+                        `, async () => {
+                            await window.DC_DATA_MANAGER.update('mockTests', id, {
+                                title: document.getElementById('f-title').value,
+                                category: document.getElementById('f-cat').value,
+                                difficulty: document.getElementById('f-diff').value,
+                                timeLimit: parseInt(document.getElementById('f-time').value) || 60,
+                                totalMarks: parseInt(document.getElementById('f-marks').value) || 100
+                            });
+                            if (window.showToast) window.showToast("Mock test updated successfully!", "success");
+                        });
+                    } else if (collection === 'announcements') {
+                        openModal('Edit Live Notice / Announcement', `Editing Notice #${id}`, `
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-slate-400 mb-1">Topic / Badge Tag</label>
+                                    <input type="text" id="f-badge" value="${item.badge || ''}" required placeholder="e.g. JUT Exam / BIT Sindri D2D" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-400 mb-1">Badge Color Theme</label>
+                                    <select id="f-color" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                                        <option value="text-amber-300" ${item.badgeColor === 'text-amber-300' ? 'selected' : ''}>Amber (Yellow)</option>
+                                        <option value="text-emerald-300" ${item.badgeColor === 'text-emerald-300' ? 'selected' : ''}>Emerald (Green)</option>
+                                        <option value="text-sky-300" ${!item.badgeColor || item.badgeColor === 'text-sky-300' ? 'selected' : ''}>Sky (Blue)</option>
+                                        <option value="text-rose-300" ${item.badgeColor === 'text-rose-300' ? 'selected' : ''}>Rose (Red)</option>
+                                        <option value="text-purple-300" ${item.badgeColor === 'text-purple-300' ? 'selected' : ''}>Purple</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Notice / Announcement Description</label>
+                                <textarea id="f-text" rows="3" required class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">${item.text || ''}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Target Link URL</label>
+                                <input type="text" id="f-link" value="${item.link || ''}" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white">
+                            </div>
+                            <div class="flex items-center gap-2 pt-2">
+                                <input type="checkbox" id="f-active" ${item.active !== false ? 'checked' : ''} class="rounded bg-slate-950 text-emerald-500 focus:ring-0">
+                                <label for="f-active" class="text-slate-300 font-semibold cursor-pointer">Display in live ticker</label>
+                            </div>
+                        `, async () => {
+                            await window.DC_DATA_MANAGER.update('announcements', id, {
+                                badge: document.getElementById('f-badge').value.trim(),
+                                badgeColor: document.getElementById('f-color').value,
+                                text: document.getElementById('f-text').value.trim(),
+                                link: document.getElementById('f-link').value.trim() || '#',
+                                active: document.getElementById('f-active').checked
+                            });
+                            if (window.showToast) window.showToast("Notice / Announcement updated!", "success");
+                        });
+                    }
+                },
+
+                async deleteItem(collection, id) {
+                    if (confirm(`Are you sure you want to delete this ${collection.slice(0, -1)} permanently?`)) {
+                        const success = await window.DC_DATA_MANAGER.delete(collection, id);
+                        if (success && window.showToast) {
+                            window.showToast("Item deleted successfully", "info");
+                        }
+                    }
+                }
+            };
+        });
+    </script>
+</body>
+</html>

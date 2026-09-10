@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test State Leaderboard & Top Performers | Diploma Campus</title>
+    <meta name="description" content="Check top performers and high rankers across Jharkhand Polytechnic PECE and D2D Lateral Entry CBT mock tests with real-time updates and podium ranks.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2026, JCECEB, Polytechnic Question Papers, Diploma Notes, Jharkhand Polytechnic Leaderboard, PECE Toppers, D2D Rankers, Diploma Campus Mock Test Ranks">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/leaderboard.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mock Test State Leaderboard & Top Performers | Diploma Campus">
+    <meta property="og:description" content="Check top performers and high rankers across Jharkhand Polytechnic PECE and D2D Lateral Entry CBT mock tests.">
+    <meta property="og:url" content="https://diplomacampus.in/leaderboard.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
+                <span>/</span>
+                <span class="text-slate-800 dark:text-slate-200 font-medium">State Leaderboard</span>
+            </nav>
+
+            <!-- Page Header -->
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-500 mx-auto flex items-center justify-center text-3xl shadow-inner mb-3">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white">Mock Test State Leaderboard</h1>
+                <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2">
+                    Live rankings & top scores across Jharkhand PECE, D2D Lateral Entry (Physics, Chem, Math) & Semester CBT tests.
+                </p>
+            </div>
+
+            <!-- Controls: Category Tabs & Search Bar -->
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap items-center gap-2" id="leaderboard-tabs">
+                    <button data-tab="all" class="lb-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-md shadow-sky-500/20">All Exams</button>
+                    <button data-tab="d2d" class="lb-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">D2D Lateral Entry</button>
+                    <button data-tab="physics" class="lb-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">⚛️ D2D Physics</button>
+                    <button data-tab="chemistry" class="lb-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">🧪 D2D Chemistry</button>
+                    <button data-tab="math" class="lb-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">📐 D2D Mathematics</button>
+                    <button data-tab="pece" class="lb-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">🎓 PECE Polytechnic</button>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative min-w-[240px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="lb-search-input" placeholder="Search student or college..." class="w-full pl-9 pr-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+            </div>
+
+            <!-- Top 3 Podium Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 items-end" id="podium-container">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Table of Full Ranks -->
+            <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                    <h2 class="text-lg font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-ranking-star text-amber-500"></i> Complete State Rankings
+                    </h2>
+                    <span id="total-rankers-count" class="text-xs text-slate-500 dark:text-slate-400 font-medium">Showing 10 Rankers</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold">
+                                <th class="pb-3 text-center w-16">Rank</th>
+                                <th class="pb-3">Student Name</th>
+                                <th class="pb-3">Test / Category</th>
+                                <th class="pb-3">College / District</th>
+                                <th class="pb-3 text-center">Accuracy</th>
+                                <th class="pb-3 text-right">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-table-body" class="divide-y divide-slate-100 dark:divide-slate-800">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-xs text-slate-500 dark:text-slate-400">
+                        Want to see your name on the state leaderboard? Attempt our mock tests now!
+                    </div>
+                    <a href="test-series.html" class="px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs shadow-md inline-flex items-center gap-2 transition-colors">
+                        <i class="fa-solid fa-play"></i> Take a Mock Test & Climb Rank
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Default baseline toppers
+            const DEFAULT_TOPPERS = [
+                { id: 'def-1', name: 'Ananya Singh', college: 'GP Adityapur • CSE', category: 'D2D Full Mock', score: 98.2, marks: '98.2/100', accuracy: 98, date: '10 Sep 2026' },
+                { id: 'def-2', name: 'Rahul Verma', college: 'Govt Poly Ranchi • ME', category: 'PECE 2026', score: 94.5, marks: '94.5/100', accuracy: 95, date: '10 Sep 2026' },
+                { id: 'def-3', name: 'Vikram Kumar', college: 'GP Dhanbad • Civil', category: 'D2D Physics', score: 92.0, marks: '46.0/50', accuracy: 92, date: '09 Sep 2026' },
+                { id: 'def-4', name: 'Pooja Kumari', college: 'Bokaro Institute', category: 'PECE 2026', score: 89.5, marks: '89.5/100', accuracy: 90, date: '09 Sep 2026' },
+                { id: 'def-5', name: 'Suman Soren', college: 'GP Dumka • Electrical', category: 'D2D Mathematics', score: 88.0, marks: '44.0/50', accuracy: 88, date: '08 Sep 2026' },
+                { id: 'def-6', name: 'Amitesh Roy', college: 'GP Nirsa • Mining', category: 'D2D Chemistry', score: 86.5, marks: '43.2/50', accuracy: 87, date: '08 Sep 2026' },
+                { id: 'def-7', name: 'Sneha Gupta', college: 'Govt Women Poly Ranchi', category: 'D2D Full Mock', score: 85.0, marks: '85.0/100', accuracy: 86, date: '07 Sep 2026' },
+                { id: 'def-8', name: 'Rohan Mahto', college: 'GP Kharsawan • ECE', category: 'D2D Physics', score: 83.5, marks: '41.7/50', accuracy: 84, date: '07 Sep 2026' },
+                { id: 'def-9', name: 'Kavita Das', college: 'GP Koderma • CSE', category: 'D2D Mathematics', score: 81.0, marks: '40.5/50', accuracy: 82, date: '06 Sep 2026' },
+                { id: 'def-10', name: 'Manish Pandey', college: 'GP Latehar • Civil', category: 'PECE 2026', score: 79.5, marks: '79.5/100', accuracy: 80, date: '06 Sep 2026' }
+            ];
+
+            let activeTab = 'all';
+            let searchQuery = '';
+
+            function getMergedLeaderboard() {
+                let localRecords = [];
+                try {
+                    localRecords = JSON.parse(localStorage.getItem('dc_leaderboard_records') || '[]');
+                } catch(e) {}
+
+                // Merge local attempts with default toppers
+                const combined = [...localRecords, ...DEFAULT_TOPPERS];
+                
+                // Sort descending by score percentage
+                combined.sort((a, b) => (b.score || 0) - (a.score || 0));
+                return combined;
+            }
+
+            function filterLeaderboard(records) {
+                return records.filter(r => {
+                    const cat = (r.category || '').toLowerCase();
+                    const testTitle = (r.testTitle || '').toLowerCase();
+                    
+                    let matchesTab = true;
+                    if (activeTab === 'd2d') matchesTab = cat.includes('d2d') || testTitle.includes('d2d');
+                    else if (activeTab === 'physics') matchesTab = cat.includes('physic') || testTitle.includes('physic');
+                    else if (activeTab === 'chemistry') matchesTab = cat.includes('chem') || testTitle.includes('chem');
+                    else if (activeTab === 'math') matchesTab = cat.includes('math') || testTitle.includes('math');
+                    else if (activeTab === 'pece') matchesTab = cat.includes('pece') || cat.includes('entrance') || testTitle.includes('pece');
+
+                    if (!matchesTab) return false;
+
+                    if (searchQuery) {
+                        const name = (r.name || '').toLowerCase();
+                        const college = (r.college || '').toLowerCase();
+                        return name.includes(searchQuery) || college.includes(searchQuery) || cat.includes(searchQuery);
+                    }
+
+                    return true;
+                });
+            }
+
+            function renderLeaderboard() {
+                const merged = getMergedLeaderboard();
+                const filtered = filterLeaderboard(merged);
+
+                const podiumContainer = document.getElementById('podium-container');
+                const tableBody = document.getElementById('leaderboard-table-body');
+                const countBadge = document.getElementById('total-rankers-count');
+                const lastAttemptId = localStorage.getItem('dc_last_attempt_id');
+
+                countBadge.textContent = `Showing ${filtered.length} Rankers`;
+
+                // Render Top 3 Podium
+                const top1 = filtered[0] || null;
+                const top2 = filtered[1] || null;
+                const top3 = filtered[2] || null;
+
+                podiumContainer.innerHTML = `
+                    <!-- Rank 2 (Silver) -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-sm order-2 md:order-1 ${top2 && top2.id === lastAttemptId ? 'ring-2 ring-sky-500' : ''}">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 mx-auto flex items-center justify-center font-bold text-lg mb-2 shadow-sm">
+                            <i class="fa-solid fa-medal text-slate-400 mr-1"></i> 2
+                        </div>
+                        <div class="font-heading font-bold text-base text-slate-900 dark:text-white truncate">${top2 ? top2.name : 'Waiting for Aspirant'}</div>
+                        <div class="text-xs text-slate-500 truncate mt-0.5">${top2 ? top2.college : 'Jharkhand'}</div>
+                        <div class="text-xl font-extrabold text-sky-600 dark:text-sky-400 mt-2">${top2 ? top2.score + '%' : '--'}</div>
+                        <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${top2 ? top2.category : 'Silver Medal'}</span>
+                    </div>
+
+                    <!-- Rank 1 (Gold / Crown) -->
+                    <div class="p-8 rounded-3xl bg-gradient-to-b from-amber-500/10 via-white to-white dark:via-slate-900 dark:to-slate-900 dark:from-amber-500/10 border-2 border-amber-400 text-center shadow-xl order-1 md:order-2 scale-105 relative z-10 ${top1 && top1.id === lastAttemptId ? 'ring-4 ring-amber-400' : ''}">
+                        <div class="w-16 h-16 rounded-full bg-amber-400 text-slate-950 mx-auto flex items-center justify-center font-extrabold text-2xl mb-2 shadow-lg animate-bounce">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="font-heading font-extrabold text-lg text-slate-900 dark:text-white truncate">${top1 ? top1.name : 'State Champion'}</div>
+                        <div class="text-xs text-slate-500 truncate mt-0.5">${top1 ? top1.college : 'Jharkhand Polytechnic'}</div>
+                        <div class="text-3xl font-extrabold text-amber-500 mt-2">${top1 ? top1.score + '%' : '--'}</div>
+                        <span class="inline-block mt-2 px-3.5 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 shadow-sm">
+                            <i class="fa-solid fa-trophy mr-1"></i> State Rank 1 (Gold)
+                        </span>
+                    </div>
+
+                    <!-- Rank 3 (Bronze) -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-sm order-3 ${top3 && top3.id === lastAttemptId ? 'ring-2 ring-sky-500' : ''}">
+                        <div class="w-12 h-12 rounded-full bg-amber-700/20 text-amber-700 dark:text-amber-400 mx-auto flex items-center justify-center font-bold text-lg mb-2 shadow-sm">
+                            <i class="fa-solid fa-award text-amber-600 mr-1"></i> 3
+                        </div>
+                        <div class="font-heading font-bold text-base text-slate-900 dark:text-white truncate">${top3 ? top3.name : 'Waiting for Aspirant'}</div>
+                        <div class="text-xs text-slate-500 truncate mt-0.5">${top3 ? top3.college : 'Jharkhand'}</div>
+                        <div class="text-xl font-extrabold text-sky-600 dark:text-sky-400 mt-2">${top3 ? top3.score + '%' : '--'}</div>
+                        <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300">${top3 ? top3.category : 'Bronze Medal'}</span>
+                    </div>
+                `;
+
+                // Render Table rows
+                if (filtered.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="py-8 text-center text-slate-500 text-xs">
+                                No test rankers found matching "${searchQuery}".
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tableBody.innerHTML = filtered.map((r, index) => {
+                    const rank = index + 1;
+                    const isUser = r.id === lastAttemptId || r.isUserAttempt;
+                    
+                    let rankBadge = `<span class="font-bold text-slate-500">#${rank}</span>`;
+                    if (rank === 1) rankBadge = `<span class="w-7 h-7 rounded-full bg-amber-400 text-slate-950 font-extrabold text-xs inline-flex items-center justify-center shadow-sm">1</span>`;
+                    else if (rank === 2) rankBadge = `<span class="w-7 h-7 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs inline-flex items-center justify-center">2</span>`;
+                    else if (rank === 3) rankBadge = `<span class="w-7 h-7 rounded-full bg-amber-700/30 text-amber-800 dark:text-amber-300 font-bold text-xs inline-flex items-center justify-center">3</span>`;
+
+                    return `
+                        <tr class="${isUser ? 'bg-sky-50/80 dark:bg-sky-950/40 font-medium' : 'hover:bg-slate-50/50 dark:hover:bg-slate-800/50'} transition-colors">
+                            <td class="py-3.5 text-center">${rankBadge}</td>
+                            <td class="py-3.5">
+                                <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                                    <span>${r.name}</span>
+                                    ${isUser ? '<span class="px-2 py-0.5 rounded-full text-[10px] bg-sky-500 text-white font-extrabold">YOU</span>' : ''}
+                                </div>
+                                <div class="text-[11px] text-slate-400">${r.date || 'Recent Attempt'}</div>
+                            </td>
+                            <td class="py-3.5">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold ${
+                                    (r.category || '').includes('Physics') ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300' :
+                                    (r.category || '').includes('Chem') ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300' :
+                                    (r.category || '').includes('Math') ? 'bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300' :
+                                    (r.category || '').includes('PECE') ? 'bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300' :
+                                    'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'
+                                }">${r.category || 'Mock Test'}</span>
+                            </td>
+                            <td class="py-3.5 text-slate-600 dark:text-slate-300">${r.college}</td>
+                            <td class="py-3.5 text-center font-semibold text-slate-700 dark:text-slate-300">${r.accuracy || 85}%</td>
+                            <td class="py-3.5 text-right font-extrabold text-emerald-600 dark:text-emerald-400">${r.score}%</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Tab Click handlers
+            const tabBtns = document.querySelectorAll('.lb-tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => {
+                        b.className = 'lb-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all';
+                    });
+                    btn.className = 'lb-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-md shadow-sky-500/20';
+                    activeTab = btn.dataset.tab;
+                    renderLeaderboard();
+                });
+            });
+
+            // Search input handler
+            const searchInput = document.getElementById('lb-search-input');
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase().trim();
+                renderLeaderboard();
+            });
+
+            // Initial render
+            renderLeaderboard();
+        });
+    </script>
+</body>
+</html>

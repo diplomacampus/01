@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Polytechnic & Engineering Colleges Directory (40+) | Diploma Campus</title>
+    <meta name="description" content="Comprehensive list of Government, PPP, and Private Polytechnic and Engineering colleges in Jharkhand. Check courses, seat intake, cutoff, fees, and placement details.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2025, JCECEB, Polytechnic Question Papers, Diploma Notes, Jharkhand Polytechnic Colleges list, Govt Polytechnic Ranchi, GP Dhanbad, GP Adityapur, BIT Sindri Lateral, Polytechnic Seats Jharkhand">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/colleges.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jharkhand Polytechnic & Engineering Colleges Directory (40+) | Diploma Campus">
+    <meta property="og:description" content="Comprehensive list of Government, PPP, and Private Polytechnic and Engineering colleges in Jharkhand. Check courses, seat intake, cutoff, fees, and placement details.">
+    <meta property="og:url" content="https://diplomacampus.in/colleges.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
+                <span>/</span>
+                <span class="text-slate-800 dark:text-slate-200 font-medium">Colleges Directory</span>
+            </nav>
+
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-100 dark:bg-sky-950 px-3 py-1 rounded-full">Jharkhand State Institutions</span>
+                    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mt-3">Polytechnic & Engineering Colleges</h1>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
+                        Discover 40+ premier institutes across Jharkhand for 3-Year Diploma in Engineering and B.Tech Lateral Entry (D2D). Filter by institution type, district, and branch.
+                    </p>
+                </div>
+                <div id="admin-college-container" class="hidden shrink-0">
+                    <button id="open-add-college-btn" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add New College (Admin)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls & Filters Bar -->
+            <div class="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <!-- Search Input -->
+                    <div class="relative lg:col-span-2">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="college-search" placeholder="Search college name, district, or branch..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+
+                    <!-- Type Filter -->
+                    <div>
+                        <select id="college-type-filter" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="all">All Types (Govt / PPP / Private)</option>
+                            <option value="Government">Government Only</option>
+                            <option value="PPP">PPP Model Only</option>
+                            <option value="Private">Private Only</option>
+                        </select>
+                    </div>
+
+                    <!-- District Filter -->
+                    <div>
+                        <select id="college-district-filter" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="all">All Districts (24)</option>
+                            <option value="Ranchi">Ranchi</option>
+                            <option value="Dhanbad">Dhanbad</option>
+                            <option value="Seraikela Kharsawan">Seraikela / Adityapur</option>
+                            <option value="Bokaro">Bokaro</option>
+                            <option value="Hazaribag">Hazaribag</option>
+                            <option value="Dumka">Dumka</option>
+                            <option value="Deoghar">Deoghar</option>
+                            <option value="Giridih">Giridih</option>
+                            <option value="East Singhbhum">Jamshedpur</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Result count and active filters -->
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                    <div>Showing <span id="colleges-count" class="font-bold text-sky-600 dark:text-sky-400">0</span> institutions</div>
+                    <button id="reset-filters" class="text-slate-500 hover:text-rose-500 transition-colors hidden">
+                        <i class="fa-solid fa-xmark mr-1"></i> Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Colleges Grid Container -->
+            <div id="colleges-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Empty State Placeholder -->
+            <div id="colleges-empty" class="hidden text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8">
+                <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto text-2xl mb-4">
+                    <i class="fa-solid fa-building-circle-exclamation"></i>
+                </div>
+                <h3 class="text-lg font-heading font-bold text-slate-800 dark:text-slate-200">No Colleges Match Your Search</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto">Try adjusting your filters or searching with a different keyword like "Ranchi", "Mechanical", or "Govt".</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Add / Edit College Modal -->
+    <div id="college-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 id="college-modal-title" class="font-heading font-bold text-lg text-slate-900 dark:text-white">Add New College</h3>
+                <button id="close-college-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="college-form" class="space-y-4 mt-4 text-xs">
+                <input type="hidden" id="col-id">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">College Name</label>
+                    <input type="text" id="col-name" required placeholder="Government Polytechnic, Ranchi" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Institute Type</label>
+                        <select id="col-type" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                            <option value="Government">Government</option>
+                            <option value="PPP">PPP Model</option>
+                            <option value="Private">Private</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">District</label>
+                        <input type="text" id="col-district" required placeholder="Ranchi" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Total Intake (Seats)</label>
+                        <input type="number" id="col-intake" required placeholder="360" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Established Year</label>
+                        <input type="number" id="col-est" required placeholder="1955" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Engineering Branches (Comma Separated)</label>
+                    <input type="text" id="col-branches" placeholder="CSE, Electrical, Mechanical, Civil" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Overview & Placement Highlights</label>
+                    <textarea id="col-overview" rows="3" placeholder="College details..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs"></textarea>
+                </div>
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
+                    <button type="button" id="cancel-college-btn" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold shadow-md">Save College</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('college-search');
+            const typeFilter = document.getElementById('college-type-filter');
+            const districtFilter = document.getElementById('college-district-filter');
+            const countEl = document.getElementById('colleges-count');
+            const gridEl = document.getElementById('colleges-grid');
+            const emptyEl = document.getElementById('colleges-empty');
+            const resetBtn = document.getElementById('reset-filters');
+            
+            const adminContainer = document.getElementById('admin-college-container');
+            const addCollegeBtn = document.getElementById('open-add-college-btn');
+            const collegeModal = document.getElementById('college-modal');
+            const collegeModalTitle = document.getElementById('college-modal-title');
+            const closeCollegeModal = document.getElementById('close-college-modal');
+            const cancelCollegeBtn = document.getElementById('cancel-college-btn');
+            const collegeForm = document.getElementById('college-form');
+
+            let isUserAdmin = false;
+
+            function updateAdminUI(isAdmin) {
+                isUserAdmin = isAdmin;
+                if (isAdmin) {
+                    adminContainer?.classList.remove('hidden');
+                } else {
+                    adminContainer?.classList.add('hidden');
+                }
+                renderColleges();
+            }
+
+            window.addEventListener('dc-auth-change', (e) => {
+                updateAdminUI(e.detail.isAdmin);
+            });
+
+            if (window.DC_AUTH) {
+                updateAdminUI(window.DC_AUTH.isAdmin);
+            }
+
+            window.addEventListener('dc-data-updated', () => {
+                renderColleges();
+            });
+
+            function renderColleges() {
+                const query = (searchInput.value || '').toLowerCase().trim();
+                const type = typeFilter.value;
+                const district = districtFilter.value;
+
+                const colleges = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('colleges') : (window.DC_COLLEGES || []);
+
+                const filtered = colleges.filter(c => {
+                    const branchNames = Array.isArray(c.branches) 
+                        ? c.branches.map(b => typeof b === 'object' ? b.name : b).join(' ') 
+                        : '';
+                    const matchesQuery = !query || 
+                        (c.name || '').toLowerCase().includes(query) || 
+                        (c.district || '').toLowerCase().includes(query) ||
+                        branchNames.toLowerCase().includes(query);
+                    
+                    const matchesType = type === 'all' || (c.type || '').toLowerCase() === type.toLowerCase();
+                    const matchesDistrict = district === 'all' || (c.district || '').toLowerCase() === district.toLowerCase();
+
+                    return matchesQuery && matchesType && matchesDistrict;
+                });
+
+                countEl.textContent = filtered.length;
+
+                if (query || type !== 'all' || district !== 'all') {
+                    resetBtn.classList.remove('hidden');
+                } else {
+                    resetBtn.classList.add('hidden');
+                }
+
+                if (filtered.length === 0) {
+                    gridEl.innerHTML = '';
+                    emptyEl.classList.remove('hidden');
+                    return;
+                }
+
+                emptyEl.classList.add('hidden');
+                gridEl.innerHTML = filtered.map(c => {
+                    const branchesArr = Array.isArray(c.branches) ? c.branches : [];
+                    return `
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all relative">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${
+                                    c.type === 'Government' 
+                                        ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300' 
+                                        : c.type === 'PPP' 
+                                        ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300'
+                                        : 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'
+                                }">${c.type} Institute</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>${c.district}</span>
+                            </div>
+                            
+                            <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white leading-snug">
+                                <a href="college-detail.html?id=${c.id}" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">${c.name}</a>
+                            </h3>
+                            
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                Est. ${c.established || '-'} • Affiliated to ${c.affiliation || c.affiliatedTo || 'JUT'}
+                            </p>
+
+                            <div class="my-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+                                <div class="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Offered Engineering Branches:</div>
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${branchesArr.slice(0, 4).map(b => `<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-medium border border-slate-200 dark:border-slate-700">${typeof b === 'object' ? b.name : b}</span>`).join('')}
+                                    ${branchesArr.length > 4 ? `<span class="text-[11px] text-slate-400 self-center">+${branchesArr.length - 4} more</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            ${isUserAdmin ? `
+                            <div class="mt-2 pt-3 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2 mb-3">
+                                <button onclick="window.editCollegeInline('${c.id}')" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 text-xs font-bold hover:bg-sky-100 transition border border-sky-200 dark:border-sky-800">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </button>
+                                <button onclick="window.deleteCollegeInline('${c.id}')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-100 transition border border-rose-200 dark:border-rose-800">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </div>
+                            ` : ''}
+
+                            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <div class="text-xs">
+                                    <span class="text-slate-500 dark:text-slate-400">Total Intake:</span>
+                                    <span class="font-bold text-slate-900 dark:text-white">${c.totalIntake || 300} Seats</span>
+                                </div>
+                                <a href="college-detail.html?id=${c.id}" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all shadow-sm">
+                                    View Full Profile &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            // Inline action handlers
+            window.editCollegeInline = function(id) {
+                const item = window.DC_DATA_MANAGER.getById('colleges', id);
+                if (!item) return;
+                document.getElementById('col-id').value = item.id;
+                document.getElementById('col-name').value = item.name || '';
+                document.getElementById('col-type').value = item.type || 'Government';
+                document.getElementById('col-district').value = item.district || '';
+                document.getElementById('col-intake').value = item.totalIntake || 300;
+                document.getElementById('col-est').value = item.established || 1960;
+                document.getElementById('col-branches').value = Array.isArray(item.branches) ? item.branches.map(b => typeof b === 'object' ? b.name : b).join(', ') : '';
+                document.getElementById('col-overview').value = item.overview || '';
+                
+                collegeModalTitle.textContent = "Edit College Profile";
+                collegeModal.classList.remove('hidden');
+                collegeModal.classList.add('flex');
+            };
+
+            window.deleteCollegeInline = async function(id) {
+                if (confirm("Are you sure you want to permanently delete this college?")) {
+                    await window.DC_DATA_MANAGER.delete('colleges', id);
+                    if (window.showToast) window.showToast("College removed!", "info");
+                }
+            };
+
+            addCollegeBtn?.addEventListener('click', () => {
+                document.getElementById('col-id').value = '';
+                collegeForm.reset();
+                collegeModalTitle.textContent = "Add New College";
+                collegeModal.classList.remove('hidden');
+                collegeModal.classList.add('flex');
+            });
+
+            closeCollegeModal?.addEventListener('click', () => { collegeModal.classList.add('hidden'); collegeModal.classList.remove('flex'); });
+            cancelCollegeBtn?.addEventListener('click', () => { collegeModal.classList.add('hidden'); collegeModal.classList.remove('flex'); });
+
+            // Form Submit
+            collegeForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const id = document.getElementById('col-id').value;
+                const name = document.getElementById('col-name').value;
+                const type = document.getElementById('col-type').value;
+                const district = document.getElementById('col-district').value;
+                const totalIntake = parseInt(document.getElementById('col-intake').value) || 300;
+                const established = parseInt(document.getElementById('col-est').value) || 1960;
+                const branches = document.getElementById('col-branches').value.split(',').map(s => s.trim()).filter(Boolean);
+                const overview = document.getElementById('col-overview').value;
+
+                try {
+                    if (id) {
+                        await window.DC_DATA_MANAGER.update('colleges', id, {
+                            name, type, district, totalIntake, established, branches, overview
+                        });
+                        if (window.showToast) window.showToast("College updated successfully!", "success");
+                    } else {
+                        await window.DC_DATA_MANAGER.add('colleges', {
+                            name, type, district, totalIntake, established, branches, overview, affiliatedTo: 'JUT, Ranchi'
+                        });
+                        if (window.showToast) window.showToast("College added successfully!", "success");
+                    }
+                    collegeModal.classList.add('hidden');
+                    collegeModal.classList.remove('flex');
+                } catch(err) {
+                    if (window.showToast) window.showToast("Operation failed: " + err.message, "error");
+                }
+            });
+
+            searchInput.addEventListener('input', renderColleges);
+            typeFilter.addEventListener('change', renderColleges);
+            districtFilter.addEventListener('change', renderColleges);
+            resetBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                typeFilter.value = 'all';
+                districtFilter.value = 'all';
+                renderColleges();
+            });
+
+            // Initial render
+            renderColleges();
+        });
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

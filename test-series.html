@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mock Test CBT Engine - PECE & D2D Test Series | Diploma Campus</title>
+    <meta name="description" content="Take free real-time CBT mock tests for Jharkhand Polytechnic PECE and JCECEB Lateral Entry D2D. Live countdown timer, question palette, instant score card, and detailed solutions.">
+    <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2026, JCECEB, Polytechnic Question Papers, Diploma Notes, Jharkhand Polytechnic Mock Test, D2D Mock Test, Online CBT Test Jharkhand, PECE Practice Test, JUT Semester Test Series">
+    <meta name="author" content="Diploma Campus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diplomacampus.in/test-series.html">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Interactive Mock Test CBT Engine - PECE & D2D Test Series | Diploma Campus">
+    <meta property="og:description" content="Take free real-time CBT mock tests for Jharkhand Polytechnic PECE and JCECEB Lateral Entry D2D. Live countdown timer, question palette, instant score card, and detailed solutions.">
+    <meta property="og:url" content="https://diplomacampus.in/test-series.html">
+    <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        },
+                        secondary: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Data & Helpers (Loaded Early) -->
+    <script src="assets/js/global-data.js"></script>
+    <script src="assets/js/toast.js"></script>
+    <script src="assets/js/admin-manager.js"></script>
+
+    <!-- Custom Design System CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="dc-header-mount"></div>
+    <div id="dc-global-header"></div>
+
+    <main class="flex-grow pt-6 sm:pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
+                <span>/</span>
+                <span class="text-slate-800 dark:text-slate-200 font-medium">Test Series CBT</span>
+            </nav>
+
+            <!-- Test Selection View (Default) -->
+            <div id="test-list-view">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950 px-3.5 py-1 rounded-full">
+                            <i class="fa-solid fa-bolt mr-1"></i> Interactive Exam Simulation
+                        </span>
+                        <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mt-3">Free CBT Mock Test Series</h1>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1">
+                            Experience real computer-based exam environments for Jharkhand PECE, D2D Lateral Entry (Physics, Chemistry, Math), and JUT branch subjects.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-2 shrink-0">
+                        <div id="admin-test-container" class="hidden">
+                            <button id="open-add-test-btn" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Create Mock Test (Admin)</span>
+                            </button>
+                        </div>
+
+                        <a href="leaderboard.html" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-md transition-all inline-flex items-center gap-2">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>State Leaderboard 🏆</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="flex flex-wrap items-center gap-2 mb-8" id="test-category-filters">
+                    <button data-cat="all" class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-md shadow-sky-500/20">All Mock Tests</button>
+                    <button data-cat="d2d" class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">D2D Lateral (All)</button>
+                    <button data-cat="physics" class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">⚛️ D2D Physics</button>
+                    <button data-cat="chemistry" class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">🧪 D2D Chemistry</button>
+                    <button data-cat="math" class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">📐 D2D Mathematics</button>
+                    <button data-cat="pece" class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">🎓 PECE Polytechnic</button>
+                </div>
+
+                <!-- Test Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="test-cards-container">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Interactive CBT Test-Taking View (Hidden until test launched) -->
+            <div id="test-engine-view" class="hidden">
+                <!-- Test Active Header -->
+                <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h2 id="cbt-test-title" class="font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-white">Jharkhand Mock Test</h2>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Section: <span id="cbt-section-name" class="font-medium text-sky-600 dark:text-sky-400">All Sections</span></div>
+                    </div>
+
+                    <!-- Timer & Submit Actions -->
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 font-mono text-sm sm:text-base font-bold shadow-sm">
+                            <i class="fa-regular fa-clock animate-pulse"></i>
+                            <span id="cbt-timer">15:00</span>
+                        </div>
+
+                        <button id="cbt-submit-btn" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all">
+                            Submit Test
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main CBT Interface: Question Screen (Left) + Question Palette (Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Question & Options Panel -->
+                    <div class="lg:col-span-8 p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between min-h-[450px]">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 text-xs">
+                                <span class="font-bold text-sky-600 dark:text-sky-400" id="cbt-q-number">Question 1 of 10</span>
+                                <span class="text-slate-500 font-medium">+1.0 Mark • -0.25 Negative</span>
+                            </div>
+
+                            <!-- Question Content -->
+                            <div class="my-6">
+                                <div id="cbt-question-text" class="text-base sm:text-lg font-medium text-slate-900 dark:text-white leading-relaxed">
+                                    Loading question...
+                                </div>
+                            </div>
+
+                            <!-- Options Form -->
+                            <div id="cbt-options-container" class="space-y-3">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Action Controls Strip -->
+                        <div class="pt-6 mt-8 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="flex items-center gap-2">
+                                <button id="cbt-clear-btn" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Clear</button>
+                                <button id="cbt-review-btn" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 hover:bg-purple-200">Mark for Review</button>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button id="cbt-prev-btn" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 disabled:opacity-40">&larr; Previous</button>
+                                <button id="cbt-next-btn" class="px-5 py-2 rounded-xl text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white shadow-sm">Save & Next &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Navigator Palette (Right) -->
+                    <div class="lg:col-span-4 p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Question Palette</h3>
+                            <span id="cbt-section-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">Physics (1-50)</span>
+                        </div>
+
+                        <!-- Section Quick Switcher (For 150 Q Full Mock Tests) -->
+                        <div id="palette-section-switcher" class="grid grid-cols-3 gap-1.5 pt-1 text-[11px] font-semibold">
+                            <button type="button" onclick="window.jumpToQuestion(0)" class="px-2 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-900 hover:bg-indigo-100 transition text-center">⚛️ Physics (1-50)</button>
+                            <button type="button" onclick="window.jumpToQuestion(50)" class="px-2 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 hover:bg-emerald-100 transition text-center">🧪 Chem (51-100)</button>
+                            <button type="button" onclick="window.jumpToQuestion(100)" class="px-2 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-900 hover:bg-purple-100 transition text-center">📐 Math (101-150)</button>
+                        </div>
+
+                        <!-- Legend Status -->
+                        <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-emerald-500 shrink-0"></span> Answered (<span id="palette-count-ans">0</span>)</div>
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-purple-500 shrink-0"></span> Review (<span id="palette-count-rev">0</span>)</div>
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-amber-500 shrink-0"></span> Not Answered (<span id="palette-count-notans">0</span>)</div>
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-slate-200 dark:bg-slate-700 shrink-0"></span> Not Visited (<span id="palette-count-notvis">0</span>)</div>
+                        </div>
+
+                        <!-- Grid of Question Buttons (Scrollable for 150 questions) -->
+                        <div id="cbt-palette-grid" class="grid grid-cols-5 gap-2 pt-2 border-t border-slate-100 dark:border-slate-800 max-h-72 sm:max-h-80 overflow-y-auto pr-1">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Scorecard & Solution Review View (Hidden until test submitted) -->
+            <div id="test-result-view" class="hidden space-y-8">
+                <!-- Result Summary Banner -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm text-center max-w-3xl mx-auto space-y-6">
+                    <div class="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center text-3xl shadow-inner">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Performance Scorecard</span>
+                        <h2 id="result-test-name" class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">Test Results</h2>
+                        <div id="leaderboard-rank-badge" class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300">
+                            <i class="fa-solid fa-trophy text-amber-500"></i> Score Added to State Leaderboard!
+                        </div>
+                    </div>
+
+                    <!-- Main Score Display -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800">
+                            <div class="text-2xl font-heading font-extrabold text-sky-600 dark:text-sky-400" id="res-score">0 / 0</div>
+                            <div class="text-[11px] text-slate-500">Total Score</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800">
+                            <div class="text-2xl font-heading font-extrabold text-emerald-600 dark:text-emerald-400" id="res-correct">0</div>
+                            <div class="text-[11px] text-slate-500">Correct (+1)</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800">
+                            <div class="text-2xl font-heading font-extrabold text-rose-600 dark:text-rose-400" id="res-wrong">0</div>
+                            <div class="text-[11px] text-slate-500">Wrong (-0.25)</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800">
+                            <div class="text-2xl font-heading font-extrabold text-indigo-600 dark:text-indigo-400" id="res-accuracy">0%</div>
+                            <div class="text-[11px] text-slate-500">Accuracy</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3 pt-4">
+                        <button onclick="window.location.reload()" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-800 dark:text-slate-200 font-bold text-xs transition-colors">
+                            Take Another Test
+                        </button>
+                        <a href="leaderboard.html" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-md transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>Check Your Rank on State Leaderboard &rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Solution & Explanations Review Section -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                    <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-sky-500"></i> Detailed Question-by-Question Solutions
+                    </h3>
+
+                    <div id="solution-list-container" class="space-y-4">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Add / Edit Mock Test Modal -->
+    <div id="test-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 id="test-modal-title" class="font-heading font-bold text-lg text-slate-900 dark:text-white">Create New Mock Test</h3>
+                <button id="close-test-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="test-form" class="space-y-4 mt-4 text-xs">
+                <input type="hidden" id="t-id">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Test Title</label>
+                    <input type="text" id="t-title" required placeholder="e.g. Jharkhand PECE Full Mock Test 2" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Category</label>
+                        <input type="text" id="t-cat" required placeholder="D2D Physics / D2D Chemistry / PECE" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Difficulty</label>
+                        <select id="t-diff" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Duration (Minutes)</label>
+                        <input type="number" id="t-duration" required placeholder="60" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Total Marks</label>
+                        <input type="number" id="t-marks" required placeholder="50" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+                    <span class="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[11px] block mb-2">Sample Question</span>
+                    <input type="text" id="t-q1" placeholder="Question statement..." class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs mb-2">
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <input type="text" id="t-opt1" placeholder="Option A" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+                        <input type="text" id="t-opt2" placeholder="Option B" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+                        <input type="text" id="t-opt3" placeholder="Option C" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+                        <input type="text" id="t-opt4" placeholder="Option D" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+                    </div>
+                    <input type="text" id="t-ans" placeholder="Correct Option Text" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
+                    <button type="button" id="cancel-test-btn" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold shadow-md">Save Test</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from './assets/js/firebase-app.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const testListView = document.getElementById('test-list-view');
+            const testEngineView = document.getElementById('test-engine-view');
+            const testResultView = document.getElementById('test-result-view');
+            const testCardsContainer = document.getElementById('test-cards-container');
+
+            const cbtTitle = document.getElementById('cbt-test-title');
+            const cbtTimer = document.getElementById('cbt-timer');
+            const cbtQNum = document.getElementById('cbt-q-number');
+            const cbtQText = document.getElementById('cbt-question-text');
+            const cbtOptions = document.getElementById('cbt-options-container');
+            const cbtPalette = document.getElementById('cbt-palette-grid');
+
+            const prevBtn = document.getElementById('cbt-prev-btn');
+            const nextBtn = document.getElementById('cbt-next-btn');
+            const clearBtn = document.getElementById('cbt-clear-btn');
+            const reviewBtn = document.getElementById('cbt-review-btn');
+            const submitBtn = document.getElementById('cbt-submit-btn');
+
+            // Admin elements
+            const adminContainer = document.getElementById('admin-test-container');
+            const addTestBtn = document.getElementById('open-add-test-btn');
+            const testModal = document.getElementById('test-modal');
+            const testModalTitle = document.getElementById('test-modal-title');
+            const closeTestModal = document.getElementById('close-test-modal');
+            const cancelTestBtn = document.getElementById('cancel-test-btn');
+            const testForm = document.getElementById('test-form');
+
+            let currentCategoryFilter = 'all';
+            let currentTest = null;
+            let currentQIndex = 0;
+            let userAnswers = {}; // { qIndex: selectedOptionIndex }
+            let reviewedQuestions = new Set();
+            let timerInterval = null;
+            let timeRemaining = 0;
+            let isUserAdmin = false;
+
+            function updateAdminUI(isAdmin) {
+                isUserAdmin = isAdmin;
+                if (isAdmin) {
+                    adminContainer?.classList.remove('hidden');
+                } else {
+                    adminContainer?.classList.add('hidden');
+                }
+                renderTestCards();
+            }
+
+            window.addEventListener('dc-auth-change', (e) => {
+                updateAdminUI(e.detail.isAdmin);
+            });
+
+            if (window.DC_AUTH) {
+                updateAdminUI(window.DC_AUTH.isAdmin);
+            }
+
+            window.addEventListener('dc-data-updated', () => {
+                renderTestCards();
+            });
+
+            // Category filters click handler
+            const filterBtns = document.querySelectorAll('.cat-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.className = 'cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all';
+                    });
+                    btn.className = 'cat-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-md shadow-sky-500/20';
+                    currentCategoryFilter = btn.dataset.cat;
+                    renderTestCards();
+                });
+            });
+
+            // Render available test cards
+            function renderTestCards() {
+                const allTests = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('mockTests') : (window.DC_MOCK_TESTS || []);
+                
+                const filteredTests = allTests.filter(t => {
+                    if (currentCategoryFilter === 'all') return true;
+                    const cat = (t.category || '').toLowerCase();
+                    const title = (t.title || '').toLowerCase();
+                    if (currentCategoryFilter === 'd2d') return cat.includes('d2d') || title.includes('d2d');
+                    if (currentCategoryFilter === 'physics') return cat.includes('physic') || title.includes('physic');
+                    if (currentCategoryFilter === 'chemistry') return cat.includes('chem') || title.includes('chem');
+                    if (currentCategoryFilter === 'math') return cat.includes('math') || title.includes('math');
+                    if (currentCategoryFilter === 'pece') return cat.includes('pece') || cat.includes('entrance') || title.includes('pece');
+                    return true;
+                });
+
+                if (filteredTests.length === 0) {
+                    testCardsContainer.innerHTML = `
+                        <div class="col-span-full p-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 text-slate-500">
+                            <i class="fa-solid fa-flask-vial text-4xl text-slate-300 mb-3 block"></i>
+                            <h3 class="font-heading font-bold text-slate-800 dark:text-slate-200 text-base">No Mock Tests Found</h3>
+                            <p class="text-xs mt-1">Try selecting a different subject filter above.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                testCardsContainer.innerHTML = filteredTests.map((t, idx) => {
+                    const qCount = Array.isArray(t.questions) ? t.questions.length : (t.questionCount || 10);
+                    const duration = t.timeLimit || t.duration || 60;
+                    const cat = t.category || 'Mock Test';
+                    return `
+                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10 transition-all relative">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${
+                                    cat.includes('PECE') || cat.includes('Entrance') ? 'bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300' :
+                                    cat.includes('Physics') ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300' :
+                                    cat.includes('Chemistry') ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300' :
+                                    cat.includes('Math') ? 'bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300' :
+                                    'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'
+                                }">${cat}</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold"><i class="fa-regular fa-clock mr-1"></i>${duration} Mins</span>
+                            </div>
+
+                            <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white leading-snug">
+                                ${t.title}
+                            </h3>
+
+                            <div class="my-4 space-y-1 text-xs text-slate-500 dark:text-slate-400">
+                                <div>• Total Questions: <span class="font-semibold text-slate-700 dark:text-slate-300">${qCount} Questions</span></div>
+                                <div>• Total Marks: <span class="font-semibold text-slate-700 dark:text-slate-300">${t.totalMarks || (qCount * 1)} Marks</span></div>
+                                <div>• Difficulty: <span class="font-semibold text-slate-700 dark:text-slate-300">${t.difficulty || 'Medium'}</span></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            ${isUserAdmin ? `
+                            <div class="mt-2 pt-3 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2 mb-3">
+                                <button onclick="window.editTestInline('${t.id}')" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 text-xs font-bold hover:bg-sky-100 transition border border-sky-200 dark:border-sky-800">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </button>
+                                <button onclick="window.deleteTestInline('${t.id}')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-100 transition border border-rose-200 dark:border-rose-800">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </div>
+                            ` : ''}
+
+                            <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+                                <button onclick="window.startTest('${t.id || idx}')" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-sm transition-colors flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-play text-xs"></i>
+                                    <span>Start CBT Mock Test</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            // Inline Edit / Delete handlers
+            window.editTestInline = function(id) {
+                const item = window.DC_DATA_MANAGER.getById('mockTests', id);
+                if (!item) return;
+                document.getElementById('t-id').value = item.id;
+                document.getElementById('t-title').value = item.title || '';
+                document.getElementById('t-cat').value = item.category || 'D2D Physics';
+                document.getElementById('t-diff').value = item.difficulty || 'Medium';
+                document.getElementById('t-duration').value = item.timeLimit || item.duration || 60;
+                document.getElementById('t-marks').value = item.totalMarks || 50;
+
+                testModalTitle.textContent = "Edit Mock Test";
+                testModal.classList.remove('hidden');
+                testModal.classList.add('flex');
+            };
+
+            window.deleteTestInline = async function(id) {
+                if (confirm("Are you sure you want to delete this mock test?")) {
+                    await window.DC_DATA_MANAGER.delete('mockTests', id);
+                    if (window.showToast) window.showToast("Mock test deleted!", "info");
+                }
+            };
+
+            addTestBtn?.addEventListener('click', () => {
+                document.getElementById('t-id').value = '';
+                testForm.reset();
+                testModalTitle.textContent = "Create New Mock Test";
+                testModal.classList.remove('hidden');
+                testModal.classList.add('flex');
+            });
+
+            closeTestModal?.addEventListener('click', () => { testModal.classList.add('hidden'); testModal.classList.remove('flex'); });
+            cancelTestBtn?.addEventListener('click', () => { testModal.classList.add('hidden'); testModal.classList.remove('flex'); });
+
+            testForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const id = document.getElementById('t-id').value;
+                const title = document.getElementById('t-title').value;
+                const category = document.getElementById('t-cat').value;
+                const difficulty = document.getElementById('t-diff').value;
+                const timeLimit = parseInt(document.getElementById('t-duration').value) || 60;
+                const totalMarks = parseInt(document.getElementById('t-marks').value) || 50;
+
+                const q1 = document.getElementById('t-q1').value;
+                const opt1 = document.getElementById('t-opt1').value;
+                const opt2 = document.getElementById('t-opt2').value;
+                const opt3 = document.getElementById('t-opt3').value;
+                const opt4 = document.getElementById('t-opt4').value;
+                const ans = document.getElementById('t-ans').value;
+
+                let questions = [
+                    {
+                        q: q1 || "Sample question for " + title,
+                        options: [opt1 || "Option A", opt2 || "Option B", opt3 || "Option C", opt4 || "Option D"],
+                        correct: ans || opt1 || "Option A",
+                        ans: 0,
+                        explanation: "Standard reference solution."
+                    }
+                ];
+
+                try {
+                    if (id) {
+                        await window.DC_DATA_MANAGER.update('mockTests', id, {
+                            title, category, difficulty, timeLimit, totalMarks
+                        });
+                        if (window.showToast) window.showToast("Mock test updated successfully!", "success");
+                    } else {
+                        await window.DC_DATA_MANAGER.add('mockTests', {
+                            title, category, difficulty, timeLimit, totalMarks, questionCount: questions.length, questions
+                        });
+                        if (window.showToast) window.showToast("Mock test created successfully!", "success");
+                    }
+                    testModal.classList.add('hidden');
+                    testModal.classList.remove('flex');
+                } catch(err) {
+                    if (window.showToast) window.showToast("Failed to save: " + err.message, "error");
+                }
+            });
+
+            // Start Test
+            window.startTest = (testId) => {
+                const allTests = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('mockTests') : (window.DC_MOCK_TESTS || []);
+                currentTest = allTests.find(t => t.id === testId) || allTests[0];
+                if (!currentTest) return;
+
+                // Normalize questions if needed
+                if (!currentTest.questions || currentTest.questions.length === 0) {
+                    currentTest.questions = [
+                        {
+                            q: "What is the SI unit of Force in Physics?",
+                            options: ["Newton", "Joule", "Pascal", "Watt"],
+                            correct: "Newton",
+                            ans: 0,
+                            explanation: "Force unit is Newton (N = kg·m/s²)."
+                        }
+                    ];
+                }
+
+                currentQIndex = 0;
+                userAnswers = {};
+                reviewedQuestions = new Set();
+                timeRemaining = (currentTest.timeLimit || currentTest.duration || 60) * 60;
+
+                testListView.classList.add('hidden');
+                testEngineView.classList.remove('hidden');
+                testResultView.classList.add('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                cbtTitle.textContent = currentTest.title;
+                startTimer();
+                renderQuestion();
+                renderPalette();
+            };
+
+            function startTimer() {
+                clearInterval(timerInterval);
+                updateTimerDisplay();
+                timerInterval = setInterval(() => {
+                    timeRemaining--;
+                    updateTimerDisplay();
+                    if (timeRemaining <= 0) {
+                        clearInterval(timerInterval);
+                        alert("Time's up! Submitting your test.");
+                        finishTest();
+                    }
+                }, 1000);
+            }
+
+            function updateTimerDisplay() {
+                const mins = Math.floor(timeRemaining / 60);
+                const secs = timeRemaining % 60;
+                cbtTimer.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            function renderQuestion() {
+                const q = currentTest.questions[currentQIndex];
+                cbtQNum.textContent = `Question ${currentQIndex + 1} of ${currentTest.questions.length}`;
+                cbtQText.textContent = q.q;
+
+                // Update section indicator
+                const secNameElem = document.getElementById('cbt-section-name');
+                const secBadgeElem = document.getElementById('cbt-section-badge');
+                const secSwitcher = document.getElementById('palette-section-switcher');
+
+                if (currentTest.questions.length >= 100) {
+                    secSwitcher?.classList.remove('hidden');
+                    let secText = "Engineering Physics";
+                    if (currentQIndex >= 100) secText = "Engineering Mathematics";
+                    else if (currentQIndex >= 50) secText = "Engineering Chemistry";
+                    
+                    if (secNameElem) secNameElem.textContent = secText;
+                    if (secBadgeElem) secBadgeElem.textContent = secText;
+                } else {
+                    secSwitcher?.classList.add('hidden');
+                    if (secNameElem) secNameElem.textContent = currentTest.category || "All Sections";
+                    if (secBadgeElem) secBadgeElem.textContent = `Total ${currentTest.questions.length} Qs`;
+                }
+
+                cbtOptions.innerHTML = q.options.map((opt, optIdx) => {
+                    const isSelected = userAnswers[currentQIndex] === optIdx;
+                    return `
+                        <label class="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl border cursor-pointer transition-all ${
+                            isSelected 
+                                ? 'bg-sky-50 dark:bg-sky-950/50 border-sky-500 ring-2 ring-sky-500/20 text-sky-900 dark:text-sky-100 font-semibold' 
+                                : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200'
+                        }">
+                            <input type="radio" name="cbt-opt" value="${optIdx}" ${isSelected ? 'checked' : ''} class="w-4 h-4 text-sky-600 focus:ring-sky-500">
+                            <span class="text-xs sm:text-sm leading-relaxed">${String.fromCharCode(65 + optIdx)}. ${opt}</span>
+                        </label>
+                    `;
+                }).join('');
+
+                cbtOptions.querySelectorAll('input[name="cbt-opt"]').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        userAnswers[currentQIndex] = parseInt(e.target.value);
+                        renderPalette();
+                    });
+                });
+
+                prevBtn.disabled = currentQIndex === 0;
+                nextBtn.textContent = currentQIndex === currentTest.questions.length - 1 ? 'Finish & Review' : 'Save & Next →';
+            }
+
+            function renderPalette() {
+                let ansCount = 0;
+                let revCount = 0;
+                let notAnsCount = 0;
+
+                cbtPalette.innerHTML = currentTest.questions.map((_, idx) => {
+                    const isAns = userAnswers.hasOwnProperty(idx);
+                    const isRev = reviewedQuestions.has(idx);
+                    const isCurrent = idx === currentQIndex;
+
+                    let bgClass = 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+                    if (isRev) {
+                        bgClass = 'bg-purple-500 text-white font-bold';
+                        revCount++;
+                    } else if (isAns) {
+                        bgClass = 'bg-emerald-500 text-white font-bold';
+                        ansCount++;
+                    } else if (idx < currentQIndex) {
+                        bgClass = 'bg-amber-500 text-white font-bold';
+                        notAnsCount++;
+                    }
+
+                    return `
+                        <button onclick="window.jumpToQuestion(${idx})" class="w-10 h-10 rounded-xl text-xs font-semibold flex items-center justify-center transition-all ${bgClass} ${isCurrent ? 'ring-2 ring-sky-500 ring-offset-2 dark:ring-offset-slate-900 scale-105' : ''}">
+                            ${idx + 1}
+                        </button>
+                    `;
+                }).join('');
+
+                document.getElementById('palette-count-ans').textContent = ansCount;
+                document.getElementById('palette-count-rev').textContent = revCount;
+                document.getElementById('palette-count-notans').textContent = notAnsCount;
+                document.getElementById('palette-count-notvis').textContent = currentTest.questions.length - (ansCount + revCount + notAnsCount);
+            }
+
+            window.jumpToQuestion = (idx) => {
+                currentQIndex = idx;
+                renderQuestion();
+                renderPalette();
+            };
+
+            prevBtn.addEventListener('click', () => {
+                if (currentQIndex > 0) {
+                    currentQIndex--;
+                    renderQuestion();
+                    renderPalette();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentQIndex < currentTest.questions.length - 1) {
+                    currentQIndex++;
+                    renderQuestion();
+                    renderPalette();
+                } else {
+                    if (confirm("You've reached the last question. Submit test now and view your results?")) {
+                        finishTest();
+                    }
+                }
+            });
+
+            clearBtn.addEventListener('click', () => {
+                delete userAnswers[currentQIndex];
+                renderQuestion();
+                renderPalette();
+            });
+
+            reviewBtn.addEventListener('click', () => {
+                if (reviewedQuestions.has(currentQIndex)) reviewedQuestions.delete(currentQIndex);
+                else reviewedQuestions.add(currentQIndex);
+                renderPalette();
+            });
+
+            submitBtn.addEventListener('click', () => {
+                if (confirm("Submit test now and view your scorecard?")) {
+                    finishTest();
+                }
+            });
+
+            async function finishTest() {
+                clearInterval(timerInterval);
+                testEngineView.classList.add('hidden');
+                testResultView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                let correct = 0;
+                let wrong = 0;
+                let unattempted = 0;
+
+                currentTest.questions.forEach((q, idx) => {
+                    const isUserAns = userAnswers.hasOwnProperty(idx);
+                    if (isUserAns) {
+                        const selectedIdx = userAnswers[idx];
+                        const selectedText = q.options[selectedIdx];
+                        const isRight = (selectedIdx === q.ans) || (selectedText === q.correct);
+                        if (isRight) correct++;
+                        else wrong++;
+                    } else {
+                        unattempted++;
+                    }
+                });
+
+                const totalMarks = (correct * 1.0) - (wrong * 0.25);
+                const scorePercentage = currentTest.questions.length > 0 
+                    ? Math.max(0, Math.round(((correct * 1.0) / currentTest.questions.length) * 100 * 10) / 10) 
+                    : 0;
+                const accuracy = (correct + wrong > 0) ? Math.round((correct / (correct + wrong)) * 100) : 0;
+
+                document.getElementById('result-test-name').textContent = currentTest.title;
+                document.getElementById('res-score').textContent = `${totalMarks.toFixed(2)} / ${currentTest.questions.length}`;
+                document.getElementById('res-correct').textContent = correct;
+                document.getElementById('res-wrong').textContent = wrong;
+                document.getElementById('res-accuracy').textContent = `${accuracy}%`;
+
+                // Save submission to localStorage leaderboard records
+                const studentName = (window.DC_AUTH && window.DC_AUTH.currentUser && window.DC_AUTH.currentUser.name) 
+                    ? window.DC_AUTH.currentUser.name 
+                    : (localStorage.getItem('dc_student_name') || 'Student Aspirant');
+                const studentCollege = (window.DC_AUTH && window.DC_AUTH.currentUser && window.DC_AUTH.currentUser.college)
+                    ? window.DC_AUTH.currentUser.college
+                    : (localStorage.getItem('dc_student_college') || 'Jharkhand Polytechnic');
+
+                const newRecord = {
+                    id: 'rec-' + Date.now(),
+                    name: studentName,
+                    college: studentCollege,
+                    testId: currentTest.id,
+                    testTitle: currentTest.title,
+                    category: currentTest.category || 'D2D Lateral Entry',
+                    score: scorePercentage,
+                    marks: `${totalMarks.toFixed(1)}/${currentTest.questions.length}`,
+                    accuracy: accuracy,
+                    date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+                    timestamp: Date.now(),
+                    isUserAttempt: true
+                };
+
+                try {
+                    let existing = JSON.parse(localStorage.getItem('dc_leaderboard_records') || '[]');
+                    // Remove any previous attempt of the exact same test to avoid duplicate spam
+                    existing = existing.filter(r => !(r.isUserAttempt && r.testId === currentTest.id));
+                    existing.unshift(newRecord);
+                    localStorage.setItem('dc_leaderboard_records', JSON.stringify(existing));
+                    localStorage.setItem('dc_last_attempt_id', newRecord.id);
+                } catch(e) {
+                    console.error("Failed saving leaderboard record:", e);
+                }
+
+                // Render solutions
+                const solContainer = document.getElementById('solution-list-container');
+                solContainer.innerHTML = currentTest.questions.map((q, idx) => {
+                    const isUserAns = userAnswers.hasOwnProperty(idx);
+                    const userOpt = isUserAns ? userAnswers[idx] : null;
+                    const selectedText = isUserAns ? q.options[userOpt] : null;
+                    const isCorrect = (userOpt === q.ans) || (selectedText === q.correct);
+
+                    return `
+                        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border ${
+                            isCorrect ? 'border-emerald-500/40' : isUserAns ? 'border-rose-500/40' : 'border-slate-200 dark:border-slate-700'
+                        } space-y-3">
+                            <div class="flex items-center justify-between text-xs font-semibold">
+                                <span class="text-slate-500">Question ${idx + 1}</span>
+                                <span class="${isCorrect ? 'text-emerald-600' : isUserAns ? 'text-rose-600' : 'text-slate-400'}">
+                                    ${isCorrect ? '✓ Correct (+1.0)' : isUserAns ? '✗ Incorrect (-0.25)' : '○ Unattempted (0.0)'}
+                                </span>
+                            </div>
+
+                            <div class="font-medium text-slate-900 dark:text-white text-sm">${q.q}</div>
+
+                            <div class="space-y-1.5 text-xs">
+                                ${q.options.map((opt, optIdx) => {
+                                    const isThisCorrect = (optIdx === q.ans) || (opt === q.correct);
+                                    return `
+                                    <div class="p-2.5 rounded-xl ${
+                                        isThisCorrect ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 font-bold border border-emerald-300' :
+                                        optIdx === userOpt ? 'bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-200 border border-rose-300' :
+                                        'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400'
+                                    }">
+                                        ${String.fromCharCode(65 + optIdx)}. ${opt}
+                                        ${isThisCorrect ? ' <span class="text-emerald-600 font-extrabold ml-1">(Correct Answer)</span>' : ''}
+                                        ${optIdx === userOpt && !isThisCorrect ? ' <span class="text-rose-600 font-extrabold ml-1">(Your Choice)</span>' : ''}
+                                    </div>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-sky-50 dark:bg-slate-900 text-xs text-slate-700 dark:text-slate-300 border border-sky-100 dark:border-slate-800">
+                                <strong>Explanation:</strong> ${q.explanation || 'Refer to standard formulas for step-by-step derivation.'}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Check URL parameters for auto-start or filtering
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetTestId = urlParams.get('test');
+            const targetExam = urlParams.get('exam') || urlParams.get('cat');
+
+            if (targetExam) {
+                const targetBtn = Array.from(filterBtns).find(b => b.dataset.cat === targetExam.toLowerCase());
+                if (targetBtn) {
+                    targetBtn.click();
+                }
+            } else {
+                renderTestCards();
+            }
+
+            if (targetTestId) {
+                setTimeout(() => {
+                    window.startTest(targetTestId);
+                }, 100);
+            }
+        });
+    </script>
+    
+    <div id="dc-footer-mount"></div>
+    <div id="dc-global-footer"></div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="assets/js/firebase-app.js"></script>
+    <script src="assets/js/shared-nav.js"></script>
+    <script src="assets/js/shared-footer.js"></script>
+    <script src="assets/js/global-search.js"></script>
+    <script type="module" src="assets/js/analytics-likes.js"></script>
+</body>
+</html>

@@ -42,22 +42,65 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-header {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark .glass-header {
-    background: rgba(15, 23, 42, 0.88);
-    border-bottom-color: rgba(30, 41, 59, 0.8);
+    background: rgba(15, 23, 42, 0.82);
+    border-bottom: 1px solid rgba(30, 41, 59, 0.8);
 }
 
 .glass-header.scrolled {
-    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
 }
 
 .dark .glass-header.scrolled {
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+    background: rgba(15, 23, 42, 0.94);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Nav Link Hover & Active Glow */
+.dc-nav-pill {
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dc-nav-pill::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 16px;
+    height: 2.5px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #0284c7, #6366f1);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dc-nav-pill.active::after,
+.dc-nav-pill:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.dc-dropdown-panel {
+    transform: translateY(6px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .dc-dropdown-panel {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 #dc-nav-spacer {

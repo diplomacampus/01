@@ -1,46 +1,4 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/resources",
-      "destination": "/resources.html"
-    },
-    {
-      "source": "/colleges",
-      "destination": "/colleges.html"
-    },
-    {
-      "source": "/about-us",
-      "destination": "/about-us.html"
-    },
-    {
-      "source": "/contact-us",
-      "destination": "/contact-us.html"
-    },
-    {
-      "source": "/question-papers",
-      "destination": "/question-papers.html"
-    },
-    {
-      "source": "/exam-preparation",
-      "destination": "/exam-preparation.html"
-    },
-    {
-      "source": "/test-series",
-      "destination": "/test-series.html"
-    },
-    {
-      "source": "/leaderboard",
-      "destination": "/leaderboard.html"
-    },
-    {
-      "source": "/tools",
-      "destination": "/tools.html"
-    },
-    {
-      "source": "/d2d",
-      "destination": "/d2d.html"
-    }
-  ]
+  "trailingSlash": false
 }

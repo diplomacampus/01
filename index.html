@@ -10,7 +10,6 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://diplomacampus.in/">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
-    <meta name="google-site-verification" content="tBGFDHI54pZ_TjuXZsfZTQpX8jQX_JRCC67WeBD0J1o" />
     
     <!-- Open Graph Meta -->
     <meta property="og:type" content="website">
@@ -61,7 +60,7 @@
     <script src="assets/js/admin-manager.js"></script>
 
     <!-- Design System CSS -->
-    <link rel="stylesheet" href="assets/css/main.css?v=3.1">
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col">
 
@@ -854,7 +853,7 @@
 
     <!-- Core Scripts -->
     <script type="module" src="assets/js/firebase-app.js"></script>
-    <script src="assets/js/shared-nav.js?v=3.1"></script>
+    <script src="assets/js/shared-nav.js"></script>
     <script src="assets/js/shared-footer.js"></script>
     <script src="assets/js/global-search.js"></script>
 
@@ -1561,15 +1560,12 @@
                         return;
                     }
 
-                    marquee.innerHTML = activeItems.map(item => {
-                        const content = item.title || item.text || item.message || '';
-                        return `
+                    marquee.innerHTML = activeItems.map(item => `
                         <a href="${item.link || '#'}" class="hover:underline flex items-center gap-1.5 transition">
                             <span class="${item.badgeColor || 'text-amber-300'}">●</span>
-                            <strong>${item.badge ? item.badge + ':' : ''}</strong> ${content}
+                            <strong>${item.badge ? item.badge + ':' : ''}</strong> ${item.title || item.text || item.message || 'Notification'}
                         </a>
-                        `;
-                    }).join('');
+                    `).join('');
                 }
 
                 renderLiveAnnouncements();

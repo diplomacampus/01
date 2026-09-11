@@ -42,71 +42,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-header {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .dark .glass-header {
-    background: rgba(15, 23, 42, 0.82);
-    border-bottom: 1px solid rgba(30, 41, 59, 0.8);
-}
-
-.glass-header.scrolled {
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
-}
-
-.dark .glass-header.scrolled {
-    background: rgba(15, 23, 42, 0.94);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
-}
-
-/* Nav Link Hover & Active Glow */
-.dc-nav-pill {
-    position: relative;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dc-nav-pill::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 16px;
-    height: 2.5px;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, #0284c7, #6366f1);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dc-nav-pill.active::after,
-.dc-nav-pill:hover::after {
-    transform: translateX(-50%) scaleX(1);
-}
-
-.dc-dropdown-panel {
-    transform: translateY(6px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.group:hover .dc-dropdown-panel {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    background: rgba(15, 23, 42, 0.92);
+    border-bottom-color: rgba(30, 41, 59, 0.8);
 }
 
 #dc-nav-spacer {
     display: block;
     width: 100%;
-    height: 4rem; /* 64px default fallback */
+    height: 3.5rem; /* 56px mobile fallback */
     flex-shrink: 0;
 }
 
@@ -118,20 +67,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1024px) {
     #dc-nav-spacer {
-        height: 4rem; /* 64px desktop fallback */
+        height: 5rem; /* 80px desktop fallback */
     }
-}
-
-.dc-dropdown-menu {
-    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
-}
-
-.custom-scroll::-webkit-scrollbar {
-    width: 4px;
-}
-.custom-scroll::-webkit-scrollbar-thumb {
-    background-color: rgba(156, 163, 175, 0.5);
-    border-radius: 9999px;
 }
 
 .glass-card {

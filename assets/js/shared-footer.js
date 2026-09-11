@@ -63,6 +63,7 @@
                         <li><a href="privacy.html" class="hover:text-sky-400 transition">Privacy Policy</a></li>
                         <li><a href="terms.html" class="hover:text-sky-400 transition">Terms of Service</a></li>
                         <li><a href="disclaimer.html" class="hover:text-sky-400 transition">Disclaimer Notice</a></li>
+                        <li><a href="sitemap.html" class="hover:text-sky-400 transition flex items-center gap-1.5"><i class="fa-solid fa-sitemap text-xs text-sky-400"></i> <span>Visual Sitemap</span></a></li>
                     </ul>
                 </div>
 

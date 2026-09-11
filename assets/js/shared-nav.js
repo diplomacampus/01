@@ -159,7 +159,6 @@
                         </span>
                     </a>
 
-                    <a href="test-series.html" class="px-3 py-2 rounded-xl hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50/70 dark:hover:bg-slate-800 transition ${currentPath === 'test-series.html' ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/70 font-bold border border-sky-100 dark:border-sky-900/60' : ''}">Mock Tests</a>
                     <a href="colleges.html" class="px-3 py-2 rounded-xl hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50/70 dark:hover:bg-slate-800 transition ${currentPath === 'colleges.html' || currentPath === 'college-detail.html' ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/70 font-bold border border-sky-100 dark:border-sky-900/60' : ''}">Colleges</a>
                     
                     <!-- More Dropdown (Tools, Community, Videos) -->
@@ -352,6 +351,10 @@
                 <a href="test-series.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl transition ${currentPath === 'test-series.html' ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-500/20' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'}">
                     <span class="flex items-center gap-3"><i class="fa-solid fa-list-check w-4 text-center text-xs text-sky-500"></i> <span>CBT Mock Tests</span></span>
                     <span class="text-[9px] bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 font-bold px-2 py-0.5 rounded-full">150 Q</span>
+                </a>
+                <a href="leaderboard.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl transition ${currentPath === 'leaderboard.html' ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'}">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-trophy w-4 text-center text-xs text-amber-500"></i> <span>State Leaderboard</span></span>
+                    <span class="text-[9px] bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-bold px-2 py-0.5 rounded-full">Live</span>
                 </a>
 
                 <div class="pt-1 pb-1"><hr class="border-slate-100 dark:border-slate-800"></div>

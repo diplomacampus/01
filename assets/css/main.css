@@ -42,20 +42,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-header {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 }
 
 .dark .glass-header {
-    background: rgba(15, 23, 42, 0.92);
+    background: rgba(15, 23, 42, 0.88);
     border-bottom-color: rgba(30, 41, 59, 0.8);
+}
+
+.glass-header.scrolled {
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+}
+
+.dark .glass-header.scrolled {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
 }
 
 #dc-nav-spacer {
     display: block;
     width: 100%;
-    height: 3.5rem; /* 56px mobile fallback */
+    height: 4rem; /* 64px default fallback */
     flex-shrink: 0;
 }
 
@@ -67,8 +75,20 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1024px) {
     #dc-nav-spacer {
-        height: 5rem; /* 80px desktop fallback */
+        height: 4rem; /* 64px desktop fallback */
     }
+}
+
+.dc-dropdown-menu {
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 9999px;
 }
 
 .glass-card {

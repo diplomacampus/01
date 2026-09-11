@@ -55,11 +55,17 @@ h1, h2, h3, h4, h5, h6 {
 #dc-nav-spacer {
     display: block;
     width: 100%;
-    height: 4rem; /* 64px mobile fallback */
+    height: 3.5rem; /* 56px mobile fallback */
     flex-shrink: 0;
 }
 
 @media (min-width: 640px) {
+    #dc-nav-spacer {
+        height: 4rem; /* 64px tablet fallback */
+    }
+}
+
+@media (min-width: 1024px) {
     #dc-nav-spacer {
         height: 5rem; /* 80px desktop fallback */
     }

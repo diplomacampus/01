@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 
 const listeners = {};
 const elements = {
@@ -11,7 +11,7 @@ const elements = {
     'hero-search-wrapper': { contains: () => false },
     'hero-search-input': { value: 'o', addEventListener: (evt, fn) => { listeners[evt] = fn; } },
     'hero-search-btn': { addEventListener: () => {} },
-    'hero-search-dropdown': { innerHTML: '', classList: { remove: (c) => console.log('removed class', c), add: (c) => console.log('added class', c) } },
+    'hero-search-dropdown': { innerHTML: '', classList: { remove: (c) => console.log('removed class', c), add: (c) => console.log('added class', c) }, querySelectorAll: () => [] },
     'qotd-subject-badge': { textContent: '' },
     'qotd-question-text': { textContent: '' },
     'qotd-options-container': { innerHTML: '', querySelectorAll: () => [] },
@@ -30,7 +30,8 @@ const elements = {
 
 global.window = {
     location: { href: '' },
-    localStorage: { getItem: () => null, setItem: () => {} }
+    localStorage: { getItem: () => null, setItem: () => {} },
+    addEventListener: () => {}
 };
 
 global.document = {

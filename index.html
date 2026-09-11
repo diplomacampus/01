@@ -75,12 +75,16 @@
                 <span class="inline-flex items-center gap-1.5 bg-rose-500 text-white uppercase text-[10px] font-black px-2.5 py-0.5 rounded-full tracking-wider shrink-0 shadow-xs animate-pulse">
                     <i class="fa-solid fa-bolt"></i> Live Alerts
                 </span>
-                <div class="overflow-hidden whitespace-nowrap flex-grow relative">
+                <div class="overflow-hidden whitespace-nowrap flex-grow relative marquee-wrapper group">
                     <div id="live-announcements-marquee" class="inline-flex items-center gap-8 animate-marquee">
-                        <a href="d2d.html" class="hover:underline flex items-center gap-1.5"><span class="text-amber-300">●</span> <strong>BIT Sindri D2D 2026:</strong> Lateral Entry Eligibility & Seat Matrix Updated</a>
-                        <a href="exam-detail.html?id=jharkhand-polytechnic" class="hover:underline flex items-center gap-1.5"><span class="text-emerald-300">●</span> <strong>JCECEB PECE 2026:</strong> Polytechnic Entrance Routine & Mock Test Series Live</a>
-                        <a href="tools.html#attendance-calc" class="hover:underline flex items-center gap-1.5"><span class="text-sky-300">●</span> <strong>JUT Ranchi:</strong> Check 75% Attendance Requirement & Admit Card Status</a>
-                        <a href="resources.html" class="hover:underline flex items-center gap-1.5"><span class="text-purple-300">●</span> <strong>Semester Notes:</strong> 56+ Curated PYQs and handwritten notes ready for download</a>
+                        <a href="d2d.html" class="hover:underline flex items-center gap-1.5 shrink-0"><span class="text-amber-300">●</span> <strong>BIT Sindri D2D 2026:</strong> Lateral Entry Eligibility & Seat Matrix Updated</a>
+                        <a href="exam-detail.html?id=jharkhand-polytechnic" class="hover:underline flex items-center gap-1.5 shrink-0"><span class="text-emerald-300">●</span> <strong>JCECEB PECE 2026:</strong> Polytechnic Entrance Routine & Mock Test Series Live</a>
+                        <a href="tools.html#attendance-calc" class="hover:underline flex items-center gap-1.5 shrink-0"><span class="text-sky-300">●</span> <strong>JUT Ranchi:</strong> Check 75% Attendance Requirement & Admit Card Status</a>
+                        <a href="resources.html" class="hover:underline flex items-center gap-1.5 shrink-0"><span class="text-purple-300">●</span> <strong>Semester Notes:</strong> 56+ Curated PYQs and handwritten notes ready for download</a>
+                        <a href="d2d.html" class="hover:underline flex items-center gap-1.5 shrink-0" aria-hidden="true"><span class="text-amber-300">●</span> <strong>BIT Sindri D2D 2026:</strong> Lateral Entry Eligibility & Seat Matrix Updated</a>
+                        <a href="exam-detail.html?id=jharkhand-polytechnic" class="hover:underline flex items-center gap-1.5 shrink-0" aria-hidden="true"><span class="text-emerald-300">●</span> <strong>JCECEB PECE 2026:</strong> Polytechnic Entrance Routine & Mock Test Series Live</a>
+                        <a href="tools.html#attendance-calc" class="hover:underline flex items-center gap-1.5 shrink-0" aria-hidden="true"><span class="text-sky-300">●</span> <strong>JUT Ranchi:</strong> Check 75% Attendance Requirement & Admit Card Status</a>
+                        <a href="resources.html" class="hover:underline flex items-center gap-1.5 shrink-0" aria-hidden="true"><span class="text-purple-300">●</span> <strong>Semester Notes:</strong> 56+ Curated PYQs and handwritten notes ready for download</a>
                     </div>
                 </div>
             </div>
@@ -1554,18 +1558,24 @@
                     const activeItems = (items || []).filter(item => item && item.active !== false);
 
                     if (activeItems.length === 0) {
-                        marquee.innerHTML = `
-                            <a href="resources.html" class="hover:underline flex items-center gap-1.5"><span class="text-sky-300">●</span> <strong>Diploma Campus:</strong> Welcome to Jharkhand Polytechnic Student Resource Hub</a>
+                        const fallback = `
+                            <a href="resources.html" class="hover:underline flex items-center gap-1.5 shrink-0"><span class="text-sky-300">●</span> <strong>Diploma Campus:</strong> Welcome to Jharkhand Polytechnic Student Resource Hub</a>
                         `;
+                        marquee.innerHTML = fallback + fallback;
                         return;
                     }
 
-                    marquee.innerHTML = activeItems.map(item => `
-                        <a href="${item.link || '#'}" class="hover:underline flex items-center gap-1.5 transition">
+                    const renderItemHTML = (item, isDuplicate = false) => `
+                        <a href="${item.link || '#'}" class="hover:underline flex items-center gap-1.5 transition shrink-0" ${isDuplicate ? 'aria-hidden="true"' : ''}>
                             <span class="${item.badgeColor || 'text-amber-300'}">●</span>
                             <strong>${item.badge ? item.badge + ':' : ''}</strong> ${item.title || item.text || item.message || 'Notification'}
                         </a>
-                    `).join('');
+                    `;
+
+                    // Render items duplicated for seamless infinite scroll
+                    const primarySet = activeItems.map(item => renderItemHTML(item, false)).join('');
+                    const duplicateSet = activeItems.map(item => renderItemHTML(item, true)).join('');
+                    marquee.innerHTML = primarySet + duplicateSet;
                 }
 
                 renderLiveAnnouncements();

@@ -1561,12 +1561,15 @@
                         return;
                     }
 
-                    marquee.innerHTML = activeItems.map(item => `
+                    marquee.innerHTML = activeItems.map(item => {
+                        const content = item.title || item.text || item.message || '';
+                        return `
                         <a href="${item.link || '#'}" class="hover:underline flex items-center gap-1.5 transition">
                             <span class="${item.badgeColor || 'text-amber-300'}">●</span>
-                            <strong>${item.badge ? item.badge + ':' : ''}</strong> ${item.text}
+                            <strong>${item.badge ? item.badge + ':' : ''}</strong> ${content}
                         </a>
-                    `).join('');
+                        `;
+                    }).join('');
                 }
 
                 renderLiveAnnouncements();

@@ -37,6 +37,22 @@
                 }
             });
 
+            // Ensure D2D exam reflects official 150 questions & 150 marks pattern
+            if (this.cache.exams && Array.isArray(this.cache.exams)) {
+                const d2dExam = this.cache.exams.find(e => e.id === 'd2d');
+                if (d2dExam && (d2dExam.totalMarks === 100 || d2dExam.totalQuestions === 100)) {
+                    d2dExam.totalMarks = 150;
+                    d2dExam.totalQuestions = 150;
+                    d2dExam.duration = "150 Minutes (2 Hours 30 Mins)";
+                    d2dExam.subjectBreakdown = [
+                        { subject: "Applied Mathematics", questions: 50, marks: 50, level: "Engineering Diploma 1st & 2nd Year Standard" },
+                        { subject: "Applied Physics", questions: 50, marks: 50, level: "Applied Physics & Engineering Mechanics" },
+                        { subject: "Applied Chemistry", questions: 50, marks: 50, level: "Applied Engineering Chemistry" }
+                    ];
+                    try { localStorage.setItem('dc_data_exams', JSON.stringify(this.cache.exams)); } catch(e){}
+                }
+            }
+
             // Ensure announcements has a default structure
             if (!this.cache.announcements || this.cache.announcements.length === 0) {
                 this.cache.announcements = [

@@ -696,8 +696,8 @@ window.DC_DATA = {
                 { event: "Online Counselling & College Allotment", date: "June - July 2025 (3 Rounds)" }
             ],
             syllabus: [
-                { 
-                    subject: "Mathematics (50 Marks)", 
+                {
+                    subject: "Mathematics (50 Marks)",
                     topics: [
                         "Real Numbers & Fundamental Theorem of Arithmetic",
                         "Polynomials (Zeroes, Division Algorithm & Quadratic Relations)",
@@ -713,10 +713,10 @@ window.DC_DATA = {
                         "Surface Areas and Volumes (Cubes, Cylinders, Cones, Spheres & Frustum)",
                         "Statistics (Mean, Median, Mode of Grouped Data, Ogive Curves)",
                         "Probability (Theoretical Probability of Events, Coin, Dice & Card Problems)"
-                    ] 
+                    ]
                 },
-                { 
-                    subject: "Physics (50 Marks)", 
+                {
+                    subject: "Physics (50 Marks)",
                     topics: [
                         "Light: Reflection & Refraction (Mirror & Lens Formula, Magnification, Power of Lens)",
                         "Human Eye & The Colourful World (Defects of Vision, Dispersion, Atmospheric Refraction, Tyndall Effect)",
@@ -727,10 +727,10 @@ window.DC_DATA = {
                         "Gravitation & Floatation (Universal Law, Free Fall, Mass vs Weight, Archimedes Principle & Relative Density)",
                         "Work, Energy & Power (Kinetic & Potential Energy, Law of Conservation of Energy, Power Units)",
                         "Sound Waves (Longitudinal & Transverse Waves, Velocity, Frequency, Reflection of Sound & Echo, SONAR)"
-                    ] 
+                    ]
                 },
-                { 
-                    subject: "Chemistry (50 Marks)", 
+                {
+                    subject: "Chemistry (50 Marks)",
                     topics: [
                         "Chemical Reactions & Equations (Types of Reactions, Redox, Corrosion & Rancidity)",
                         "Acids, Bases & Salts (pH Scale, Chemical Properties, Bleaching Powder, Baking Soda, Washing Soda, Plaster of Paris)",
@@ -740,7 +740,7 @@ window.DC_DATA = {
                         "Matter in Our Surroundings & Is Matter Around Us Pure (States of Matter, Solutions, Colloids, Suspensions, Separation Techniques)",
                         "Atoms and Molecules (Laws of Chemical Combination, Mole Concept, Molecular Mass, Chemical Formula Writing)",
                         "Structure of the Atom (Thomson, Rutherford & Bohr Models, Valency, Atomic Number, Mass Number, Isotopes & Isobars)"
-                    ] 
+                    ]
                 }
             ],
             cutoffs: [
@@ -763,7 +763,7 @@ window.DC_DATA = {
                 { name: "Diploma Campus Online Mock Test Series & PYQs", desc: "Real-time CBT simulated test series with instant analysis and rank prediction." }
             ]
         },
-        {
+                {
             id: "d2d",
             slug: "jharkhand-d2d",
             alias: ["d2d", "jharkhand-d2d", "lateral-entry", "dece-le"],
@@ -775,9 +775,9 @@ window.DC_DATA = {
             frequency: "Annual (June - July 2025)",
             examMode: "Offline OMR-based Objective MCQ",
             language: "Bilingual (English & Hindi)",
-            duration: "120 Minutes (2 Hours)",
-            totalMarks: 100,
-            totalQuestions: 100,
+            duration: "150 Minutes (2 Hours 30 Mins)",
+            totalMarks: 150,
+            totalQuestions: 150,
             markingScheme: "+1 Mark for each correct answer • -0.25 Negative marking for wrong answer • 0 for unattempted",
             eligibility: "Must have passed 3-Year Diploma in Engineering/Technology from JUT Ranchi or state board with minimum 45% marks (40% for reserved SC/ST/OBC candidates). Final semester students appearing in diploma board exams can also appear.",
             ageLimit: "No upper age limit for core engineering branches. Maximum 20 years (as of exam year) for Mining Engineering.",
@@ -785,8 +785,8 @@ window.DC_DATA = {
             overview: "Jharkhand D2D (Diploma to Degree Lateral Entry Entrance Exam) is the prestigious competitive gateway through which top Diploma holders secure direct 2nd Year B.Tech admissions into BIT Sindri (Jharkhand's premier Govt Engineering College) and other premier state institutes.",
             subjectBreakdown: [
                 { subject: "Applied Mathematics", questions: 50, marks: 50, level: "Engineering Diploma 1st & 2nd Year Standard" },
-                { subject: "Applied Physics", questions: 25, marks: 25, level: "Applied Physics & Engineering Mechanics" },
-                { subject: "Applied Chemistry", questions: 25, marks: 25, level: "Applied Engineering Chemistry" }
+                { subject: "Applied Physics", questions: 50, marks: 50, level: "Applied Physics & Engineering Mechanics" },
+                { subject: "Applied Chemistry", questions: 50, marks: 50, level: "Applied Engineering Chemistry" }
             ],
             importantDates: [
                 { event: "Official D2D Notification Release", date: "April / May 2025" },
@@ -797,8 +797,8 @@ window.DC_DATA = {
                 { event: "BIT Sindri Lateral Entry Counselling", date: "July - August 2025" }
             ],
             syllabus: [
-                { 
-                    subject: "Applied Mathematics (50 Marks - 50% Weightage)", 
+                {
+                    subject: "Applied Mathematics (50 Marks)",
                     topics: [
                         "Differential Calculus: Successive Differentiation, Leibnitz Theorem, Partial Derivatives, Euler's Theorem on Homogeneous Functions",
                         "Integral Calculus: Definite Integrals, Properties, Beta and Gamma Functions, Area Under Curves, Double & Triple Integrals",
@@ -807,10 +807,10 @@ window.DC_DATA = {
                         "Vector Calculus: Dot, Cross and Scalar Triple Products, Vector Differentiation, Gradient, Divergence, Curl, Line & Surface Integrals",
                         "Complex Numbers: Modulus, Amplitude, Polar Form, De Moivre's Theorem, Roots of Complex Numbers, Exponential Form",
                         "Fourier Series: Periodic Functions, Dirichlet Conditions, Fourier Expansion of Even & Odd Functions, Half-range Sine/Cosine Series"
-                    ] 
+                    ]
                 },
-                { 
-                    subject: "Applied Physics (25 Marks)", 
+                {
+                    subject: "Applied Physics (50 Marks)",
                     topics: [
                         "Engineering Mechanics: Resolution of Forces, Resultant, Lami's Theorem, Friction (Laws, Angle & Cone of Friction), Center of Gravity & Moment of Inertia",
                         "Dynamics: Newton's Laws of Motion, Linear & Angular Momentum, Projectile Motion, Circular Motion, Work-Energy Principle",
@@ -818,10 +818,10 @@ window.DC_DATA = {
                         "Lasers & Fiber Optics: Spontaneous & Stimulated Emission, Population Inversion, Optical Fibers, Acceptance Angle & Numerical Aperture",
                         "Electromagnetism: Coulomb's Law, Gauss's Divergence Law, Biot-Savart Law, Ampere's Law, Faraday's Electromagnetic Induction & Lenz's Law",
                         "Semiconductor & Modern Physics: Energy Bands in Solids, Intrinsic & Extrinsic Semiconductors, PN Junction Diode, Zener Diode, Transistors, Photoelectric Effect"
-                    ] 
+                    ]
                 },
-                { 
-                    subject: "Applied Chemistry (25 Marks)", 
+                {
+                    subject: "Applied Chemistry (50 Marks)",
                     topics: [
                         "Atomic Structure & Chemical Bonding: Quantum Numbers, Aufbau Principle, Pauli Exclusion, Hund's Rule, Hybridization (sp, sp2, sp3), Molecular Orbital Theory",
                         "Electrochemistry & Corrosion: Nernst Equation, Electrochemical Cells, EMF, Types of Corrosion (Dry & Wet), Galvanic Cell, Corrosion Prevention & Cathodic Protection",
@@ -829,7 +829,7 @@ window.DC_DATA = {
                         "Polymers & Engineering Plastics: Thermoplastics vs Thermosets, Addition vs Condensation Polymerization, Synthesis & Uses of Nylon-6,6, Bakelite, Teflon, PVC, Conducting Polymers",
                         "Fuels & Combustion: Classification, Calorific Value (Gross & Net), Determination by Bomb Calorimeter, Proximate & Ultimate Analysis of Coal, Knocking & Octane/Cetane Numbers",
                         "Lubricants & Engineering Materials: Mechanism of Lubrication, Properties (Viscosity, Flash Point, Fire Point, Pour Point), Refractories, Abrasives, Composite Materials"
-                    ] 
+                    ]
                 }
             ],
             cutoffs: [
@@ -845,10 +845,10 @@ window.DC_DATA = {
                 { college: "UCET VBU Hazaribagh & CIT Ranchi", cse: "Rank 50 - 350", ee: "Rank 70 - 450", me: "Rank 80 - 550", ce: "Rank 100 - 600", ece: "Rank 120 - 650", notes: "State Govt & Semi-Govt B.Tech Lateral Entry Colleges" }
             ],
             strategy: [
-                { phase: "Rule 1: Master Engineering Mathematics First (50% Score)", desc: "Applied Maths carries 50 marks out of 100. Scoring 40+ in Maths virtually guarantees your BIT Sindri lateral entry seat. Master Matrices, Calculus, and Differential Equations." },
-                { phase: "Rule 2: Focus on Engineering Mechanics & Electricity Numericals", desc: "In Physics (25 marks), questions are numerical-heavy in forces, Lami's theorem, friction, and circuits. Memorize standard shortcuts." },
-                { phase: "Rule 3: Score High in Applied Chemistry Theory", desc: "Chemistry (25 marks) is relatively straightforward: Water technology, Polymers, Electrochemistry, and Fuels are direct scoring chapters." },
-                { phase: "Rule 4: Target Solving 80+ Questions with Zero Guesswork", desc: "Because of -0.25 negative marking, aim for 70-80 high-confidence answers rather than random guessing." }
+                { phase: "Rule 1: Master Engineering Mathematics (50 Marks)", desc: "Applied Maths carries 50 marks out of 150. Scoring 40+ in Maths significantly boosts your BIT Sindri lateral entry ranking. Master Matrices, Calculus, and Differential Equations." },
+                { phase: "Rule 2: Master Engineering Mechanics & Physics Numericals (50 Marks)", desc: "In Physics (50 marks), practice numerical problems in forces, friction, Lami's theorem, optics, and electrostatics with standard formulas." },
+                { phase: "Rule 3: Score High in Applied Chemistry & Materials (50 Marks)", desc: "Chemistry (50 marks) is high-scoring: Water technology, Polymers, Electrochemistry, and Engineering materials have direct theory & numerical questions." },
+                { phase: "Rule 4: Target Solving 110+ Questions with High Accuracy", desc: "Because of -0.25 negative marking, aim for 110+ high-confidence answers across 150 questions to target single-digit state CML rank." }
             ],
             books: [
                 { name: "Higher Engineering Mathematics by B.S. Grewal", desc: "The definitive reference for Matrices, Calculus, and Differential Equations required for D2D." },
@@ -1127,8 +1127,8 @@ window.DC_DATA = {
             id: "test-d2d-grand-01",
             title: "BIT Sindri D2D Grand Full-Length Mock Test 2026",
             category: "D2D Full Mock",
-            timeLimit: 90,
-            totalMarks: 100,
+            timeLimit: 150,
+            totalMarks: 150,
             questionCount: 15,
             difficulty: "Hard",
             questions: [

@@ -53,6 +53,14 @@
                 }
             }
 
+            // Ensure colleges have coordinates and complete dataset
+            if (baseData.colleges && Array.isArray(baseData.colleges)) {
+                if (!this.cache.colleges || this.cache.colleges.length < baseData.colleges.length || !this.cache.colleges.some(c => c.lat)) {
+                    this.cache.colleges = JSON.parse(JSON.stringify(baseData.colleges));
+                    try { localStorage.setItem('dc_data_colleges', JSON.stringify(this.cache.colleges)); } catch(e){}
+                }
+            }
+
             // Ensure announcements has a default structure
             if (!this.cache.announcements || this.cache.announcements.length === 0) {
                 this.cache.announcements = [

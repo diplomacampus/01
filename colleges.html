@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jharkhand Polytechnic & Engineering Colleges Directory (40+) | Diploma Campus</title>
-    <meta name="description" content="Comprehensive list of Government, PPP, and Private Polytechnic and Engineering colleges in Jharkhand. Check courses, seat intake, cutoff, fees, and placement details.">
+    <meta name="description" content="Comprehensive list of Government, PPP, and Private Polytechnic and Engineering colleges in Jharkhand. Interactive GIS map with color-coded pins, seat intake, cutoff, fees, and placement details.">
     <meta name="keywords" content="Jharkhand Polytechnic, JUT Ranchi, Diploma in Engineering, D2D Lateral Entry, BIT Sindri Lateral, PECE 2025, JCECEB, Polytechnic Question Papers, Diploma Notes, Jharkhand Polytechnic Colleges list, Govt Polytechnic Ranchi, GP Dhanbad, GP Adityapur, BIT Sindri Lateral, Polytechnic Seats Jharkhand">
     <meta name="author" content="Diploma Campus Team">
     <meta name="robots" content="index, follow">
@@ -13,7 +13,7 @@
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jharkhand Polytechnic & Engineering Colleges Directory (40+) | Diploma Campus">
-    <meta property="og:description" content="Comprehensive list of Government, PPP, and Private Polytechnic and Engineering colleges in Jharkhand. Check courses, seat intake, cutoff, fees, and placement details.">
+    <meta property="og:description" content="Comprehensive list of Government, PPP, and Private Polytechnic and Engineering colleges in Jharkhand. Interactive map, seat intake, fees, and placement details.">
     <meta property="og:url" content="https://diplomacampus.in/colleges.html">
     <meta property="og:image" content="https://diplomacampus.in/assets/images/og-banner.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -24,6 +24,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
+    <!-- Leaflet CSS & JS for Interactive College Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <!-- Tailwind CSS with custom config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -67,6 +71,94 @@
     <!-- Custom Design System CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+    <!-- Leaflet Custom Marker & Popup Styles -->
+    <style>
+        .custom-college-pin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .pin-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+            border: 2.5px solid #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .pin-badge:hover {
+            transform: scale(1.22);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+        .pin-pulse {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: pinPulseAnimation 2s infinite ease-out;
+            z-index: 1;
+        }
+        @keyframes pinPulseAnimation {
+            0% { transform: scale(0.6); opacity: 0.9; }
+            70% { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        /* Category Color Pins */
+        .pin-emerald .pin-badge { background: linear-gradient(135deg, #10b981, #047857); }
+        .pin-emerald .pin-pulse { background: rgba(16, 185, 129, 0.45); }
+
+        .pin-purple .pin-badge { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+        .pin-purple .pin-pulse { background: rgba(168, 85, 247, 0.45); }
+
+        .pin-blue .pin-badge { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .pin-blue .pin-pulse { background: rgba(59, 130, 246, 0.45); }
+
+        .pin-amber .pin-badge { background: linear-gradient(135deg, #f59e0b, #b45309); }
+        .pin-amber .pin-pulse { background: rgba(245, 158, 11, 0.45); }
+
+        .pin-rose .pin-badge { background: linear-gradient(135deg, #f43f5e, #be123c); }
+        .pin-rose .pin-pulse { background: rgba(244, 63, 94, 0.45); }
+
+        /* Custom Leaflet Popup Box */
+        .leaflet-popup-content-wrapper {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0,0,0,0.05);
+        }
+        .dark .leaflet-popup-content-wrapper {
+            background: #0f172a;
+            color: #f1f5f9;
+            border: 1px solid #1e293b;
+        }
+        .leaflet-popup-content {
+            margin: 0;
+            line-height: 1.4;
+            font-family: 'Inter', sans-serif;
+        }
+        .leaflet-container {
+            font-family: 'Inter', sans-serif;
+        }
+        .dark .leaflet-tile {
+            filter: brightness(0.85) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+        }
+        .dark .leaflet-container {
+            background: #090d16;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-200">
     <div id="dc-header-mount"></div>
@@ -79,22 +171,109 @@
             <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
                 <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400">Home</a>
                 <span>/</span>
-                <span class="text-slate-800 dark:text-slate-200 font-medium">Colleges Directory</span>
+                <span class="text-slate-800 dark:text-slate-200 font-medium">Colleges Directory & Map</span>
             </nav>
 
             <!-- Page Header -->
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-100 dark:bg-sky-950 px-3 py-1 rounded-full">Jharkhand State Institutions</span>
-                    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mt-3">Polytechnic & Engineering Colleges</h1>
+                    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mt-3">Jharkhand Technical Colleges & GIS Map</h1>
                     <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
-                        Discover 40+ premier institutes across Jharkhand for 3-Year Diploma in Engineering and B.Tech Lateral Entry (D2D). Filter by institution type, district, and branch.
+                        Explore all Government, Women's, PPP, and Private Polytechnic institutes plus Top B.Tech Lateral Entry (D2D) colleges mapped across Jharkhand's 24 districts with color-coded category markers.
                     </p>
                 </div>
                 <div id="admin-college-container" class="hidden shrink-0">
                     <button id="open-add-college-btn" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
                         <i class="fa-solid fa-plus"></i>
                         <span>Add New College (Admin)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 🗺️ INTERACTIVE JHARKHAND COLLEGES MAP CARD -->
+            <!-- ========================================== -->
+            <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 sm:p-6 mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-base shadow-sm">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </span>
+                            <div>
+                                <h2 class="font-heading font-extrabold text-lg sm:text-xl text-slate-900 dark:text-white">Jharkhand Institutions Map Explorer</h2>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Click any colored marker to view institute profile, seats, courses, and fees</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Regional Focus Jump Pills -->
+                    <div class="flex flex-wrap items-center gap-1.5 text-xs">
+                        <span class="text-slate-400 font-semibold text-[11px] mr-1 hidden sm:inline"><i class="fa-solid fa-crosshairs mr-1"></i>Focus:</span>
+                        <button onclick="window.focusMapRegion('all')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-slate-700 dark:text-slate-300 font-bold transition">All State</button>
+                        <button onclick="window.focusMapRegion('ranchi')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-slate-700 dark:text-slate-300 font-bold transition">Ranchi</button>
+                        <button onclick="window.focusMapRegion('dhanbad')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-slate-700 dark:text-slate-300 font-bold transition">Dhanbad</button>
+                        <button onclick="window.focusMapRegion('jamshedpur')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-slate-700 dark:text-slate-300 font-bold transition">Jamshedpur</button>
+                        <button onclick="window.focusMapRegion('dumka')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-slate-700 dark:text-slate-300 font-bold transition">Dumka</button>
+                        <button onclick="window.focusMapRegion('bokaro')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-slate-700 dark:text-slate-300 font-bold transition">Bokaro</button>
+                    </div>
+                </div>
+
+                <!-- Interactive Category Color Legend -->
+                <div class="flex flex-wrap items-center gap-2 py-3.5 text-xs border-b border-slate-100 dark:border-slate-800">
+                    <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] mr-1">Categories:</span>
+                    
+                    <button onclick="window.filterMapCategory('all')" id="leg-all" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs shadow-sm transition">
+                        <span>All Institutes</span>
+                        <span id="badge-count-all" class="px-1.5 py-0.2 rounded-full bg-white/20 dark:bg-slate-900/20 text-[10px]">36</span>
+                    </button>
+
+                    <button onclick="window.filterMapCategory('Government')" id="leg-govt" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 font-semibold text-xs transition">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Govt Polytechnic</span>
+                        <span id="badge-count-govt" class="font-bold">20</span>
+                    </button>
+
+                    <button onclick="window.filterMapCategory('women')" id="leg-women" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 font-semibold text-xs transition">
+                        <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></span>
+                        <span>Women's Govt</span>
+                        <span id="badge-count-women" class="font-bold">4</span>
+                    </button>
+
+                    <button onclick="window.filterMapCategory('PPP')" id="leg-ppp" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 font-semibold text-xs transition">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+                        <span>PPP Model</span>
+                        <span id="badge-count-ppp" class="font-bold">5</span>
+                    </button>
+
+                    <button onclick="window.filterMapCategory('Private')" id="leg-private" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-100 font-semibold text-xs transition">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span>Private</span>
+                        <span id="badge-count-private" class="font-bold">3</span>
+                    </button>
+
+                    <button onclick="window.filterMapCategory('d2d')" id="leg-d2d" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 hover:bg-rose-100 font-semibold text-xs transition">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
+                        <span>B.Tech Lateral (D2D)</span>
+                        <span id="badge-count-d2d" class="font-bold">4</span>
+                    </button>
+                </div>
+
+                <!-- Leaflet Map Container -->
+                <div class="relative mt-4">
+                    <div id="jharkhand-colleges-map" class="w-full h-[420px] sm:h-[480px] lg:h-[520px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 z-10 shadow-inner"></div>
+                    
+                    <!-- Floating Map Overlay Helper -->
+                    <div class="absolute bottom-4 left-4 z-20 bg-slate-950/85 backdrop-blur-md text-white text-[11px] px-3.5 py-1.5 rounded-full shadow-lg border border-slate-700/60 flex items-center gap-2">
+                        <i class="fa-solid fa-satellite-dish text-sky-400"></i>
+                        <span>Showing <strong id="map-active-count" class="text-sky-300">36</strong> colleges on map</span>
+                    </div>
+
+                    <!-- Map Reset Button -->
+                    <button onclick="window.resetMapToState()" class="absolute top-4 right-4 z-20 bg-white/90 dark:bg-slate-900/90 hover:bg-white dark:hover:bg-slate-800 backdrop-blur-md text-slate-700 dark:text-slate-200 text-xs px-3.5 py-2 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrows-to-circle text-sky-500"></i>
+                        <span>Reset Bounds</span>
                     </button>
                 </div>
             </div>
@@ -112,7 +291,7 @@
                     <!-- Type Filter -->
                     <div>
                         <select id="college-type-filter" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
-                            <option value="all">All Types (Govt / PPP / Private)</option>
+                            <option value="all">All Types (Govt / Women / PPP / Private)</option>
                             <option value="Government">Government Only</option>
                             <option value="PPP">PPP Model Only</option>
                             <option value="Private">Private Only</option>
@@ -126,12 +305,25 @@
                             <option value="Ranchi">Ranchi</option>
                             <option value="Dhanbad">Dhanbad</option>
                             <option value="Seraikela Kharsawan">Seraikela / Adityapur</option>
+                            <option value="East Singhbhum">East Singhbhum (Jamshedpur)</option>
+                            <option value="West Singhbhum">West Singhbhum (Chaibasa)</option>
                             <option value="Bokaro">Bokaro</option>
                             <option value="Hazaribag">Hazaribag</option>
                             <option value="Dumka">Dumka</option>
                             <option value="Deoghar">Deoghar</option>
                             <option value="Giridih">Giridih</option>
-                            <option value="East Singhbhum">Jamshedpur</option>
+                            <option value="Koderma">Koderma</option>
+                            <option value="Ramgarh">Ramgarh</option>
+                            <option value="Latehar">Latehar</option>
+                            <option value="Khunti">Khunti</option>
+                            <option value="Simdega">Simdega</option>
+                            <option value="Gumla">Gumla</option>
+                            <option value="Lohardaga">Lohardaga</option>
+                            <option value="Garhwa">Garhwa</option>
+                            <option value="Godda">Godda</option>
+                            <option value="Sahebganj">Sahebganj</option>
+                            <option value="Pakur">Pakur</option>
+                            <option value="Jamtara">Jamtara</option>
                         </select>
                     </div>
                 </div>
@@ -191,6 +383,16 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Latitude</label>
+                        <input type="number" step="any" id="col-lat" placeholder="23.3619" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Longitude</label>
+                        <input type="number" step="any" id="col-lng" placeholder="85.3340" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
                         <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Total Intake (Seats)</label>
                         <input type="number" id="col-intake" required placeholder="360" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs">
                     </div>
@@ -215,6 +417,9 @@
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 🚀 JAVASCRIPT: MAP LOGIC & DIRECTORY SYNC -->
+    <!-- ========================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('college-search');
@@ -234,13 +439,69 @@
             const collegeForm = document.getElementById('college-form');
 
             let isUserAdmin = false;
+            let currentCategoryFilter = 'all';
+
+            // ==========================================
+            // 📍 LEAFLET MAP INITIALIZATION
+            // ==========================================
+            const jharkhandCenter = [23.6102, 85.2799];
+            let map = null;
+            let markersLayer = null;
+            const markersMap = new Map();
+
+            function initCollegeMap() {
+                const mapEl = document.getElementById('jharkhand-colleges-map');
+                if (!mapEl || typeof L === 'undefined') return;
+
+                map = L.map('jharkhand-colleges-map', {
+                    center: jharkhandCenter,
+                    zoom: 8,
+                    minZoom: 6,
+                    maxZoom: 18,
+                    scrollWheelZoom: false
+                });
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Diploma Campus',
+                    maxZoom: 19
+                }).addTo(map);
+
+                markersLayer = L.layerGroup().addTo(map);
+
+                // Enable map zoom on click
+                map.on('click', () => {
+                    map.scrollWheelZoom.enable();
+                });
+            }
+
+            initCollegeMap();
+
+            // Category color and icon resolver
+            function getCategoryMeta(college) {
+                const isWomen = (college.id && college.id.startsWith('wp-')) || (college.name && college.name.toLowerCase().includes('women'));
+                const isD2D = (college.category === 'B.Tech Lateral Entry') || (college.id && college.id.includes('d2d')) || (college.type && college.type.toLowerCase().includes('b.tech'));
+                
+                if (isD2D) {
+                    return { colorClass: 'pin-rose', bgBadge: 'bg-rose-600', textBadge: 'text-rose-700 dark:text-rose-300', bgLight: 'bg-rose-50 dark:bg-rose-950/60', border: 'border-rose-200 dark:border-rose-800', icon: 'fa-award', label: 'B.Tech Lateral (D2D)' };
+                }
+                if (isWomen) {
+                    return { colorClass: 'pin-purple', bgBadge: 'bg-purple-600', textBadge: 'text-purple-700 dark:text-purple-300', bgLight: 'bg-purple-50 dark:bg-purple-950/60', border: 'border-purple-200 dark:border-purple-800', icon: 'fa-venus', label: "Women's Govt" };
+                }
+                if ((college.type || '').toLowerCase() === 'ppp') {
+                    return { colorClass: 'pin-blue', bgBadge: 'bg-blue-600', textBadge: 'text-indigo-700 dark:text-indigo-300', bgLight: 'bg-indigo-50 dark:bg-indigo-950/60', border: 'border-indigo-200 dark:border-indigo-800', icon: 'fa-handshake', label: 'PPP Model' };
+                }
+                if ((college.type || '').toLowerCase() === 'private') {
+                    return { colorClass: 'pin-amber', bgBadge: 'bg-amber-600', textBadge: 'text-amber-700 dark:text-amber-300', bgLight: 'bg-amber-50 dark:bg-amber-950/60', border: 'border-amber-200 dark:border-amber-800', icon: 'fa-graduation-cap', label: 'Private' };
+                }
+                return { colorClass: 'pin-emerald', bgBadge: 'bg-emerald-600', textBadge: 'text-emerald-700 dark:text-emerald-300', bgLight: 'bg-emerald-50 dark:bg-emerald-950/60', border: 'border-emerald-200 dark:border-emerald-800', icon: 'fa-building-columns', label: 'Govt Polytechnic' };
+            }
 
             function updateAdminUI(isAdmin) {
                 isUserAdmin = isAdmin;
                 if (isAdmin) {
-                    adminContainer?.classList.remove('hidden');
+                    adminContainer && adminContainer.classList.remove('hidden');
                 } else {
-                    adminContainer?.classList.add('hidden');
+                    adminContainer && adminContainer.classList.add('hidden');
                 }
                 renderColleges();
             }
@@ -257,12 +518,41 @@
                 renderColleges();
             });
 
+            // Update category counts on legend
+            function updateCategoryBadges(colleges) {
+                let govtCount = 0, womenCount = 0, pppCount = 0, privCount = 0, d2dCount = 0;
+                colleges.forEach(c => {
+                    const meta = getCategoryMeta(c);
+                    if (meta.label === 'B.Tech Lateral (D2D)') d2dCount++;
+                    else if (meta.label === "Women's Govt") womenCount++;
+                    else if (meta.label === 'PPP Model') pppCount++;
+                    else if (meta.label === 'Private') privCount++;
+                    else govtCount++;
+                });
+
+                const bAll = document.getElementById('badge-count-all');
+                const bGovt = document.getElementById('badge-count-govt');
+                const bWomen = document.getElementById('badge-count-women');
+                const bPpp = document.getElementById('badge-count-ppp');
+                const bPriv = document.getElementById('badge-count-private');
+                const bD2d = document.getElementById('badge-count-d2d');
+
+                if (bAll) bAll.textContent = colleges.length;
+                if (bGovt) bGovt.textContent = govtCount;
+                if (bWomen) bWomen.textContent = womenCount;
+                if (bPpp) bPpp.textContent = pppCount;
+                if (bPriv) bPriv.textContent = privCount;
+                if (bD2d) bD2d.textContent = d2dCount;
+            }
+
             function renderColleges() {
                 const query = (searchInput.value || '').toLowerCase().trim();
                 const type = typeFilter.value;
                 const district = districtFilter.value;
 
-                const colleges = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('colleges') : (window.DC_COLLEGES || []);
+                const colleges = window.DC_DATA_MANAGER ? window.DC_DATA_MANAGER.getAll('colleges') : (window.DC_DATA && window.DC_DATA.colleges ? window.DC_DATA.colleges : []);
+
+                updateCategoryBadges(colleges);
 
                 const filtered = colleges.filter(c => {
                     const branchNames = Array.isArray(c.branches) 
@@ -276,15 +566,96 @@
                     const matchesType = type === 'all' || (c.type || '').toLowerCase() === type.toLowerCase();
                     const matchesDistrict = district === 'all' || (c.district || '').toLowerCase() === district.toLowerCase();
 
-                    return matchesQuery && matchesType && matchesDistrict;
+                    // Legend Filter check
+                    let matchesCategory = true;
+                    if (currentCategoryFilter !== 'all') {
+                        const meta = getCategoryMeta(c);
+                        if (currentCategoryFilter === 'women') matchesCategory = (meta.label === "Women's Govt");
+                        else if (currentCategoryFilter === 'd2d') matchesCategory = (meta.label === 'B.Tech Lateral (D2D)');
+                        else if (currentCategoryFilter === 'Government') matchesCategory = (meta.label === 'Govt Polytechnic');
+                        else if (currentCategoryFilter === 'PPP') matchesCategory = (meta.label === 'PPP Model');
+                        else if (currentCategoryFilter === 'Private') matchesCategory = (meta.label === 'Private');
+                    }
+
+                    return matchesQuery && matchesType && matchesDistrict && matchesCategory;
                 });
 
                 countEl.textContent = filtered.length;
+                const activeCountEl = document.getElementById('map-active-count');
+                if (activeCountEl) activeCountEl.textContent = filtered.length;
 
-                if (query || type !== 'all' || district !== 'all') {
+                if (query || type !== 'all' || district !== 'all' || currentCategoryFilter !== 'all') {
                     resetBtn.classList.remove('hidden');
                 } else {
                     resetBtn.classList.add('hidden');
+                }
+
+                // ==========================================
+                // 📍 UPDATE MAP MARKERS
+                // ==========================================
+                if (map && markersLayer) {
+                    markersLayer.clearLayers();
+                    markersMap.clear();
+
+                    const bounds = [];
+
+                    filtered.forEach(c => {
+                        if (c.lat && c.lng) {
+                            const meta = getCategoryMeta(c);
+                            const branchesArr = Array.isArray(c.branches) ? c.branches : [];
+                            const branchTags = branchesArr.slice(0, 3).map(b => {
+                                const name = typeof b === 'object' ? b.name : b;
+                                return '<span style="font-size:10px; padding:2px 6px; border-radius:6px; background:#f1f5f9; color:#334155; font-weight:600; display:inline-block; margin:2px 2px 2px 0;">' + name + '</span>';
+                            }).join('');
+
+                            const iconHtml = '<div class="custom-college-pin ' + meta.colorClass + '">' +
+                                '<div class="pin-pulse"></div>' +
+                                '<div class="pin-badge"><i class="fa-solid ' + meta.icon + '"></i></div>' +
+                                '</div>';
+
+                            const customIcon = L.divIcon({
+                                html: iconHtml,
+                                className: '',
+                                iconSize: [34, 34],
+                                iconAnchor: [17, 17],
+                                popupAnchor: [0, -20]
+                            });
+
+                            const marker = L.marker([c.lat, c.lng], { icon: customIcon });
+
+                            const popupHtml = '<div style="width: 270px; font-family: Inter, sans-serif;">' +
+                                '<div style="padding: 12px 14px; background: #0f172a; color: white;">' +
+                                    '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">' +
+                                        '<span style="font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.2); letter-spacing: 0.5px;">' + meta.label + '</span>' +
+                                        '<span style="font-size: 11px; color: #94a3b8;"><i class="fa-solid fa-location-dot" style="color:#f43f5e; margin-right:4px;"></i>' + (c.district || 'Jharkhand') + '</span>' +
+                                    '</div>' +
+                                    '<h4 style="font-size: 14px; font-weight: 800; margin: 0; line-height: 1.3; color: #ffffff;">' + c.name + '</h4>' +
+                                '</div>' +
+                                '<div style="padding: 12px 14px; background: #ffffff;">' +
+                                    '<div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 8px; color: #475569;">' +
+                                        '<div>Intake: <strong style="color: #0f172a;">' + (c.totalIntake || 300) + ' Seats</strong></div>' +
+                                        '<div>Est: <strong style="color: #0f172a;">' + (c.established || '-') + '</strong></div>' +
+                                    '</div>' +
+                                    '<div style="margin-bottom: 10px;">' +
+                                        '<div style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 3px;">Top Branches:</div>' +
+                                        '<div>' + branchTags + '</div>' +
+                                    '</div>' +
+                                    '<a href="college-detail.html?id=' + c.id + '" style="display: block; text-align: center; background: #0284c7; color: #ffffff; text-decoration: none; padding: 7px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; transition: background 0.2s;">' +
+                                        'View Full College Profile &rarr;' +
+                                    '</a>' +
+                                '</div>' +
+                            '</div>';
+
+                            marker.bindPopup(popupHtml, { maxWidth: 300 });
+                            marker.addTo(markersLayer);
+                            markersMap.set(c.id, marker);
+                            bounds.push([c.lat, c.lng]);
+                        }
+                    });
+
+                    if (bounds.length > 0) {
+                        map.fitBounds(bounds, { padding: [30, 30], maxZoom: 13, animate: true });
+                    }
                 }
 
                 if (filtered.length === 0) {
@@ -296,63 +667,122 @@
                 emptyEl.classList.add('hidden');
                 gridEl.innerHTML = filtered.map(c => {
                     const branchesArr = Array.isArray(c.branches) ? c.branches : [];
-                    return `
-                    <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all relative">
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${
-                                    c.type === 'Government' 
-                                        ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300' 
-                                        : c.type === 'PPP' 
-                                        ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300'
-                                        : 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'
-                                }">${c.type} Institute</span>
-                                <span class="text-xs text-slate-500 dark:text-slate-400"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>${c.district}</span>
-                            </div>
+                    const meta = getCategoryMeta(c);
+                    const branchesTags = branchesArr.slice(0, 4).map(b => '<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-medium border border-slate-200 dark:border-slate-700">' + (typeof b === 'object' ? b.name : b) + '</span>').join('');
+                    const moreTag = branchesArr.length > 4 ? '<span class="text-[11px] text-slate-400 self-center">+' + (branchesArr.length - 4) + ' more</span>' : '';
+
+                    return '<div id="card-' + c.id + '" class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all relative group">' +
+                        '<div>' +
+                            '<div class="flex items-center justify-between mb-3">' +
+                                '<span class="px-2.5 py-1 rounded-full text-[11px] font-bold ' + meta.bgLight + ' ' + meta.textBadge + ' border ' + meta.border + '">' +
+                                    '<i class="fa-solid ' + meta.icon + ' mr-1"></i> ' + meta.label +
+                                '</span>' +
+                                '<span class="text-xs text-slate-500 dark:text-slate-400"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>' + (c.district || 'Jharkhand') + '</span>' +
+                            '</div>' +
                             
-                            <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white leading-snug">
-                                <a href="college-detail.html?id=${c.id}" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">${c.name}</a>
-                            </h3>
+                            '<h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white leading-snug">' +
+                                '<a href="college-detail.html?id=' + c.id + '" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">' + c.name + '</a>' +
+                            '</h3>' +
                             
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                Est. ${c.established || '-'} • Affiliated to ${c.affiliation || c.affiliatedTo || 'JUT'}
-                            </p>
+                            '<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">' +
+                                'Est. ' + (c.established || '-') + ' • Affiliated to ' + (c.affiliation || c.affiliatedTo || 'JUT') +
+                            '</p>' +
 
-                            <div class="my-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-                                <div class="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Offered Engineering Branches:</div>
-                                <div class="flex flex-wrap gap-1.5">
-                                    ${branchesArr.slice(0, 4).map(b => `<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-medium border border-slate-200 dark:border-slate-700">${typeof b === 'object' ? b.name : b}</span>`).join('')}
-                                    ${branchesArr.length > 4 ? `<span class="text-[11px] text-slate-400 self-center">+${branchesArr.length - 4} more</span>` : ''}
-                                </div>
-                            </div>
-                        </div>
+                            '<div class="my-4 pt-3 border-t border-slate-100 dark:border-slate-800">' +
+                                '<div class="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Offered Engineering Branches:</div>' +
+                                '<div class="flex flex-wrap gap-1.5">' +
+                                    branchesTags + moreTag +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
 
-                        <div>
-                            ${isUserAdmin ? `
-                            <div class="mt-2 pt-3 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2 mb-3">
-                                <button onclick="window.editCollegeInline('${c.id}')" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 text-xs font-bold hover:bg-sky-100 transition border border-sky-200 dark:border-sky-800">
-                                    <i class="fa-solid fa-pen-to-square"></i> Edit
-                                </button>
-                                <button onclick="window.deleteCollegeInline('${c.id}')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-100 transition border border-rose-200 dark:border-rose-800">
-                                    <i class="fa-solid fa-trash"></i> Delete
-                                </button>
-                            </div>
-                            ` : ''}
+                        '<div>' +
+                            (isUserAdmin ? 
+                            '<div class="mt-2 pt-3 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2 mb-3">' +
+                                '<button onclick="window.editCollegeInline('' + c.id + '')" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 text-xs font-bold hover:bg-sky-100 transition border border-sky-200 dark:border-sky-800">' +
+                                    '<i class="fa-solid fa-pen-to-square"></i> Edit' +
+                                '</button>' +
+                                '<button onclick="window.deleteCollegeInline('' + c.id + '')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-100 transition border border-rose-200 dark:border-rose-800">' +
+                                    '<i class="fa-solid fa-trash"></i> Delete' +
+                                '</button>' +
+                            '</div>' : '') +
 
-                            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                                <div class="text-xs">
-                                    <span class="text-slate-500 dark:text-slate-400">Total Intake:</span>
-                                    <span class="font-bold text-slate-900 dark:text-white">${c.totalIntake || 300} Seats</span>
-                                </div>
-                                <a href="college-detail.html?id=${c.id}" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all shadow-sm">
-                                    View Full Profile &rarr;
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    `;
+                            '<div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">' +
+                                '<button onclick="window.pinpointOnMap('' + c.id + '', ' + (c.lat || 0) + ', ' + (c.lng || 0) + ')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-950 text-sky-600 dark:text-sky-400 text-xs font-bold transition flex items-center gap-1.5 border border-slate-200 dark:border-slate-700">' +
+                                    '<i class="fa-solid fa-location-crosshairs"></i>' +
+                                    '<span>Pinpoint Map</span>' +
+                                '</button>' +
+                                '<a href="college-detail.html?id=' + c.id + '" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all shadow-sm">' +
+                                    'View Full Profile &rarr;' +
+                                '</a>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
                 }).join('');
             }
+
+            // ==========================================
+            // 📍 MAP INTERACTION HELPERS
+            // ==========================================
+            window.pinpointOnMap = function(id, lat, lng) {
+                if (!map) return;
+                const mapSection = document.getElementById('jharkhand-colleges-map');
+                if (mapSection) {
+                    mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                if (lat && lng) {
+                    map.flyTo([lat, lng], 13, { duration: 1.2 });
+                    const marker = markersMap.get(id);
+                    if (marker) {
+                        setTimeout(() => marker.openPopup(), 1200);
+                    }
+                }
+            };
+
+            window.focusMapRegion = function(region) {
+                if (!map) return;
+                const regions = {
+                    all: { coords: [23.6102, 85.2799], zoom: 8 },
+                    ranchi: { coords: [23.3550, 85.3300], zoom: 11 },
+                    dhanbad: { coords: [23.7700, 86.4300], zoom: 11 },
+                    jamshedpur: { coords: [22.8000, 86.1800], zoom: 11 },
+                    dumka: { coords: [24.2700, 87.2500], zoom: 11 },
+                    bokaro: { coords: [23.6700, 86.1000], zoom: 11 }
+                };
+
+                const target = regions[region] || regions.all;
+                map.flyTo(target.coords, target.zoom, { duration: 1 });
+            };
+
+            window.resetMapToState = function() {
+                window.focusMapRegion('all');
+            };
+
+            window.filterMapCategory = function(cat) {
+                currentCategoryFilter = cat;
+                
+                // Update active state on legend buttons
+                const btnIds = ['leg-all', 'leg-govt', 'leg-women', 'leg-ppp', 'leg-private', 'leg-d2d'];
+                btnIds.forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (!btn) return;
+                    btn.classList.remove('ring-2', 'ring-sky-500', 'ring-offset-2');
+                });
+
+                const activeMap = {
+                    'all': 'leg-all',
+                    'Government': 'leg-govt',
+                    'women': 'leg-women',
+                    'PPP': 'leg-ppp',
+                    'Private': 'leg-private',
+                    'd2d': 'leg-d2d'
+                };
+
+                const activeBtn = document.getElementById(activeMap[cat]);
+                if (activeBtn) activeBtn.classList.add('ring-2', 'ring-sky-500', 'ring-offset-2');
+
+                renderColleges();
+            };
 
             // Inline action handlers
             window.editCollegeInline = function(id) {
@@ -362,6 +792,8 @@
                 document.getElementById('col-name').value = item.name || '';
                 document.getElementById('col-type').value = item.type || 'Government';
                 document.getElementById('col-district').value = item.district || '';
+                document.getElementById('col-lat').value = item.lat || '';
+                document.getElementById('col-lng').value = item.lng || '';
                 document.getElementById('col-intake').value = item.totalIntake || 300;
                 document.getElementById('col-est').value = item.established || 1960;
                 document.getElementById('col-branches').value = Array.isArray(item.branches) ? item.branches.map(b => typeof b === 'object' ? b.name : b).join(', ') : '';
@@ -379,7 +811,7 @@
                 }
             };
 
-            addCollegeBtn?.addEventListener('click', () => {
+            addCollegeBtn && addCollegeBtn.addEventListener('click', () => {
                 document.getElementById('col-id').value = '';
                 collegeForm.reset();
                 collegeModalTitle.textContent = "Add New College";
@@ -387,8 +819,8 @@
                 collegeModal.classList.add('flex');
             });
 
-            closeCollegeModal?.addEventListener('click', () => { collegeModal.classList.add('hidden'); collegeModal.classList.remove('flex'); });
-            cancelCollegeBtn?.addEventListener('click', () => { collegeModal.classList.add('hidden'); collegeModal.classList.remove('flex'); });
+            closeCollegeModal && closeCollegeModal.addEventListener('click', () => { collegeModal.classList.add('hidden'); collegeModal.classList.remove('flex'); });
+            cancelCollegeBtn && cancelCollegeBtn.addEventListener('click', () => { collegeModal.classList.add('hidden'); collegeModal.classList.remove('flex'); });
 
             // Form Submit
             collegeForm.addEventListener('submit', async (e) => {
@@ -397,6 +829,8 @@
                 const name = document.getElementById('col-name').value;
                 const type = document.getElementById('col-type').value;
                 const district = document.getElementById('col-district').value;
+                const lat = parseFloat(document.getElementById('col-lat').value) || null;
+                const lng = parseFloat(document.getElementById('col-lng').value) || null;
                 const totalIntake = parseInt(document.getElementById('col-intake').value) || 300;
                 const established = parseInt(document.getElementById('col-est').value) || 1960;
                 const branches = document.getElementById('col-branches').value.split(',').map(s => s.trim()).filter(Boolean);
@@ -405,12 +839,12 @@
                 try {
                     if (id) {
                         await window.DC_DATA_MANAGER.update('colleges', id, {
-                            name, type, district, totalIntake, established, branches, overview
+                            name, type, district, lat, lng, totalIntake, established, branches, overview
                         });
                         if (window.showToast) window.showToast("College updated successfully!", "success");
                     } else {
                         await window.DC_DATA_MANAGER.add('colleges', {
-                            name, type, district, totalIntake, established, branches, overview, affiliatedTo: 'JUT, Ranchi'
+                            name, type, district, lat, lng, totalIntake, established, branches, overview, affiliatedTo: 'JUT, Ranchi'
                         });
                         if (window.showToast) window.showToast("College added successfully!", "success");
                     }
@@ -428,6 +862,7 @@
                 searchInput.value = '';
                 typeFilter.value = 'all';
                 districtFilter.value = 'all';
+                currentCategoryFilter = 'all';
                 renderColleges();
             });
 

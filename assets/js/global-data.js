@@ -109,450 +109,2118 @@ window.DC_DATA = {
     ],
 
         colleges: [
-        // ==========================================
-        // 🏆 TOP 10 GOVERNMENT POLYTECHNIC COLLEGES
-        // ==========================================
-        {
-            id: "gp-ranchi",
-            slug: "government-polytechnic-ranchi",
-            name: "Government Polytechnic, Ranchi",
-            shortName: "GP Ranchi",
-            rank: 1,
-            category: "Polytechnic",
-            type: "Government (Top #1)",
-            established: 1955,
-            district: "Ranchi",
-            location: "Opp. Barnabas Hospital, Church Rd, Bahu Bazar, Konka, Ranchi - 834001",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.9,
-            reviewsCount: 184,
-            image: "assets/images/colleges/gp-ranchi.jpg",
-            featured: true,
-            totalIntake: 300,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpranchi.org",
-            overview: "Premier #1 ranked government polytechnic institution of Jharkhand located at Church Road, Ranchi. Renowned for top merit rankers, state-of-the-art labs, and consistent placement drives in Tata Steel, JSW, and L&T.",
-            branches: [
-                { name: "Civil Engineering", seats: 60, cutoffGeneral: 580, cutoffCategory: 1400 },
-                { name: "Computer Science & Engineering", seats: 60, cutoffGeneral: 240, cutoffCategory: 780 },
-                { name: "Electrical Engineering", seats: 60, cutoffGeneral: 450, cutoffCategory: 1200 },
-                { name: "Electronics & Communication Engineering", seats: 60, cutoffGeneral: 850, cutoffCategory: 2100 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 620, cutoffCategory: 1550 }
-            ],
-            facilities: ["Digital Library", "Modern CAD/CAM Lab", "Hostels with Mess", "High-speed Wi-Fi", "Sports Ground", "Auditorium", "Engineering Drawing Hall"],
-            gallery: [
-                { title: "New Academic Complex & Entrance", image: "assets/images/colleges/gp-ranchi-academic-block.jpg", icon: "fa-building-columns" },
-                { title: "Engineering Drawing & Drafting Hall", image: "assets/images/colleges/gp-ranchi-drawing-hall.jpg", icon: "fa-compass-drafting" },
-                { title: "Historic Main Campus Building & Lawns", image: "assets/images/colleges/gp-ranchi-main-campus.jpg", icon: "fa-tree" },
-                { title: "Interactive Technical Lecture & Seminar Session", image: "assets/images/colleges/gp-ranchi-classroom.jpg", icon: "fa-chalkboard-user" },
-                { title: "GP Ranchi Heritage Administrative Block", image: "assets/images/colleges/gp-ranchi-heritage-block.jpg", icon: "fa-landmark" }
-            ]
-        },
-        {
-            id: "gp-dhanbad",
-            slug: "government-polytechnic-dhanbad",
-            name: "Government Polytechnic, Dhanbad",
-            shortName: "GP Dhanbad",
-            rank: 2,
-            category: "Polytechnic",
-            type: "Government (Top #2)",
-            established: 1958,
-            district: "Dhanbad",
-            location: "Polytechnic Road, Dhanbad, Jharkhand - 828130",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.8,
-            reviewsCount: 156,
-            image: "assets/images/colleges/gp-dhanbad.jpg",
-            featured: true,
-            totalIntake: 300,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpdhanbad.ac.in",
-            overview: "Situated in the coal and energy capital of India, GP Dhanbad offers 5 core engineering streams with premier workshop facilities and strong PSU connections.",
-            branches: [
-                { name: "Civil Engineering", seats: 60, cutoffGeneral: 610, cutoffCategory: 1480 },
-                { name: "Computer Science and Engineering", seats: 60, cutoffGeneral: 410, cutoffCategory: 1100 },
-                { name: "Electrical Engineering", seats: 60, cutoffGeneral: 480, cutoffCategory: 1250 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 520, cutoffCategory: 1350 },
-                { name: "Metallurgical Engineering", seats: 60, cutoffGeneral: 1100, cutoffCategory: 2800 }
-            ],
-            facilities: ["Metallurgy Testing Labs", "Central Workshop", "Hostel", "Computer Center", "Gymnasium"]
-        },
-        {
-            id: "gp-adityapur",
-            slug: "government-polytechnic-adityapur",
-            name: "Government Polytechnic, Adityapur",
-            shortName: "GP Adityapur",
-            rank: 3,
-            category: "Polytechnic",
-            type: "Government (Top Placement #3)",
-            established: 1980,
-            district: "Seraikela Kharsawan",
-            location: "Adityapur Industrial Area, Seraikela-Kharsawan, Jamshedpur - 832109",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.9,
-            reviewsCount: 192,
-            image: "assets/images/colleges/gp-adityapur.jpg",
-            featured: true,
-            totalIntake: 240,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpadityapur.ac.in",
-            overview: "Located adjacent to the Adityapur Industrial Area and Jamshedpur auto hub, GP Adityapur holds the highest placement record in eastern India for diploma engineers.",
-            branches: [
-                { name: "Computer Science and Engineering", seats: 60, cutoffGeneral: 320, cutoffCategory: 850 },
-                { name: "Electrical Engineering", seats: 60, cutoffGeneral: 260, cutoffCategory: 690 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 180, cutoffCategory: 520 },
-                { name: "Metallurgical Engineering", seats: 60, cutoffGeneral: 650, cutoffCategory: 1600 }
-            ],
-            facilities: ["Siemens Center of Excellence", "Modern CNC Labs", "Industrial Automation Lab", "Hostel", "Central Auditorium", "Computing Labs"],
-            gallery: [
-                { title: "GP Adityapur Main Academic Block", image: "assets/images/colleges/gp-adityapur-building.jpg", icon: "fa-building-columns" },
-                { title: "Grand Tiered Auditorium & Student Induction", image: "assets/images/colleges/gp-adityapur-auditorium.jpg", icon: "fa-users" },
-                { title: "Advanced Central Computing & IT Facility", image: "assets/images/colleges/gp-adityapur-computer-lab.jpg", icon: "fa-laptop-code" },
-                { title: "Applied Engineering & Science Research Lab", image: "assets/images/colleges/gp-adityapur-chemistry-lab.jpg", icon: "fa-flask-vial" },
-                { title: "HP Digital Workstations & CAD/CAM Lab", image: "assets/images/colleges/gp-adityapur-digital-lab.jpg", icon: "fa-network-wired" }
-            ]
-        },
-        {
-            id: "gp-bhaga",
-            slug: "government-polytechnic-bhaga",
-            name: "Government Polytechnic Bhaga, Dhanbad",
-            shortName: "GP Bhaga",
-            rank: 4,
-            category: "Polytechnic",
-            type: "Government (Heritage Estd 1905)",
-            established: 1905,
-            district: "Dhanbad",
-            location: "BIT Sindri Campus, PO: Motinagar, Dist: Dhanbad - 828120",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.7,
-            reviewsCount: 110,
-            image: "assets/images/colleges/gp-bhaga.jpg",
-            featured: true,
-            totalIntake: 240,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpbhaga.ac.in",
-            overview: "Established in 1905, GP Bhaga is one of India's oldest institutions for Mining and Core Engineering, featuring exclusive sponsored seats for Bharat Coking Coal Limited (BCCL) candidates.",
-            branches: [
-                { name: "Computer Engineering", seats: 60, cutoffGeneral: 520, cutoffCategory: 1390 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 680, cutoffCategory: 1750 },
-                { name: "Mining Engineering", seats: 60, cutoffGeneral: 380, cutoffCategory: 980 },
-                { name: "Mining Engineering (For BCCL Candidates)", seats: 60, cutoffGeneral: 850, cutoffCategory: 2200 }
-            ],
-            facilities: ["Advance Mine Surveying Lab", "Geological Museum", "Mining Models Center", "Computer Center", "Hostels"]
-        },
-        {
-            id: "gp-bokaro",
-            slug: "government-polytechnic-khutri-bokaro",
-            name: "Government Polytechnic, Khutri (Bokaro)",
-            shortName: "GP Khutri",
-            rank: 5,
-            category: "Polytechnic",
-            type: "Government (Automobile Hub)",
-            established: 1984,
-            district: "Bokaro",
-            location: "Jainmore-Phusro Road, Khutri, Bokaro, Jharkhand - 829301",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.6,
-            reviewsCount: 98,
-            image: "assets/images/colleges/gp-bokaro.jpg",
-            featured: true,
-            totalIntake: 180,
-            hostel: "Available",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpbokaro.ac.in",
-            overview: "Situated near Bokaro Steel City on Jainmore-Phusro Road, specializing in Automobile, Computer, and Mechanical streams with hands-on industrial workshops.",
-            branches: [
-                { name: "Automobile Engineering", seats: 60, cutoffGeneral: 1100, cutoffCategory: 2900 },
-                { name: "Computer Engineering", seats: 60, cutoffGeneral: 590, cutoffCategory: 1450 },
-                { name: "Mechanical Engineering (Automobile)", seats: 60, cutoffGeneral: 750, cutoffCategory: 1900 }
-            ],
-            facilities: ["Automobile Workshop", "Engine Overhaul Lab", "Hostel", "Digital Library"]
-        },
-        {
-            id: "gp-nirsa",
-            slug: "government-polytechnic-nirsa",
-            name: "Government Polytechnic Nirsa, Dhanbad",
-            shortName: "GP Nirsa",
-            rank: 6,
-            category: "Polytechnic",
-            type: "Government (Mining & Core)",
-            established: 2011,
-            district: "Dhanbad",
-            location: "Gopalganj, Post: Debiyana, Nirsa, Dhanbad - 828205",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.5,
-            reviewsCount: 88,
-            image: "assets/images/colleges/gp-nirsa.jpg",
-            featured: false,
-            totalIntake: 180,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpnirsa.gov.in",
-            overview: "Premier government institution in Dhanbad district offering prestigious courses in Mining Engineering, Civil, and Mechanical with direct ECL/BCCL field exposure.",
-            branches: [
-                { name: "Civil Engineering", seats: 60, cutoffGeneral: 920, cutoffCategory: 2450 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 850, cutoffCategory: 2200 },
-                { name: "Mining Engineering", seats: 60, cutoffGeneral: 450, cutoffCategory: 1200 }
-            ],
-            facilities: ["Mine Surveying Lab", "Geology Gallery", "Sports Facility", "Hostel"]
-        },
-        {
-            id: "gp-dumka",
-            slug: "government-polytechnic-dumka",
-            name: "Government Polytechnic, Dumka",
-            shortName: "GP Dumka",
-            rank: 7,
-            category: "Polytechnic",
-            type: "Government (Estd 1962)",
-            established: 1962,
-            district: "Dumka",
-            location: "At-Sonwadngal, PO-Shivpahar, PS-Dumka (M), Dist-Dumka - 814101",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.5,
-            reviewsCount: 79,
-            image: "assets/images/colleges/gp-dumka.jpg",
-            featured: false,
-            totalIntake: 240,
-            hostel: "Available",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpdumka.in",
-            overview: "Key technical institution of Santhal Pargana offering standard diploma engineering in Civil, CSE, Electrical, and Mechanical disciplines.",
-            branches: [
-                { name: "Civil Engineering", seats: 60, cutoffGeneral: 980, cutoffCategory: 2600 },
-                { name: "Computer Science and Engineering", seats: 60, cutoffGeneral: 750, cutoffCategory: 1950 },
-                { name: "Electrical Engineering", seats: 60, cutoffGeneral: 1050, cutoffCategory: 2800 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 1200, cutoffCategory: 3100 }
-            ],
-            facilities: ["Workshops", "Hostel", "Computer Lab", "Library"]
-        },
-        {
-            id: "gp-koderma",
-            slug: "government-polytechnic-koderma",
-            name: "Government Polytechnic, Koderma",
-            shortName: "GP Koderma",
-            rank: 8,
-            category: "Polytechnic",
-            type: "Government (Mining & Tech)",
-            established: 2011,
-            district: "Koderma",
-            location: "Gohal, Jainagar (Near Parsabad Stn), Koderma - 825410",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.5,
-            reviewsCount: 72,
-            image: "assets/images/colleges/gp-koderma.jpg",
-            featured: false,
-            totalIntake: 180,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 2,050 / Year",
-            website: "https://gpkoderma.in",
-            overview: "Known for specialized streams in Mining, Computer, and Electronics & Communication engineering.",
-            branches: [
-                { name: "Computer Engineering", seats: 60, cutoffGeneral: 690, cutoffCategory: 1750 },
-                { name: "Electronics and Communication Engineering", seats: 60, cutoffGeneral: 1400, cutoffCategory: 3500 },
-                { name: "Mining Engineering", seats: 60, cutoffGeneral: 650, cutoffCategory: 1700 }
-            ],
-            facilities: ["Mining Labs", "Electronics Circuit Lab", "Hostel", "Library"]
-        },
-        {
-            id: "wp-ranchi",
-            slug: "government-womens-polytechnic-ranchi",
-            name: "Government Women's Polytechnic, Ranchi",
-            shortName: "GWP Ranchi",
-            rank: 9,
-            category: "Polytechnic",
-            type: "Government (Women's Premier #1)",
-            established: 1988,
-            district: "Ranchi",
-            location: "At-Tharpakhna Near Plaza Chowk Jail Road, Ranchi - 834001",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.7,
-            reviewsCount: 104,
-            image: "assets/images/colleges/wp-ranchi.jpg",
-            featured: true,
-            totalIntake: 180,
-            hostel: "Available (Dedicated Girls Hostel)",
-            feesAnnual: "₹ 1,800 / Year",
-            website: "https://gwpranchi.org",
-            overview: "Premier women's technical institute in Jharkhand providing top notch education in Computer Science, Electrical, and Electronics & Communication.",
-            branches: [
-                { name: "Computer Science and Engineering", seats: 60, cutoffGeneral: 600, cutoffCategory: 1500 },
-                { name: "Electrical Engineering", seats: 60, cutoffGeneral: 1100, cutoffCategory: 2600 },
-                { name: "Electronics and Communication Engineering", seats: 60, cutoffGeneral: 1250, cutoffCategory: 3100 }
-            ],
-            facilities: ["Girls Hostel with Security", "Software Labs", "Digital Drawing Studios", "Library"]
-        },
-        {
-            id: "wp-gamharia",
-            slug: "government-womens-polytechnic-jamshedpur-gamharia",
-            name: "Government Women's Polytechnic, Jamshedpur (Gamharia)",
-            shortName: "GWP Gamharia",
-            rank: 10,
-            category: "Polytechnic",
-            type: "Government (Women's Premier #2)",
-            established: 2011,
-            district: "Seraikela Kharsawan",
-            location: "Near Thana More, Gamharia, Jamshedpur - 832108",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.6,
-            reviewsCount: 85,
-            image: "assets/images/colleges/wp-gamharia.jpg",
-            featured: false,
-            totalIntake: 240,
-            hostel: "Available (Girls Hostel)",
-            feesAnnual: "₹ 1,800 / Year",
-            website: "https://gwpgamharia.org",
-            overview: "Situated in the Jamshedpur auto hub, offering top core placements for female diploma engineers in Civil, CSE, ECE, and Mechanical.",
-            branches: [
-                { name: "Civil Engineering", seats: 60, cutoffGeneral: 1100, cutoffCategory: 2800 },
-                { name: "Computer Science and Engineering", seats: 60, cutoffGeneral: 550, cutoffCategory: 1400 },
-                { name: "Electronics and Communication Engineering", seats: 60, cutoffGeneral: 1250, cutoffCategory: 3100 },
-                { name: "Mechanical Engineering", seats: 60, cutoffGeneral: 950, cutoffCategory: 2400 }
-            ],
-            facilities: ["Girls Hostel", "Modern Computer Labs", "Placement Cell"]
-        },
-
-        // ========================================================
-        // 🎓 TOP 3 GOVERNMENT B.TECH LATERAL ENTRY (D2D) COLLEGES
-        // ========================================================
-        {
-            id: "bit-sindri-d2d",
-            slug: "bit-sindri-lateral-entry",
-            name: "BIT Sindri (D2D / B.Tech Lateral Entry)",
-            shortName: "BIT Sindri",
-            rank: 1,
-            category: "B.Tech Lateral Entry",
-            type: "Government B.Tech (D2D #1 Rank)",
-            established: 1949,
-            district: "Dhanbad",
-            location: "Sindri, Dhanbad, Jharkhand - 828123",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.9,
-            reviewsCount: 350,
-            image: "assets/images/colleges/bit-sindri.jpg",
-            featured: true,
-            totalIntake: 68,
-            hostel: "Available for all lateral students",
-            feesAnnual: "₹ 15,000 / Year",
-            website: "https://bitsindri.ac.in",
-            overview: "The #1 choice for Diploma to Degree (D2D) lateral entry in Jharkhand. 10% supernumerary seats in all B.Tech branches for top polytechnic rankers with average placement of ₹ 7.5 LPA.",
-            branches: [
-                { name: "B.Tech Computer Science & Engg (Lateral)", seats: 8, cutoffGeneral: 15, cutoffCategory: 45 },
-                { name: "B.Tech Information Technology (Lateral)", seats: 6, cutoffGeneral: 25, cutoffCategory: 60 },
-                { name: "B.Tech Electrical Engineering (Lateral)", seats: 10, cutoffGeneral: 30, cutoffCategory: 85 },
-                { name: "B.Tech Mechanical Engineering (Lateral)", seats: 12, cutoffGeneral: 25, cutoffCategory: 70 },
-                { name: "B.Tech Civil Engineering (Lateral)", seats: 10, cutoffGeneral: 35, cutoffCategory: 95 },
-                { name: "B.Tech Electronics & Comm. (Lateral)", seats: 8, cutoffGeneral: 35, cutoffCategory: 90 },
-                { name: "B.Tech Mining Engineering (Lateral)", seats: 6, cutoffGeneral: 40, cutoffCategory: 110 },
-                { name: "B.Tech Metallurgical Engineering (Lateral)", seats: 6, cutoffGeneral: 50, cutoffCategory: 130 },
-                { name: "B.Tech Chemical Engineering (Lateral)", seats: 6, cutoffGeneral: 50, cutoffCategory: 130 },
-                { name: "B.Tech Production Engineering (Lateral)", seats: 6, cutoffGeneral: 65, cutoffCategory: 160 }
-            ],
-            facilities: ["Siemens Center of Excellence & Robotics Lab", "Central Research Labs", "Supercomputing Center", "Hostels (25+)", "Alumni Network"],
-            gallery: [
-                { title: "450-Acre Campus Aerial Panorama", image: "assets/images/colleges/bit-sindri-aerial.jpg", icon: "fa-plane-departure" },
-                { title: "Lush Green Academic Complex Panorama", image: "assets/images/colleges/bit-sindri-campus-lush.jpg", icon: "fa-mountain-sun" },
-                { title: "Iconic Main Academic Building", image: "assets/images/colleges/bit-sindri-academic.jpg", icon: "fa-building-columns" },
-                { title: "Siemens Centre of Excellence & Robotics Lab", image: "assets/images/colleges/bit-sindri-robotics.jpg", icon: "fa-robot" },
-                { title: "Electrical Engineering Society Seminar Hall", image: "assets/images/colleges/bit-sindri-seminar.jpg", icon: "fa-users-line" },
-                { title: "Executive Seminar & Audio-Visual Conference Hall", image: "assets/images/colleges/bit-sindri-conference-hall.jpg", icon: "fa-microphone" },
-                { title: "Smart Classroom & Technical Lecture Hall", image: "assets/images/colleges/bit-sindri-classroom.jpg", icon: "fa-chalkboard-user" },
-                { title: "Annual Convocation & Cultural Mega Stage", image: "assets/images/colleges/bit-sindri-annual-fest.jpg", icon: "fa-award" }
-            ]
-        },
-        {
-            id: "ucet-hazaribag",
-            slug: "ucet-vinoba-bhave-university",
-            name: "University College of Engineering & Tech (UCET VBU Hazaribag)",
-            shortName: "UCET Hazaribag",
-            rank: 2,
-            category: "B.Tech Lateral Entry",
-            type: "Govt University B.Tech (D2D #2 Rank)",
-            established: 2009,
-            district: "Hazaribag",
-            location: "VBU Campus, Hazaribag, Jharkhand - 825301",
-            affiliation: "Vinoba Bhave University (VBU)",
-            approval: "AICTE Approved",
-            rating: 4.6,
-            reviewsCount: 145,
-            image: "assets/images/colleges/ucet-hazaribag.jpg",
-            featured: true,
-            totalIntake: 45,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "₹ 45,000 / Year",
-            website: "https://ucetvbu.ac.in",
-            overview: "Premier constituent government university engineering college of Vinoba Bhave University offering prestigious B.Tech Lateral Entry seats for diploma holders.",
-            branches: [
-                { name: "B.Tech Computer Science & Engg (Lateral)", seats: 12, cutoffGeneral: 120, cutoffCategory: 320 },
-                { name: "B.Tech Information Technology (Lateral)", seats: 10, cutoffGeneral: 160, cutoffCategory: 380 },
-                { name: "B.Tech Electronics & Comm. (Lateral)", seats: 12, cutoffGeneral: 190, cutoffCategory: 420 },
-                { name: "B.Tech Mechanical Engineering (Lateral)", seats: 11, cutoffGeneral: 220, cutoffCategory: 480 }
-            ],
-            facilities: ["University Central Library", "Advanced IT Labs", "University Hostels", "Placement Cell", "Mechanical Workshops"],
-            gallery: [
-                { title: "Himalaya Academic & Administrative Complex", image: "assets/images/colleges/ucet-main-building.jpg", icon: "fa-building-columns" },
-                { title: "UCET Central Engineering Workshop", image: "assets/images/colleges/ucet-workshop-entrance.jpg", icon: "fa-wrench" },
-                { title: "Mechanical & Automobile Engineering Lab", image: "assets/images/colleges/ucet-automobile-lab.jpg", icon: "fa-car" },
-                { title: "Central Computing & IT Lab", image: "assets/images/colleges/ucet-computer-lab.jpg", icon: "fa-laptop-code" },
-                { title: "Heavy Machinery & Manufacturing Wing", image: "assets/images/colleges/ucet-workshop-exterior.jpg", icon: "fa-industry" }
-            ]
-        },
-        {
-            id: "dumka-engg-d2d",
-            slug: "dumka-engineering-college-d2d",
-            name: "Dumka Engineering College (Govt. Established D2D)",
-            shortName: "Dumka Engg (D2D)",
-            rank: 3,
-            category: "B.Tech Lateral Entry",
-            type: "Govt. Established B.Tech (D2D #3 Rank)",
-            established: 2013,
-            district: "Dumka",
-            location: "Near Shivpahar, Dumka, Jharkhand - 814101",
-            affiliation: "Jharkhand University of Technology (JUT)",
-            approval: "AICTE Approved",
-            rating: 4.5,
-            reviewsCount: 112,
-            image: "assets/images/colleges/dumka-engg.jpg",
-            featured: true,
-            totalIntake: 60,
-            hostel: "Available (Boys & Girls)",
-            feesAnnual: "Free Quota: ₹ 25,000 / Year • Regular Quota: ₹ 55,000 / Year",
-            website: "https://dumkaengg.edu.in",
-            overview: "Established by Government of Jharkhand under TEQIP-III initiative, offering top B.Tech Lateral Entry degree programs with modern academic infrastructure and campus placements.",
-            branches: [
-                { name: "B.Tech Computer Science & Engg (Lateral)", seats: 12, cutoffGeneral: 180, cutoffCategory: 450 },
-                { name: "B.Tech Civil Engineering (Lateral)", seats: 12, cutoffGeneral: 210, cutoffCategory: 520 },
-                { name: "B.Tech Electrical Engineering (Lateral)", seats: 12, cutoffGeneral: 230, cutoffCategory: 560 },
-                { name: "B.Tech Mechanical Engineering (Lateral)", seats: 12, cutoffGeneral: 240, cutoffCategory: 590 },
-                { name: "B.Tech Electronics & Comm. (Lateral)", seats: 12, cutoffGeneral: 260, cutoffCategory: 620 }
-            ],
-            facilities: ["Smart Engineering Classrooms", "Modern Robotics Lab", "Hostels", "Campus Placement Cell", "Central Auditorium", "Central Library"],
-            gallery: [
-                { title: "Dumka Engineering College Scenic Campus & Hills", image: "assets/images/colleges/dumka-engg-campus-view.jpg", icon: "fa-mountain-sun" },
-                { title: "Civil Engineering Smart Lecture Hall", image: "assets/images/colleges/dumka-engg-civil-class.jpg", icon: "fa-chalkboard-user" },
-                { title: "Computer Science & CAD/CAM Design Lab", image: "assets/images/colleges/dumka-engg-computer-lab.jpg", icon: "fa-laptop-code" },
-                { title: "Electrical Machines & Power Systems Lab", image: "assets/images/colleges/dumka-engg-electrical-lab.jpg", icon: "fa-bolt" },
-                { title: "Central Digital & Reference Library", image: "assets/images/colleges/dumka-engg-library.jpg", icon: "fa-book-open" },
-                { title: "Interactive Technical Seminar Hall", image: "assets/images/colleges/dumka-engg-seminar-hall.jpg", icon: "fa-users-line" },
-                { title: "Air-Conditioned Central Auditorium", image: "assets/images/colleges/dumka-engg-auditorium.jpg", icon: "fa-masks-theater" },
-                { title: "Industrial Training & Power Plant Visit", image: "assets/images/colleges/dumka-engg-industrial-visit.jpg", icon: "fa-industry" }
-            ]
-        }
-    ],
+    {
+        "id": "gp-ranchi",
+        "slug": "government-polytechnic-ranchi",
+        "name": "Government Polytechnic, Ranchi",
+        "shortName": "GP Ranchi",
+        "rank": 1,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.3619,
+        "lng": 85.334,
+        "established": 1955,
+        "district": "Ranchi",
+        "location": "Opp. Barnabas Hospital, Church Rd, Bahu Bazar, Konka, Ranchi - 834001",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.9,
+        "reviewsCount": 184,
+        "image": "assets/images/colleges/gp-ranchi.jpg",
+        "featured": true,
+        "totalIntake": 300,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpranchi.org",
+        "overview": "Premier #1 ranked government polytechnic institution of Jharkhand located at Church Road, Ranchi. Renowned for top merit rankers, state-of-the-art labs, and consistent placement drives in Tata Steel, JSW, and L&T.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 580,
+                "cutoffCategory": 1400
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 240,
+                "cutoffCategory": 780
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 450,
+                "cutoffCategory": 1200
+            },
+            {
+                "name": "Electronics & Communication Engineering",
+                "seats": 60,
+                "cutoffGeneral": 850,
+                "cutoffCategory": 2100
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 620,
+                "cutoffCategory": 1550
+            }
+        ],
+        "facilities": [
+            "Digital Library",
+            "Modern CAD/CAM Lab",
+            "Hostels with Mess",
+            "High-speed Wi-Fi",
+            "Sports Ground",
+            "Auditorium",
+            "Engineering Drawing Hall"
+        ]
+    },
+    {
+        "id": "gp-dhanbad",
+        "slug": "government-polytechnic-dhanbad",
+        "name": "Government Polytechnic, Dhanbad",
+        "shortName": "GP Dhanbad",
+        "rank": 2,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.7885,
+        "lng": 86.4172,
+        "established": 1958,
+        "district": "Dhanbad",
+        "location": "Polytechnic Road, Dhanbad, Jharkhand - 828130",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.8,
+        "reviewsCount": 156,
+        "image": "assets/images/colleges/gp-dhanbad.jpg",
+        "featured": true,
+        "totalIntake": 300,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpdhanbad.ac.in",
+        "overview": "Situated in the coal and energy capital of India, GP Dhanbad offers 5 core engineering streams with premier workshop facilities and strong PSU connections.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 610,
+                "cutoffCategory": 1480
+            },
+            {
+                "name": "Computer Science and Engineering",
+                "seats": 60,
+                "cutoffGeneral": 410,
+                "cutoffCategory": 1100
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 480,
+                "cutoffCategory": 1250
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 520,
+                "cutoffCategory": 1350
+            },
+            {
+                "name": "Metallurgical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1100,
+                "cutoffCategory": 2800
+            }
+        ],
+        "facilities": [
+            "Metallurgy Testing Labs",
+            "Central Workshop",
+            "Hostel",
+            "Computer Center",
+            "Gymnasium"
+        ]
+    },
+    {
+        "id": "gp-adityapur",
+        "slug": "government-polytechnic-adityapur",
+        "name": "Government Polytechnic, Adityapur",
+        "shortName": "GP Adityapur",
+        "rank": 3,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 22.7876,
+        "lng": 86.1689,
+        "established": 1980,
+        "district": "Seraikela Kharsawan",
+        "location": "Adityapur Industrial Area, Seraikela-Kharsawan, Jamshedpur - 832109",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.9,
+        "reviewsCount": 192,
+        "image": "assets/images/colleges/gp-adityapur.jpg",
+        "featured": true,
+        "totalIntake": 240,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpadityapur.ac.in",
+        "overview": "Located adjacent to the Adityapur Industrial Area and Jamshedpur auto hub, GP Adityapur holds the highest placement record in eastern India for diploma engineers.",
+        "branches": [
+            {
+                "name": "Computer Science and Engineering",
+                "seats": 60,
+                "cutoffGeneral": 320,
+                "cutoffCategory": 850
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 260,
+                "cutoffCategory": 690
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 180,
+                "cutoffCategory": 520
+            },
+            {
+                "name": "Metallurgical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 650,
+                "cutoffCategory": 1600
+            }
+        ],
+        "facilities": [
+            "Siemens Center of Excellence",
+            "Modern CNC Labs",
+            "Industrial Automation Lab",
+            "Hostel",
+            "Central Auditorium",
+            "Computing Labs"
+        ]
+    },
+    {
+        "id": "gp-bhaga",
+        "slug": "government-polytechnic-bhaga",
+        "name": "Government Polytechnic Bhaga, Dhanbad",
+        "shortName": "GP Bhaga",
+        "rank": 4,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.712,
+        "lng": 86.448,
+        "established": 1905,
+        "district": "Dhanbad",
+        "location": "BIT Sindri Campus, PO: Motinagar, Dist: Dhanbad - 828120",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.7,
+        "reviewsCount": 110,
+        "image": "assets/images/colleges/gp-bhaga.jpg",
+        "featured": true,
+        "totalIntake": 240,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpbhaga.ac.in",
+        "overview": "Established in 1905, GP Bhaga is one of India's oldest institutions for Mining and Core Engineering, featuring exclusive sponsored seats for Bharat Coking Coal Limited (BCCL) candidates.",
+        "branches": [
+            {
+                "name": "Computer Engineering",
+                "seats": 60,
+                "cutoffGeneral": 520,
+                "cutoffCategory": 1390
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 680,
+                "cutoffCategory": 1750
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 380,
+                "cutoffCategory": 980
+            },
+            {
+                "name": "Mining Engineering (For BCCL Candidates)",
+                "seats": 60,
+                "cutoffGeneral": 850,
+                "cutoffCategory": 2200
+            }
+        ],
+        "facilities": [
+            "Advance Mine Surveying Lab",
+            "Geological Museum",
+            "Mining Models Center",
+            "Computer Center",
+            "Hostels"
+        ]
+    },
+    {
+        "id": "gp-bokaro",
+        "slug": "government-polytechnic-khutri-bokaro",
+        "name": "Government Polytechnic, Khutri (Bokaro)",
+        "shortName": "GP Khutri",
+        "rank": 5,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.684,
+        "lng": 85.986,
+        "established": 1984,
+        "district": "Bokaro",
+        "location": "Jainmore-Phusro Road, Khutri, Bokaro, Jharkhand - 829301",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.6,
+        "reviewsCount": 98,
+        "image": "assets/images/colleges/gp-bokaro.jpg",
+        "featured": true,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpbokaro.ac.in",
+        "overview": "Situated near Bokaro Steel City on Jainmore-Phusro Road, specializing in Automobile, Computer, and Mechanical streams with hands-on industrial workshops.",
+        "branches": [
+            {
+                "name": "Automobile Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1100,
+                "cutoffCategory": 2900
+            },
+            {
+                "name": "Computer Engineering",
+                "seats": 60,
+                "cutoffGeneral": 590,
+                "cutoffCategory": 1450
+            },
+            {
+                "name": "Mechanical Engineering (Automobile)",
+                "seats": 60,
+                "cutoffGeneral": 750,
+                "cutoffCategory": 1900
+            }
+        ],
+        "facilities": [
+            "Automobile Workshop",
+            "Engine Overhaul Lab",
+            "Hostel",
+            "Digital Library"
+        ]
+    },
+    {
+        "id": "gp-nirsa",
+        "slug": "government-polytechnic-nirsa",
+        "name": "Government Polytechnic Nirsa, Dhanbad",
+        "shortName": "GP Nirsa",
+        "rank": 6,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.7845,
+        "lng": 86.711,
+        "established": 2011,
+        "district": "Dhanbad",
+        "location": "Gopalganj, Post: Debiyana, Nirsa, Dhanbad - 828205",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 88,
+        "image": "assets/images/colleges/gp-nirsa.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpnirsa.gov.in",
+        "overview": "Premier government institution in Dhanbad district offering prestigious courses in Mining Engineering, Civil, and Mechanical with direct ECL/BCCL field exposure.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 920,
+                "cutoffCategory": 2450
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 850,
+                "cutoffCategory": 2200
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 450,
+                "cutoffCategory": 1200
+            }
+        ],
+        "facilities": [
+            "Mine Surveying Lab",
+            "Geology Gallery",
+            "Sports Facility",
+            "Hostel"
+        ]
+    },
+    {
+        "id": "gp-dumka",
+        "slug": "government-polytechnic-dumka",
+        "name": "Government Polytechnic, Dumka",
+        "shortName": "GP Dumka",
+        "rank": 7,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 24.2685,
+        "lng": 87.251,
+        "established": 1962,
+        "district": "Dumka",
+        "location": "At-Sonwadngal, PO-Shivpahar, PS-Dumka (M), Dist-Dumka - 814101",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 79,
+        "image": "assets/images/colleges/gp-dumka.jpg",
+        "featured": false,
+        "totalIntake": 240,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpdumka.in",
+        "overview": "Key technical institution of Santhal Pargana offering standard diploma engineering in Civil, CSE, Electrical, and Mechanical disciplines.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 980,
+                "cutoffCategory": 2600
+            },
+            {
+                "name": "Computer Science and Engineering",
+                "seats": 60,
+                "cutoffGeneral": 750,
+                "cutoffCategory": 1950
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1050,
+                "cutoffCategory": 2800
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1200,
+                "cutoffCategory": 3100
+            }
+        ],
+        "facilities": [
+            "Workshops",
+            "Hostel",
+            "Computer Lab",
+            "Library"
+        ]
+    },
+    {
+        "id": "gp-koderma",
+        "slug": "government-polytechnic-koderma",
+        "name": "Government Polytechnic, Koderma",
+        "shortName": "GP Koderma",
+        "rank": 8,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 24.412,
+        "lng": 85.765,
+        "established": 2011,
+        "district": "Koderma",
+        "location": "Gohal, Jainagar (Near Parsabad Stn), Koderma - 825410",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 72,
+        "image": "assets/images/colleges/gp-koderma.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpkoderma.in",
+        "overview": "Known for specialized streams in Mining, Computer, and Electronics & Communication engineering.",
+        "branches": [
+            {
+                "name": "Computer Engineering",
+                "seats": 60,
+                "cutoffGeneral": 690,
+                "cutoffCategory": 1750
+            },
+            {
+                "name": "Electronics and Communication Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1400,
+                "cutoffCategory": 3500
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 650,
+                "cutoffCategory": 1700
+            }
+        ],
+        "facilities": [
+            "Mining Labs",
+            "Electronics Circuit Lab",
+            "Hostel",
+            "Library"
+        ]
+    },
+    {
+        "id": "gp-latehar",
+        "slug": "government-polytechnic-latehar",
+        "name": "Government Polytechnic, Latehar",
+        "shortName": "GP Latehar",
+        "rank": 11,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.745,
+        "lng": 84.498,
+        "established": 2013,
+        "district": "Latehar",
+        "location": "Karamdih, Latehar, Jharkhand - 829206",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 65,
+        "image": "assets/images/colleges/gp-latehar.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gplatehar.org",
+        "overview": "Modern government polytechnic equipped with state-of-the-art engineering laboratories in Civil, Electrical, and Mechanical streams.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1150,
+                "cutoffCategory": 2900
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1200,
+                "cutoffCategory": 3100
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1350,
+                "cutoffCategory": 3400
+            }
+        ],
+        "facilities": [
+            "Modern Labs",
+            "Hostel",
+            "Library",
+            "Playground"
+        ]
+    },
+    {
+        "id": "gp-khunti",
+        "slug": "government-polytechnic-khunti",
+        "name": "Government Polytechnic, Khunti",
+        "shortName": "GP Khunti",
+        "rank": 12,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.068,
+        "lng": 85.275,
+        "established": 2013,
+        "district": "Khunti",
+        "location": "Kala Mati Road, Khunti, Jharkhand - 835210",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 58,
+        "image": "assets/images/colleges/gp-khunti.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpkhunti.org",
+        "overview": "Located near Ranchi capital zone, offering high quality technical diploma courses with modern campus infrastructure.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1050,
+                "cutoffCategory": 2700
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 680,
+                "cutoffCategory": 1750
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1250,
+                "cutoffCategory": 3200
+            }
+        ],
+        "facilities": [
+            "Computer Lab",
+            "Workshops",
+            "Library",
+            "Hostels"
+        ]
+    },
+    {
+        "id": "gp-simdega",
+        "slug": "government-polytechnic-simdega",
+        "name": "Government Polytechnic, Simdega",
+        "shortName": "GP Simdega",
+        "rank": 13,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 22.621,
+        "lng": 84.512,
+        "established": 2013,
+        "district": "Simdega",
+        "location": "Paikpara, Simdega, Jharkhand - 835223",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 52,
+        "image": "assets/images/colleges/gp-simdega.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpsimdega.org",
+        "overview": "Dedicated government institute promoting engineering talent in southern Jharkhand with core engineering disciplines.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1250,
+                "cutoffCategory": 3200
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1300,
+                "cutoffCategory": 3300
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1400,
+                "cutoffCategory": 3600
+            }
+        ],
+        "facilities": [
+            "Science & Technical Labs",
+            "Hostel",
+            "Library"
+        ]
+    },
+    {
+        "id": "gp-gumla",
+        "slug": "government-polytechnic-gumla",
+        "name": "Government Polytechnic, Gumla",
+        "shortName": "GP Gumla",
+        "rank": 14,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.042,
+        "lng": 84.538,
+        "established": 2013,
+        "district": "Gumla",
+        "location": "Kargil Chowk Road, Gumla, Jharkhand - 835207",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 60,
+        "image": "assets/images/colleges/gp-gumla.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpgumla.org",
+        "overview": "Focusing on Civil, Electrical, and Automobile engineering education for tribal and general merit candidates.",
+        "branches": [
+            {
+                "name": "Automobile Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1350,
+                "cutoffCategory": 3500
+            },
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1100,
+                "cutoffCategory": 2800
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1200,
+                "cutoffCategory": 3050
+            }
+        ],
+        "facilities": [
+            "Auto Lab",
+            "Electrical Machine Lab",
+            "Hostels"
+        ]
+    },
+    {
+        "id": "gp-lohardaga",
+        "slug": "government-polytechnic-lohardaga",
+        "name": "Government Polytechnic, Lohardaga",
+        "shortName": "GP Lohardaga",
+        "rank": 15,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.438,
+        "lng": 84.675,
+        "established": 2014,
+        "district": "Lohardaga",
+        "location": "Kisko Road, Lohardaga, Jharkhand - 835302",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 48,
+        "image": "assets/images/colleges/gp-lohardaga.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gplohardaga.org",
+        "overview": "Modern academic campus with high technology workshops and training centers.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1180,
+                "cutoffCategory": 3000
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1320,
+                "cutoffCategory": 3350
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 850,
+                "cutoffCategory": 2200
+            }
+        ],
+        "facilities": [
+            "Workshops",
+            "Library",
+            "Hostel"
+        ]
+    },
+    {
+        "id": "gp-garhwa",
+        "slug": "government-polytechnic-garhwa",
+        "name": "Government Polytechnic, Garhwa",
+        "shortName": "GP Garhwa",
+        "rank": 16,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 24.158,
+        "lng": 83.805,
+        "established": 2014,
+        "district": "Garhwa",
+        "location": "Karamdih, Garhwa, Jharkhand - 822114",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 45,
+        "image": "assets/images/colleges/gp-garhwa.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpgarhwa.org",
+        "overview": "North-western Jharkhand government technical institution offering core branches.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1200,
+                "cutoffCategory": 3100
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1280,
+                "cutoffCategory": 3250
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1380,
+                "cutoffCategory": 3500
+            }
+        ],
+        "facilities": [
+            "Modern CAD Lab",
+            "Hostel",
+            "Sports Complex"
+        ]
+    },
+    {
+        "id": "gp-godda",
+        "slug": "government-polytechnic-godda",
+        "name": "Government Polytechnic, Godda",
+        "shortName": "GP Godda",
+        "rank": 17,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 24.831,
+        "lng": 87.218,
+        "established": 2015,
+        "district": "Godda",
+        "location": "Sikatia, Godda, Jharkhand - 814133",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 50,
+        "image": "assets/images/colleges/gp-godda.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpgodda.org",
+        "overview": "Located in Santhal Pargana region with modern academic infrastructure.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1150,
+                "cutoffCategory": 2950
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1220,
+                "cutoffCategory": 3100
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1350,
+                "cutoffCategory": 3450
+            }
+        ],
+        "facilities": [
+            "Library",
+            "Computer Lab",
+            "Hostel"
+        ]
+    },
+    {
+        "id": "gp-sahebganj",
+        "slug": "government-polytechnic-sahebganj",
+        "name": "Government Polytechnic, Sahebganj",
+        "shortName": "GP Sahebganj",
+        "rank": 18,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 25.239,
+        "lng": 87.638,
+        "established": 2015,
+        "district": "Sahebganj",
+        "location": "Sakrogarh, Sahebganj, Jharkhand - 816109",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 54,
+        "image": "assets/images/colleges/gp-sahebganj.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpsahebganj.org",
+        "overview": "Situated along the Ganges river valley offering standard technical diploma programs.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1100,
+                "cutoffCategory": 2850
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 780,
+                "cutoffCategory": 1980
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1200,
+                "cutoffCategory": 3050
+            }
+        ],
+        "facilities": [
+            "High-speed Wi-Fi",
+            "Computer Labs",
+            "Hostels"
+        ]
+    },
+    {
+        "id": "gp-pakur",
+        "slug": "government-polytechnic-pakur",
+        "name": "Government Polytechnic, Pakur",
+        "shortName": "GP Pakur",
+        "rank": 19,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 24.63,
+        "lng": 87.842,
+        "established": 2015,
+        "district": "Pakur",
+        "location": "Pakur-Dumka Highway, Pakur, Jharkhand - 816107",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.2,
+        "reviewsCount": 42,
+        "image": "assets/images/colleges/gp-pakur.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gppakur.org",
+        "overview": "Government polytechnic in Pakur district offering engineering diploma courses.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1220,
+                "cutoffCategory": 3100
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1300,
+                "cutoffCategory": 3300
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1420,
+                "cutoffCategory": 3600
+            }
+        ],
+        "facilities": [
+            "Library",
+            "Workshop",
+            "Hostel"
+        ]
+    },
+    {
+        "id": "gp-jamtara",
+        "slug": "government-polytechnic-jamtara",
+        "name": "Government Polytechnic, Jamtara",
+        "shortName": "GP Jamtara",
+        "rank": 20,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 23.958,
+        "lng": 86.798,
+        "established": 2016,
+        "district": "Jamtara",
+        "location": "Karmatanr Road, Jamtara, Jharkhand - 815351",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 49,
+        "image": "assets/images/colleges/gp-jamtara.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpjamtara.org",
+        "overview": "Modern polytechnic offering CSE, Civil, and Mechanical engineering.",
+        "branches": [
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 720,
+                "cutoffCategory": 1850
+            },
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1140,
+                "cutoffCategory": 2900
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1340,
+                "cutoffCategory": 3400
+            }
+        ],
+        "facilities": [
+            "Computer Center",
+            "Workshops",
+            "Library"
+        ]
+    },
+    {
+        "id": "gp-jagannathpur",
+        "slug": "government-polytechnic-jagannathpur",
+        "name": "Government Polytechnic, Jagannathpur",
+        "shortName": "GP Jagannathpur",
+        "rank": 21,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "emerald",
+        "lat": 22.228,
+        "lng": 85.648,
+        "established": 2015,
+        "district": "West Singhbhum",
+        "location": "Jagannathpur, Chaibasa, West Singhbhum - 833214",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 46,
+        "image": "assets/images/colleges/gp-jagannathpur.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 2,050 / Year",
+        "website": "https://gpjagannathpur.org",
+        "overview": "Government technical institute catering to West Singhbhum mining and industrial corridor.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1180,
+                "cutoffCategory": 3000
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1320,
+                "cutoffCategory": 3350
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 820,
+                "cutoffCategory": 2100
+            }
+        ],
+        "facilities": [
+            "Mining Models Lab",
+            "Hostel",
+            "Central Library"
+        ]
+    },
+    {
+        "id": "wp-ranchi",
+        "slug": "government-womens-polytechnic-ranchi",
+        "name": "Government Women's Polytechnic, Ranchi",
+        "shortName": "GWP Ranchi",
+        "rank": 9,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "purple",
+        "lat": 23.332,
+        "lng": 85.318,
+        "established": 1988,
+        "district": "Ranchi",
+        "location": "At-Tharpakhna Near Plaza Chowk Jail Road, Ranchi - 834001",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.7,
+        "reviewsCount": 104,
+        "image": "assets/images/colleges/wp-ranchi.jpg",
+        "featured": true,
+        "totalIntake": 180,
+        "hostel": "Available (Dedicated Girls Hostel)",
+        "feesAnnual": "₹ 1,800 / Year",
+        "website": "https://gwpranchi.org",
+        "overview": "Premier women's technical institute in Jharkhand providing top notch education in Computer Science, Electrical, and Electronics & Communication.",
+        "branches": [
+            {
+                "name": "Computer Science and Engineering",
+                "seats": 60,
+                "cutoffGeneral": 600,
+                "cutoffCategory": 1500
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1100,
+                "cutoffCategory": 2600
+            },
+            {
+                "name": "Electronics and Communication Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1250,
+                "cutoffCategory": 3100
+            }
+        ],
+        "facilities": [
+            "Girls Hostel with Security",
+            "Software Labs",
+            "Digital Drawing Studios",
+            "Library"
+        ]
+    },
+    {
+        "id": "wp-gamharia",
+        "slug": "government-womens-polytechnic-jamshedpur-gamharia",
+        "name": "Government Women's Polytechnic, Jamshedpur (Gamharia)",
+        "shortName": "GWP Gamharia",
+        "rank": 10,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "purple",
+        "lat": 22.812,
+        "lng": 86.096,
+        "established": 2011,
+        "district": "Seraikela Kharsawan",
+        "location": "Near Thana More, Gamharia, Jamshedpur - 832108",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.6,
+        "reviewsCount": 85,
+        "image": "assets/images/colleges/wp-gamharia.jpg",
+        "featured": false,
+        "totalIntake": 240,
+        "hostel": "Available (Girls Hostel)",
+        "feesAnnual": "₹ 1,800 / Year",
+        "website": "https://gwpgamharia.org",
+        "overview": "Situated in the Jamshedpur auto hub, offering top core placements for female diploma engineers in Civil, CSE, ECE, and Mechanical.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1100,
+                "cutoffCategory": 2800
+            },
+            {
+                "name": "Computer Science and Engineering",
+                "seats": 60,
+                "cutoffGeneral": 550,
+                "cutoffCategory": 1400
+            },
+            {
+                "name": "Electronics and Communication Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1250,
+                "cutoffCategory": 3100
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 950,
+                "cutoffCategory": 2400
+            }
+        ],
+        "facilities": [
+            "Girls Hostel",
+            "Modern Computer Labs",
+            "Placement Cell"
+        ]
+    },
+    {
+        "id": "wp-bokaro",
+        "slug": "government-womens-polytechnic-bokaro",
+        "name": "Government Women's Polytechnic, Bokaro",
+        "shortName": "GWP Bokaro",
+        "rank": 22,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "purple",
+        "lat": 23.672,
+        "lng": 86.143,
+        "established": 2014,
+        "district": "Bokaro",
+        "location": "Sector 3, Bokaro Steel City, Jharkhand - 827003",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 71,
+        "image": "assets/images/colleges/wp-bokaro.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 1,800 / Year",
+        "website": "https://gwpbokaro.org",
+        "overview": "Exclusive women's technical college in Bokaro Steel City offering CSE, ECE, and Electrical.",
+        "branches": [
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 620,
+                "cutoffCategory": 1550
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1150,
+                "cutoffCategory": 2750
+            },
+            {
+                "name": "Electronics & Communication",
+                "seats": 60,
+                "cutoffGeneral": 1300,
+                "cutoffCategory": 3200
+            }
+        ],
+        "facilities": [
+            "Secure Hostel",
+            "Computer Lab",
+            "Library"
+        ]
+    },
+    {
+        "id": "wp-dumka",
+        "slug": "government-womens-polytechnic-dumka",
+        "name": "Government Women's Polytechnic, Dumka",
+        "shortName": "GWP Dumka",
+        "rank": 23,
+        "category": "Polytechnic",
+        "type": "Government",
+        "markerColor": "purple",
+        "lat": 24.275,
+        "lng": 87.24,
+        "established": 2015,
+        "district": "Dumka",
+        "location": "Kathikund Road, Dumka, Jharkhand - 814101",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 56,
+        "image": "assets/images/colleges/wp-dumka.jpg",
+        "featured": false,
+        "totalIntake": 180,
+        "hostel": "Available",
+        "feesAnnual": "₹ 1,800 / Year",
+        "website": "https://gwpdumka.org",
+        "overview": "Empowering female technical candidates in Santhal Pargana division.",
+        "branches": [
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 700,
+                "cutoffCategory": 1800
+            },
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1120,
+                "cutoffCategory": 2850
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1220,
+                "cutoffCategory": 3080
+            }
+        ],
+        "facilities": [
+            "Hostel",
+            "Modern Classrooms",
+            "IT Lab"
+        ]
+    },
+    {
+        "id": "gp-baharagora",
+        "slug": "government-polytechnic-baharagora",
+        "name": "Government Polytechnic, Baharagora (PPP Model)",
+        "shortName": "GP Baharagora",
+        "rank": 24,
+        "category": "Polytechnic",
+        "type": "PPP",
+        "markerColor": "blue",
+        "lat": 22.278,
+        "lng": 86.715,
+        "established": 2017,
+        "district": "East Singhbhum",
+        "location": "Baharagora, East Singhbhum, Jharkhand - 832101",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 68,
+        "image": "assets/images/colleges/gp-baharagora.jpg",
+        "featured": false,
+        "totalIntake": 300,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
+        "website": "https://gpbaharagora.edu.in",
+        "overview": "Run under Public-Private Partnership offering top infrastructure with corporate training tie-ups.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1400,
+                "cutoffCategory": 3600
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 880,
+                "cutoffCategory": 2200
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1450,
+                "cutoffCategory": 3700
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1500,
+                "cutoffCategory": 3900
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 920,
+                "cutoffCategory": 2400
+            }
+        ],
+        "facilities": [
+            "Modern CAD Labs",
+            "Hostels",
+            "Sports Ground",
+            "Wi-Fi Campus"
+        ]
+    },
+    {
+        "id": "gp-chandil",
+        "slug": "government-polytechnic-chandil",
+        "name": "Government Polytechnic, Chandil (PPP Model)",
+        "shortName": "GP Chandil",
+        "rank": 25,
+        "category": "Polytechnic",
+        "type": "PPP",
+        "markerColor": "blue",
+        "lat": 22.965,
+        "lng": 86.05,
+        "established": 2017,
+        "district": "Seraikela Kharsawan",
+        "location": "Chandil, Seraikela-Kharsawan, Jharkhand - 832401",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 62,
+        "image": "assets/images/colleges/gp-chandil.jpg",
+        "featured": false,
+        "totalIntake": 300,
+        "hostel": "Available",
+        "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
+        "website": "https://gpchandil.edu.in",
+        "overview": "PPP institution located near Jamshedpur industrial area with strong core engineering focus.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1380,
+                "cutoffCategory": 3500
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 850,
+                "cutoffCategory": 2150
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1420,
+                "cutoffCategory": 3650
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1480,
+                "cutoffCategory": 3800
+            }
+        ],
+        "facilities": [
+            "Robotics Center",
+            "Hostel",
+            "Central Library"
+        ]
+    },
+    {
+        "id": "gp-silli",
+        "slug": "government-polytechnic-silli",
+        "name": "Government Polytechnic, Silli (PPP Model)",
+        "shortName": "GP Silli",
+        "rank": 26,
+        "category": "Polytechnic",
+        "type": "PPP",
+        "markerColor": "blue",
+        "lat": 23.3512,
+        "lng": 85.852,
+        "established": 2013,
+        "district": "Ranchi",
+        "location": "Muri-Silli Road, Silli, Ranchi, Jharkhand - 835102",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 75,
+        "image": "assets/images/colleges/gp-silli.jpg",
+        "featured": false,
+        "totalIntake": 300,
+        "hostel": "Available",
+        "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
+        "website": "https://gpsilli.org",
+        "overview": "Reputed PPP institute near Ranchi known for CSE, ECE, Civil, and Mechanical diploma training.",
+        "branches": [
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 790,
+                "cutoffCategory": 2050
+            },
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1300,
+                "cutoffCategory": 3400
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1350,
+                "cutoffCategory": 3500
+            },
+            {
+                "name": "Electronics & Comm.",
+                "seats": 60,
+                "cutoffGeneral": 1600,
+                "cutoffCategory": 4100
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1420,
+                "cutoffCategory": 3700
+            }
+        ],
+        "facilities": [
+            "Modern IT Labs",
+            "Central Workshop",
+            "Hostels"
+        ]
+    },
+    {
+        "id": "gp-madhupur",
+        "slug": "government-polytechnic-madhupur",
+        "name": "Government Polytechnic, Madhupur (PPP Model)",
+        "shortName": "GP Madhupur",
+        "rank": 27,
+        "category": "Polytechnic",
+        "type": "PPP",
+        "markerColor": "blue",
+        "lat": 24.262,
+        "lng": 86.645,
+        "established": 2017,
+        "district": "Deoghar",
+        "location": "Madhupur, Deoghar, Jharkhand - 815353",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 54,
+        "image": "assets/images/colleges/gp-madhupur.jpg",
+        "featured": false,
+        "totalIntake": 300,
+        "hostel": "Available",
+        "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
+        "website": "https://gpmadhupur.edu.in",
+        "overview": "PPP polytechnic in Deoghar district providing career-ready engineering diplomas.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1420,
+                "cutoffCategory": 3600
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 890,
+                "cutoffCategory": 2250
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1460,
+                "cutoffCategory": 3750
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1520,
+                "cutoffCategory": 3950
+            }
+        ],
+        "facilities": [
+            "Library",
+            "Computer Lab",
+            "Hostel"
+        ]
+    },
+    {
+        "id": "gp-gola",
+        "slug": "government-polytechnic-gola",
+        "name": "Government Polytechnic, Gola (PPP Model)",
+        "shortName": "GP Gola",
+        "rank": 28,
+        "category": "Polytechnic",
+        "type": "PPP",
+        "markerColor": "blue",
+        "lat": 23.535,
+        "lng": 85.718,
+        "established": 2017,
+        "district": "Ramgarh",
+        "location": "Gola, Ramgarh, Jharkhand - 829110",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.4,
+        "reviewsCount": 59,
+        "image": "assets/images/colleges/gp-gola.jpg",
+        "featured": false,
+        "totalIntake": 300,
+        "hostel": "Available",
+        "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
+        "website": "https://gpgola.edu.in",
+        "overview": "Located in the industrial coal-mining belt of Ramgarh offering high placement linkages.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1350,
+                "cutoffCategory": 3450
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1380,
+                "cutoffCategory": 3550
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1450,
+                "cutoffCategory": 3750
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 950,
+                "cutoffCategory": 2450
+            }
+        ],
+        "facilities": [
+            "Mining Labs",
+            "Hostels",
+            "Sports Ground"
+        ]
+    },
+    {
+        "id": "alkabir-jamshedpur",
+        "slug": "al-kabir-polytechnic-jamshedpur",
+        "name": "Al-Kabir Polytechnic, Jamshedpur",
+        "shortName": "Al Kabir",
+        "rank": 29,
+        "category": "Polytechnic",
+        "type": "Private",
+        "markerColor": "amber",
+        "lat": 22.825,
+        "lng": 86.218,
+        "established": 1990,
+        "district": "East Singhbhum",
+        "location": "Kabirnagar, Mango, Jamshedpur, Jharkhand - 831012",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.7,
+        "reviewsCount": 165,
+        "image": "assets/images/colleges/alkabir-jamshedpur.jpg",
+        "featured": true,
+        "totalIntake": 540,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 55,000 / Year",
+        "website": "https://alkabir.in",
+        "overview": "Top ranked private polytechnic in Jharkhand with phenomenal placements in Tata Group, Jindal, and multinationals.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 120,
+                "cutoffGeneral": 1800,
+                "cutoffCategory": 4500
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 120,
+                "cutoffGeneral": 1200,
+                "cutoffCategory": 3100
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 120,
+                "cutoffGeneral": 1600,
+                "cutoffCategory": 4000
+            },
+            {
+                "name": "Electronics Engineering",
+                "seats": 60,
+                "cutoffGeneral": 2200,
+                "cutoffCategory": 5500
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 120,
+                "cutoffGeneral": 1700,
+                "cutoffCategory": 4200
+            }
+        ],
+        "facilities": [
+            "Advanced CNC Center",
+            "High-Tech Computer Labs",
+            "Hostels",
+            "Mega Auditorium",
+            "Sports Arena"
+        ]
+    },
+    {
+        "id": "kk-polytechnic-dhanbad",
+        "slug": "kk-polytechnic-govindpur-dhanbad",
+        "name": "K.K. Polytechnic, Govindpur (Dhanbad)",
+        "shortName": "KK Polytechnic",
+        "rank": 30,
+        "category": "Polytechnic",
+        "type": "Private",
+        "markerColor": "amber",
+        "lat": 23.834,
+        "lng": 86.512,
+        "established": 2006,
+        "district": "Dhanbad",
+        "location": "Nagnagar, Govindpur, Dhanbad, Jharkhand - 828109",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 120,
+        "image": "assets/images/colleges/kk-polytechnic.jpg",
+        "featured": false,
+        "totalIntake": 480,
+        "hostel": "Available",
+        "feesAnnual": "₹ 48,000 / Year",
+        "website": "https://kkpolytechnic.ac.in",
+        "overview": "Prominent private polytechnic in Dhanbad offering Civil, Mechanical, Electrical, Mining, and Automobile streams.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 120,
+                "cutoffGeneral": 2100,
+                "cutoffCategory": 5000
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 120,
+                "cutoffGeneral": 2200,
+                "cutoffCategory": 5200
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 120,
+                "cutoffGeneral": 2000,
+                "cutoffCategory": 4900
+            },
+            {
+                "name": "Mining Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1500,
+                "cutoffCategory": 3800
+            },
+            {
+                "name": "Automobile Engineering",
+                "seats": 60,
+                "cutoffGeneral": 2500,
+                "cutoffCategory": 5800
+            }
+        ],
+        "facilities": [
+            "Central Workshop",
+            "Hostel",
+            "Transport Bus Service",
+            "Library"
+        ]
+    },
+    {
+        "id": "ramgovind-koderma",
+        "slug": "ramgovind-institute-of-technology-koderma",
+        "name": "Ramgovind Institute of Technology, Koderma",
+        "shortName": "Ramgovind Koderma",
+        "rank": 31,
+        "category": "Polytechnic",
+        "type": "Private",
+        "markerColor": "amber",
+        "lat": 24.432,
+        "lng": 85.621,
+        "established": 2008,
+        "district": "Koderma",
+        "location": "Mahuatanr, Karma, Jhumri Telaiya, Koderma - 825409",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.3,
+        "reviewsCount": 80,
+        "image": "assets/images/colleges/ramgovind-koderma.jpg",
+        "featured": false,
+        "totalIntake": 360,
+        "hostel": "Available",
+        "feesAnnual": "₹ 45,000 / Year",
+        "website": "https://rgit.ac.in",
+        "overview": "Private technical campus in Jhumri Telaiya offering Diploma in Engineering and B.Tech degrees.",
+        "branches": [
+            {
+                "name": "Civil Engineering",
+                "seats": 90,
+                "cutoffGeneral": 2300,
+                "cutoffCategory": 5400
+            },
+            {
+                "name": "Computer Science & Engineering",
+                "seats": 60,
+                "cutoffGeneral": 1600,
+                "cutoffCategory": 4100
+            },
+            {
+                "name": "Electrical Engineering",
+                "seats": 90,
+                "cutoffGeneral": 2200,
+                "cutoffCategory": 5200
+            },
+            {
+                "name": "Mechanical Engineering",
+                "seats": 120,
+                "cutoffGeneral": 2400,
+                "cutoffCategory": 5600
+            }
+        ],
+        "facilities": [
+            "Hostels",
+            "Library",
+            "Workshops"
+        ]
+    },
+    {
+        "id": "bit-sindri-d2d",
+        "slug": "bit-sindri-lateral-entry",
+        "name": "BIT Sindri (D2D / B.Tech Lateral Entry)",
+        "shortName": "BIT Sindri",
+        "rank": 1,
+        "category": "B.Tech Lateral Entry",
+        "type": "Government",
+        "markerColor": "rose",
+        "lat": 23.6534,
+        "lng": 86.474,
+        "established": 1949,
+        "district": "Dhanbad",
+        "location": "Sindri, Dhanbad, Jharkhand - 828123",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.9,
+        "reviewsCount": 350,
+        "image": "assets/images/colleges/bit-sindri.jpg",
+        "featured": true,
+        "totalIntake": 68,
+        "hostel": "Available for all lateral students",
+        "feesAnnual": "₹ 15,000 / Year",
+        "website": "https://bitsindri.ac.in",
+        "overview": "The #1 choice for Diploma to Degree (D2D) lateral entry in Jharkhand. 10% supernumerary seats in all B.Tech branches for top polytechnic rankers with average placement of ₹ 7.5 LPA.",
+        "branches": [
+            {
+                "name": "B.Tech Computer Science & Engg (Lateral)",
+                "seats": 8,
+                "cutoffGeneral": 15,
+                "cutoffCategory": 45
+            },
+            {
+                "name": "B.Tech Information Technology (Lateral)",
+                "seats": 6,
+                "cutoffGeneral": 25,
+                "cutoffCategory": 60
+            },
+            {
+                "name": "B.Tech Electrical Engineering (Lateral)",
+                "seats": 10,
+                "cutoffGeneral": 30,
+                "cutoffCategory": 85
+            },
+            {
+                "name": "B.Tech Mechanical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 25,
+                "cutoffCategory": 70
+            },
+            {
+                "name": "B.Tech Civil Engineering (Lateral)",
+                "seats": 10,
+                "cutoffGeneral": 35,
+                "cutoffCategory": 95
+            },
+            {
+                "name": "B.Tech Electronics & Comm. (Lateral)",
+                "seats": 8,
+                "cutoffGeneral": 35,
+                "cutoffCategory": 90
+            },
+            {
+                "name": "B.Tech Mining Engineering (Lateral)",
+                "seats": 6,
+                "cutoffGeneral": 40,
+                "cutoffCategory": 110
+            },
+            {
+                "name": "B.Tech Metallurgical Engineering (Lateral)",
+                "seats": 6,
+                "cutoffGeneral": 50,
+                "cutoffCategory": 130
+            },
+            {
+                "name": "B.Tech Chemical Engineering (Lateral)",
+                "seats": 6,
+                "cutoffGeneral": 50,
+                "cutoffCategory": 130
+            },
+            {
+                "name": "B.Tech Production Engineering (Lateral)",
+                "seats": 6,
+                "cutoffGeneral": 65,
+                "cutoffCategory": 160
+            }
+        ],
+        "facilities": [
+            "Siemens Center of Excellence & Robotics Lab",
+            "Central Research Labs",
+            "Supercomputing Center",
+            "Hostels (25+)",
+            "Alumni Network"
+        ],
+        "gallery": [
+            {
+                "title": "450-Acre Campus Aerial Panorama",
+                "image": "assets/images/colleges/bit-sindri-aerial.jpg",
+                "icon": "fa-plane-departure"
+            },
+            {
+                "title": "Lush Green Academic Complex Panorama",
+                "image": "assets/images/colleges/bit-sindri-campus-lush.jpg",
+                "icon": "fa-mountain-sun"
+            },
+            {
+                "title": "Iconic Main Academic Building",
+                "image": "assets/images/colleges/bit-sindri-academic.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Siemens Centre of Excellence & Robotics Lab",
+                "image": "assets/images/colleges/bit-sindri-robotics.jpg",
+                "icon": "fa-robot"
+            },
+            {
+                "title": "Electrical Engineering Society Seminar Hall",
+                "image": "assets/images/colleges/bit-sindri-seminar.jpg",
+                "icon": "fa-users-line"
+            },
+            {
+                "title": "Executive Seminar & Audio-Visual Conference Hall",
+                "image": "assets/images/colleges/bit-sindri-conference-hall.jpg",
+                "icon": "fa-microphone"
+            },
+            {
+                "title": "Smart Classroom & Technical Lecture Hall",
+                "image": "assets/images/colleges/bit-sindri-classroom.jpg",
+                "icon": "fa-chalkboard-user"
+            },
+            {
+                "title": "Annual Convocation & Cultural Mega Stage",
+                "image": "assets/images/colleges/bit-sindri-annual-fest.jpg",
+                "icon": "fa-award"
+            }
+        ]
+    },
+    {
+        "id": "ucet-hazaribag",
+        "slug": "ucet-vinoba-bhave-university",
+        "name": "University College of Engineering & Tech (UCET VBU Hazaribag)",
+        "shortName": "UCET Hazaribag",
+        "rank": 2,
+        "category": "B.Tech Lateral Entry",
+        "type": "Government",
+        "markerColor": "rose",
+        "lat": 23.998,
+        "lng": 85.358,
+        "established": 2009,
+        "district": "Hazaribag",
+        "location": "VBU Campus, Hazaribag, Jharkhand - 825301",
+        "affiliation": "Vinoba Bhave University (VBU)",
+        "approval": "AICTE Approved",
+        "rating": 4.6,
+        "reviewsCount": 145,
+        "image": "assets/images/colleges/ucet-hazaribag.jpg",
+        "featured": true,
+        "totalIntake": 45,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "₹ 45,000 / Year",
+        "website": "https://ucetvbu.ac.in",
+        "overview": "Premier constituent government university engineering college of Vinoba Bhave University offering prestigious B.Tech Lateral Entry seats for diploma holders.",
+        "branches": [
+            {
+                "name": "B.Tech Computer Science & Engg (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 120,
+                "cutoffCategory": 320
+            },
+            {
+                "name": "B.Tech Information Technology (Lateral)",
+                "seats": 10,
+                "cutoffGeneral": 160,
+                "cutoffCategory": 380
+            },
+            {
+                "name": "B.Tech Electronics & Comm. (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 190,
+                "cutoffCategory": 420
+            },
+            {
+                "name": "B.Tech Mechanical Engineering (Lateral)",
+                "seats": 11,
+                "cutoffGeneral": 220,
+                "cutoffCategory": 480
+            }
+        ],
+        "facilities": [
+            "University Central Library",
+            "Advanced IT Labs",
+            "University Hostels",
+            "Placement Cell",
+            "Mechanical Workshops"
+        ]
+    },
+    {
+        "id": "dumka-engg-d2d",
+        "slug": "dumka-engineering-college-d2d",
+        "name": "Dumka Engineering College (Govt. Established D2D)",
+        "shortName": "Dumka Engg (D2D)",
+        "rank": 3,
+        "category": "B.Tech Lateral Entry",
+        "type": "Government",
+        "markerColor": "rose",
+        "lat": 24.282,
+        "lng": 87.228,
+        "established": 2013,
+        "district": "Dumka",
+        "location": "Near Shivpahar, Dumka, Jharkhand - 814101",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 112,
+        "image": "assets/images/colleges/dumka-engg.jpg",
+        "featured": true,
+        "totalIntake": 60,
+        "hostel": "Available (Boys & Girls)",
+        "feesAnnual": "Free Quota: ₹ 25,000 / Year • Regular Quota: ₹ 55,000 / Year",
+        "website": "https://dumkaengg.edu.in",
+        "overview": "Established by Government of Jharkhand under TEQIP-III initiative, offering top B.Tech Lateral Entry degree programs with modern academic infrastructure and campus placements.",
+        "branches": [
+            {
+                "name": "B.Tech Computer Science & Engg (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 180,
+                "cutoffCategory": 450
+            },
+            {
+                "name": "B.Tech Civil Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 210,
+                "cutoffCategory": 520
+            },
+            {
+                "name": "B.Tech Electrical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 230,
+                "cutoffCategory": 560
+            },
+            {
+                "name": "B.Tech Mechanical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 240,
+                "cutoffCategory": 590
+            },
+            {
+                "name": "B.Tech Electronics & Comm. (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 260,
+                "cutoffCategory": 620
+            }
+        ],
+        "facilities": [
+            "Smart Engineering Classrooms",
+            "Modern Robotics Lab",
+            "Hostels",
+            "Campus Placement Cell",
+            "Central Auditorium",
+            "Central Library"
+        ]
+    },
+    {
+        "id": "chaibasa-engg-d2d",
+        "slug": "chaibasa-engineering-college-d2d",
+        "name": "Chaibasa Engineering College (Govt. Established D2D)",
+        "shortName": "Chaibasa Engg (D2D)",
+        "rank": 4,
+        "category": "B.Tech Lateral Entry",
+        "type": "Government",
+        "markerColor": "rose",
+        "lat": 22.56,
+        "lng": 85.815,
+        "established": 2013,
+        "district": "West Singhbhum",
+        "location": "Jhikpani, Chaibasa, West Singhbhum - 833215",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 95,
+        "image": "assets/images/colleges/chaibasa-engg.jpg",
+        "featured": false,
+        "totalIntake": 60,
+        "hostel": "Available",
+        "feesAnnual": "Free Quota: ₹ 25,000 / Year • Regular: ₹ 55,000 / Year",
+        "website": "https://chaibasaengg.edu.in",
+        "overview": "Govt established engineering college offering premier lateral entry degree courses.",
+        "branches": [
+            {
+                "name": "B.Tech Computer Science (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 190,
+                "cutoffCategory": 480
+            },
+            {
+                "name": "B.Tech Civil Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 220,
+                "cutoffCategory": 540
+            },
+            {
+                "name": "B.Tech Electrical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 235,
+                "cutoffCategory": 570
+            },
+            {
+                "name": "B.Tech Mechanical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 245,
+                "cutoffCategory": 600
+            },
+            {
+                "name": "B.Tech Electronics & Comm. (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 270,
+                "cutoffCategory": 640
+            }
+        ],
+        "facilities": [
+            "Hostels",
+            "Central Library",
+            "Workshops"
+        ]
+    },
+    {
+        "id": "ramgarh-engg-d2d",
+        "slug": "ramgarh-engineering-college-d2d",
+        "name": "Ramgarh Engineering College (Govt. Established D2D)",
+        "shortName": "Ramgarh Engg (D2D)",
+        "rank": 5,
+        "category": "B.Tech Lateral Entry",
+        "type": "Government",
+        "markerColor": "rose",
+        "lat": 23.618,
+        "lng": 85.524,
+        "established": 2013,
+        "district": "Ramgarh",
+        "location": "Murubanda, Near NH-33, Ramgarh, Jharkhand - 825101",
+        "affiliation": "Jharkhand University of Technology (JUT)",
+        "approval": "AICTE Approved",
+        "rating": 4.5,
+        "reviewsCount": 98,
+        "image": "assets/images/colleges/ramgarh-engg.jpg",
+        "featured": false,
+        "totalIntake": 60,
+        "hostel": "Available",
+        "feesAnnual": "Free Quota: ₹ 25,000 / Year • Regular: ₹ 55,000 / Year",
+        "website": "https://ramgarhengg.edu.in",
+        "overview": "Govt established degree institute with top modern laboratories and D2D seats.",
+        "branches": [
+            {
+                "name": "B.Tech Computer Science (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 185,
+                "cutoffCategory": 460
+            },
+            {
+                "name": "B.Tech Civil Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 215,
+                "cutoffCategory": 530
+            },
+            {
+                "name": "B.Tech Electrical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 230,
+                "cutoffCategory": 560
+            },
+            {
+                "name": "B.Tech Mechanical Engineering (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 240,
+                "cutoffCategory": 590
+            },
+            {
+                "name": "B.Tech Electronics & Comm. (Lateral)",
+                "seats": 12,
+                "cutoffGeneral": 265,
+                "cutoffCategory": 630
+            }
+        ],
+        "facilities": [
+            "High Speed Computing",
+            "Hostel",
+            "Sports Complex"
+        ]
+    }
+],
 
     questionPapers: [
         {
@@ -695,52 +2363,63 @@ window.DC_DATA = {
                 { event: "Result & State Rank Merit List", date: "May / June 2025" },
                 { event: "Online Counselling & College Allotment", date: "June - July 2025 (3 Rounds)" }
             ],
-            syllabus: [
-                {
-                    subject: "Mathematics (50 Marks)",
+                        syllabus: [
+                { 
+                    subject: "Engineering Physics (50 Marks)", 
+                    subtitle: "Diploma 1st & 2nd Semester",
                     topics: [
-                        "Real Numbers & Fundamental Theorem of Arithmetic",
-                        "Polynomials (Zeroes, Division Algorithm & Quadratic Relations)",
-                        "Pair of Linear Equations in Two Variables (Graphical & Algebraic)",
-                        "Quadratic Equations (Discriminant, Nature of Roots, Quadratic Formula)",
-                        "Arithmetic Progressions (nth term & Sum of n terms)",
-                        "Coordinate Geometry (Distance Formula, Section Formula, Area of Triangles)",
-                        "Trigonometry (Ratios, Standard Angles 0-90°, Trigonometric Identities)",
-                        "Applications of Trigonometry (Heights and Distances with Single & Double Angles)",
-                        "Triangles (Similarity Criteria, Thales Theorem, Pythagoras Theorem)",
-                        "Circles (Tangents to a Circle, Length of Tangents from External Point)",
-                        "Areas Related to Circles (Sectors, Segments & Combined Plane Figures)",
-                        "Surface Areas and Volumes (Cubes, Cylinders, Cones, Spheres & Frustum)",
-                        "Statistics (Mean, Median, Mode of Grouped Data, Ogive Curves)",
-                        "Probability (Theoretical Probability of Events, Coin, Dice & Card Problems)"
-                    ]
+                        "Units & Measurements",
+                        "Kinematics & Newton's Laws of Motion",
+                        "Angular Motion & Simple Harmonic Motion",
+                        "Work, Power & Energy",
+                        "Elasticity & Surface Tension",
+                        "Viscosity & Fluid Mechanics",
+                        "Heat, Temperature & Thermal Expansion",
+                        "Sound & Acoustics of Buildings",
+                        "Properties of Light & Optics",
+                        "Electrostatics & Electric Potential",
+                        "Modern Physics & Band Theory",
+                        "Photo Electricity, LASER & X-rays",
+                        "Nanotechnology & Non-Conventional Energy"
+                    ] 
                 },
-                {
-                    subject: "Physics (50 Marks)",
+                { 
+                    subject: "Engineering Chemistry (50 Marks)", 
+                    subtitle: "Diploma 1st & 2nd Semester",
                     topics: [
-                        "Light: Reflection & Refraction (Mirror & Lens Formula, Magnification, Power of Lens)",
-                        "Human Eye & The Colourful World (Defects of Vision, Dispersion, Atmospheric Refraction, Tyndall Effect)",
-                        "Electricity (Ohm's Law, Resistivity, Series & Parallel Combinations, Heating Effect & Electric Power)",
-                        "Magnetic Effects of Electric Current (Field Lines, Solenoid, Fleming's Left & Right Hand Rules, Electric Motor & Generator)",
-                        "Sources of Energy (Conventional, Non-Conventional, Solar, Wind, Hydro, Nuclear & Bio-mass Energy)",
-                        "Motion & Laws of Motion (Velocity-Time Graphs, Newton's 1st, 2nd & 3rd Laws, Momentum Conservation)",
-                        "Gravitation & Floatation (Universal Law, Free Fall, Mass vs Weight, Archimedes Principle & Relative Density)",
-                        "Work, Energy & Power (Kinetic & Potential Energy, Law of Conservation of Energy, Power Units)",
-                        "Sound Waves (Longitudinal & Transverse Waves, Velocity, Frequency, Reflection of Sound & Echo, SONAR)"
-                    ]
+                        "Atomic Structure",
+                        "Electro Chemistry",
+                        "Water — Sources, Hardness & Treatment",
+                        "Metallurgy — Ore, Extraction & Alloys",
+                        "Corrosion — Types & Prevention Methods",
+                        "Atmospheric & Electrochemical Corrosion",
+                        "Paints & Varnishes",
+                        "Lubricants — Types & Properties",
+                        "Plastics — Thermosetting & Thermoplastic",
+                        "Rubber — Natural & Synthetic",
+                        "Insulating & Non-Metallic Materials",
+                        "Fuels — Classification & Properties",
+                        "Pollution & Environmental Chemistry"
+                    ] 
                 },
-                {
-                    subject: "Chemistry (50 Marks)",
+                { 
+                    subject: "Engineering Mathematics (50 Marks)", 
+                    subtitle: "Diploma 1st & 2nd Semester",
                     topics: [
-                        "Chemical Reactions & Equations (Types of Reactions, Redox, Corrosion & Rancidity)",
-                        "Acids, Bases & Salts (pH Scale, Chemical Properties, Bleaching Powder, Baking Soda, Washing Soda, Plaster of Paris)",
-                        "Metals and Non-Metals (Physical/Chemical Properties, Reactivity Series, Extraction of Metals, Corrosion Prevention)",
-                        "Carbon and its Compounds (Covalent Bonding, Homologous Series, Functional Groups, Saponification, Soaps & Detergents)",
-                        "Periodic Classification of Elements (Mendeleev's Periodic Table, Modern Periodic Law, Trends in Valency, Atomic Size & Electronegativity)",
-                        "Matter in Our Surroundings & Is Matter Around Us Pure (States of Matter, Solutions, Colloids, Suspensions, Separation Techniques)",
-                        "Atoms and Molecules (Laws of Chemical Combination, Mole Concept, Molecular Mass, Chemical Formula Writing)",
-                        "Structure of the Atom (Thomson, Rutherford & Bohr Models, Valency, Atomic Number, Mass Number, Isotopes & Isobars)"
-                    ]
+                        "AP, GP, HP & Quadratic Equations",
+                        "Logarithms & Partial Fractions",
+                        "Determinants & Matrices",
+                        "Binomial Theorem",
+                        "Trigonometry — Ratios & Identities",
+                        "Compound & Multiple Angles",
+                        "Inverse Trigonometric Ratios",
+                        "Coordinate Geometry — Point & Line",
+                        "Circles & Their Equations",
+                        "Vectors — Dot & Cross Product",
+                        "Functions, Limits & Continuity",
+                        "Differentiation & Its Applications",
+                        "Integration & Its Applications"
+                    ] 
                 }
             ],
             cutoffs: [

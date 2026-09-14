@@ -122,7 +122,7 @@ window.DC_DATA = {
         "lng": 85.334,
         "established": 1955,
         "district": "Ranchi",
-        "location": "Opp. Barnabas Hospital, Church Rd, Bahu Bazar, Konka, Ranchi - 834001",
+        "location": "Opp. Barnabas Hospital, Church Rd, Bahu Bazar, Konka, Ranchi, Jharkhand - 834001",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.9,
@@ -130,10 +130,10 @@ window.DC_DATA = {
         "image": "assets/images/colleges/gp-ranchi.jpg",
         "featured": true,
         "totalIntake": 300,
-        "hostel": "Available (Boys & Girls)",
+        "hostel": "Available (Separate Boys & Girls Hostels)",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpranchi.org",
-        "overview": "Premier #1 ranked government polytechnic institution of Jharkhand located at Church Road, Ranchi. Renowned for top merit rankers, state-of-the-art labs, and consistent placement drives in Tata Steel, JSW, and L&T.",
+        "overview": "Government Polytechnic Ranchi is the premier #1 ranked state technical institution of Jharkhand, established in 1955. Located at Church Road in the heart of Ranchi, it is celebrated for top PECE merit rankers, distinguished alumni, modern CAD/CAM workshops, and consistent 90%+ campus placements in core engineering giants like Tata Steel, JSW, L&T, and Jindal Steel.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -167,13 +167,46 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Digital Library",
-            "Modern CAD/CAM Lab",
-            "Hostels with Mess",
-            "High-speed Wi-Fi",
-            "Sports Ground",
-            "Auditorium",
-            "Engineering Drawing Hall"
+            "Digital & Reference Library (25,000+ Books)",
+            "Modern CAD/CAM & Simulation Labs",
+            "High-Speed Wi-Fi Campus",
+            "Hostels with Hygienic Mess",
+            "State-of-the-Art Central Workshop",
+            "Placement & Training Cell",
+            "Multi-purpose Sports Ground",
+            "Air-Conditioned Seminar Hall"
+        ],
+        "gallery": [
+            {
+                "title": "New Academic Complex & Entrance",
+                "image": "assets/images/colleges/gp-ranchi-academic-block.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Engineering Drawing & Drafting Hall",
+                "image": "assets/images/colleges/gp-ranchi-drawing-hall.jpg",
+                "icon": "fa-compass-drafting"
+            },
+            {
+                "title": "Historic Main Campus Building & Lawns",
+                "image": "assets/images/colleges/gp-ranchi-main-campus.jpg",
+                "icon": "fa-tree"
+            },
+            {
+                "title": "Interactive Technical Lecture & Seminar Session",
+                "image": "assets/images/colleges/gp-ranchi-classroom.jpg",
+                "icon": "fa-chalkboard-user"
+            },
+            {
+                "title": "GP Ranchi Heritage Administrative Block",
+                "image": "assets/images/colleges/gp-ranchi-heritage-block.jpg",
+                "icon": "fa-landmark"
+            },
+            {
+                "title": "Electrical & Electronics Machines Lab",
+                "image": "assets/images/colleges/dumka-engg-electrical-lab.jpg",
+                "icon": "fa-bolt"
+            }
         ]
     },
     {
@@ -189,7 +222,7 @@ window.DC_DATA = {
         "lng": 86.4172,
         "established": 1958,
         "district": "Dhanbad",
-        "location": "Polytechnic Road, Dhanbad, Jharkhand - 828130",
+        "location": "Polytechnic Road, Near CIMFR, Dhanbad, Jharkhand - 828130",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.8,
@@ -200,7 +233,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpdhanbad.ac.in",
-        "overview": "Situated in the coal and energy capital of India, GP Dhanbad offers 5 core engineering streams with premier workshop facilities and strong PSU connections.",
+        "overview": "Situated in India's coal and mining capital, Government Polytechnic Dhanbad (Estd 1958) is acclaimed for premier workshop training, Metallurgical engineering, Civil, Mechanical, CSE, and Electrical disciplines. Strong corporate linkages with BCCL, CCL, SAIL, and Eastern Coalfields ensure exceptional industrial visits and career opportunities.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -234,11 +267,34 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Metallurgy Testing Labs",
-            "Central Workshop",
-            "Hostel",
-            "Computer Center",
-            "Gymnasium"
+            "Metallurgy Testing & Heat Treatment Lab",
+            "Heavy Central Workshop & Foundry Shop",
+            "High-Tech Computer Center",
+            "Boys & Girls Hostels",
+            "Digital Library & E-Learning Portal",
+            "Gymnasium & Sports Complex"
+        ],
+        "gallery": [
+            {
+                "title": "GP Dhanbad Main Academic Block",
+                "image": "assets/images/colleges/gp-dhanbad.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Metallurgy & Material Testing Lab",
+                "image": "assets/images/colleges/gp-adityapur-chemistry-lab.jpg",
+                "icon": "fa-flask-vial"
+            },
+            {
+                "title": "Heavy Machinery & Mechanical Workshop",
+                "image": "assets/images/colleges/ucet-workshop-entrance.jpg",
+                "icon": "fa-wrench"
+            },
+            {
+                "title": "Advanced Computing Facility",
+                "image": "assets/images/colleges/dumka-engg-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            }
         ]
     },
     {
@@ -254,7 +310,7 @@ window.DC_DATA = {
         "lng": 86.1689,
         "established": 1980,
         "district": "Seraikela Kharsawan",
-        "location": "Adityapur Industrial Area, Seraikela-Kharsawan, Jamshedpur - 832109",
+        "location": "Adityapur Industrial Area, Near Gamharia, Jamshedpur - 832109",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.9,
@@ -265,7 +321,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpadityapur.ac.in",
-        "overview": "Located adjacent to the Adityapur Industrial Area and Jamshedpur auto hub, GP Adityapur holds the highest placement record in eastern India for diploma engineers.",
+        "overview": "Located adjacent to Asia's largest auto and industrial manufacturing zone in Jamshedpur, GP Adityapur holds the undisputed highest placement record in Eastern India. Features state-of-the-art Siemens Center of Excellence, modern robotics & CNC labs, and direct campus selections by Tata Motors, Tata Steel, L&T, and Cummins.",
         "branches": [
             {
                 "name": "Computer Science and Engineering",
@@ -294,11 +350,38 @@ window.DC_DATA = {
         ],
         "facilities": [
             "Siemens Center of Excellence",
-            "Modern CNC Labs",
-            "Industrial Automation Lab",
-            "Hostel",
-            "Central Auditorium",
-            "Computing Labs"
+            "Advanced CNC & Industrial Automation Lab",
+            "Industrial Robotics Training Hub",
+            "Student Hostels with Modern Mess",
+            "Central Tiered Auditorium",
+            "Campus Placement Cell"
+        ],
+        "gallery": [
+            {
+                "title": "GP Adityapur Main Academic Block",
+                "image": "assets/images/colleges/gp-adityapur-building.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Grand Tiered Auditorium & Student Induction",
+                "image": "assets/images/colleges/gp-adityapur-auditorium.jpg",
+                "icon": "fa-users"
+            },
+            {
+                "title": "Advanced Central Computing & IT Facility",
+                "image": "assets/images/colleges/gp-adityapur-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            },
+            {
+                "title": "Applied Engineering & Science Research Lab",
+                "image": "assets/images/colleges/gp-adityapur-chemistry-lab.jpg",
+                "icon": "fa-flask-vial"
+            },
+            {
+                "title": "HP Digital Workstations & CAD/CAM Lab",
+                "image": "assets/images/colleges/gp-adityapur-digital-lab.jpg",
+                "icon": "fa-network-wired"
+            }
         ]
     },
     {
@@ -314,7 +397,7 @@ window.DC_DATA = {
         "lng": 86.448,
         "established": 1905,
         "district": "Dhanbad",
-        "location": "BIT Sindri Campus, PO: Motinagar, Dist: Dhanbad - 828120",
+        "location": "BIT Sindri Campus, PO: Motinagar, Sindri, Dhanbad, Jharkhand - 828120",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.7,
@@ -325,7 +408,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpbhaga.ac.in",
-        "overview": "Established in 1905, GP Bhaga is one of India's oldest institutions for Mining and Core Engineering, featuring exclusive sponsored seats for Bharat Coking Coal Limited (BCCL) candidates.",
+        "overview": "Founded in 1905, Government Polytechnic Bhaga is one of the oldest and most prestigious mining engineering institutions in Asia. Located right adjacent to BIT Sindri campus, it provides unmatched practical mine safety, surveying, and ventilation training with dedicated corporate seats for Bharat Coking Coal Limited (BCCL).",
         "branches": [
             {
                 "name": "Computer Engineering",
@@ -353,11 +436,29 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Advance Mine Surveying Lab",
-            "Geological Museum",
-            "Mining Models Center",
-            "Computer Center",
-            "Hostels"
+            "Advanced Mine Surveying & GPS Lab",
+            "Geological & Mineralogical Museum",
+            "Mine Ventilation Simulation Lab",
+            "Computer Center & Wi-Fi",
+            "Dedicated Student Hostels",
+            "Technical Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Bhaga Heritage Main Campus",
+                "image": "assets/images/colleges/gp-bhaga.jpg",
+                "icon": "fa-landmark"
+            },
+            {
+                "title": "Mine Surveying & Geological Gallery",
+                "image": "assets/images/colleges/bit-sindri-robotics.jpg",
+                "icon": "fa-mountain"
+            },
+            {
+                "title": "Engineering Workshop & CAD Design Lab",
+                "image": "assets/images/colleges/dumka-engg-civil-class.jpg",
+                "icon": "fa-compass-drafting"
+            }
         ]
     },
     {
@@ -384,7 +485,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpbokaro.ac.in",
-        "overview": "Situated near Bokaro Steel City on Jainmore-Phusro Road, specializing in Automobile, Computer, and Mechanical streams with hands-on industrial workshops.",
+        "overview": "Strategically located near Bokaro Steel City on the Jainmore-Phusro highway, GP Khutri is the premier hub for Automobile Engineering, Computer Science, and Mechanical diploma disciplines. Features hands-on engine overhaul shops and proximity to SAIL Bokaro Steel Plant.",
         "branches": [
             {
                 "name": "Automobile Engineering",
@@ -406,10 +507,28 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Automobile Workshop",
-            "Engine Overhaul Lab",
-            "Hostel",
-            "Digital Library"
+            "Automotive IC Engine Overhaul Lab",
+            "Chassis & Transmission Testing Center",
+            "Central Computing & IT Wing",
+            "Digital Library",
+            "Campus Hostel"
+        ],
+        "gallery": [
+            {
+                "title": "GP Bokaro Campus Academic Wing",
+                "image": "assets/images/colleges/gp-bokaro.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Automobile & Mechanical Engine Workshop",
+                "image": "assets/images/colleges/ucet-automobile-lab.jpg",
+                "icon": "fa-car"
+            },
+            {
+                "title": "High-Tech Computer Science Lab",
+                "image": "assets/images/colleges/gp-adityapur-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            }
         ]
     },
     {
@@ -425,7 +544,7 @@ window.DC_DATA = {
         "lng": 86.711,
         "established": 2011,
         "district": "Dhanbad",
-        "location": "Gopalganj, Post: Debiyana, Nirsa, Dhanbad - 828205",
+        "location": "Gopalganj, Post: Debiyana, Nirsa, Dhanbad, Jharkhand - 828205",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.5,
@@ -436,7 +555,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpnirsa.gov.in",
-        "overview": "Premier government institution in Dhanbad district offering prestigious courses in Mining Engineering, Civil, and Mechanical with direct ECL/BCCL field exposure.",
+        "overview": "Government Polytechnic Nirsa is a premier technical institution in Dhanbad offering Civil, Mechanical, and Mining engineering diploma programs with direct ECL/BCCL coalfield internships and live underground mine demonstrations.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -458,10 +577,23 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Mine Surveying Lab",
-            "Geology Gallery",
-            "Sports Facility",
-            "Hostel"
+            "Mine Surveying & Safety Lab",
+            "Geology & Mineral Gallery",
+            "Mechanical Fabrication Shop",
+            "Hostels for Boys and Girls",
+            "Central Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Nirsa Campus & Entrance",
+                "image": "assets/images/colleges/gp-nirsa.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Mine Surveying Lab & Equipment",
+                "image": "assets/images/colleges/dumka-engg-seminar-hall.jpg",
+                "icon": "fa-mountain-sun"
+            }
         ]
     },
     {
@@ -477,7 +609,7 @@ window.DC_DATA = {
         "lng": 87.251,
         "established": 1962,
         "district": "Dumka",
-        "location": "At-Sonwadngal, PO-Shivpahar, PS-Dumka (M), Dist-Dumka - 814101",
+        "location": "At-Sonwadngal, PO-Shivpahar, Dumka, Jharkhand - 814101",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.5,
@@ -488,7 +620,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpdumka.in",
-        "overview": "Key technical institution of Santhal Pargana offering standard diploma engineering in Civil, CSE, Electrical, and Mechanical disciplines.",
+        "overview": "Established in 1962, GP Dumka is the flagship technical institute of Santhal Pargana division. It offers comprehensive diploma engineering in Civil, Computer Science, Electrical, and Mechanical disciplines.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -516,10 +648,23 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Workshops",
-            "Hostel",
-            "Computer Lab",
-            "Library"
+            "Central Workshops & Machine Shop",
+            "Electrical Machines Testing Lab",
+            "Computer Science Laboratories",
+            "Hostel Accommodation",
+            "Reference Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Dumka Main Academic Complex",
+                "image": "assets/images/colleges/gp-dumka.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Mechanical & Electrical Practical Lab",
+                "image": "assets/images/colleges/dumka-engg-electrical-lab.jpg",
+                "icon": "fa-bolt"
+            }
         ]
     },
     {
@@ -535,7 +680,7 @@ window.DC_DATA = {
         "lng": 85.765,
         "established": 2011,
         "district": "Koderma",
-        "location": "Gohal, Jainagar (Near Parsabad Stn), Koderma - 825410",
+        "location": "Gohal, Jainagar (Near Parsabad Station), Koderma - 825410",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.5,
@@ -546,7 +691,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpkoderma.in",
-        "overview": "Known for specialized streams in Mining, Computer, and Electronics & Communication engineering.",
+        "overview": "Government Polytechnic Koderma is renowned for its cutting-edge programs in Mining Engineering, Computer Engineering, and Electronics & Communication, supporting the mica and quartz mining belt of Jharkhand.",
         "branches": [
             {
                 "name": "Computer Engineering",
@@ -568,10 +713,23 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Mining Labs",
-            "Electronics Circuit Lab",
-            "Hostel",
-            "Library"
+            "Mica & Mineral Geological Lab",
+            "Analog & Digital Electronics Lab",
+            "Computer Programming Center",
+            "Hostels with Security",
+            "Library & Reading Room"
+        ],
+        "gallery": [
+            {
+                "title": "GP Koderma Academic Building",
+                "image": "assets/images/colleges/gp-koderma.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Electronics & Computing Center",
+                "image": "assets/images/colleges/ucet-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            }
         ]
     },
     {
@@ -598,7 +756,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gplatehar.org",
-        "overview": "Modern government polytechnic equipped with state-of-the-art engineering laboratories in Civil, Electrical, and Mechanical streams.",
+        "overview": "A modern government polytechnic equipped with state-of-the-art engineering laboratories in Civil, Electrical, and Mechanical streams serving western Jharkhand aspirants.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -620,10 +778,18 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Modern Labs",
-            "Hostel",
-            "Library",
-            "Playground"
+            "Modern Civil & Surveying Lab",
+            "Electrical Machine Testing Lab",
+            "Mechanical Engineering Workshop",
+            "Hostel with Mess",
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Latehar Campus Complex",
+                "image": "assets/images/colleges/gp-latehar.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -650,7 +816,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpkhunti.org",
-        "overview": "Located near Ranchi capital zone, offering high quality technical diploma courses with modern campus infrastructure.",
+        "overview": "Located adjacent to the Ranchi capital zone on Kala Mati Road, offering top-tier technical diploma courses in Computer Science, Civil, and Mechanical disciplines.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -672,10 +838,18 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Computer Lab",
-            "Workshops",
-            "Library",
-            "Hostels"
+            "High-Speed Computing Lab",
+            "Carpentry & Fitting Workshops",
+            "Modern Drawing Studios",
+            "Hostels",
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Khunti Main Building",
+                "image": "assets/images/colleges/gp-ranchi-academic-block.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -702,7 +876,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpsimdega.org",
-        "overview": "Dedicated government institute promoting engineering talent in southern Jharkhand with core engineering disciplines.",
+        "overview": "Dedicated government institute promoting engineering talent in southern Jharkhand with core engineering disciplines in Civil, Electrical, and Mechanical.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -724,9 +898,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Science & Technical Labs",
-            "Hostel",
-            "Library"
+            "Technical & Material Testing Labs",
+            "Campus Hostel",
+            "Library",
+            "Playground"
+        ],
+        "gallery": [
+            {
+                "title": "GP Simdega Campus View",
+                "image": "assets/images/colleges/gp-simdega.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -753,7 +935,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpgumla.org",
-        "overview": "Focusing on Civil, Electrical, and Automobile engineering education for tribal and general merit candidates.",
+        "overview": "Focusing on Automobile, Civil, and Electrical engineering education with practical vehicle repair workshops and industrial electronics modules.",
         "branches": [
             {
                 "name": "Automobile Engineering",
@@ -775,9 +957,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Auto Lab",
-            "Electrical Machine Lab",
-            "Hostels"
+            "Automotive Overhaul Lab",
+            "Electrical Measurements Lab",
+            "Hostel Accommodation",
+            "Digital Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Gumla Campus",
+                "image": "assets/images/colleges/dumka-engg.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -804,7 +994,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gplohardaga.org",
-        "overview": "Modern academic campus with high technology workshops and training centers.",
+        "overview": "Located in the bauxite-rich corridor of Lohardaga, offering modern technical education in Mining, Civil, and Mechanical engineering.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -826,9 +1016,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Workshops",
-            "Library",
-            "Hostel"
+            "Bauxite & Mineral Testing Lab",
+            "Central Workshops",
+            "Hostel",
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Lohardaga Campus Block",
+                "image": "assets/images/colleges/gp-latehar.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -855,7 +1053,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpgarhwa.org",
-        "overview": "North-western Jharkhand government technical institution offering core branches.",
+        "overview": "Premier government technical institution in north-western Jharkhand offering top-standard diploma engineering in Civil, Electrical, and Mechanical streams.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -877,9 +1075,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Modern CAD Lab",
+            "Mechanical Engineering Labs",
+            "Electrical Circuits Lab",
             "Hostel",
-            "Sports Complex"
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Garhwa Main Building",
+                "image": "assets/images/colleges/gp-dumka.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -906,7 +1112,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpgodda.org",
-        "overview": "Located in Santhal Pargana region with modern academic infrastructure.",
+        "overview": "Key government technical campus in Santhal Pargana region offering diploma courses with modern academic infrastructure and power plant linkages.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -928,9 +1134,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Library",
-            "Computer Lab",
-            "Hostel"
+            "Power Engineering Labs",
+            "Civil Concrete Lab",
+            "Hostel",
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Godda Campus",
+                "image": "assets/images/colleges/dumka-engg.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -951,13 +1165,13 @@ window.DC_DATA = {
         "approval": "AICTE Approved",
         "rating": 4.4,
         "reviewsCount": 54,
-        "image": "assets/images/colleges/gp-sahebganj.jpg",
+        "image": "assets/images/colleges/gp-sahibganj.jpg",
         "featured": false,
         "totalIntake": 180,
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpsahebganj.org",
-        "overview": "Situated along the Ganges river valley offering standard technical diploma programs.",
+        "overview": "Situated on the Ganges river port corridor, offering standard technical diploma programs in Computer Science, Civil, and Electrical.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -979,9 +1193,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "High-speed Wi-Fi",
-            "Computer Labs",
-            "Hostels"
+            "High-Speed Wi-Fi Labs",
+            "Computer Programming Center",
+            "Hostels",
+            "Sports Ground"
+        ],
+        "gallery": [
+            {
+                "title": "GP Sahebganj Campus View",
+                "image": "assets/images/colleges/gp-sahibganj.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1008,7 +1230,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gppakur.org",
-        "overview": "Government polytechnic in Pakur district offering engineering diploma courses.",
+        "overview": "Government polytechnic in Pakur district offering engineering diploma courses in Civil, Electrical, and Mechanical disciplines.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1030,9 +1252,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Library",
+            "Civil Concrete Lab",
             "Workshop",
-            "Hostel"
+            "Hostel",
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Pakur Main Building",
+                "image": "assets/images/colleges/gp-pakur.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1059,7 +1289,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpjamtara.org",
-        "overview": "Modern polytechnic offering CSE, Civil, and Mechanical engineering.",
+        "overview": "Modern polytechnic offering Computer Science, Civil, and Mechanical engineering diploma training near Mihijam and Chittaranjan industrial area.",
         "branches": [
             {
                 "name": "Computer Science & Engineering",
@@ -1081,9 +1311,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Computer Center",
-            "Workshops",
+            "Advanced Computer Center",
+            "Mechanical Tool Shop",
+            "Hostel",
             "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Jamtara Academic Complex",
+                "image": "assets/images/colleges/gp-nirsa.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1099,7 +1337,7 @@ window.DC_DATA = {
         "lng": 85.648,
         "established": 2015,
         "district": "West Singhbhum",
-        "location": "Jagannathpur, Chaibasa, West Singhbhum - 833214",
+        "location": "Jagannathpur, Chaibasa, West Singhbhum, Jharkhand - 833214",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.3,
@@ -1110,7 +1348,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 2,050 / Year",
         "website": "https://gpjagannathpur.org",
-        "overview": "Government technical institute catering to West Singhbhum mining and industrial corridor.",
+        "overview": "Government technical institute catering to the iron ore mining corridor of West Singhbhum, specializing in Mining, Civil, and Mechanical.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1132,9 +1370,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Mining Models Lab",
+            "Mining Models & Geology Lab",
+            "Heavy Workshop",
             "Hostel",
-            "Central Library"
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Jagannathpur Main Block",
+                "image": "assets/images/colleges/gp-jagannathpur.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1150,7 +1396,7 @@ window.DC_DATA = {
         "lng": 85.318,
         "established": 1988,
         "district": "Ranchi",
-        "location": "At-Tharpakhna Near Plaza Chowk Jail Road, Ranchi - 834001",
+        "location": "At-Tharpakhna, Near Plaza Chowk, Jail Road, Ranchi - 834001",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.7,
@@ -1158,10 +1404,10 @@ window.DC_DATA = {
         "image": "assets/images/colleges/wp-ranchi.jpg",
         "featured": true,
         "totalIntake": 180,
-        "hostel": "Available (Dedicated Girls Hostel)",
+        "hostel": "Available (Dedicated Girls Hostel with 24x7 Security)",
         "feesAnnual": "₹ 1,800 / Year",
         "website": "https://gwpranchi.org",
-        "overview": "Premier women's technical institute in Jharkhand providing top notch education in Computer Science, Electrical, and Electronics & Communication.",
+        "overview": "Premier women's technical institute in Jharkhand established in 1988. Dedicated exclusively to female engineering aspirants, it provides exceptional education in Computer Science, Electrical, and Electronics & Communication with regular campus placement drives by top tech firms and PSUs.",
         "branches": [
             {
                 "name": "Computer Science and Engineering",
@@ -1183,10 +1429,28 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Girls Hostel with Security",
-            "Software Labs",
-            "Digital Drawing Studios",
-            "Library"
+            "Dedicated Girls Hostel with Biometric Security",
+            "Advanced Software & IT Labs",
+            "Digital Drawing & Drafting Studios",
+            "Library & Internet Browsing Center",
+            "Career Guidance & Placement Cell"
+        ],
+        "gallery": [
+            {
+                "title": "GWP Ranchi Academic Campus",
+                "image": "assets/images/colleges/wp-ranchi.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Modern Computing & Software Lab",
+                "image": "assets/images/colleges/gp-adityapur-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            },
+            {
+                "title": "Electronics & Communication Circuit Lab",
+                "image": "assets/images/colleges/gp-adityapur-digital-lab.jpg",
+                "icon": "fa-microchip"
+            }
         ]
     },
     {
@@ -1202,7 +1466,7 @@ window.DC_DATA = {
         "lng": 86.096,
         "established": 2011,
         "district": "Seraikela Kharsawan",
-        "location": "Near Thana More, Gamharia, Jamshedpur - 832108",
+        "location": "Near Thana More, Gamharia, Jamshedpur, Jharkhand - 832108",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.6,
@@ -1210,10 +1474,10 @@ window.DC_DATA = {
         "image": "assets/images/colleges/wp-gamharia.jpg",
         "featured": false,
         "totalIntake": 240,
-        "hostel": "Available (Girls Hostel)",
+        "hostel": "Available (Dedicated Girls Hostel)",
         "feesAnnual": "₹ 1,800 / Year",
         "website": "https://gwpgamharia.org",
-        "overview": "Situated in the Jamshedpur auto hub, offering top core placements for female diploma engineers in Civil, CSE, ECE, and Mechanical.",
+        "overview": "Situated right next to the Jamshedpur-Gamharia industrial corridor, GWP Gamharia offers prestigious core placements for female diploma engineers in Civil, CSE, ECE, and Mechanical streams.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1241,9 +1505,22 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Girls Hostel",
-            "Modern Computer Labs",
-            "Placement Cell"
+            "Girls Hostel & Mess",
+            "Central Computing Center",
+            "Mechanical & Thermal Labs",
+            "Placement Cell with Tata Tie-ups"
+        ],
+        "gallery": [
+            {
+                "title": "GWP Gamharia Campus Entrance",
+                "image": "assets/images/colleges/wp-gamharia.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Central IT & Digital Systems Lab",
+                "image": "assets/images/colleges/dumka-engg-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            }
         ]
     },
     {
@@ -1267,10 +1544,10 @@ window.DC_DATA = {
         "image": "assets/images/colleges/wp-bokaro.jpg",
         "featured": false,
         "totalIntake": 180,
-        "hostel": "Available",
+        "hostel": "Available (Girls Hostel)",
         "feesAnnual": "₹ 1,800 / Year",
         "website": "https://gwpbokaro.org",
-        "overview": "Exclusive women's technical college in Bokaro Steel City offering CSE, ECE, and Electrical.",
+        "overview": "Exclusive women's government polytechnic in Bokaro Steel City providing high quality technical education in Computer Science, Electronics & Communication, and Electrical.",
         "branches": [
             {
                 "name": "Computer Science & Engineering",
@@ -1292,9 +1569,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Secure Hostel",
-            "Computer Lab",
+            "Secure Girls Hostel",
+            "High-Speed Computing Lab",
+            "Electronics Design Studio",
             "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GWP Bokaro Academic Campus",
+                "image": "assets/images/colleges/gp-bokaro.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1318,10 +1603,10 @@ window.DC_DATA = {
         "image": "assets/images/colleges/wp-dumka.jpg",
         "featured": false,
         "totalIntake": 180,
-        "hostel": "Available",
+        "hostel": "Available (Girls Hostel)",
         "feesAnnual": "₹ 1,800 / Year",
         "website": "https://gwpdumka.org",
-        "overview": "Empowering female technical candidates in Santhal Pargana division.",
+        "overview": "Empowering female technical candidates in the Santhal Pargana division with advanced laboratories in Computer Science, Civil, and Electrical.",
         "branches": [
             {
                 "name": "Computer Science & Engineering",
@@ -1343,9 +1628,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Hostel",
-            "Modern Classrooms",
-            "IT Lab"
+            "Dedicated Girls Hostel",
+            "Modern Classrooms & Smart Boards",
+            "IT Lab",
+            "Library"
+        ],
+        "gallery": [
+            {
+                "title": "GWP Dumka Main Building",
+                "image": "assets/images/colleges/gp-dumka.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1372,7 +1665,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
         "website": "https://gpbaharagora.edu.in",
-        "overview": "Run under Public-Private Partnership offering top infrastructure with corporate training tie-ups.",
+        "overview": "Run under Public-Private Partnership offering top infrastructure with corporate training tie-ups across Civil, CSE, Electrical, Mechanical, and Mining engineering.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1406,10 +1699,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Modern CAD Labs",
-            "Hostels",
+            "Modern CAD & Simulation Labs",
+            "Separate Hostels for Boys & Girls",
             "Sports Ground",
             "Wi-Fi Campus"
+        ],
+        "gallery": [
+            {
+                "title": "GP Baharagora Campus",
+                "image": "assets/images/colleges/silli-polytechnic.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1430,13 +1730,13 @@ window.DC_DATA = {
         "approval": "AICTE Approved",
         "rating": 4.4,
         "reviewsCount": 62,
-        "image": "assets/images/colleges/gp-chandil.jpg",
+        "image": "assets/images/colleges/chandil-polytechnic.jpg",
         "featured": false,
         "totalIntake": 300,
         "hostel": "Available",
         "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
         "website": "https://gpchandil.edu.in",
-        "overview": "PPP institution located near Jamshedpur industrial area with strong core engineering focus.",
+        "overview": "PPP institution located near Jamshedpur industrial corridor with strong core engineering focus and direct industrial placement linkages.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1464,9 +1764,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Robotics Center",
-            "Hostel",
-            "Central Library"
+            "Robotics & Automation Lab",
+            "Student Hostels",
+            "Central Library",
+            "Workshops"
+        ],
+        "gallery": [
+            {
+                "title": "GP Chandil Main Campus",
+                "image": "assets/images/colleges/chandil-polytechnic.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1487,13 +1795,13 @@ window.DC_DATA = {
         "approval": "AICTE Approved",
         "rating": 4.5,
         "reviewsCount": 75,
-        "image": "assets/images/colleges/gp-silli.jpg",
+        "image": "assets/images/colleges/silli-polytechnic.jpg",
         "featured": false,
         "totalIntake": 300,
         "hostel": "Available",
         "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
         "website": "https://gpsilli.org",
-        "overview": "Reputed PPP institute near Ranchi known for CSE, ECE, Civil, and Mechanical diploma training.",
+        "overview": "Reputed PPP institute near Ranchi known for CSE, ECE, Civil, Electrical, and Mechanical diploma training with scenic infrastructure and modern computer centers.",
         "branches": [
             {
                 "name": "Computer Science & Engineering",
@@ -1527,9 +1835,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Modern IT Labs",
-            "Central Workshop",
-            "Hostels"
+            "Modern IT & Coding Labs",
+            "Central Mechanical Workshop",
+            "Hostels",
+            "Digital Library"
+        ],
+        "gallery": [
+            {
+                "title": "GP Silli Campus Panorama",
+                "image": "assets/images/colleges/silli-polytechnic.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1550,13 +1866,13 @@ window.DC_DATA = {
         "approval": "AICTE Approved",
         "rating": 4.3,
         "reviewsCount": 54,
-        "image": "assets/images/colleges/gp-madhupur.jpg",
+        "image": "assets/images/colleges/madhupur-polytechnic.jpg",
         "featured": false,
         "totalIntake": 300,
         "hostel": "Available",
         "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
         "website": "https://gpmadhupur.edu.in",
-        "overview": "PPP polytechnic in Deoghar district providing career-ready engineering diplomas.",
+        "overview": "PPP polytechnic in Deoghar district providing career-ready engineering diplomas with modern computer labs and railway industrial exposure.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1584,9 +1900,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Library",
-            "Computer Lab",
-            "Hostel"
+            "Library & Reading Room",
+            "Computer Labs",
+            "Hostel Accommodation",
+            "Sports Ground"
+        ],
+        "gallery": [
+            {
+                "title": "GP Madhupur Academic Block",
+                "image": "assets/images/colleges/madhupur-polytechnic.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1607,13 +1931,13 @@ window.DC_DATA = {
         "approval": "AICTE Approved",
         "rating": 4.4,
         "reviewsCount": 59,
-        "image": "assets/images/colleges/gp-gola.jpg",
+        "image": "assets/images/colleges/gola-polytechnic.jpg",
         "featured": false,
         "totalIntake": 300,
         "hostel": "Available",
         "feesAnnual": "Govt Quota: ₹ 2,050 / Year • Management: ₹ 35,000 / Year",
         "website": "https://gpgola.edu.in",
-        "overview": "Located in the industrial coal-mining belt of Ramgarh offering high placement linkages.",
+        "overview": "Located in the industrial coal-mining belt of Ramgarh offering high placement linkages with CCL, Jindal Power, and sponge iron industries.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1641,9 +1965,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Mining Labs",
+            "Mining Engineering Labs",
+            "Heavy Machines Workshop",
             "Hostels",
             "Sports Ground"
+        ],
+        "gallery": [
+            {
+                "title": "GP Gola Campus",
+                "image": "assets/images/colleges/gola-polytechnic.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1669,8 +2001,8 @@ window.DC_DATA = {
         "totalIntake": 540,
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 55,000 / Year",
-        "website": "https://alkabir.in",
-        "overview": "Top ranked private polytechnic in Jharkhand with phenomenal placements in Tata Group, Jindal, and multinationals.",
+        "website": "https://akp.ac.in",
+        "overview": "Top ranked private polytechnic in Jharkhand established in 1990. Celebrated for high-tech Siemens automation labs, superior placement track record in Tata Motors, Tata Steel, Jindal, and multinationals, with a sprawling green campus in Mango, Jamshedpur.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1704,11 +2036,28 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Advanced CNC Center",
-            "High-Tech Computer Labs",
-            "Hostels",
-            "Mega Auditorium",
-            "Sports Arena"
+            "Advanced CNC & CAD/CAM Center",
+            "High-Tech Computer & AI Labs",
+            "Boys & Girls Hostels",
+            "Mega Auditorium & Seminar Hall",
+            "Sports Arena & Gymnasium"
+        ],
+        "gallery": [
+            {
+                "title": "Al-Kabir Academic Complex",
+                "image": "assets/images/colleges/gp-adityapur-building.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Advanced Industrial Automation Lab",
+                "image": "assets/images/colleges/gp-adityapur-digital-lab.jpg",
+                "icon": "fa-microchip"
+            },
+            {
+                "title": "Central IT & Computing Center",
+                "image": "assets/images/colleges/gp-adityapur-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            }
         ]
     },
     {
@@ -1735,7 +2084,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 48,000 / Year",
         "website": "https://kkpolytechnic.ac.in",
-        "overview": "Prominent private polytechnic in Dhanbad offering Civil, Mechanical, Electrical, Mining, and Automobile streams.",
+        "overview": "Prominent private polytechnic in Dhanbad offering Civil, Mechanical, Electrical, Mining, and Automobile streams with expansive workshops and campus placement drives.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1769,10 +2118,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Central Workshop",
-            "Hostel",
-            "Transport Bus Service",
-            "Library"
+            "Central Engineering Workshops",
+            "Student Hostels with Mess",
+            "Transport Bus Fleet",
+            "Digital Library"
+        ],
+        "gallery": [
+            {
+                "title": "KK Polytechnic Main Campus",
+                "image": "assets/images/colleges/gola-polytechnic.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1799,7 +2155,7 @@ window.DC_DATA = {
         "hostel": "Available",
         "feesAnnual": "₹ 45,000 / Year",
         "website": "https://rgit.ac.in",
-        "overview": "Private technical campus in Jhumri Telaiya offering Diploma in Engineering and B.Tech degrees.",
+        "overview": "Private technical campus in Jhumri Telaiya offering Diploma in Engineering and B.Tech degrees with modern mechanical and computer labs.",
         "branches": [
             {
                 "name": "Civil Engineering",
@@ -1827,9 +2183,17 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Hostels",
-            "Library",
-            "Workshops"
+            "Hostels for Boys & Girls",
+            "Central Library",
+            "Workshops",
+            "Sports Facility"
+        ],
+        "gallery": [
+            {
+                "title": "Ramgovind Campus View",
+                "image": "assets/images/colleges/gp-koderma.jpg",
+                "icon": "fa-building-columns"
+            }
         ]
     },
     {
@@ -1853,10 +2217,10 @@ window.DC_DATA = {
         "image": "assets/images/colleges/bit-sindri.jpg",
         "featured": true,
         "totalIntake": 68,
-        "hostel": "Available for all lateral students",
+        "hostel": "Available for all lateral entry students (25+ Hostels)",
         "feesAnnual": "₹ 15,000 / Year",
         "website": "https://bitsindri.ac.in",
-        "overview": "The #1 choice for Diploma to Degree (D2D) lateral entry in Jharkhand. 10% supernumerary seats in all B.Tech branches for top polytechnic rankers with average placement of ₹ 7.5 LPA.",
+        "overview": "BIT Sindri (Estd 1949) is Jharkhand's apex premier government engineering college, offering exclusive 10% supernumerary B.Tech Lateral Entry seats for top polytechnic rankers through the D2D entrance exam. Sprawling across 450 acres, it boasts an average package of ₹ 7.5 LPA, highest package of ₹ 50+ LPA, Siemens Robotics Center, and an illustrious global alumni network.",
         "branches": [
             {
                 "name": "B.Tech Computer Science & Engg (Lateral)",
@@ -1921,10 +2285,11 @@ window.DC_DATA = {
         ],
         "facilities": [
             "Siemens Center of Excellence & Robotics Lab",
-            "Central Research Labs",
-            "Supercomputing Center",
-            "Hostels (25+)",
-            "Alumni Network"
+            "Central Research & Supercomputing Labs",
+            "25+ Student Hostels with Mess",
+            "Central Library with 1,00,000+ Volumes",
+            "World-Class Sports Arena & Stadium",
+            "Dedicated Placement Cell (100+ Companies)"
         ],
         "gallery": [
             {
@@ -1993,7 +2358,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "₹ 45,000 / Year",
         "website": "https://ucetvbu.ac.in",
-        "overview": "Premier constituent government university engineering college of Vinoba Bhave University offering prestigious B.Tech Lateral Entry seats for diploma holders.",
+        "overview": "Premier constituent government university engineering college of Vinoba Bhave University offering prestigious B.Tech Lateral Entry degree programs for diploma holders in CSE, IT, ECE, and Mechanical.",
         "branches": [
             {
                 "name": "B.Tech Computer Science & Engg (Lateral)",
@@ -2022,10 +2387,37 @@ window.DC_DATA = {
         ],
         "facilities": [
             "University Central Library",
-            "Advanced IT Labs",
+            "Advanced IT & Microprocessor Labs",
             "University Hostels",
             "Placement Cell",
-            "Mechanical Workshops"
+            "Mechanical Engineering Workshops"
+        ],
+        "gallery": [
+            {
+                "title": "Himalaya Academic & Administrative Complex",
+                "image": "assets/images/colleges/ucet-main-building.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "UCET Central Engineering Workshop",
+                "image": "assets/images/colleges/ucet-workshop-entrance.jpg",
+                "icon": "fa-wrench"
+            },
+            {
+                "title": "Mechanical & Automobile Engineering Lab",
+                "image": "assets/images/colleges/ucet-automobile-lab.jpg",
+                "icon": "fa-car"
+            },
+            {
+                "title": "Central Computing & IT Lab",
+                "image": "assets/images/colleges/ucet-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            },
+            {
+                "title": "Heavy Machinery & Manufacturing Wing",
+                "image": "assets/images/colleges/ucet-workshop-exterior.jpg",
+                "icon": "fa-industry"
+            }
         ]
     },
     {
@@ -2052,7 +2444,7 @@ window.DC_DATA = {
         "hostel": "Available (Boys & Girls)",
         "feesAnnual": "Free Quota: ₹ 25,000 / Year • Regular Quota: ₹ 55,000 / Year",
         "website": "https://dumkaengg.edu.in",
-        "overview": "Established by Government of Jharkhand under TEQIP-III initiative, offering top B.Tech Lateral Entry degree programs with modern academic infrastructure and campus placements.",
+        "overview": "Established by Government of Jharkhand under TEQIP-III initiative, offering top B.Tech Lateral Entry degree programs with modern academic infrastructure and campus placements in CSE, Civil, Electrical, Mechanical, and ECE.",
         "branches": [
             {
                 "name": "B.Tech Computer Science & Engg (Lateral)",
@@ -2088,10 +2480,52 @@ window.DC_DATA = {
         "facilities": [
             "Smart Engineering Classrooms",
             "Modern Robotics Lab",
-            "Hostels",
+            "Hostels with Mess",
             "Campus Placement Cell",
-            "Central Auditorium",
+            "Air-Conditioned Central Auditorium",
             "Central Library"
+        ],
+        "gallery": [
+            {
+                "title": "Dumka Engineering College Scenic Campus & Hills",
+                "image": "assets/images/colleges/dumka-engg-campus-view.jpg",
+                "icon": "fa-mountain-sun"
+            },
+            {
+                "title": "Civil Engineering Smart Lecture Hall",
+                "image": "assets/images/colleges/dumka-engg-civil-class.jpg",
+                "icon": "fa-chalkboard-user"
+            },
+            {
+                "title": "Computer Science & CAD/CAM Design Lab",
+                "image": "assets/images/colleges/dumka-engg-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            },
+            {
+                "title": "Electrical Machines & Power Systems Lab",
+                "image": "assets/images/colleges/dumka-engg-electrical-lab.jpg",
+                "icon": "fa-bolt"
+            },
+            {
+                "title": "Central Digital & Reference Library",
+                "image": "assets/images/colleges/dumka-engg-library.jpg",
+                "icon": "fa-book-open"
+            },
+            {
+                "title": "Interactive Technical Seminar Hall",
+                "image": "assets/images/colleges/dumka-engg-seminar-hall.jpg",
+                "icon": "fa-users-line"
+            },
+            {
+                "title": "Air-Conditioned Central Auditorium",
+                "image": "assets/images/colleges/dumka-engg-auditorium.jpg",
+                "icon": "fa-masks-theater"
+            },
+            {
+                "title": "Industrial Training & Power Plant Visit",
+                "image": "assets/images/colleges/dumka-engg-industrial-visit.jpg",
+                "icon": "fa-industry"
+            }
         ]
     },
     {
@@ -2107,18 +2541,18 @@ window.DC_DATA = {
         "lng": 85.815,
         "established": 2013,
         "district": "West Singhbhum",
-        "location": "Jhikpani, Chaibasa, West Singhbhum - 833215",
+        "location": "Jhikpani, Chaibasa, West Singhbhum, Jharkhand - 833215",
         "affiliation": "Jharkhand University of Technology (JUT)",
         "approval": "AICTE Approved",
         "rating": 4.5,
         "reviewsCount": 95,
-        "image": "assets/images/colleges/chaibasa-engg.jpg",
+        "image": "assets/images/colleges/dumka-engg.jpg",
         "featured": false,
         "totalIntake": 60,
         "hostel": "Available",
         "feesAnnual": "Free Quota: ₹ 25,000 / Year • Regular: ₹ 55,000 / Year",
         "website": "https://chaibasaengg.edu.in",
-        "overview": "Govt established engineering college offering premier lateral entry degree courses.",
+        "overview": "Government established engineering degree college offering premier lateral entry degree courses in Computer Science, Civil, Electrical, Mechanical, and ECE with state-of-the-art laboratory complexes.",
         "branches": [
             {
                 "name": "B.Tech Computer Science (Lateral)",
@@ -2152,9 +2586,22 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "Hostels",
-            "Central Library",
+            "Advanced Electronics & IoT Lab",
+            "Hostels for Boys & Girls",
+            "Central Reference Library",
             "Workshops"
+        ],
+        "gallery": [
+            {
+                "title": "Chaibasa Engineering Academic Block",
+                "image": "assets/images/colleges/dumka-engg-campus-view.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "Power Systems & Electrical Lab",
+                "image": "assets/images/colleges/dumka-engg-electrical-lab.jpg",
+                "icon": "fa-bolt"
+            }
         ]
     },
     {
@@ -2175,13 +2622,13 @@ window.DC_DATA = {
         "approval": "AICTE Approved",
         "rating": 4.5,
         "reviewsCount": 98,
-        "image": "assets/images/colleges/ramgarh-engg.jpg",
+        "image": "assets/images/colleges/dumka-engg.jpg",
         "featured": false,
         "totalIntake": 60,
         "hostel": "Available",
         "feesAnnual": "Free Quota: ₹ 25,000 / Year • Regular: ₹ 55,000 / Year",
         "website": "https://ramgarhengg.edu.in",
-        "overview": "Govt established degree institute with top modern laboratories and D2D seats.",
+        "overview": "Government established degree institute located on NH-33 offering top modern laboratories, high-speed computing clusters, and D2D seats with strong placement connections.",
         "branches": [
             {
                 "name": "B.Tech Computer Science (Lateral)",
@@ -2215,9 +2662,22 @@ window.DC_DATA = {
             }
         ],
         "facilities": [
-            "High Speed Computing",
-            "Hostel",
+            "High-Speed Computing Labs",
+            "Thermal & Fluid Engineering Lab",
+            "Hostel Accommodation",
             "Sports Complex"
+        ],
+        "gallery": [
+            {
+                "title": "Ramgarh Engineering Main Campus",
+                "image": "assets/images/colleges/dumka-engg-campus-view.jpg",
+                "icon": "fa-building-columns"
+            },
+            {
+                "title": "CAD/CAM & IT Design Center",
+                "image": "assets/images/colleges/dumka-engg-computer-lab.jpg",
+                "icon": "fa-laptop-code"
+            }
         ]
     }
 ],

@@ -53,9 +53,9 @@
                 }
             }
 
-            // Ensure colleges have coordinates and complete dataset
+            // Ensure colleges have coordinates, rich galleries, and complete dataset
             if (baseData.colleges && Array.isArray(baseData.colleges)) {
-                if (!this.cache.colleges || this.cache.colleges.length < baseData.colleges.length || !this.cache.colleges.some(c => c.lat)) {
+                if (!this.cache.colleges || this.cache.colleges.length < baseData.colleges.length || !this.cache.colleges.some(c => c.gallery && c.gallery.length > 0)) {
                     this.cache.colleges = JSON.parse(JSON.stringify(baseData.colleges));
                     try { localStorage.setItem('dc_data_colleges', JSON.stringify(this.cache.colleges)); } catch(e){}
                 }
